@@ -1,43 +1,42 @@
 package com.gamerisker.editor
 {
-	import com.gamerisker.core.Define;
+	import com.gamerisker.manager.SkinManager;
 	import com.gamerisker.utils.GUI;
-	import com.gamerisker.view.Main;
 
-	import feathers.controls.TabBar;
+	import feathers.controls.Button;
+	import feathers.controls.PickerList;
 	import feathers.core.FeathersControl;
 	import feathers.data.ListCollection;
 	import feathers.events.FeathersEventType;
 
 	import mx.collections.ArrayList;
 
-	import starling.display.Stage;
-
-	public class TabBarEditor extends Editor
+	public class PickerListEditor extends Editor
 	{
-		private var m_tabBar:TabBar;
+		private var m_pickerList:PickerList;
 
 		private var m_label:String;
+		private var m_data:String;
 		private var m_skin:String;
 		private var m_width:int;
 		private var m_height:int;
 		private var m_enabled:Boolean;
-		private var m_data:ListCollection;
 
-		public function TabBarEditor()
+		public function PickerListEditor()
 		{
-			m_type="TabBar";
+			m_type="PickerList";
 
-			m_tabBar=new TabBar;
-			m_tabBar.addEventListener(FeathersEventType.CREATION_COMPLETE, onCreateComponent);
-			addChild(m_tabBar)
+			m_pickerList=new PickerList;
+			m_pickerList.addEventListener(FeathersEventType.CREATION_COMPLETE, onCreateComponent);
+			addChild(m_pickerList)
 		}
 
 		override public function create():void
 		{
 			id=GUI.getInstanteIdNew();
-			label="tab1,tab2,tab3";
-			skin="default_tabBar1";
+			label="PickerList";
+			data="item1,item2,item3"
+			skin="default_button1";
 			width=100;
 			height=50;
 			enabled=true;
@@ -46,12 +45,12 @@ package com.gamerisker.editor
 
 		override public function setStyleName(name:String, value:*):void
 		{
-			m_tabBar[name]=value;
+			m_pickerList[name]=value;
 		}
 
 		override public function getComponent():FeathersControl
 		{
-			return m_tabBar;
+			return m_pickerList;
 		}
 
 		public function get label():String
@@ -62,14 +61,26 @@ package com.gamerisker.editor
 		public function set label(value:String):void
 		{
 			m_label=value;
-			m_data=new ListCollection;
+			m_pickerList.prompt=value;
+		}
+
+		public function get data():String
+		{
+			return m_data;
+		}
+
+		public function set data(value:String):void
+		{
 			var m_arr:Array=value.split(",");
+			var result:Array=[];
 			for each (var m_s:String in m_arr)
 			{
-				m_data.addItem({label: m_s});
+
+				result.push({text: m_s});
 			}
 
-			m_tabBar.dataProvider=m_data;
+			m_data=value;
+			m_pickerList.dataProvider=new ListCollection(result);
 		}
 
 		public function get skin():String
@@ -91,7 +102,7 @@ package com.gamerisker.editor
 		override public function set width(value:Number):void
 		{
 			m_width=value;
-			m_tabBar.width=value;
+			m_pickerList.width=m_width;
 		}
 
 		override public function get height():Number
@@ -102,7 +113,7 @@ package com.gamerisker.editor
 		override public function set height(value:Number):void
 		{
 			m_height=value;
-			m_tabBar.height=m_height;
+			m_pickerList.height=m_height;
 		}
 
 		public function get enabled():Boolean
@@ -113,15 +124,15 @@ package com.gamerisker.editor
 		public function set enabled(value:Boolean):void
 		{
 			m_enabled=value;
-			m_tabBar.isEnabled=value;
+			m_pickerList.isEnabled=value;
 		}
 
 		override public function toCopy():Editor
 		{
-			var _tabBar:TabBarEditor=new TabBarEditor();
-			_tabBar.xmlToComponent(new XML(toXMLString()));
-			_tabBar.id=GUI.getInstanteIdNew();
-			return _tabBar;
+			var _button:ButtonEditor=new ButtonEditor();
+			_button.xmlToComponent(new XML(toXMLString()));
+			_button.id=GUI.getInstanteIdNew();
+			return _button;
 		}
 
 		override public function toArrayList():ArrayList
@@ -136,13 +147,14 @@ package com.gamerisker.editor
 			list[6]={"Name": "height", "Value": height};
 			list[7]={"Name": "enabled", "Value": enabled};
 			list[8]={"Name": "alpha", "Value": alpha};
+			list[9]={"Name": "data", "Value": data};
 
 			return new ArrayList(list);
 		}
 
 		override public function toXMLString():String
 		{
-			var xml:String='<TabBar id="' + id + '" label="' + label + '" skin="' + skin + '" x="' + x + '" y="' + y + '" width="' + width + '" height="' + height + '" enabled="' + enabled + '" alpha="' + alpha + '"';
+			var xml:String='<PickerList id="' + id + '" label="' + label +'" data="' + data + '" skin="' + skin + '" x="' + x + '" y="' + y + '" width="' + width + '" height="' + height + '" enabled="' + enabled + '" alpha="' + alpha + '"';
 			var leng:int=childList.length;
 
 			if (leng > 0)
@@ -161,13 +173,14 @@ package com.gamerisker.editor
 				xml+=editor.toXMLString();
 			}
 
-			return xml+='</TabBar>';
+			return xml+='</PickerList>';
 		}
 
 		override public function xmlToComponent(value:XML):Editor
 		{
 			id=GUI.getInstanteId(value.@id.toString());
 			label=value.@label.toString();
+			data=value.@data.toString();
 			skin=value.@skin.toString();
 			width=int(value.@width);
 			height=int(value.@height);

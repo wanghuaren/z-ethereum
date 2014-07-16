@@ -1,6 +1,7 @@
 package com.gamerisker.view
 {
 	import com.gamerisker.core.Define;
+	import com.gamerisker.editor.TabBarEditor;
 	import com.gamerisker.manager.ControlManager;
 	import com.gamerisker.manager.KeyboardManager;
 	import com.gamerisker.manager.LoadManager;
@@ -13,6 +14,9 @@ package com.gamerisker.view
 	import com.gamerisker.manager.SkinManager;
 	import com.gamerisker.manager.TexturesManager;
 	import com.gamerisker.themes.AeonDesktopTheme;
+	
+	import feathers.controls.TabBar;
+	import feathers.data.ListCollection;
 	
 	import flash.utils.ByteArray;
 	

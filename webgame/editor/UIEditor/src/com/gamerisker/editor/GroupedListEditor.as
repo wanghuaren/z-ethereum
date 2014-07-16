@@ -1,43 +1,42 @@
 package com.gamerisker.editor
 {
-	import com.gamerisker.core.Define;
+	import com.gamerisker.manager.SkinManager;
 	import com.gamerisker.utils.GUI;
-	import com.gamerisker.view.Main;
-
-	import feathers.controls.TabBar;
+	
+	import feathers.controls.Button;
+	import feathers.controls.GroupedList;
+	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
+	import feathers.controls.renderers.IGroupedListItemRenderer;
 	import feathers.core.FeathersControl;
-	import feathers.data.ListCollection;
+	import feathers.data.HierarchicalCollection;
 	import feathers.events.FeathersEventType;
-
+	
 	import mx.collections.ArrayList;
 
-	import starling.display.Stage;
-
-	public class TabBarEditor extends Editor
+	public class GroupedListEditor extends Editor
 	{
-		private var m_tabBar:TabBar;
+		private var m_groupedList:GroupedList;
 
-		private var m_label:String;
+		private var m_data:String;
 		private var m_skin:String;
 		private var m_width:int;
 		private var m_height:int;
 		private var m_enabled:Boolean;
-		private var m_data:ListCollection;
 
-		public function TabBarEditor()
+		public function GroupedListEditor()
 		{
-			m_type="TabBar";
+			m_type="GroupedList";
 
-			m_tabBar=new TabBar;
-			m_tabBar.addEventListener(FeathersEventType.CREATION_COMPLETE, onCreateComponent);
-			addChild(m_tabBar)
+			m_groupedList=new GroupedList;
+			m_groupedList.addEventListener(FeathersEventType.CREATION_COMPLETE, onCreateComponent);
+			addChild(m_groupedList)
 		}
 
 		override public function create():void
 		{
 			id=GUI.getInstanteIdNew();
-			label="tab1,tab2,tab3";
-			skin="default_tabBar1";
+			data="Group1:item11,item12,item13;Group2:item21,item22,item23;Group3:item31,item32,item33";
+			skin="default_button1";
 			width=100;
 			height=50;
 			enabled=true;
@@ -46,30 +45,48 @@ package com.gamerisker.editor
 
 		override public function setStyleName(name:String, value:*):void
 		{
-			m_tabBar[name]=value;
+			m_groupedList[name]=value;
 		}
 
 		override public function getComponent():FeathersControl
 		{
-			return m_tabBar;
+			return m_groupedList;
 		}
 
-		public function get label():String
+		public function get data():String
 		{
-			return m_label;
+			return m_data;
 		}
 
-		public function set label(value:String):void
+		public function set data(value:String):void
 		{
-			m_label=value;
-			m_data=new ListCollection;
-			var m_arr:Array=value.split(",");
-			for each (var m_s:String in m_arr)
+			var m_arr1:Array=value.split(";");
+			var m_arr2:Array;
+			var m_arr3:Array;
+			var m_result:Array;
+			var result:Array=[];
+			;
+			for each (var m_s1:String in m_arr1)
 			{
-				m_data.addItem({label: m_s});
+				m_arr2=m_s1.split(":");
+				m_arr3=m_arr2[1].split(",");
+				m_result=[];
+				for each (var m_s2:String in m_arr3)
+				{
+					m_result.push({text: m_s2});
+				}
+				result.push({header: m_arr2[0], children: m_result});
 			}
 
-			m_tabBar.dataProvider=m_data;
+			m_data=value;
+			m_groupedList.dataProvider=new HierarchicalCollection(result);
+			
+//			m_groupedList.itemRendererFactory=function():IGroupedListItemRenderer
+//			{
+//				var m_renderer:DefaultGroupedListItemRenderer=new DefaultGroupedListItemRenderer();
+//				m_renderer.labelField="text";
+//				return m_renderer;
+//			}
 		}
 
 		public function get skin():String
@@ -91,7 +108,7 @@ package com.gamerisker.editor
 		override public function set width(value:Number):void
 		{
 			m_width=value;
-			m_tabBar.width=value;
+			m_groupedList.width=m_width;
 		}
 
 		override public function get height():Number
@@ -102,7 +119,7 @@ package com.gamerisker.editor
 		override public function set height(value:Number):void
 		{
 			m_height=value;
-			m_tabBar.height=m_height;
+			m_groupedList.height=m_height;
 		}
 
 		public function get enabled():Boolean
@@ -113,22 +130,22 @@ package com.gamerisker.editor
 		public function set enabled(value:Boolean):void
 		{
 			m_enabled=value;
-			m_tabBar.isEnabled=value;
+			m_groupedList.isEnabled=value;
 		}
 
 		override public function toCopy():Editor
 		{
-			var _tabBar:TabBarEditor=new TabBarEditor();
-			_tabBar.xmlToComponent(new XML(toXMLString()));
-			_tabBar.id=GUI.getInstanteIdNew();
-			return _tabBar;
+			var _button:ButtonEditor=new ButtonEditor();
+			_button.xmlToComponent(new XML(toXMLString()));
+			_button.id=GUI.getInstanteIdNew();
+			return _button;
 		}
 
 		override public function toArrayList():ArrayList
 		{
 			var list:Array=new Array;
 			list[0]={"Name": "id", "Value": id};
-			list[1]={"Name": "label", "Value": label};
+			list[1]={"Name": "data", "Value": data};
 			list[2]={"Name": "skin", "Value": skin};
 			list[3]={"Name": "x", "Value": x};
 			list[4]={"Name": "y", "Value": y};
@@ -142,7 +159,7 @@ package com.gamerisker.editor
 
 		override public function toXMLString():String
 		{
-			var xml:String='<TabBar id="' + id + '" label="' + label + '" skin="' + skin + '" x="' + x + '" y="' + y + '" width="' + width + '" height="' + height + '" enabled="' + enabled + '" alpha="' + alpha + '"';
+			var xml:String='<GroupedList id="' + id + '" data="' + data + '" skin="' + skin + '" x="' + x + '" y="' + y + '" width="' + width + '" height="' + height + '" enabled="' + enabled + '" alpha="' + alpha + '"';
 			var leng:int=childList.length;
 
 			if (leng > 0)
@@ -161,13 +178,13 @@ package com.gamerisker.editor
 				xml+=editor.toXMLString();
 			}
 
-			return xml+='</TabBar>';
+			return xml+='</GroupedList>';
 		}
 
 		override public function xmlToComponent(value:XML):Editor
 		{
 			id=GUI.getInstanteId(value.@id.toString());
-			label=value.@label.toString();
+			data=value.@data.toString();
 			skin=value.@skin.toString();
 			width=int(value.@width);
 			height=int(value.@height);
