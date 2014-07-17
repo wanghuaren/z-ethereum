@@ -1,25 +1,24 @@
 package com.gamerisker.scene
 {
+	import boomiui.editor.Editor;
+	import boomiui.manager.ComponentManager;
+	
 	import com.gamerisker.command.Command;
 	import com.gamerisker.core.Define;
-	import com.gamerisker.editor.Editor;
-	import com.gamerisker.manager.ComponentManager;
 	import com.gamerisker.manager.ControlManager;
 	import com.gamerisker.manager.FileManager;
 	import com.gamerisker.manager.KeyboardManager;
 	import com.gamerisker.manager.MouseManager;
 	import com.gamerisker.manager.MultipleManager;
 	import com.gamerisker.manager.TexturesManager;
-	import com.gamerisker.view.EditorScene;
-	import com.gamerisker.view.SelectWindow;
-
+	
 	import feathers.events.FeathersEventType;
-
+	
 	import flash.display.DisplayObject;
 	import flash.geom.Point;
-
+	
 	import mx.controls.Alert;
-
+	
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.Sprite;

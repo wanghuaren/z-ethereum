@@ -1,18 +1,17 @@
 package com.gamerisker.core
 {
-	import com.gamerisker.editor.Editor;
+	import boomiui.editor.Editor;
+	
 	import com.gamerisker.scene.EditScene;
 	
-	import flash.display.Sprite;
 	import flash.display.Stage;
-	import flash.utils.Timer;
 	
 	import starling.display.Sprite;
 	import starling.display.Stage;
 
 	public class Define
 	{
-		public static const UPDATE : String = ""
+		public static const UPDATE : String = "http://127.0.0.0"
 			
 		public static const DOWNVERSION : String = "";
 		

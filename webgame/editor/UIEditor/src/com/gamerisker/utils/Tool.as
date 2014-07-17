@@ -1,18 +1,17 @@
 package com.gamerisker.utils
 {
-	import com.gamerisker.editor.Editor;
-
+	import boomiui.editor.Editor;
+	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-
+	
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Sprite;
-	import starling.utils.MatrixUtil;
 
 	public class Tool
 	{

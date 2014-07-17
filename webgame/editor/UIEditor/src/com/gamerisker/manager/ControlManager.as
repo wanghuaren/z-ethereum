@@ -1,21 +1,20 @@
 package com.gamerisker.manager
 {
 
+	import boomiui.editor.Editor;
+	
 	import com.gamerisker.command.Command;
 	import com.gamerisker.core.Define;
-	import com.gamerisker.editor.Editor;
-	import com.gamerisker.editor.TitleWindowEditor;
 	import com.gamerisker.utils.Tool;
-
+	
 	import feathers.core.FeathersControl;
-
+	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Shape;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
-	import flash.text.ReturnKeyLabel;
-
+	
 	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -453,6 +452,7 @@ package com.gamerisker.manager
 				var hitComponents:Vector.<Editor>=new Vector.<Editor>();
 				Tool.findObjectsUnderPoint(Define.editorContainer, mousePoint, true, hitComponents);
 				componAddCompon(hitComponents);
+				RookieEditor.getInstante().Tree.update();
 			}
 		}
 		private static var touch:Touch;
@@ -468,7 +468,6 @@ package com.gamerisker.manager
 			{
 				return;
 			}
-			trace(value + "," + m_editor)
 			if (value.length > 0)
 			{
 				var m_childPoint:Point;

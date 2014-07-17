@@ -5,8 +5,9 @@
 		  close="{RookieEditor.getInstante().Code = null}">
 	<fx:Script>
 		<![CDATA[
+			import boomiui.editor.Editor;
+			
 			import com.gamerisker.core.Define;
-			import com.gamerisker.editor.Editor;
 			
 			import mx.controls.Alert;
 			

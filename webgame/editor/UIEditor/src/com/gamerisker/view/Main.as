@@ -1,30 +1,15 @@
 package com.gamerisker.view
 {
+	import boomiui.themes.AeonDesktopTheme;
+	
 	import com.gamerisker.core.Define;
-	import com.gamerisker.editor.TabBarEditor;
 	import com.gamerisker.manager.ControlManager;
 	import com.gamerisker.manager.KeyboardManager;
-	import com.gamerisker.manager.LoadManager;
 	import com.gamerisker.manager.MouseManager;
 	import com.gamerisker.manager.MultipleManager;
-	import com.gamerisker.manager.PngManager;
-	import com.gamerisker.manager.RemoteConfig;
-	import com.gamerisker.manager.SceneSourceManager;
-	import com.gamerisker.manager.SharedManager;
-	import com.gamerisker.manager.SkinManager;
-	import com.gamerisker.manager.TexturesManager;
-	import com.gamerisker.themes.AeonDesktopTheme;
 	
-	import feathers.controls.TabBar;
-	import feathers.data.ListCollection;
-	
-	import flash.utils.ByteArray;
-	
-	import starling.core.Starling;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.utils.HAlign;
-	import starling.utils.VAlign;
 	
 	public class Main extends Sprite
 	{

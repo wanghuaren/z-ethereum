@@ -1,6 +1,6 @@
 package com.gamerisker.manager
 {
-	import com.gamerisker.editor.Editor;
+	import boomiui.editor.Editor;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -282,7 +282,7 @@ package com.gamerisker.manager
 }
 
 
-import com.gamerisker.editor.Editor;
+import boomiui.editor.Editor;
 
 import flash.geom.Point;
 

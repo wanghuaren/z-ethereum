@@ -1,10 +1,10 @@
 package com.gamerisker.command
 {
-	import com.gamerisker.core.Define;
-	import com.gamerisker.editor.Editor;
-	import com.gamerisker.manager.ComponentManager;
+	import boomiui.editor.Editor;
+	import boomiui.manager.ComponentManager;
 	
-	import flash.events.EventDispatcher;
+	import com.gamerisker.core.Define;
+	import com.gamerisker.manager.MouseManager;
 
 	public class Command implements ICommand
 	{
@@ -50,7 +50,7 @@ package com.gamerisker.command
 			var editor : Editor
 			for(var i:int=0;i<m_list.length;i++)
 			{
-				editor = ComponentManager.setComponentByXML(new XML(m_list[i]));
+				editor=ComponentManager.setComponentByXML(new XML(m_list[i]), MouseManager.AddTouch, Define.Scene_Edit.OnTouchDownClick, Define.Scene_Edit.OnTouchMoveComponent);
 				Define.Scene_Edit.addChild(editor);
 			}
 		}

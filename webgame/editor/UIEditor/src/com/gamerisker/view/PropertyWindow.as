@@ -1,7 +1,7 @@
 package com.gamerisker.view
 {
-	import com.gamerisker.core.Define;
-	import com.gamerisker.editor.Editor;
+	import boomiui.editor.Editor;
+	
 	import com.gamerisker.manager.ControlManager;
 	
 	import feathers.events.FeathersEventType;
@@ -12,8 +12,6 @@ package com.gamerisker.view
 	import mx.managers.PopUpManager;
 	
 	import spark.components.DataGrid;
-	import spark.components.Panel;
-	import spark.components.TitleWindow;
 
 	public class PropertyWindow
 	{

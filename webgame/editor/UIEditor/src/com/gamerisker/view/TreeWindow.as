@@ -1,7 +1,8 @@
 package com.gamerisker.view
 {
+	import boomiui.editor.Editor;
+	
 	import com.gamerisker.core.Define;
-	import com.gamerisker.editor.Editor;
 	import com.gamerisker.manager.ControlManager;
 	import com.gamerisker.manager.TexturesManager;
 	
@@ -13,8 +14,6 @@ package com.gamerisker.view
 	import mx.controls.Tree;
 	
 	import spark.components.CheckBox;
-	import spark.components.Panel;
-	import spark.components.TitleWindow;
 	
 	import starling.display.Sprite;
 

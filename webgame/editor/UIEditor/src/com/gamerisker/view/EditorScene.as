@@ -117,6 +117,10 @@ package com.gamerisker.view
 			if (Define.stg && panel.stage && mStarling)
 			{
 				var m_rect:Rectangle=new Rectangle(SelectWindow.instance.panel.width + 10, SelectWindow.instance.panel.y + 10, panel.stage.stageWidth - SelectWindow.instance.panel.width - 20, panel.stage.stageHeight - panel.height - 20);
+				if (m_rect.width < 1 || m_rect.height < 1)
+				{
+					return;
+				}
 				mStarling.viewPort=m_rect;
 				mStarling.stage.stageWidth=m_rect.width;
 				mStarling.stage.stageHeight=m_rect.height;

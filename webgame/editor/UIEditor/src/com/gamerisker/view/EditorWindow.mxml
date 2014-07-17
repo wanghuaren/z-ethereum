@@ -6,14 +6,13 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import boomiui.editor.Editor;
+			
 			import com.gamerisker.command.Command;
-			import com.gamerisker.editor.Editor;
 			
 			import mx.events.ColorPickerEvent;
 			import mx.events.ItemClickEvent;
 			import mx.managers.PopUpManager;
-			
-			import spark.components.Group;
 			
 			private var m_value : Object;
 			

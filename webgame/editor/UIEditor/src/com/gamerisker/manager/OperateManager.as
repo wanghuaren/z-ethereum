@@ -1,8 +1,6 @@
 package com.gamerisker.manager
 {
 	import com.gamerisker.command.ICommand;
-	import com.gamerisker.core.Define;
-	import com.gamerisker.editor.Editor;
 
 	/**
 	 *	操作管理器 
