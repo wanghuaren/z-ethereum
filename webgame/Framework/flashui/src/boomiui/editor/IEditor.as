@@ -2,8 +2,6 @@ package boomiui.editor
 {
 	import feathers.core.FeathersControl;
 	
-	import mx.collections.ArrayList;
-
 	public interface IEditor
 	{
 		
@@ -19,7 +17,7 @@ package boomiui.editor
 			
 		function xmlToComponent(value : XML) : Editor
 			
-		function toArrayList() : ArrayList
+		function toArrayList() : Array
 			
 		function get type() : String
 			

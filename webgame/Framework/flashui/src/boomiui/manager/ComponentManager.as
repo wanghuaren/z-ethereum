@@ -32,7 +32,7 @@ package boomiui.manager
 		 * @return
 		 *
 		 */
-		public static function setComponentByXML(xml:XML, addEventFunc:Function, eventCallBackClick:Function, eventCallBackMove:Function):Editor
+		public static function setComponentByXML(xml:XML, addEventFunc:Function=null, eventCallBackClick:Function=null, eventCallBackMove:Function=null):Editor
 		{
 			var name:String=xml.localName();
 			var editor:Editor=getComponentByClass(name);

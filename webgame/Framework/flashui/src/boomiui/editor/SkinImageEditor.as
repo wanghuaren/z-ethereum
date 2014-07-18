@@ -125,7 +125,7 @@ package boomiui.editor
 			return xml += '</SkinImage>';
 		}
 		
-		override public function toArrayList():ArrayList
+		override public function toArrayList():Array
 		{
 			var list : Array = new Array
 			list[0] = {"Name" : "id" , "Value" : id};
@@ -136,7 +136,7 @@ package boomiui.editor
 			list[5] = {"Name" : "x" , "Value" : x};
 			list[6] = {"Name" : "y" , "Value" : y};
 			list[7] = {"Name" : "rotation" , "Value" : rotation};
-			return new ArrayList(list);
+			return list;
 		}
 		
 		override public function xmlToComponent(value:XML):Editor

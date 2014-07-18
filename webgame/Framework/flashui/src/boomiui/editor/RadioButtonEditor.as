@@ -150,7 +150,7 @@ package boomiui.editor
 			return xml += '</RadioButton>';
 		}
 		
-		override public function toArrayList():ArrayList
+		override public function toArrayList():Array
 		{
 			var list : Array = new Array
 			list[0] = {"Name" : "id" , "Value" : id};
@@ -165,7 +165,7 @@ package boomiui.editor
 			list[9] = {"Name" : "tfOffsetX" , "Value" : tfOffsetX};
 			list[10] = {"Name" : "tfOffsetY" , "Value" : tfOffsetY};
 
-			return new ArrayList(list);
+			return list;
 		}
 		
 		override public function xmlToComponent(value:XML):Editor

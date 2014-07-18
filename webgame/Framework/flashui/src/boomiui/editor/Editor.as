@@ -3,8 +3,6 @@ package boomiui.editor
 	import feathers.core.FeathersControl;
 	import feathers.events.FeathersEventType;
 	
-	import mx.collections.ArrayList;
-	
 	import starling.display.Sprite;
 	import starling.events.Event;
 
@@ -101,7 +99,7 @@ package boomiui.editor
 		{
 		}
 
-		public function toArrayList():ArrayList
+		public function toArrayList():Array
 		{
 			return null;
 		}

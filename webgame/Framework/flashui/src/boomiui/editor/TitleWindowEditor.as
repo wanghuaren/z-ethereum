@@ -2,6 +2,7 @@ package boomiui.editor
 {
 	import boomiui.themes.AeonDesktopTheme;
 	import boomiui.utils.GUI;
+	import boomiui.utils.Tools;
 	
 	import feathers.controls.Panel;
 	import feathers.events.FeathersEventType;
@@ -9,7 +10,6 @@ package boomiui.editor
 	import flash.text.TextFormat;
 	
 	import mx.collections.ArrayList;
-	import mx.utils.ObjectUtil;
 
 	public class TitleWindowEditor extends Editor
 	{
@@ -55,12 +55,7 @@ package boomiui.editor
 		{
 			if (globalTextFormat == null)
 			{
-				globalTextFormat=new TextFormat();
-				var m_properties_array:Array=ObjectUtil.getClassInfo(AeonDesktopTheme.m_headerTitleTextFormat).properties as Array;
-				for each (var m_proper:String in m_properties_array)
-				{
-					globalTextFormat[m_proper]=AeonDesktopTheme.m_headerTitleTextFormat[m_proper];
-				}
+				globalTextFormat=Tools.copyTextFormat(AeonDesktopTheme.m_headerTitleTextFormat);
 			}
 		}
 
@@ -116,14 +111,7 @@ package boomiui.editor
 			m_fontSize=value;
 			globalTextFormat.size=value;
 
-			var m_textFormat:TextFormat=new TextFormat();
-			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
-			for each (var m_proper:String in m_properties_array)
-			{
-				m_textFormat[m_proper]=globalTextFormat[m_proper];
-			}
-
-			m_window.headerProperties.@titleProperties.textFormat=m_textFormat;
+			m_window.headerProperties.@titleProperties.textFormat=Tools.copyTextFormat(globalTextFormat);
 		}
 
 		public function get textWidth():int
@@ -214,7 +202,7 @@ package boomiui.editor
 			return xml+='</TitleWindow>';
 		}
 
-		override public function toArrayList():ArrayList
+		override public function toArrayList():Array
 		{
 			var list:Array=new Array
 			list[0]={"Name": "id", "Value": id};
@@ -231,7 +219,7 @@ package boomiui.editor
 			list[11]={"Name": "enabled", "Value": enabled};
 			list[12]={"Name": "x", "Value": x};
 			list[13]={"Name": "y", "Value": y};
-			return new ArrayList(list);
+			return list;
 		}
 
 		override public function addEditor(editor:Editor):Editor

@@ -2,6 +2,7 @@ package boomiui.editor
 {
 	import boomiui.themes.AeonDesktopTheme;
 	import boomiui.utils.GUI;
+	import boomiui.utils.Tools;
 	
 	import feathers.controls.Label;
 	import feathers.events.FeathersEventType;
@@ -164,13 +165,8 @@ package boomiui.editor
 		{
 			m_fontSize = value;
 			globalTextFormat.size=value;
-			
-			var m_textFormat:TextFormat=new TextFormat();
-			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
-			for each(var m_proper:String in m_properties_array){
-				m_textFormat[m_proper]=globalTextFormat[m_proper];
-			}
-			m_label.textRendererProperties.textFormat=m_textFormat;
+
+			m_label.textRendererProperties.textFormat=Tools.copyTextFormat(globalTextFormat);
 		}
 
 		override public function set alpha(value:Number):void
@@ -240,7 +236,7 @@ package boomiui.editor
 			return xml += '</Label>';
 		}
 		
-		override public function toArrayList():ArrayList
+		override public function toArrayList():Array
 		{
 			var list : Array = new Array
 			list[0] = {"Name" : "id" , "Value" : id};
@@ -256,7 +252,7 @@ package boomiui.editor
 			list[10] = {"Name" : "align" , "Value" : align};
 			list[11] = {"Name" : "bold" , "Value" : bold};
 
-			return new ArrayList(list);
+			return list;
 		}
 		
 		override public function xmlToComponent(value:XML):Editor

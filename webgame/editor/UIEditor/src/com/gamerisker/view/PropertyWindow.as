@@ -103,7 +103,7 @@ package com.gamerisker.view
 				myDataGrid.dataProvider = new ArrayList;
 				return;
 			}
-			myDataGrid.dataProvider = m_target.toArrayList();
+			myDataGrid.dataProvider = new ArrayList(m_target.toArrayList());
 			
 			//				RookieEditor.getInstante().Tree.update();		//Tree 必须在Code之上
 			RookieEditor.getInstante().Code.update();

@@ -150,7 +150,7 @@ package boomiui.editor
 			return _button;
 		}
 
-		override public function toArrayList():ArrayList
+		override public function toArrayList():Array
 		{
 			var list:Array=new Array;
 			list[0]={"Name": "id", "Value": id};
@@ -166,7 +166,7 @@ package boomiui.editor
 			list[10]={"Name": "max", "Value": max};
 			list[11]={"Name": "step", "Value": step};
 
-			return new ArrayList(list);
+			return list;
 		}
 
 		override public function toXMLString():String
