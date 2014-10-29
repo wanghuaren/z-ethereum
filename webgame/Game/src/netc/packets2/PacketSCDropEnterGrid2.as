@@ -1,0 +1,45 @@
+/**
+ * 要加什么属性自已加，但是不可覆写父类的方法
+ * 如 父类有个job整数属性，此类可加个job_ch字符串属性
+ * 复杂类型用继承，并在类名后加2，比如StructPlayerInfo2，然后自已加需要的属性，传到上层逻辑，减少上层编码量 
+ * 这些加的属性所需要的数据在该类的process中进行处理和赋值
+ *  
+ */ 
+package netc.packets2
+{
+	import engine.net.packet.PacketFactory;
+	import engine.support.IPacket;
+	import engine.support.ISerializable;
+	
+	import flash.utils.ByteArray;
+	
+	import nets.packets.PacketSCDropEnterGrid;
+	
+	import scene.utils.MapCl;
+	
+	/** 
+	 *
+	 */
+	public class PacketSCDropEnterGrid2 extends PacketSCDropEnterGrid
+	{
+		public function get spawn_posx2():uint
+		{
+			return MapCl.gridXToMap(spawn_posx);
+		}
+		
+		public function get spawn_posy2():uint
+		{
+			return MapCl.gridYToMap(spawn_posy);
+		}
+		
+		public function get posx2():uint
+		{
+			return MapCl.gridXToMap(posx);
+		}
+		
+		public function get posy2():uint
+		{
+			return MapCl.gridYToMap(posy);
+		}
+	}
+}

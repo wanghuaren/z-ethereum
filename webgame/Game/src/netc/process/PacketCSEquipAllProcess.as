@@ -1,0 +1,25 @@
+package netc.process
+{
+	import flash.utils.getQualifiedClassName;
+	import engine.net.process.PacketBaseProcess;
+	import engine.support.IPacket;
+	import netc.packets2.PacketCSEquipAll2;
+
+	public class PacketCSEquipAllProcess extends PacketBaseProcess
+	{
+		public function PacketCSEquipAllProcess()
+		{
+			super();
+		}
+
+		override public function process(pack:IPacket):IPacket
+		{
+			var p:PacketCSEquipAll2=pack as PacketCSEquipAll2;
+			if (null == p)
+			{
+				throw new Error("can not canver pack for " + getQualifiedClassName(pack));
+			}
+			return p;
+		}
+	}
+}
