@@ -1,0 +1,4069 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<tips>
+		<t k='pub_param'><![CDATA[#param]]></t>
+
+		<t k='smallmap_map_zone_1'>当前场景为安全区域，无法PK。</t>
+		<t k='smallmap_map_zone_2'>当前场景为PK地图，杀死其他玩家不增加PK值，死亡不会掉落装备。</t>
+		<t k='smallmap_map_zone_3'>当前场景为PK地图，杀死其他玩家增加PK值，PK值达到300红名。</t>
+		<t k='smallmap_map_zone_4'>当前场景为PK地图，杀死其他玩家不增加PK值，但死亡有几率掉落装备。</t>
+		<t k='lie_xian_readly'>烈焰剑法效果准备中</t>
+
+		<t k='jiao_se_look1'><![CDATA[人名: #param]]></t>
+		<t k='jiao_se_look2'><![CDATA[帮派: #param]]></t>
+
+		<t k='100006800_JinMaDesc'><![CDATA[决战战场玩法说明：<br/>1.进入战场后，你会被随机分配到一个阵营。<br/>2.击杀敌方的玩家、小兵、大将、BOSS都会获得积分。<br/>3.活动结束时，阵营总积分高的一方获胜。<br/>4.你的积分越高，能领取的奖励越高，胜利一方的奖励翻倍！<br/>5.活动中死亡不会掉落物品，击杀玩家不增加PK值，尽情的PK吧！]]></t>
+		<t k='100006801_JinMaDesc'><![CDATA[积分获取和奖励说明：<br/>一.如何获得积分：<br/>1.击杀敌方小兵10分、大将100分，BOSS10000分，杀人获得等于对方等级的积分。<br/>2.大将和boss按照伤害平分积分，伤害越高积分越高。<br/>3.阵营积分就是阵营中各个玩家的积分总和。<br/>二.奖励：积分越高奖励越高，胜方奖励翻倍！<br/>个人积分：10-2000分<br/>成就+3000  神兵碎片+20万  功勋+500<br/>个人积分：2000-5000分<br/>成就+6000  神兵碎片+40万  功勋+1000<br/>个人积分：5000分以上<br/>成就+12000  神兵碎片+80万  功勋+2000]]></t>
+
+		<t k='bangpai_ling_get'><![CDATA[1.开服第一天2小时后，给予获得四职业第一称号的玩家，1人1个帮派令；<br>2.开服第一天4小时后，给予等级排行榜中非四职业第一称号的前4名玩家，1人1个帮派令。]]></t>
+		<t k='bangpai_zi_jin'>完成帮派任务、帮派活动可获得(成员每获得1点帮贡，帮派资金增加1点)</t>
+		<t k='bangpai_fan_rong'>完成帮派任务、帮派活动可获得(成员每获得1点威望，帮派繁荣增加1点)</t>
+		<t k='bangpai_ge_ren_bang_gong'>完成帮派任务、帮派活动可获得(成员每获得1点帮贡，帮派资金增加1点)</t>
+		<t k='bangpai_ge_ren_wei_wang'>完成帮派任务、帮派活动可获得(成员每获得1点威望，帮派繁荣增加1点)</t>
+
+		<t k='bangpai_pto1'>点击参加活动</t>
+		<t k='bangpai_pto2'>点击参加活动</t>
+		<t k='bangpai_pto3'>点击接取任务</t>
+		<t k='bangpai_pto4'>点击参加活动</t>
+
+		<t k='bangpai_btnGuildHome'>点击进入领地</t>
+		<t k='bangpai_btnBangPaiShop'>点击打开帮派商店</t>
+		<t k='bangpai_btnBangPaiJiNeng'>点击学习帮派技能</t>
+		<t k='bangpai_btnBangPaiYanFa'>点击查看帮派研发</t>
+		<t k='bangpai_btnBangPaiAtt0'><![CDATA[一级帮派可以获得如下属性：<br/>使您的生命增加100点]]></t>
+		<t k='bangpai_btnBangPaiAtt1'><![CDATA[二级帮派可以获得如下属性：<br/>使您的生命增加150点]]></t>
+		<t k='bangpai_btnBangPaiAtt2'><![CDATA[三级帮派可以获得如下属性：<br/>使您的生命增加200点]]></t>
+		<t k='bangpai_btnBangPaiAtt3'><![CDATA[四级帮派可以获得如下属性：<br/>使您的生命增加250点]]></t>
+		<t k='bangpai_btnBangPaiAtt4'><![CDATA[五级帮派可以获得如下属性：<br/>使您的生命增加300点]]></t>
+		<t k='bangpai_btnBangPaiAtt5'><![CDATA[六级帮派可以获得如下属性：<br/>使您的生命增加500点]]></t>
+		<t k='bangpai_btnBangPaiAtt6'><![CDATA[六级帮派可以获得如下属性：<br/>使您的生命增加500点，帮派达到最大等级！]]></t>
+
+		<t k='bangpai_jiang_li'><![CDATA[1.成员级别根据帮派个人威望评定，个人威望在201-2000之间为<font color='#8afd5c'>中级会员</font>、2001-22000为<font color='#4a9afe'>高级会员</font>、22001-62000为<font color='#e65eff'>特级会员</font>、62001以上为<font color='#ffcc00'>超级会员</font>。<br/>2.成员级别适用于帮派建设任务奖励中的金币、经验、威望、武魂点多倍奖励。<br/>3.<font color='#8afd5c'>中级会员</font>可享受<font color='#8afd5c'>1.5倍</font>奖励、<font color='#4a9afe'>高级会员</font>可享受<font color='#4a9afe'>2倍</font>奖励、<font color='#e65eff'>特级会员</font>可享受<font color='#e65eff'>2.5倍</font>奖励、<font color='#ffcc00'>超级会员</font>可享受<font color='#ffcc00'>3倍</font>奖励。]]></t>
+		<t k='XuanShang_Jiang_Li_Fan_Bei_Rule'><![CDATA[1.周一到周五，每天完成前5个降魔任务，奖励翻倍。<br/>2.周六、周日，所有降魔任务奖励均翻倍。]]></t>
+
+
+		<t k='ui_index_soulBottle'><![CDATA[<font color='#FF6724'>绝技：储存量#param</font><br/><font color='#019CFF'>效果：绝技可以攻击全屏怪物。</font><br/><font color='#13ff00'>使用：按快捷键【E】施放绝技。</font>]]></t>
+
+		<t k='ui_index_ZaiXian1'><![CDATA[轻松玩转七战，点击查看礼包奖励]]></t>
+
+		<t k='ui_index_btnJiaoSe'><![CDATA[<font color='#FF6724'>角色</font><br/>快捷键：C<br/>打开角色信息界面]]></t>
+		<t k='ui_index_btnFaBao'><![CDATA[<font color='#FF6724'>法宝</font><br/>显示你的法宝列表]]></t>亲爱
+		<t k='ui_index_btnLianDanLu'><![CDATA[<font color='#FF6724'>锻造</font><br/>快捷键：U<br/>打开装备强化界面]]></t>
+		<t k='ui_index_btnRenWu'><![CDATA[<font color='#FF6724'>任务</font><br/>快捷键：L<br/>打开任务界面]]></t>
+		<t k='ui_index_btnZuoQi'><![CDATA[<font color='#FF6724'>坐骑</font><br/>快捷键：P<br/>打开坐骑界面]]></t>
+		<t k='ui_index_btnBeiBao'><![CDATA[<font color='#FF6724'>背包</font><br/>快捷键：B<br/>打开包裹界面]]></t>
+		<t k='ui_index_btnJiNeng'><![CDATA[<font color='#FF6724'>技能</font><br/>快捷键：K<br/>打开技能界面]]></t>
+		<t k='ui_index_btnLianGu'><![CDATA[<font color='#FF6724'>神兵决</font><br/>快捷键：G<br/>打开神兵决界面]]></t>
+		<t k='ui_index_btnHaoYou'><![CDATA[<font color='#FF6724'>社交</font><br/>快捷键：F<br/>打开好友界面]]></t>
+		<t k='ui_index_btnBangPai'><![CDATA[<font color='#FF6724'>帮派</font><br/>打开你的帮派信息]]></t>
+		<t k='ui_index_btnZuDui'><![CDATA[<font color='#FF6724'>组队</font><br/>快捷键：T<br/>与其他人进行组队游戏]]></t>
+		<t k='ui_index_btnChengJiu'><![CDATA[<font color='#FF6724'>成就</font><br/>快捷键：N<br/>所有的成就列表]]></t>
+		<t k='ui_index_btnSheJiao'><![CDATA[<font color='#FF6724'>社交</font><br/>快捷键：F<br/>打开好友界面]]></t>
+		<t k='ui_index_guaJi'><![CDATA[<font color='#FF6724'>挂机</font><br/>快捷键：Z<br/>开启/关闭挂机]]></t>
+		<t k='ui_index_btnJiaZu'><![CDATA[<font color='#FF6724'>帮派</font><br/>快捷键：G<br/>打开帮派界面]]></t>
+
+		<t k='jing_mai_1'><![CDATA[#param(修炼完成):<br/>#param]]></t>
+		<t k='jing_mai_2'><![CDATA[#param(修炼中):<br/>#param]]></t>
+		<t k='jing_mai_3'><![CDATA[#param(未修炼):<br/>#param<br/><br/>  #param级开启]]></t>
+		<t k='warningiconcenter_1'><![CDATA[你有技能可升级]]></t>
+		<t k='warningiconcenter_2'><![CDATA[你有技能天赋可使用]]></t>
+		<t k='warningiconcenter_3'><![CDATA[你有宠物天赋可使用]]></t>
+		<t k='warningiconcenter_4'><![CDATA[你可升级神兵决]]></t>
+		<t k='ui_index_QQ_btnYellowDiamond'><![CDATA[<font color='#FF6724'>$2000特权：</font><br/>1.$2000用户充值尊享8折优惠。<br/>2.免费领取$2000用户专属新手礼包。<br/>3.免费领取$2000每日礼包。<br/>4.免费领取$2000每日年费礼包。<br/>5.免费领取$2000等级礼包。<br/>6.尊享$2000贵族标识。]]></t>
+
+
+		<t k='ui_index_btnHuoDong'><![CDATA[<font color='#FF6724'>活动</font><br/>快捷键:J<br/>打开每日任务、每日活动、地宫boss界面]]></t>
+		<t k='ui_index_btnWordMap'><![CDATA[<font color='#FF6724'>地图</font><br/>快捷键:M<br/>打开地图界面]]></t>
+		<t k='ui_index_btnVip'><![CDATA[<font color='#FF6724'>VIP</font><br/>快捷键:V<br/>打开VIP界面]]></t>
+		<t k='ui_index_btnPaiHang'><![CDATA[<font color='#FF6724'>排行榜</font><br/>快捷键:I<br/>打开排行榜界面</font>]]></t>
+		<t k='ui_index_btnFlyPoint'><![CDATA[<font color='#FF6724'>点击查看飞行棋</font>]]></t>
+		<t k='ui_index_btnCloseMusic'><![CDATA[<font color='#FF6724'>控制音乐开/关</font>]]></t>
+		<t k='ui_index_btnShenMi'><![CDATA[<font color='#FF6724'>神秘商店，会有一定几率出现稀世珍宝</font>]]></t>
+		<t k='ui_index_btnDuiHuan'><![CDATA[<font color='#FF6724'>点击打开兑换礼包界面</font>]]></t>
+		<t k='ui_index_Su_Or_Zhi'><![CDATA[<font color='#FF6724'>更改游戏画质</font>]]></t>
+		<t k='ui_index_btnGM'><![CDATA[<font color='#FF6724'>点击打开GM邮箱界面</font>]]></t>
+		<t k='ui_index_btnYouJian'><![CDATA[<font color='#FF6724'>点击查看邮箱</font>]]></t>
+		<t k='ui_index_btnGameMsg'><![CDATA[<font color='#FF6724'>点击查看系统公告</font>]]></t>
+		<t k='ui_index_btnLong'><![CDATA[<font color='#FF6724'>缩小/展开聊天窗口</font>]]></t>
+		<t k='ui_index_btnC'><![CDATA[<font color='#FF6724'>切换聊天频道</font>]]></t>
+		<t k='ui_index_btnFace'><![CDATA[<font color='#FF6724'>打开表情列表</font>]]></t>
+		<t k='ui_index_btnXiTong'><![CDATA[<font color='#FF6724'>打开系统设置界面</font>]]></t>
+		<t k='ui_index_btnGuaJi'><![CDATA[<font color='#FF6724'>打开挂机配置界面</font>]]></t>
+		<t k='ui_index_xiulian'><![CDATA[<font color='#FF6724'>修炼</font><br/>快捷键：X<br/>开启/关闭修炼]]></t>
+		<t k='ui_index_zuoqi'><![CDATA[<font color='#FF6724'>骑乘</font><br/>快捷键：L<br/>上马/下马]]></t>
+		<t k='ui_index_fuZhu'><![CDATA[<font color='#FF6724'>辅助</font><br/>快捷键：O<br/>挂机设置]]></t>
+		<t k='ui_index_fuhuo_ring'><![CDATA[<font color='#FF6724'>您的复活戒指正处于CD倒计时中</font>]]></t>
+		<t k='ui_index_jingJie'><![CDATA[<font color='#FF6724'>星界</font><br/>快捷键：J<br/>打开星界面]]></t>
+		<t k='ui_index_mowen'><![CDATA[<font color='#FF6724'>魔纹</font><br/>快捷键：O<br/>打开魔纹界面]]></t>
+		<t k='ui_index_chongZhi'><![CDATA[<font color='#FF6724'>充值</font><br/>打开充值界面<br/>充值后只要点“提取元宝”即可获得元宝]]></t>
+		<t k='ui_index_shenmolu'><![CDATA[<font color='#FF6724'>藏经阁</font><br/>打开藏经阁界面]]></t>
+		<t k='ui_index_btnPangBian'><![CDATA[<font color='#FF6724'>打开附近玩家列表</font>]]></t>
+
+		<t k='ui_index_scale_vip'><![CDATA[<font color='#FF6724'>Vip</font><br/>【VIP】是《七战》最为尊贵的玩家身份象征，七战VIP为您量身定制了方便，快捷的服务体系，并且能在游戏中获得最尊贵的游戏内容体验。<br/><font color='#fffb80'>充值任意金额即可成为VIP，并享受尊贵的VIP特权！</font><br/>点击打开VIP界面]]></t>
+		<t k='ui_index_scale_yuanbao'><![CDATA[<font color='#FF6724'>元宝</font><br/>【元宝】通过充值获得。用于购买稀有道具，以及享用系统各种便捷操作。<br/>点击打开VIP界面]]></t>
+		<t k='ui_index_scale_bangding'><![CDATA[<font color='#FF6724'>礼金</font><br/>【礼金】通过系统赠送获得。<br/>点击打开VIP界面]]></t>
+		<t k='ui_index_scale_yiliang'><![CDATA[<font color='#FF6724'>金币</font><br/>【金币】通过元宝兑换或在游戏中任务、打怪、活动获得。是装备强化等系统中最常用的货币。<br/>点击打开金币兑换界面]]></t>
+		<t k='ui_index_scale_zhanlizhi'><![CDATA[<font color='#FF6724'>战力值</font><br/>【战力值】是玩家战斗能力的最强表现。通过装备强化、锻造神兵、升级翅膀、升阶坐骑、修炼龙脉、转生等途径提高。<br/>点击查看详细战力值]]></t>
+		<t k='ui_index_scale_shengwang'><![CDATA[<font color='#FF6724'>威望值</font><br/>【威望值】通过完成相应成就或参与华山论剑、BOSS活动获得。可用于招募各种神级宠物。<br/>点击打开聚英阁招募宠物]]></t>
+		<t k='ui_index_scale_dengji'><![CDATA[<font color='#FF6724'>等级</font><br/>【等级】通过获得经验提升。提升等级可以参与更多游戏活动和更多系统玩法及体验。<br/>点击查看角色信息]]></t>
+		<t k='ui_index_scale_jingyan'><![CDATA[<font color='#FF6724'>经验值</font><br/>【经验值】通过完成任务、参与活动、击杀怪物和修炼获得。是提升角色等级的必要条件。<br/>点击查看角色信息]]></t>
+		<t k='ui_index_btnShiMoFa'><![CDATA[<font color='#F64BFC'>施魔法即可将目标变化外形</font><br/>每天前30次施展魔法，都会获得经验奖励。接取百变大咖秀任务即可获得魔法棒。]]></t>
+		<t k='ui_index_btnFangYanHua'><![CDATA[<font color='#F64BFC'>点燃烟花送出祝福</font><br/>每次点燃烟花都将获得68888金币奖励(每天最多可点燃10次)。完成传奇雪人和百变大咖秀任务可获得烟花。]]></t>
+
+		<t k='ui_index_DiGong'>飞速升级，就去地宫。每天可获得8小时双倍经验时间，每天0:00重置。 </t>
+		<t k='ui_index_arrLoginDayGift'>点击领取珍贵大礼包</t>
+
+		<t k='ui_index_SHP'><![CDATA[  生命： #param / #param]]></t>
+		<t k='ui_index_SMP'><![CDATA[  魔法： #param / #param]]></t>
+		<t k='ui_index_SVP'><![CDATA[真气： #param / #param<br/>可用于炼骨，每在线5分钟可增加10点真气(每升10级，将提高一次真气上限)]]></t>
+		<t k='ui_index_JINGYAN'><![CDATA[  经验： #param / #param]]></t>
+		<t k='ui_index_SHENGWANG'><![CDATA[  威望： #param / #param]]></t>
+		<t k="ui_index_SOUL"><![CDATA[离可施放还剩：#param]]></t>
+		<t k="ui_index_SOUL_dianjishifang"><![CDATA[点击释放绝杀技]]></t>
+		<t k='ui_index_autoName'><![CDATA[自动生成昵称]]></t>
+
+		<t k='10020_xuanshang'><![CDATA[消耗2元宝]]></t>
+		<t k='10021_xuanshang'><![CDATA[消耗5元宝]]></t>
+		<t k='10022_xuanshang'><![CDATA[消耗20万金币]]></t>
+		<t k='10023_xuanshang'><![CDATA[消耗50万金币]]></t>
+		<t k='10024_beibao'><![CDATA[金币：绑定的游戏币，携带上限21亿<br/>完成押送军需、挖矿任务都可获得大量金币。]]></t>
+		<t k='10025_beibao'><![CDATA[元宝：不绑定的游戏币，携带上限21亿<br/>摆摊与其他玩家交易、或充值后“提取元宝”可以获得。]]></t>
+		<t k='10026_beibao'><![CDATA[礼金：绑定的福利货币，携带上限21亿<br/>每日签到、七日登陆、战神无双等活动可以获得。]]></t>
+		<t k='10027_shengonglu'><![CDATA[1.怪物掉落：地宫、BOSS巢穴<br/>2.副本产出：装备副本<br/>3.商城购买功勋]]></t>
+		<t k='10028_shengonglu'><![CDATA[1.副本产出：装备副本、经验副本<br/>2.商城购买护镜碎片]]></t>
+		<t k='10029_shengonglu'><![CDATA[1.PK活动：屠龙宝刀、沙城争霸、决战战场<br/>2.商城购买成就]]></t>
+		<t k='10030_shengonglu'><![CDATA[1.商城购买金刚石]]></t>
+		<t k='10031_shengonglu'><![CDATA[1.通过寻宝积分在NPC寻宝使者处兑换<br/>2.商城购买暗器碎片]]></t>
+		<t k='10032_controlbutton'><![CDATA[双倍经验活动期间，配合其他双倍经验，地宫打怪最多可获得3倍经验]]></t>
+		<t k='10033_jiaose'><![CDATA[您和#param于#param年#param月#param日结为夫妻，至今已有#param天。]]></t>
+		<t k='10034_xingjie'><![CDATA[1．击杀地宫BOSS可以获得大量龙晶。<br/>2．	您可以直接从商城购买龙晶。]]></t>
+		<t k='10035_jiaose'><![CDATA[#param]]></t>
+		<t k='10036_jiaose'><![CDATA[<font color='#ff9600'>坐骑</font><br/>#param]]></t>
+		<t k='10037_jiaose'><![CDATA[<font color='#ff9600'>龙脉</font><br/>#param]]></t>
+		<t k='10038_jiaose'><![CDATA[<font color='#ff9600'>转生</font><br/>#param]]></t>
+		<t k='10039_jiaose'><![CDATA[#param]]></t>
+		<t k='10040_jiaose'><![CDATA[<font color='#ff9600'>翅膀</font><br/>#param]]></t>
+		<t k='10043_sbjd'><![CDATA[<font color='#ff9600'>【做任务送神兵】</font><br/>完成40级主线任务，即可获取本职业神兵！]]></t>
+		<t k='10044_zmg'><![CDATA[点击“放置”将在角色的当前位置召唤一个弓手，同一位置不能重复放置。]]></t>
+		<t k='10045_zmg'><![CDATA[点击“放置”将在角色的当前位置召唤一个法师，同一位置不能重复放置。]]></t>
+		<t k='10046_zmg'><![CDATA[点击按钮将会开始刷出怪物。请尽量在弓手全部放置好后，再开始刷怪，可以避免怪物逃脱和经验损失。]]></t>
+		<t k='10047_zmg'><![CDATA[镇魔谷是一个超级经验副本，主要玩法类似于传统塔防类游戏，你的角色不能直接攻击怪物，需要通过召唤弓手和法师。杀死怪物会获得海量经验。<br/>每个玩家每天有2次进入机会。进入副本后系统会自动赠送8个“镇魔弓手”，点击放置按钮，就可以将“镇魔弓手”放置在你当前角色站的位置上。<br/>全部放置好后，即可点击“开始刷怪”按钮，之后怪物将从出口处源源不断的出现，你的神射手将自动击杀走到攻击范围内的怪物。<br/>后期的怪物将非常强大，同时击杀后可获得大量经验，可以购买更多的“镇魔法师”和“镇魔射手”帮你获得更多的经验奖励。]]></t>
+		<t k='indexMC_chat_double_exp'><![CDATA[1.进入地宫地图后，刷怪可免费获得双倍经验。<br/>地宫地图：黑木崖、万佛窟、武帝疑陵、高昌迷宫<br/>2.每天地宫双倍经验8小时，0点后时间刷新。]]></t>
+
+		<t k='jiazu_FRP'><![CDATA[  繁荣度： #param / #param]]></t>
+		<t k='jiazu_guild_lvl_up'><![CDATA[ 帮派等级提升到#param级，帮派人数上限提升至#param人，可激活帮派技能 #param]]></t>
+		<t k='jiazu_guild_lvl_max'>帮派等级已升至最高等级</t>
+
+
+		<t k='800005_JiNengMain_Rb'>冰系天赋主要擅长增强控制类技能效果，增强控制类技能抗性为主，提高控制类技能持续时间。</t>
+		<t k='800006_JiNengMain_Rb'>火系天赋主要增强攻击力、为技能按照百分比提高高伤害。</t>
+		<t k='800007_JiNengMain_Rb'>雷系天赋主要擅长减少控制类技能冷却时间，增强技能BUFF效果，提高技能产生效果的时间或伤害。</t>
+
+		<t k='gameexpui_ExpMC'><![CDATA[当前等级：<font color='#FF9900'>#param</font><br/>当前经验: <font color='#FF9900'>#param</font><br/>升级经验：<font color='#FF9900'>#param</font><br/><font color='#66FF00'>1-20级您可以通过主支线任务快速升级，20级以后可通过环任务、活动、经验副本快速升级</font>]]></t>
+		<t k='jiaose_big_open'><![CDATA[#param]]></t>
+		<t k='jiaose_big_not_open'><![CDATA[需要完成<font color='#66FF00'>#param</font>任务(#param),打通关卡]]></t>
+		<t k='jiaose_jin_jie'><![CDATA[进阶需消耗<font color='#66FF00'>#param</font>个(#param)<br/></br/><font color='#3ff2ec'>进阶后</font> <br/>速度 每秒#param]]></t>
+		<t k='drop_res_tip'><![CDATA[<font color='#66FF00'>#param</font>]]></t>
+		<t k='huo_ban_tip'><![CDATA[名字:  #param<br/>职业:  #param<br/>等级:  #param]]></t>
+		<t k='huo_ban_lock'><![CDATA[玩家达到#param级时开放]]></t>
+		<t k='hao_you_tip'><![CDATA[名字:  #param<br/>职业:  #param<br/>等级:  #param]]></t>
+		<t k='dui_wu_tip'><![CDATA[名字:  #param<br/>职业:  #param<br/>等级:  #param<br/>位置: #param]]></t>
+		<t k='lian_gu_tip'><![CDATA[本次修炼需花费<font color='#56f2f4'>#param</font>金币,消耗#param真气，当前真气值#param]]></t>
+		<t k='jianding_getmore'><![CDATA[玩法介绍<br/>鉴定后的装备可进行洗属性操作，对属性条进行锁定可不受洗属性操作影响。]]></t>
+
+
+		<t k='tuichudati'><![CDATA[活动尚未结束，确定离开活动吗？]]></t>
+		<t k='ui_index_btnFullScreen'><![CDATA[<font color='#FF6724'>缩小/全屏游戏窗口</font>]]></t>
+		<t k='ui_index_btnHidePlayer'><![CDATA[<font color='#FF6724'>隐藏/显示周围玩家</font>]]></t>
+		<t k='jinengquxiao'><![CDATA[单击取消当前被动技能框里的技能]]></t>
+		<t k='bone_cool'><![CDATA[消耗#param元宝将炼骨冷却时间清空]]></t>
+		<t k='zaixianlibao'><![CDATA[轻松玩转七战，在线即可获得#param金币。]]></t>
+
+		<t k='yuanbaoguli'><![CDATA[使用元宝提高自己的攻击力5%(效果可以叠加，离开地图后效果消失)]]></t>
+		<t k='jinbiguli'><![CDATA[使用金币提高自己的攻击力5%(效果可以叠加，离开地图后效果消失) ]]></t>
+		<t k='chong_zhu_tip'><![CDATA[可随机属性范围为：#param]]></t>
+
+		<t k='mo_tian_wan_jie_boss_tip'><![CDATA[双击进行挑战]]></t>
+		<t k='mo_tian_wan_jie_one_key_tip'><![CDATA[支付10元宝扫荡本区域所有可挑战关卡]]></t>
+		<t k='fuben_one_key_tip'><![CDATA[支付10元宝扫荡该副本]]></t>
+		<t k='guanbishuangbei'><![CDATA[点击可开始您当前的双倍计时]]></t>
+		<t k='kaiqishuangbei'><![CDATA[点击可暂停您当前的双倍计时]]></t>
+		<t k='shuangbeixuanfu'><![CDATA[<font color='#FF6724'>双倍经验</font><br/>在击杀怪物时获得的经验为双倍]]></t>
+
+		<t k='huodong_box1'><![CDATA[累计25点活跃度，可开启红木宝箱，有机率获得极品道具]]></t>
+		<t k='huodong_box2'><![CDATA[累计50点活跃度，可开启白银宝箱，有较大的机率获得极品道具]]></t>
+		<t k='huodong_box3'><![CDATA[累计75点活跃度，可开启黄金宝箱，有很大的机率获得极品道具]]></t>
+		<t k='huodong_box4'><![CDATA[累计100点活跃度，可开启钻石宝箱，有极大的机率获得极品道具]]></t>
+		<t k='bianjjie_huicheng'><![CDATA[点击可快速回城，会自动消耗包裹中一个回城卷轴]]></t>
+		<t k='bianjjie_zhaohui'><![CDATA[点击打开经验找回界面，可找回前3天内未参与的活动经验]]></t>
+		<t k='bianjjie_duihuan'><![CDATA[点击打开兑换商店，可使用九州鼎兑换各种道具]]></t>
+		<t k='bianjjie_zhaomu'><![CDATA[<font color='#FF6724'>宠物</font><br/>打开宠物界面]]></t>
+		<t k='bianjjie_zuoqi'><![CDATA[点击打开坐骑商店]]></t>
+		<t k='bianjjie_bangzhu'><![CDATA[点击打开帮助界面]]></t>
+		<t k='shejiao_haoyou'><![CDATA[<font color='#FF6724'>好友</font><br/>快捷键：F<br/>打开好友界面]]></t>
+		<t k='shejiao_zudui'><![CDATA[<font color='#FF6724'>组队</font><br/>快捷键：T<br/>打开组队界面]]></t>
+		<t k='10085_qian_dao'><![CDATA[<font color='#FF6724'>连续签到抽大奖：</font> 连续签到，可增加每天的免费抽奖次数。连续签到3天以上，每天最多可免费抽奖3次。]]></t>
+		<t k='10086_qian_dao'><![CDATA[<font color='#FF6724'>累计签到领大奖：</font> 第一次签到开始计算14天。累计签到3天、6天、10天、14天时，都可领取丰厚奖励。14天后，重新计算新一轮签到。(如有遗漏签到，可点击对应天数上的【补签】按钮补签)]]></t>
+		<t k='10087_chongzhu'><![CDATA[消耗#param金币激活<br/>激活后可随机属性范围为:#param]]></t>
+		<t k='10088_chongzhu'><![CDATA[第10条属性需觉醒后可激活]]></t>
+		<t k='10170_qh' p="4"><![CDATA[点击放入装备可以强化，强化失败只扣除强化石和金币]]></t>
+		<t k='10171_qh' p="4"><![CDATA[可以把一件强化过的装备的强化星级转移到一件未强化的装备]]></t>
+		<t k='10172_qh' p="4"><![CDATA[点击放入强化过的装备，分解后可以获得未强化的装备和其他材料]]></t>
+		<t k='10173_qh' p="4"><![CDATA[点击放入强化石，选择需要合成的数量进行强化石合成]]></t>
+		<t k='10174_cb' p="4"><![CDATA[点击放入羽毛，选择需要合成的数量进行羽毛合成]]></t>
+		<t k='zuan1_liandanlu'><![CDATA[普通升星]]></t>
+		<t k='shenbingHowget'><![CDATA[1.击杀各种怪物都可以大量获得神铁碎片<br/>2.您可以直接从礼金商城购买神铁碎片。
+]]></t>
+		<t k='zuan2_liandanlu'><![CDATA[<font color='#f64bfc'>完美升星:增加属性是普通升星的2倍。</font>]]></t>
+		<t k='mainchat_infoHeight'><![CDATA[点击扩展或收缩聊天区]]></t>
+
+		<t k='renwu_bianjie'><![CDATA[<font color='#FF6724'>快捷菜单</font><br/>打开兑换商店、成就、坐骑商店、回城、活动找回、帮助]]></t>
+		<t k='renwu_jingyan'><![CDATA[<font color='#FF6724'>双倍经验</font><br/>打开/关闭双倍经验]]></t>
+		<t k='renwu_guaji'><![CDATA[<font color='#FF6724'>自动挂机</font><br/>快捷键：A<br/>打开/关闭自动挂机]]></t>
+		<t k='renwu_yincang'><![CDATA[<font color='#FF6724'>隐藏玩家</font><br/>快捷键：Y<br/>打开/关闭隐藏其他玩家]]></t>
+		<t k='renwu_xiulian'><![CDATA[<font color='#FF6724'>在线修炼</font><br/>快捷键：X<br/>打开/关闭在线修炼]]></t>
+		<t k='renwu_qima'><![CDATA[<font color='#FF6724'>坐骑</font><br/>快捷键：L<br/>骑马/下马]]></t>
+		<t k='skill_lock'><![CDATA[点击开启/锁定技能栏。<br/>开启时，单击技能栏可更换技能。<br/>锁定时，单击技能栏可施放技能。]]></t>
+		<t k='skill_lock_shaohoukaifang'><![CDATA[技能扩展栏稍后开放]]></t>
+
+		<t k='qianghua_downstar'><![CDATA[点击退一级]]></t>
+		<t k='qianghua_next'><![CDATA[100%升星成功，可大幅提升装备属性。]]></t>
+		<t k='qianghua_next15'><![CDATA[100%升星成功，可大幅提升装备属性。]]></t>
+		<t k='qianghua_yijian'><![CDATA[点击自动强化完美装备，解放双手，轻松获得超强属性！]]></t>
+
+		<t k='jingjie_huoban_0'><![CDATA[人物角色达到50级，可开启宠物星界！]]></t>
+		<t k='wuzilianzhu_libao_0'><![CDATA[可以获得1级强化石*5。]]></t>
+		<t k='wuzilianzhu_libao_1'><![CDATA[可以获得1级强化石*5，2级强化石*1。]]></t>
+		<t k='wuzilianzhu_libao_2'><![CDATA[可以获得10礼金，1级强化石*5，2级强化石*1。]]></t>
+		<t k='wuzilianzhu_libao_3'><![CDATA[可以获得10礼金*1，1级强化石*5，2级强化石*1，3级强化石*1。]]></t>
+		<t k='wuzilianzhu_libao_4'><![CDATA[可以获得10礼金*1，1级强化石*5，2级强化石*1，3级强化石*1，4级强化石*1。]]></t>
+		<t k='SmartImplementWindow_0'><![CDATA[您最高挑战至#param波，可从#param波开始挑战]]></t>
+
+		<t k='40044_mowen_shuangji'>双击可取下该魔纹</t>
+		<t k='40085_pet_Enhance_btn_Tip_Desc'><![CDATA[使用强化石可以提高宠物星级，星级越高，宠物属性越高，战斗力越强]]></t>
+		<t k='40085_pet_p_Ralent_btn_WaiGongGongJi'><![CDATA[锁定后洗资质时将不会受到影响]]></t>
+
+		<t k='jiazu_skill_activa'><![CDATA[帮派等级达到#param级，消耗帮派资金#param金币可激活！]]></t>
+		<t k='jiazu_skill_up'><![CDATA[帮派贡献达到#param，可消耗#param金币升级技能等级]]></t>
+		<t k='jiazu_tree_btn_jiaoshui'>对神树进行浇水，提高神树1点成长值，且额外获得贡献和帮派资金</t>
+		<t k='jiazu_tree_btn_shifei'>对神树进行施肥，提高神树1点成长值，且额外获得贡献和帮派资金</t>
+		<t k='jiazu_tree_btn_zhuochong'>对神树进行捉虫，提高神树1点成长值，且额外获得贡献和帮派资金</t>
+		<t k='jiazu_tree_btn_zhaiqu'>点击领取礼包</t>
+		<t k='jiazu_tree_btn_zhaiqu1'>尚不能领取礼包</t>
+		<t k='jiazu_tree_btn_zhaiqu2'>你已领取过更高等级的礼包了</t>
+		<t k='jiazu_tree_rule'>拜关公：每天都可以给关公上香、祈福，可获得大量金币、经验、威望。</t>
+		<t k='jiazu_tree_zhaohuan'>花费100元宝邀请神兵相助</t>
+		<t k='rmbshop_refresh'><![CDATA[消耗20万金币刷新神秘商店，会有极高几率出现<font color='#ff9c10'>高级宝石</font>、<font color='#ff9c10'>高级丹药</font>、等大量稀有道具]]></t>
+
+
+		<t k='jiaose_shengming'>生命</t>
+		<t k='jiaose_lingli'>魔法</t>
+		<t k='jiaose_gongji'>【增加物理技能的伤害】</t>
+		<t k='jiaose_gongji1'>【增加魔法技能的伤害】</t>
+		<t k='jiaose_gongji2'>【增加道术技能的伤害】</t>
+		<t k='jiaose_fangyuwai'>【减少受到物理攻击的伤害】</t>
+		<t k='jiaose_fangyunei'>【减少受到法术攻击的伤害】</t>
+		<t k='jiaose_mingzhong'><![CDATA[【增加在造成伤害时(包括物理与法术攻击)的命中率】<br/>【当<font color='#F64BFC'>准确</font>大于目标<font color='#F64BFC'>闪避</font>时,目标就不能通过<font color='#F64BFC'>闪避</font>来闪避攻击】]]></t>
+		<t k='jiaose_shanbi'><![CDATA[【增加在被伤害时(包括物理与法术攻击)的闪避机率】]]></t>
+		<t k='jiaose_zuzhou'><![CDATA[【增加在攻击时,伤害取得最小值的几率,与幸运互相抵消】<br/>【如果减去幸运后大于等于9,每次攻击都会取伤害最小值】]]></t>
+		<t k='jiaose_xingyun'><![CDATA[【增加在攻击时,伤害取得最大值的几率,与诅咒互相抵消】<br/>【如果减去诅咒后大于等于9,每次攻击都会取伤害最大值】]]></t>
+		<t k='jiaose_baoji'><![CDATA[【决定攻击时触发暴击效果的几率,暴击效果将在攻击时增加额外伤害，额外伤害与基础攻击伤害和暴击伤害有关】]]></t>
+		<t k='jiaose_baojirate'><![CDATA[【攻击触发暴击后,额外增加的伤害,值越高越好】]]></t>
+		<t k='jiaose_renxing'><![CDATA[【决定被攻击时抵挡暴击效果的几率】]]></t>
+		<t k='jiaose_pk'>恶意击杀玩家将增加PK值，PK值大于300将变红名，不仅会受到比奇卫兵的攻击，而且被击杀后掉落背包全部物品。在商城的【金币商品】中可买到【赎罪药水】清除PK值。
+		</t>
+		<t k='xuanshang_duihuan'><![CDATA[1.主线任务<br/>2.降魔任务<br/>3.帮派悬赏任务<br/>4.副本领取]]></t>
+
+		<t k='jz_li_bao_1'>精美【帮派创建】礼包创建帮派后帮主可领取</t>
+		<t k='jz_li_bao_2'>豪华【二级帮派】礼包，帮派升至2级时帮主可领取</t>
+		<t k='jz_li_bao_3'>奢华【三级帮派】礼包，帮派升至3级时帮主可领取</t>
+		<t k='jz_li_bao_4'>尊容【四级帮派】礼包，帮派升至4级时帮主可领取</t>
+		<t k='jz_li_bao_5'>顶级【五级帮派】礼包，帮派升至5级时帮主可领取</t>
+
+		<t k='jiaose_heti'>点击可与宠物合体，合体后属性大幅提升!</t>
+		<t k='jiaose_jieti'>解体后，宠物将重新唤出</t>
+		<t k="pet_gongji">选中目标后点击【击杀】按钮，或敲击1键左侧的【~】按钮</t>
+		<t k="pet_ai_state"><![CDATA[<font color='#F64BFC'>自动模式：</font>该模式下，宠物将自动攻击您攻击的目标。<br/><font color='#F64BFC'>手动模式：</font>该模式下，宠物不会主动发起攻击。需要您选择一个可攻击目标点击【攻击】按钮或使用快捷捷【~】进行攻击。]]></t>
+		<t k='chongzhu_high'><![CDATA[每次只需消耗3万金币，即可对未锁定的属性进行一次洗值！(锁定属性不再扣除费用)]]></t>
+		<t k='chongzhu_high_open'><![CDATA[60级开放洗值]]></t>
+		<t k='motian_showmap'><![CDATA[角色达到#param级开放!]]></t>
+		<t k='mainchat_shift'><![CDATA[shift+左键点击物品发到聊天框]]></t>
+		<t k='QQ_invite_friend_todo'><![CDATA[邀请好友规则<br/>1.通过邀请好友按钮向QQ好友发送游戏邀请<br/>2.您的好友(必须)通过点击系统弹出消息，(必须)进入您所在的七战服务器<br/>3.对方创建角色并进入游戏，会自动成为您的七战Q友<br/>4.第一次选错服务器后必须再次邀请，谨慎选服！]]></t>
+		<t k='QQ_invite_friend_free_choujiang'><![CDATA[每天邀请好友，可增加1次免费抽奖。各种珍宝道具、礼金等你来拿！]]></t>
+		<t k='wenquan0'><![CDATA[<font color='#F64BFC'>青春需要激情，爱要立刻行动！</font><br/>邀请异性玩家拥吻，需对方同意。双方可获得50%活动经验加成。每次拥吻时间为3分钟。]]></t>
+		<t k='wenquan1'><![CDATA[按摩不消耗道具，对选取的同性玩家使用后。您可获得一定的经验奖励。<font color='#12E712'>冷却时间30秒</font><br/>]]></t>
+		<t k='wenquan2'><![CDATA[戏水不消耗道具，对选取的玩家使用后。您可获得一定的金币奖励。<font color='#12E712'>冷却时间30秒</font><br/>]]></t>
+		<t k='wenquan3'><![CDATA[<font color='#F64BFC'>赠人香皂，情意绵绵……</font><br/>对选取的玩家使用后，消耗一块香皂。您可获得经验和金币奖励。<br/>香皂可从抽奖、神秘商店中获得。]]></t>
+		<t k='liangu_zhenqi'><![CDATA[真气:#param/#param<br/>增加：每在线5分钟可增加10点真气<br/>上限:每升10级,将提高一次真气上限]]></t>
+		<t k='QQ_YellowDiamond_ShenLi_0'><![CDATA[<font color='#FFE21D'>尚未获得$2000之力</font><br/>开通$2000之力您将享有以下特权：<br/>1. 最大物攻 10+2×等级<br/>2. 最大魔攻 10+2×等级<br/>3. 最大道攻 10+2×等级<br/>4. 最大物防 10+1×等级<br/>5. 最大魔防 100+1×等级<br/> ]]></t>
+		<t k='QQ_YellowDiamond_ShenLi_1'><![CDATA[<font color='#FFE21D'>你已获得$2000之力</font><br/>正在尊享以下$2000之力特权：<br/>1. 最大物攻 10+2×等级<br/>2. 最大魔攻 10+2×等级<br/>3. 最大道攻 10+2×等级<br/>4. 最大物防 10+1×等级<br/>5. 最大魔防 100+1×等级<br/> ]]></t>
+
+		<t k='XunBaoTu_Tip'><![CDATA[寻宝图：可从每日在线奖励中获得。]]></t>
+
+		<t k='arrWuHun_Head_0'>消耗20武魂点与小龙女比武。</t>
+		<t k='arrWuHun_Head_1'>消耗30武魂点与虚竹比武。</t>
+		<t k='arrWuHun_Head_2'>消耗50武魂点与秦琼比武。</t>
+		<t k='arrWuHun_Head_3'>消耗60武魂点与东方白比武。</t>
+		<t k='arrWuHun_Head_4'>消耗80武魂点与张三丰比武。</t>
+
+		<t k='arrWuHun_Head_0'>消耗20武魂点与小龙女比武。</t>
+		<t k='jiaose_1'>角色</t>
+		<t k='jiaose_2'>神兵</t>
+		<t k='jiaose_3'>天书</t>
+		<t k='jiaose_4'>转生</t>
+		<t k='jiaose_5'>龙脉</t>
+
+
+		<t k='wuhun_duihuan_tip'>点击兑换极品武魂</t>
+
+
+		<!-- 星界激活等级 -->
+		<t k='20300_JingJie_DanLu'>点击炼制丹药</t>
+
+		<t k='duo_mao_mao_search'>点击搜索躲藏者。</t>
+
+		<t k='duo_mao_mao_bian_shen_1'>点击可伪装成为衣架。</t>
+		<t k='duo_mao_mao_bian_shen_2'>点击可伪装成为杂货箱。</t>
+		<t k='duo_mao_mao_bian_shen_3'>点击可伪装成为桃树。</t>
+		<t k='duo_mao_mao_bian_shen_4'>点击可伪装成为一堆罐子。</t>
+		<t k='duo_mao_mao_bian_shen_5'>点击可伪装成为幌子。</t>
+		<t k='duo_mao_mao_bian_shen_6'>点击可伪装成为刺马矩阵。</t>
+
+		<t k='duo_mao_mao_bian_shen_7'>点击可伪装成为小推车。</t>
+		<t k='duo_mao_mao_bian_shen_8'>点击可伪装成为铺子。</t>
+		<t k='duo_mao_mao_bian_shen_9'>点击可伪装成为花伞。</t>
+		<t k='duo_mao_mao_bian_shen_10'>点击可伪装成为风筝。</t>
+		<t k='duo_mao_mao_bian_shen_11'>点击可伪装成为马车。</t>
+		<t k='duo_mao_mao_bian_shen_12'>点击可伪装成为石桌。</t>
+
+		<t k='duo_mao_mao_bian_shen_cancel'>点击取消变身效果。</t>
+
+		<t k='bangPai_weiWang'><![CDATA[参加帮派活动、帮派任务可获得威望]]></t>
+		<t k='bangPai_teQuan'><![CDATA[帮派会员特权等级越高，可获得的好处越多]]></t>
+
+		<t k='bangPai_giveBangGong'><![CDATA[点击获得帮派贡献]]></t>
+		<t k='bangPai_guildLvlUp'><![CDATA[点击提升帮派等级]]></t>
+		<t k='bangPai_barActive'><![CDATA[帮派繁荣度:#param/#param]]></t>
+		<t k='bangPai_topList'><![CDATA[点击查看帮派排名]]></t>
+		<t k='bangPai_giveMoney'><![CDATA[点击为帮派捐助资金]]></t>
+
+		<t k='bangPai_barActive2'><![CDATA[威望：#param/#param <br/> 完成帮派活动可获得帮派威望，帮派威望可提升帮派会员等级，获得更多奖励！]]></t>
+
+		<t k='bangPai_barTuLong'><![CDATA[屠龙点：#param/#param]]></t>
+
+		<t k='xinghun_rule'><![CDATA[镶嵌武魂规则<br/>不可镶嵌同类型武魂。]]></t>
+
+		<t k='pet_btnChongZhi'><![CDATA[角色50级前可免费对宠物天赋进行洗点(宠物需等级>10级)，50级后需用宠物天赋丹或花费元宝洗点。]]></t>
+
+		<!-- 星界激活等级 -->
+		<t k="daTi_baoXiang">宝箱</t>
+		<t k="daTi_level0">默默无闻</t>
+		<t k="daTi_level1">文曲星</t>
+		<t k="daTi_level2">学士</t>
+		<t k="daTi_level3">才子</t>
+		<!-- end -->
+
+		<!-- 帮派迷宫 -->
+		<t k='bangPaiMiGong_activity_desc'><![CDATA[活动说明：在活动时间内，击杀怪物或采集宝箱可获得积分。积分达到对应值时，即可领取对应等级的奖励。]]></t>
+		<t k='bangPaiMiGong_score_desc'><![CDATA[积分说明：通过击杀怪物或采集宝箱获得。]]></t>
+		<t k='bangPaiMiGong_monster1_desc'><![CDATA[怪物1]]></t>
+		<t k='bangPaiMiGong_monster2_desc'><![CDATA[击杀1个，可获得100积分]]></t>
+		<t k='bangPaiMiGong_monster3_desc'><![CDATA[击杀1个，可获得1000积分]]></t>
+		<t k='bangPaiMiGong_box1_desc'><![CDATA[采集1个，可获得10积分]]></t>
+		<t k='bangPaiMiGong_box2_desc'><![CDATA[采集1个，可获得50积分]]></t>
+		<t k='bangPaiMiGong_box3_desc'><![CDATA[采集1个，可获得500积分]]></t>
+		<t k='bangPaiMiGong_award0_desc'><![CDATA[特等奖:可获得四级升星石*5，三级升星石*10，二级升星石*10，100万经验]]></t>
+		<t k='bangPaiMiGong_award1_desc'><![CDATA[一等奖:可获得四级升星石*2，三级升星石*8，二级升星石*10，50万经验]]></t>
+		<t k='bangPaiMiGong_award2_desc'><![CDATA[二等奖:可获得三级升星石*5，二级升星石*10，一级升星石*10，30万经验]]></t>
+		<t k='bangPaiMiGong_award3_desc'><![CDATA[三等奖:可获得三级升星石*1，二级升星石*5，一级升星石*10，20万经验]]></t>
+		<t k='bangPaiMiGong_award4_desc'><![CDATA[四等奖:可获得二级升星石*5，一级升星石*10，10万经验]]></t>
+		<!-- END -->
+		<!-- 沙城争霸 -->
+		<t k='huangChengZhengBa_activity_desc'><![CDATA[沙城争霸说明：<br/>1.开服后第5天自动开启第一次攻城战，第一次攻城战只需要在规定时间内抢夺沙城的帮派即可成为沙城帮派，帮主自动升任沙城霸主.<br/>2.有帮派成为沙城帮派之后，其他帮派每天都可以申请攻城战，攻城战成功申请之后在申请之日的第二天晚上20：00开启.<br/>3.攻城战申请开启之后，所有帮派都可以对沙城帮派发起进攻成为攻城方，攻城方需要首先攻破沙城中央广场之上的沙城霸主雕像。<br/>4.雕像破碎之后，所有帮派均可以参加抢夺沙城，最后成功抢夺沙城的帮派即可成为沙城帮派，帮主为沙城霸主<br/>5.沙城霸主雕像破碎后，其他帮派未能成功占领沙城，则判定攻守双方均为失败，未能产生沙城霸主。]]></t>
+		<!-- END -->
+
+		<!-- 天门阵 -->
+		<t k="tianMenZhen_btn0"><![CDATA[<font color='#f6a126'><b>资源建筑(军营)</b></font><br/>建造军营可以增加资源增长速度，每个军营可以每秒增加1点资源。<br/><font color='#00fffc'>建造需求：100点</font>]]></t>
+		<t k="tianMenZhen_btn1"><![CDATA[<font color='#f6a126'><b>单攻建筑(火龙炮)</b></font><br/>火龙炮每次可以攻打一个敌军，攻击力较高。<br/><font color='#00fffc'>建造需求：300点</font>]]></t>
+		<t k="tianMenZhen_btn2"><![CDATA[<font color='#f6a126'><b>减速建筑(重弩车)</b></font><br/>重弩车每次可以攻打一个敌军，并造成减速消耗，攻击力中等。<br/><font color='#00fffc'>建造需求：400点</font>]]></t>
+		<t k="tianMenZhen_btn3"><![CDATA[<font color='#f6a126'><b>群攻建筑(诸葛连弩)</b></font><br/>诸葛连弩每次可以攻打五个敌军，攻击力中等。<br/><font color='#00fffc'>建造需求：500点</font>]]></t>
+		<t k="tianMenZhen_btn4"><![CDATA[<font color='#f6a126'><b>高攻建筑(投石车)</b></font><br/>投石车每次可以攻打一个敌军，攻速非常慢，攻击力超高！<br/><font color='#00fffc'>建造需求：600点</font>]]></t>
+		<t k="tianMenZhen_btn5"><![CDATA[<font color='#f6a126'><b>防御建筑(装甲车)</b></font><br/>装甲车每次可以攻打一个敌军，攻击力极低，防御非常高！<br/><font color='#00fffc'>建造需求：750点</font>]]></t>
+		<t k="tianMenZhen_btn6"><![CDATA[<font color='#f6a126'><b>超必杀(烽火流星)</b></font><br/>召唤烽火流星！秒杀全屏敌军！谁能挡我！<br/><font color='#00fffc'>施放消耗：200元宝</font>]]></t>
+		<t k="tianMenZhen_btn7"><![CDATA[<font color='#f6a126'><b>拆除</b></font><br/>可以拆除一个你不想要的建筑。]]></t>
+		<!-- END -->
+
+		<!-- 龙图霸业 -->
+		<t k="longTuBaYe_help"><![CDATA[领地争夺战：每周一、二、四、五21:00-21:30开启，所有帮派都可参加，胜利帮派所有成员每天可领取占地收益礼包和在该地图杀怪经验加成。<br/>要塞争夺战:每周六21:00-21:30开启，所有帮派都可参加，胜利帮派所有成员每天可领取占地收益礼包和额外属性加成。<br/>沙城至尊战:每周日21:00-21:30开启，所有帮派都可参加，胜利帮派所有成员每天可领取占地收益礼包和高级属性加成。(帮主还可额外获得【沙城至尊】属性称号)]]></t>
+		<!-- END -->
+
+		<t k='zuo_qi_plus'>点击可装配一个技能。</t>
+		<t k='zuo_qi_hun_qi_readme'><![CDATA[马鞍可大幅提升坐骑属性。<br/>装备汗血宝马获得60%马鞍属性。装备其它元宝坐骑获得100%马鞍属性。<br/><font color='#12E712'>一级马鞍石</font>现有<font color='#12E712'>#param颗</font>，炼化1级马鞍。<br/><font color='#41F2EC'>二级马鞍石</font>现有<font color='#41F2EC'>#param颗</font>，炼化2-3级马鞍。<br/><font color='#F64BFC'>三级马鞍石</font>现有<font color='#F64BFC'>#param颗</font>，炼化4-5级马鞍。]]></t>
+
+		<t k='zuo_qi_jineng_wuHang1'>金系技能推荐装配金系坐骑。</t>
+		<t k='zuo_qi_jineng_wuHang2'>木系技能推荐装配木系坐骑。</t>
+		<t k='zuo_qi_jineng_wuHang3'>水系技能推荐装配水系坐骑。</t>
+		<t k='zuo_qi_jineng_wuHang4'>火系技能推荐装配火系坐骑。</t>
+		<t k='zuo_qi_jineng_wuHang5'>土系技能推荐装配土系坐骑。</t>
+
+
+
+		<t k='40086_wuhun_QiYu_btn'><![CDATA[奇遇：消耗50万金币直接与东方白比武，不再扣除武魂点。(vip每天可免费使用1次)]]></t>
+		<t k='40085_pet_Skill_Lock'><![CDATA[锁定消耗#param个宠物技能锁定丹]]></t>
+		<t k='40085_pet_UnSeal_btnTiSheng'><![CDATA[点击提升10次解封次数(每天可使用1次)]]></t>
+		<t k='40095_PKMatchWindow_jiangli'><![CDATA[参加活动可获得大量威望，进入积分排行榜更能获得稀有物品。]]></t>
+
+		<!-- 活动合成界面，充值返利整合 HuoDongZhengHe -->
+		<t k='HuoDongZhengHe_0'><![CDATA[充值任意金额领取首充大礼包]]></t>
+		<t k='HuoDongZhengHe_1'><![CDATA[500元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_2'><![CDATA[1000元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_3'><![CDATA[2000元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_4'><![CDATA[5000元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_5'><![CDATA[1万元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_6'><![CDATA[2万元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_7'><![CDATA[5万元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_8'><![CDATA[10万元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_9'><![CDATA[20万元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_10'><![CDATA[50万元宝大礼包]]></t>
+		<t k='HuoDongZhengHe_11'><![CDATA[100万元宝大礼包]]></t>
+
+		<t k='shengxing_hecheng'><![CDATA[操作介绍<br/>在合成列表中，选中要合成的升星石等级，点击【合成】即可。]]></t>
+		<t k='shengxing_shengxing'><![CDATA[升星介绍<br/>100%完美升星，可大幅度提升装备属性。]]></t>
+		<t k='chuancheng'><![CDATA[操作介绍<br/>1.在右侧主装备列表中选择主装备(新装备)。<br/>2.原装备列表中将自动显示符合传承条件的原装备(点击放入)。<br/>3.点击传承按钮即可完成装备传承。]]></t>
+		<t k='xiangqian'><![CDATA[镶嵌介绍<br/>1.在装备列表中选择要镶嵌宝石的装备。<br/>2.将宝石托入装备的镶嵌框中，即可完成镶嵌。<br/>3.将宝石从镶嵌框中拖出，即可取下宝石。<br/>注：同一件装备上不可镶嵌同类型的宝石。]]></t>
+		<t k='tunshi'><![CDATA[吞噬介绍<br/>1.在列表中选择主装备放入。<br/>2.在列表中选择被吞噬的装备(将被销毁)。3.选择要提升的噬魂属性<br/>4.点击【吞噬】按钮完成吞噬。>]]></t>
+
+		<t k='PetAttr_Name_UnSeel_Atk_config_Desc'><![CDATA[影响宠物普通攻击伤害]]></t>
+		<t k='PetAttr_Name_UnSeel_Matk_config_Desc'><![CDATA[影响宠物技能攻击伤害]]></t>
+		<t k='PetAttr_Name_UnSeel_Mdef_config_Desc'><![CDATA[影响受到的内功攻击伤害]]></t>
+		<t k='PetAttr_Name_UnSeel_Def_config_Desc'><![CDATA[影响受到的外功攻击伤害]]></t>
+		<t k='PetAttr_Name_UnSeel_SM_config_desc'><![CDATA[影响宠物的生命]]></t>
+
+		<t k='mc_waigongzizhi_desc'><![CDATA[影响宠物的外功攻击]]></t>
+		<t k='mc_neigongzizhi_desc'><![CDATA[影响宠物的内功攻击]]></t>
+		<t k='mc_fangyuzizhi_desc'><![CDATA[影响宠物的生命]]></t>
+		<t k='mc_shengminzizhi_desc'><![CDATA[影响宠物的物理防御和魔法防御]]></t>
+
+		<t k='PetAttr_Name_Add_Sta_desc'><![CDATA[影响宠物的生命]]></t>
+		<t k='PetAttr_Name_Add_Str_desc'><![CDATA[影响宠物的外功攻击]]></t>
+		<t k='PetAttr_Name_Add_Int_desc'><![CDATA[影响宠物的内功攻击]]></t>
+		<t k='PetAttr_Name_Add_Wis_desc'><![CDATA[影响宠物的魔法防御]]></t>
+		<t k='PetAttr_Name_Add_Dex_desc'><![CDATA[影响宠物的物理防御]]></t>
+
+		<t k='ui_duiwu_zhuangtai2'><![CDATA[队友已远离你]]></t>
+		<t k='ui_duiwu_zhuangtai3'><![CDATA[队友已下线]]></t>
+		<t k='shenqi_desc'><![CDATA[1.完成【神器任务】］后，可铸造出神器。<br/>2.神器激活后，可为神器装配灵件。<br/>3.神器灵件可以挑战【神器副本】获得。]]></t>
+
+		<t k='btnWeek_prize_tip'><![CDATA[<font color='#ff7200'>周积分排名奖励</font><br/>战斗获胜后可获得积分，每周累计积分前10名的玩家可获得周积分排名奖励。<br/><br/><font color='#8afd5c'>点击查看积分排名奖励</font>]]></t>
+		<t k='btnDay_prize_tip'><![CDATA[<font color='#ff7200'>日积分排名奖励</font><br/>战斗获胜后可获得积分，每日积分前10名的玩家可获得日积分排名奖励。<br/><br/><font color='#8afd5c'>点击查看积分排名奖励</font>]]></t>
+		<t k='btnEvery_prize_tip'><![CDATA[<font color='#ff7200'>每场战斗奖励</font><br/>每场战斗结束后可获得<font color='#8afd5c'>威望</font>、<font color='#8afd5c'>武魂</font>、<font color='#8afd5c'>竞技场令牌</font>]]></t>
+		<t k='Pk_Watch_HuoDong_tip'><![CDATA[<font color='#ff7200'>活动规则</font><br/>1.点击参战按钮，自动匹配等级小于20级内的对手。<br/>2.不管输赢，每场战斗结束后均可获得奖励。<br/>3.连胜可使奖励积分翻倍，连胜越高，所得奖励越多。]]></t>
+
+
+		<!-- 个人排位赛展示、参战界面、仙道至尊、巅峰王者、家族争霸界面中有活动规则的超链接，鼠标悬浮到活动规则超链接后，显示活动规则tips -->
+		<t k='40097_arrGRPW_Action_Desc_0'><![CDATA[1.开启时间：每周一至周五。<br>2.活动时间：20：00-21：00。<br>3.活动内容：参加竞技对战，获取排位积分。<br>4.对战次数：每日免费10次，花费元宝每日最多额外获得10次。<br>5.胜负规则：经过双方战斗，最后总血量多的一方获得最终胜利。<br>6.积分规则：1人参战获胜可获取全部12积分，2人参战获胜每人获得7分，3人参战获胜每人获得5分。战败一律获取2积分。<br>7.每日奖励：满足条件的玩家可领取每日奖励。<br>8.排名规则：每日比赛结束后，将更新你的跨服排位名次]]></t>
+		<t k='40097_arrGRPW_Action_Desc_1'><![CDATA[1.开启时间：每周一至周五。<br>2.活动时间：20：00-21：00。<br>3.活动内容：参加竞技对战，获取排位积分，积分排名前32位的玩家可参加周六举行的武林大会。<br>4.对战次数：每日免费10次，花费元宝每日最多额外获得10次。<br>5.胜负规则：经过双方战斗，最后总血量多的一方获得最终胜利。<br>6.积分规则：1人参战获胜可获取全部12积分，2人参战获胜每人获得7分，3人参战获胜每人获得5分。战败一律获取2积分。<br>7.每日奖励：满足条件的玩家可领取每日奖励。]]></t>
+		<t k='40097_arrGRPW_Action_Desc_2'><![CDATA[<font color='#ffb831'><b>活动时间</b><br/>单周举行一次，每次周六晚上19：00-21：00<br/><font color='#ffb831'><b>选手参赛</b><br/>活动时间开始时，个人排位赛前32名的玩家可参与活动。<br/></font><font color='#ffb831'><b>大会赛制</b><br/>《武林大会》分为16强、8强、4强、半决赛、决赛共5场比赛，每场比赛采用三局二胜制。胜出者晋级，失败者淘汰。<br/><font color='#ffb831'><b>活动奖励</b><br/>第一名：玉灵龙*1,凤凰神石*20,1880礼金,四级升星石*20,三级马鞍石*20,10万威望。<br/>第二名：凤凰神石*10,888礼金,四级升星石*15,三级马鞍石*15,5万威望。<br/>四强：凤凰神石*6,588礼金,四级升星石*10,三级马鞍石*10,2万威望。<br/>8强：凤凰神石*4,388礼金,四级升星石*6,三级马鞍石*6,1万威望。<br/>16强：凤凰神石*2,288礼金,四级升星石*4,三级马鞍石*4,5000威望。<br/>32强：凤凰神石*1,188礼金,四级升星石*2,三级马鞍石*2,2000威望。]]></t>
+		<t k='40097_arrGRPW_Action_Desc_3'><![CDATA[<font color='#ffb831'><b>活动时间</b><br/>每2周举行一次，每次周日晚上21：00－23：00<br/><font color='#ffb831'><b>选手参赛</b><br/>收到《巅峰之战邀请函》的玩家，请在周日19:00前提交角色数据。20:30-23:00可刷新参加游戏。<br/></font><font color='#ffb831'><b>大会赛制</b><br/>《巅峰之战》分为16强、8强、4强、半决赛、决赛共5场比赛，每场比赛采用三局二胜制。胜出者晋级，失败者淘汰。<br/><font color='#ffb831'><b>活动奖励</b><br/>第一名：[巅峰大帝]称号、真七彩神龙、神武石、超神石、1880礼金、四级强化石、六级魔纹卷轴、完美18星卷轴、魔神招募令。<br/>第二名：[巅峰神将]称号、神武石、超神石、998礼金、四级强化石、五级魔纹卷轴、完美14星卷轴、魔神招募令。<br/>四强：[巅峰强者]称号、神武石、超神石、588礼金、四级强化石、五级魔纹卷轴、完美12星卷轴、魔神招募令。<br/>8强：神武石、超神石、388礼金、四级强化石、四级魔纹卷轴、完美12星卷轴、魔神招募令。<br/>16强：神武石、超神石、288礼金、四级强化石、四级魔纹卷轴、完美10星卷轴、魔神招募令。<br/>32强：神武石、超神石、188礼金、四级强化石、四级魔纹卷轴、三级强化石、魔神招募令。]]></t>
+		<t k='40097_arrGRPW_Action_Desc_4'><![CDATA[<font color='#ffb831'><b>活动时间</b><br/>每2周举行一次，每次周六、周日晚上21：00－22：00<br/><font color='#ffb831'><b>选手参赛</b><br/>周一至周五由家族族长(副族长)，进行家族争霸赛报名。报名结束后，将从报名列表中抽取家族战力排名前16的家族参加活动。比赛开始时，将对在线的家族战力前10名玩家，发出参加邀请。<br/></font><font color='#ffb831'><b>大会赛制</b><br/>争霸比赛共分8强争霸赛、4强争霸赛、半决赛、决赛四场(8强、4强周六进行，半决赛、决赛周日进行)。每场采用一局决胜制，胜出将晋级，失败将被淘汰。<br/><font color='#ffb831'><b>活动奖励</b><br/>冠军家族：500万经验*1，100万金币*1，神武石*6，12--14强化*1，4级魔纹升级卷*2，坐骑碎片*1，5级魔纹卷轴*1，四级魔纹升级卷轴*1，三级强化石*20，四级强化石*10。<br/>亚军家族：400万经验*1，90万金币*1，神武石*4，8--10强化*1，4级魔纹升级卷轴*2，坐骑碎片*1，5级魔纹卷轴*1，四级魔纹升级卷轴*1，三级强化石*15，四级强化石*5。<br/>季军家族：300万经验*1，80万金币*1，神武石*3，5--7强化*2，4级魔纹升级卷轴*1，坐骑碎片*1，四级魔纹升级卷轴*1，三级强化石*10，四级强化石*4。]]></t>
+		<t k='5013_tianShuSuiPian'><![CDATA[1.通过天书副本打怪掉落<br/>2.通过分解转生装备获得<br/>3.通过跨服排位赛奖励获得]]></t>
+		<t k='5014_jianLingTip'><![CDATA[1.日常英雄任务<br/>2.商城购买]]></t>
+	</tips>
+	<msgs>
+		<t k='pub_param' p='4'>#param</t>
+		<t k='pub_success' p='4'>操作成功</t>
+		<t k='pub_fail' p='4'>操作失败</t>
+		<t k='pub_not_auto_path' p='4'>当前位置，无法跨越地图！</t>
+		<t k='10000_bao_guo' p='4'>包裹整理成功</t>
+		<t k='10001_qiang_hua' p='4'>强化槽开启成功</t>
+		<t k='10002_chong_zhu' p='4'>装备鉴定成功</t>
+		<t k='10003_npc_shop' p='4'>购买成功</t>
+		<t k='10004_npc_shop' p='4'>出售成功</t>
+		<t k='10005_bao_guo' p='4'>包裹不足</t>
+		<t k='10006_bao_guo' p='4'>大侠您点的太快了，请10秒后再操作</t>
+		<t k='10007_huo_ban' p='4'>改名成功</t>
+		<t k='10008_bao_guo' p='4'>绑定物品不可丢弃！</t>
+		<t k='10009_huo_ban' p='4'>穿装备成功</t>
+		<t k='10010_huo_ban' p='4'>脱装备成功</t>
+		<t k='10011_huo_ban' p='4'>宠物复活成功</t>
+		<t k='10012_bao_guo' p='4'>包裹中没有物品不需要整理</t>
+		<t k='10013_huo_ban' p='4'>名字不能为空></t>
+		<t k='10014_lian_dan_lu' p='4'>锁定失败，至少要保留一个属性才可以重新生成！</t>
+		<t k='10015_lian_dan_lu' p='4'>请放入装备！</t>
+		<t k='10016_lian_dan_lu' p='9'><![CDATA[请在右边选择一种丹方！]]></t>
+		<t k='10017_lian_dan_lu' p='4'><![CDATA[成功升星到#param！战力值升至#param！]]></t>
+		<t k='10018_hao_you' p='4'>玩家不在线</t>
+		<t k='10019_hao_you' p='4'><![CDATA[好友添加成功！]]></t>
+		<t k='10020_hao_you' p='4'><![CDATA[黑名单添加成功！]]></t>
+		<t k='10021_pai_hang' p='4'><![CDATA[20级之后才能查看排行榜！]]></t>
+		<t k='10022_bao_guo' p='4'><![CDATA[该物品不能出售！]]></t>
+		<t k='10023_hui_huan' p='4'><![CDATA[今天兑换次数已经用完]]></t>
+		<t k='10024_bao_guo' p='4'>包裹已满，请清理</t>
+		<t k='10024_wuhun_bao_guo' p='9'>武魂包裹已满，请扩充或清理</t>
+		<t k='10025_lian_gu' p='4'><![CDATA[炼骨至#param 第#param阶,战力值增加#param！]]></t>
+		<t k='10026_lian_dan_lu' p='4'><![CDATA[60级以上装备才可升级为神武]]></t>
+		<t k='10027_jz' p='4'><![CDATA[无法邀请，请加入帮派后再邀请！]]></t>
+		<t k='10028_expiredtip' p='4'><![CDATA[你已经是vip#param!]]></t>
+		<t k='10029_renwu' p='4'><![CDATA[战斗状态不能传送!]]></t>
+		<t k='10030_uptarget' p='0'><![CDATA[<font color='#ffba00'>恭喜您获得1小时VIP3级体验特权！</font>]]></t>
+		<t k='10031_liangu' p='4'><![CDATA[需要升到45级后，才可以修炼]]></t>
+		<t k='10032_qhclear' p='4'><![CDATA[该装备没有强化，不能分解！]]></t>
+		<t k='10033_shengonglu' p='4'><![CDATA[恭喜你锻造【#param】成功！]]></t>
+		<t k='10034_chatfilter' p='4'><![CDATA[您输入的验证码有误，请重新输入！]]></t>
+		<t k='10035_wenquan' p='4'><![CDATA[请选择一个玩家！]]></t>
+
+		<t k='10133_liandanlu' p='4'><![CDATA[请放入噬魂材料！]]></t>
+		<t k='10134_uiindex' p='4'><![CDATA[请选择一个玩家！]]></t>
+		<t k='10135_uiindex' p='4'><![CDATA[包裹没有炮竹！]]></t>
+		<t k='10136_jiaose' p='4'><![CDATA[请领取首充大礼包获得翅膀！]]></t>
+		<t k='10137_zuoqilook' p='4'><![CDATA[15级后可预览坐骑！]]></t>
+		<t k='10138_shenyi' p='4'><![CDATA[等级不足，本次进阶需要玩家等级达到#param！]]></t>
+		<t k='10139_liangu' p='9'><![CDATA[真气上限不足(需要人物等级达到#param)！]]></t>
+		<t k='10140_booth' p="4"><![CDATA[该物品不可交易！]]></t>
+		<t k='10141_booth' p="4"><![CDATA[该物品已经上架了！]]></t>
+		<t k='10142_beibao' p="4"><![CDATA[请先收摊后，再整理！]]></t>
+		<t k='10143_beibao' p="4"><![CDATA[请先下架后，再拆分该物品！]]></t>
+		<t k='10144_beibao' p="4"><![CDATA[无法拆分！]]></t>
+		<t k='10145_beibao' p="4"><![CDATA[不能批量使用！]]></t>
+		<t k='10146_boothbuy' p="4"><![CDATA[您输入的价格过低，扣除税金后将无法获得任何收入，请重新输入！]]></t>
+		<t k='10147_booth' p="4"><![CDATA[摆摊距离太近，请另选一个位置！]]></t>
+		<t k='10148_booth' p="4"><![CDATA[摊位已满！]]></t>
+		<t k='10149_booth' p="4"><![CDATA[摊位名字为2－10个汉字！]]></t>
+		<t k='10150_booth' p="4"><![CDATA[对方已经收摊！]]></t>
+		<t k='10151_booth' p="4"><![CDATA[留言成功！]]></t>
+		<t k='10152_beibao' p="4"><![CDATA[快升至30级，享受摆摊的乐趣吧！]]></t>
+		<t k='10153_booth' p="4"><![CDATA[摆摊中不能进行此操作！]]></t>
+		<t k='10154_strongnice' p="4"><![CDATA[升星成功！]]></t>
+		<t k='10155_juexing' p="4"><![CDATA[觉醒成功！]]></t>
+		<t k='10156_chuancheng' p="4"><![CDATA[只有鉴定过的装备才能进行传承！]]></t>
+		<t k='10157_beibao' p="4"><![CDATA[]]>
+		</t>
+		<t k='10158_beibao' p="4"><![CDATA[]]>
+		</t>
+		<t k='10159_shenwu' p="4"><![CDATA[该装备不能再铸神！]]></t>
+		<t k='10160_chongxing' p="9"><![CDATA[请先停止一键完美操作！]]></t>
+		<t k='10161_mainchat' p="9"><![CDATA[升到10级就能使用传送功能！]]></t>
+		<t k='10162_tunshi' p="9"><![CDATA[该装备不能进行吞噬操作！]]></t>
+		<t k='10163_baoshi' p="9"><![CDATA[四级宝石以下可分解！]]></t>
+		<t k='10164_lang' p="9"><![CDATA[金币不足！]]></t>
+		<t k='10165_lang' p="9"><![CDATA[威望不足！]]></t>
+		<t k='10166_trade' p="4"><![CDATA[交易请求已经发出，等待对方回应！]]></t>
+		<t k='10167_trade' p="4"><![CDATA[物品已被锁定，暂不能进行其他操作！]]></t>
+		<t k='10168_lefantian' p="4"><![CDATA[物品领取成功！]]></t>
+		<t k='10169_chatfriend' p="4"><![CDATA[举报成功！]]></t>
+		
+
+		<t k='40070_bao_guo' p="4"><![CDATA[等级不足，无法使用]]></t>
+
+		<t k='30012_store' p='4'>仓库整理成功</t>
+		<t k='30011_store' p='4'>仓库中没有物品不需要整理</t>
+		<t k='40001_xinghun_bag_full' p='9'>武魂包裹已满，无法拾取！</t>
+		<t k='40002_jiazu_chuangjian' p='9'>名字最少2个字符!</t>
+
+		<t k='20068_TransMap' p='9'>您的等级与地图进入等级不符</t>
+		<t k='20069_XunLian_bu_guaji' p='4'>您当前处于修炼状态，不可挂机！</t>
+		<t k='200691_XunLian_bu_guaji' p='4'>您当前处于摆摊状态，不可挂机！</t>
+		<t k='200692_XiYou_bu_ride' p='4'>您当前状态不能进行骑乘！</t>
+		<t k='20070_xinghun_shangxian' p='9'>可镶嵌武魂已达上限</t>
+
+		<t k='20071_stopHangup' p='9'>再点击一次取消挂机</t>
+		<t k='20072_stopAutoPath' p='9'>再点击一次取消寻路</t>
+
+		<t k='20073_lock_skillShort' p='9'>锁定状态下不能往技能快捷栏上装配技能或者道具</t>
+		<t k='20073_item_can_not_install' p='9'>该物品不能装配</t>
+
+		<t k="20074_meterial_not_enough" p="9">所需材料不足</t>
+
+		<t k='20075_FuBen_CompleteCount' p='4'>该副本当天次数已用完，请选择别的副本!</t>
+
+		<t k='20076_BangPai_HuoDong' p='4'>未达到活动等级，无法参加!</t>
+
+		<t k='20077_DuoMaoMao_SayToWorld' p='4'>等级不足，40级方可参与活动</t>
+		<t k='20078_ZhuangBei_Fenjie' p='4'>回收装备成功</t>
+		<t k='200744_zuoqiopen' p='4'>角色等级达到35级开启坐骑功能</t>
+		<t k='20079_Huodonghecheng_Dunhuan' p='4'>兑换成功</t>
+
+		<t k='20080_ActionForce_Lvl' p='4'>角色等级达到#param可参与活动</t>
+		<t k='40001_Gua_Ji_ChiYao' p='4'><![CDATA[你已经没有#param，请在挂机设置(O)中更换药品。]]></t>
+		<t k='40001_Gua_Ji_Protect' p='4'><![CDATA[你已经没有#param。]]></t>
+
+		<t k='40002_StarActive_0' p='4'><![CDATA[请按顺序激活前面的星界点。]]></t>
+		<t k='40002_StarActive_1' p='4'><![CDATA[你已成功激活#param，属性大幅提升！]]></t>
+
+		<t k='40100_soar_0' p='4'><![CDATA[您当前角色等级不足80级，无法渡劫]]></t>
+		<t k='40100_soar_1' p='4'><![CDATA[您当前角色等级不足80级，无法兑换修为]]></t>
+
+		<t k='50001_fenjie' p='4'>您分解的装备中含有强化后的装备，请传承后再分解。</t>
+		<t k='50002_fenjie' p='4'>您分解的装备中含有宝石，请取下宝石后再分解。</t>
+		<t k='50003_fenjie' p='4'>您分解的装备中含有镶嵌、强化后的装备，请传承并取下宝石后再分解。</t>
+	</msgs>
+	<lbls>
+		<t k='QQ_ShiFen_url'><![CDATA[http://rc.qzone.qq.com/1103094523?via=DLJ&ptlang=2052]]></t>
+		<t k='QQ_ShiFen_Msg'>评分10分钟之后即可领取奖励</t>
+		<t k='QQ_Raffle_url'><![CDATA[http://rc.qzone.qq.com/appstore/dailycoupon?from=app.lottery.100736288]]></t>
+		<t k='QQ_Raffle_free_url'><![CDATA[http://rc.qzone.qq.com/appstore/dailycoupon?action=fangsong&from=100736288]]></t>
+		<t k='pub_dzs1_name'>圣火神坛</t>
+		<t k='pub_dzs2_name'>战无双</t>
+		<t k='pub_dzs_none'>暂无人通关</t>
+		<t k='pub_dzs_tg'>通关</t>
+		<t k='pub_dzs_zl'>战力</t>
+		<t k='pub_dzs_qzl'>且战力</t>
+
+		<t k='pub_invite_cj'>立即抽奖</t>
+		<t k='pub_invite_lq'>立即领取</t>
+
+		<t k='pub_font'>NSimSun</t>
+		<t k='pub_font_old'>NSimSun</t>
+		<t k='pub_que_ding'>确定</t>
+		<t k='pub_que_ren'>确认</t>
+		<t k='pub_qu_xiao'>取消</t>
+		<t k='pub_shang_ye'>上页</t>
+		<t k='pub_xia_ye'>下页</t>
+		<t k='pub_xing_ming'>姓名</t>
+		<t k='pub_zhi_ye'> 职业</t>
+		<t k='pub_duan_wei'> 段位</t>
+		<t k='pub_xing_bie'>性别</t>
+		<t k='pub_jing_yan'>经验</t>
+		<t k='pub_deng_ji'>等级</t>
+		<t k='pub_man'>满</t>
+		<t k='pub_zuigao_deng_ji'>满级</t>
+		<t k='pub_ji'>级</t>
+		<t k='pub_jie'>阶</t>
+		<t k='pub_wait'>请稍候</t>
+		<t k='pub_load_ok'>加载完成</t>
+		<t k='pub_load_in_game'>正在进入游戏中，加载</t>
+		<t k='pub_sheng_wang'>威望</t>
+		<t k='pub_yin_liang'>金币</t>
+		<t k='pub_yuan_bao'>元宝</t>
+		<t k='pub_gong_xian'>贡献</t>
+		<t k='pub_li_jin'>礼金</t>
+		<t k='pub_nan'>男</t>
+		<t k='pub_nv'>女</t>
+		<t k='pub_dan_jia'>单价</t>
+		<t k='pub_zong_jia'>总价</t>
+		<t k='pub_qi_ta'>其他</t>
+		<t k='pub_quan_bu'>全部</t>
+		<t k='pub_gou_mai'>购买</t>
+		<t k='pub_chu_shou'>出售</t>
+		<t k='pub_shi_jian'>时间</t>
+		<t k='pub_tian'>天</t>
+		<t k='pub_nian'>年</t>
+		<t k='pub_yue'>月</t>
+		<t k='pub_ri'>日</t>
+		<t k='pub_shi'>时</t>
+		<t k='pub_fen'>分</t>
+		<t k='pub_miao'>秒</t>
+		<t k='pub_xiaoshi'>小时</t>
+		<t k='pub_fenzhong'>分钟</t>
+		<t k='pub_guan_bi'>关闭</t>
+		<t k='pub_shua_xin'>刷新</t>
+		<t k='pub_di'>第</t>
+		<t k='pub_fu'>服</t>
+		<t k='pub_ge'>个</t>
+		<t k='pub_wan'>万</t>
+		<t k='pub_dian'>点</t>
+		<t k='pub_huo_de'>获得</t>
+		<t k='pub_killMon_huo_de'>杀怪获得</t>
+		<t k='pub_lianZhan_huo_de'>连斩奖励</t>
+		<t k='pub_shi_qu'>失去</t>
+		<t k='pub_cai_liao'>材料</t>
+		<t k='pub_huo_ban'>宠物</t>
+		<t k='pub_jian_ding'>鉴定</t>
+		<t k='pub_xi_pin_zhi'>洗品质</t>
+		<t k='pub_bao_guo'>包裹</t>
+		<t k='pub_dan_fang'>丹方</t>
+		<t k='pub_dan_yao'>丹药</t>
+		<t k='pub_zhu_jiao'>主角</t>
+		<t k='pub_chong_zhi'>你的元宝不足，是否立即充值？</t>
+		<t k='pub_not_open'>功能尚未开放,敬请期待</t>
+		<t k='pub_jingqing_qidai'>敬请期待</t>
+		<t k='pub_change_map'>切换地图中</t>
+		<t k='pub_dead'>死亡</t>
+		<t k='pub_zhen_wang'>阵亡</t>
+		<t k='pub_hua_hua_niu'>花花牛</t>
+		<t k='pub_switch_full_screen'>全屏切换</t>
+		<t k='pub_complete'>已完成</t>
+		<t k='pub_yi_ling_qu'>已领取</t>
+		<t k='pub_lin_qu_jiang_li'>领取奖励</t>
+		<t k='pub_jie_shou_ren_wu'>接受任务</t>
+		<t k='pub_chuan'>传</t>
+		<t k='pub_online'>在线</t>
+		<t k='pub_offline'>离线</t>
+		<t k='pub_everyday'>每天</t>
+		<t k='pub_hasStudy'>已学</t>
+		<t k='pub_bu_ke_ling'>不可领</t>
+		<t k='pub_yi_ling'>已领</t>
+		<t k='pub_bang_ding'>已绑定</t>
+		<t k='pub_wei_bang_ding'>未绑定</t>
+		<t k='pub_wei_kai_qi'>未开启</t>
+		<t k='pub_wei_wang'>威望</t>
+		<t k='pub_shen_jiang'>神将</t>
+		<t k='pub_wu_hun_dian'>武魂点</t>
+		<t k='pub_tu_long_dian'>屠龙点</t>
+		<t k='pub_men_mian_ren'>蒙面人</t>
+
+		<t k='pub_bai_se'>白色</t>
+		<t k='pub_lv_se'>绿色</t>
+		<t k='pub_lan_se'>蓝色</t>
+		<t k='pub_zi_se'>紫色</t>
+		<t k='pub_cheng_se'>橙色</t>
+		<t k='shanghai'>伤害</t>
+		<t k='pub_ling_qu'>领 取</t>
+		<t k='pub_bao_cun'>保存</t>
+		<t k='pub_diao_luo'>掉落</t>
+		<t k='pub_cha_kan'>查看</t>
+		<t k='pub_si_liao'>私聊</t>
+		<t k='pub_zu_dui'>组队</t>
+		<t k='pub_shan_chu'>删除</t>
+		<t k='pub_la_hei'>拉黑</t>
+		<t k='pub_jie_chu'>解除</t>
+		<t k='pub_fu_zhi'>复制</t>
+		<t k='pub_jie_jiao'>结交</t>
+		<t k='pub_add_friend'>加为好友</t>
+		<t k='pub_invite_jiazu'>帮派邀请</t>
+		<t k='pub_jia_zu'>帮派</t>
+		<t k='pub_xu_wei_yi_dai'>虚位以待</t>
+		<t k='pub_qiang_hua'>强化</t>
+		<t k='pub_po_sun'>破损</t>
+		<t k='pub_shihun1'>妖魂</t>
+		<t k='pub_shihun2'>魔魂</t>
+		<t k='pub_shihun3'>神魂</t>
+		<t k='pub_len_que'>冷却时间</t>
+		<t k='pub_tui_chu'>退出</t>
+		<t k='pub_bao_ming'>报名</t>
+		<t k='pub_tui_jian'>推荐</t>
+		<t k='pub_pei_ou'>配偶</t>
+
+
+		<t k='pub_jing_jie1'>青龙界</t>
+		<t k='pub_jing_jie2'>白虎界</t>
+		<t k='pub_jing_jie3'>朱雀界</t>
+		<t k='pub_jing_jie4'>玄武界</t>
+
+
+		<t k='pub_huang'>皇</t>
+		<t k='pub_jing_jie_jie_duan'>星界阶段</t>
+		<t k='pub_jiang_li'>奖励</t>
+		<t k='pub_job0'>全部</t>
+		<t k='pub_job1'>道士</t>
+		<t k='pub_job3'>战士</t>
+		<t k='pub_job4'>法师</t>
+		<t k='pub_job6'>刺客</t>
+
+		<t k='pub_tong_yong'>通用</t>
+		<t k='pub_shen_qing_jz'>申请入族中</t>
+		<t k='pub_zu_yuan'>成员</t>
+		<t k='pub_fu_zu_zhang'>副帮主</t>
+		<t k='pub_zu_zhang'>帮主</t>
+		<t k='pub_equip_name1'>武器</t>
+		<t k='pub_equip_name2'>头盔</t>
+		<t k='pub_equip_name3'>时装</t>
+		<t k='pub_equip_name4'>衣服</t>
+		<t k='pub_equip_name5'>战袍</t>
+		<t k='pub_equip_name6'>腰带</t>
+		<t k='pub_equip_name7'>靴子</t>
+		<t k='pub_equip_name8'>项链</t>
+		<t k='pub_equip_name9'>暗器</t>
+		<t k='pub_equip_name10'>官印</t>
+		<t k='pub_equip_name11'>时装</t>
+		<t k='pub_equip_name12'>手镯</t>
+		<t k='pub_equip_name13'>手镯</t>
+		<t k='pub_equip_name14'>戒指</t>
+		<t k='pub_equip_name15'>戒指</t>
+
+
+		<t k='pub_equip_name1desc'>武器：怪物掉落</t>
+		<t k='pub_equip_name2desc'>头盔：怪物掉落</t>
+		<t k='pub_equip_name3desc'>时装：商城购买</t>
+		<t k='pub_equip_name4desc'>衣服：怪物掉落</t>
+		<t k='pub_equip_name5desc'>战袍：成就界面锻造</t>
+		<t k='pub_equip_name6desc'>腰带：怪物掉落</t>
+		<t k='pub_equip_name7desc'>靴子：怪物掉落</t>
+		<t k='pub_equip_name8desc'>项链：怪物掉落</t>
+		<t k='pub_equip_name9desc'>暗器：土城铸造大师锻造</t>
+		<t k='pub_equip_name10desc'>官印：土城铸造大师锻造</t>
+		<t k='pub_equip_name11desc'>时装：商城出售</t>
+		<t k='pub_equip_name12desc'>手镯：怪物掉落</t>
+		<t k='pub_equip_name13desc'>手镯：怪物掉落</t>
+		<t k='pub_equip_name14desc'>戒指：怪物掉落</t>
+		<t k='pub_equip_name15desc'>戒指：怪物掉落</t>
+
+		<t k='pub_suipian1'><![CDATA[功勋]]></t>
+		<t k='pub_suipian2'><![CDATA[护镜碎片]]></t>
+		<t k='pub_suipian3'><![CDATA[成就]]></t>
+		<t k='pub_suipian4'><![CDATA[暗器碎片]]></t>
+		<t k='pub_suipian5'><![CDATA[金印碎片]]></t>
+		<t k='pub_suipian6'><![CDATA[神铁碎片]]></t>
+		<t k='pub_soarexp'><![CDATA[转生经验]]></t>
+
+		<t k='pub_tupu1'><![CDATA[官印图谱]]></t>
+		<t k='pub_tupu2'><![CDATA[护镜图谱]]></t>
+		<t k='pub_tupu3'><![CDATA[披风图谱]]></t>
+		<t k='pub_tupu4'><![CDATA[暗器图谱]]></t>
+		<t k='pub_tupu5'><![CDATA[金印图谱]]></t>
+		<t k='pub_tupu20'><![CDATA[戒指图谱]]></t>
+		<t k='pub_tupu21'><![CDATA[戒指图谱]]></t>
+		<t k='pub_tupu22'><![CDATA[戒指图谱]]></t>
+
+
+		<t k='pub_yi_1'>一</t>
+		<t k='pub_er_2'>二</t>
+		<t k='pub_san_3'>三</t>
+		<t k='pub_si_4'>四</t>
+		<t k='pub_wu_5'>五</t>
+		<t k='pub_liu_6'>六</t>
+		<t k='pub_qi_7'>七</t>
+		<t k='pub_ba_8'>八</t>
+		<t k='pub_jiu_9'>九</t>
+		<t k='pub_shi_10'>十</t>
+		<t k='pub_fan_pin'>凡品</t>
+		<t k='pub_ling_pin'>灵品</t>
+		<t k='pub_tian_pin'>天品</t>
+		<t k='pub_xian_pin'>仙品</t>
+		<t k='pub_shen_pin'>神品</t>
+		<t k='pub_liang_hao'>良好</t>
+		<t k='pub_you_xiu'>优秀</t>
+		<t k='pub_zhuo_yue'>卓越</t>
+		<t k='pub_wan_mei'>完美</t>
+		<t k='pub_ji_zhi'>极致</t>
+		<t k='pub_zhuan_shu'>专属</t>
+		<t k='pub_chuan_shuo'>传说</t>
+		<t k='pub_wu'>无</t>
+		<t k='pub_shang_xian'>上限</t>
+		<t k='pub_huo_dong1'>门派秘宝</t>
+		<t k='pub_huo_dong2'>华山论剑</t>
+		<t k='pub_huo_dong3'>金戈铁马</t>
+		<t k='pub_huo_dong4'>门派建设</t>
+		<t k='pub_tong_tian'>邪派</t>
+		<t k='pub_tai_yi'>正派</t>
+		<t k='pub_zheng_pai'>正派</t>
+		<t k='pub_xie_pai'>邪派</t>
+		<t k='pub_xing'>星</t>
+		<t k='pub_ke'>星</t>
+		<t k='pub_pin'>品</t>
+
+
+		<t k='pub_cangci_1'>第一场</t>
+		<t k='pub_cangci_2'>第二场</t>
+		<t k='pub_cangci_3'>第三场</t>
+		<t k='pub_cangci_4'>第四场</t>
+		<t k='pub_cangci_5'>第五场</t>
+
+		<t k='pub_di_N_tian_1'>第一天</t>
+		<t k='pub_di_N_tian_2'>第二天</t>
+		<t k='pub_di_N_tian_3'>第三天</t>
+		<t k='pub_di_N_tian_4'>第四天</t>
+		<t k='pub_di_N_tian_5'>第五天</t>
+		<t k='pub_di_N_tian_6'>第六天</t>
+		<t k='pub_di_N_tian_7'>第七天</t>
+
+		<t k='pub_di_san_m'>第三名</t>
+
+		<t k='pub_camp_8'>正派</t>
+		<t k='pub_camp_9'>邪派</t>
+
+		<t k='pub_camp_13'>青龙</t>
+		<t k='pub_camp_14'>朱雀</t>
+		<t k='pub_camp_15'>玄武</t>
+
+		<t k='pub_pk_shen_mi_ren'>神秘人</t>
+
+		<t k='pub_suoding'>锁定</t>
+		<t k='pub_jiesuo'>解锁</t>
+
+		<t k='pub_wind'>冰系</t>
+		<t k='pub_fire'>火系</t>
+		<t k='pub_thund'>雷系</t>
+
+		<t k='pub_select'>请选择</t>
+
+		<t k='pub_jump_map'>正在前往#param...</t>
+		<t k='pub_DeDuiWu'>的队伍</t>
+		<t k='pub_yuanbao_cailiao'>元宝代替材料</t>
+
+		<t k='pub_chou_jiang_huo_de'>抽奖获得</t>
+		<t k='pub_QianLiDian'>潜力点</t>
+
+		<t k='pub_liu_lan_zhao_shi'>浏览招式</t>
+
+		<t k='pub_hong_dong_yugonggao1'>当前没有开启活动</t>
+
+		<t k='pub_xue_xi_tiao_jian'>学习条件:</t>
+
+		<t k='ji_ke_can_jia'>级可参加</t>
+
+		<t k='pet_ShouJia'>兽甲</t>
+		<t k='pet_ZhanXue'>战靴</t>
+		<t k='pet_HunWu'>魂武</t>
+		<t k='pet_XiangQuan'>项圈</t>
+		<t k='pet_ShouHuan'>兽环</t>
+		<t k='pet_LingDang'>铃铛</t>
+		<t k='wulinbaodian_dakaijiemian'>打开界面</t>
+		<t k='wulinbaodian_lijiqianwang'>立即前往</t>
+		<t k='pub_husband'>#param的丈夫</t>
+		<t k='pub_wife'>#param的妻子</t>
+
+		<!--主线自动任务 -->
+		<t k='autotask_main_level'>999</t>
+		<!--5秒自动任务 -->
+		<t k='autotask_5miao_level'>35</t>
+		<!-- 完成任务按钮，30秒无操作，将自动帮玩家点击按钮。 -->
+		<t k='autotask_complete'>1</t>
+
+		<!-- action_big_icon -->
+		<!-- 功能类 -->
+
+		<t k='ArrWeiDuan_On_Lvl'>999</t>
+
+		<!-- 每日福利 -->
+		<t k='ArrHuoYue_On_Lvl'>1</t>
+		<!-- 在线礼包-缺 -->
+		<!-- 开服嘉年华 -->
+		<t k='ArrKaiFu_On_Lvl'>1</t>
+		<!-- 黄钻礼包-缺 -->
+		<!-- 每日首充 -->
+		<t k='ArrLoginDayGift_On_Lvl'>25</t>
+		<!-- 充值福利-缺 -->
+		<!-- 邀请好友 -->
+		<t k='ArrYaoQing_On_Lvl'>20</t>
+		<!-- 武林宝典 -->
+		<t k='ArrWuLinBaoDian_On_Lvl'>40</t>
+		<!-- 七日登陆 -->
+		<t k='ArrQiRiDengLu_On_Lvl'>40</t>
+		<!-- 寻宝 -->
+		<t k='ArrXunBao_On_Lvl'>40</t>
+		<!--合服几天内开启，不包括填写的天数 -->
+		<t k='ArrHefu_On_Day'>6</t>
+		<t k='ArrKaiFuLiBaoOn_Lvl'>25</t>
+		<!-- 个人排位赛-->
+		<t k='arrGeRenPaiWei'>60</t>
+		<!-- 屠龙宝刀 -->
+		<t k='ArrBaZhuShengJian_On_Lvl'>45</t>
+		<!-- 以下屏蔽 -->
+		<t k='ArrXiaoFeiFanLi_On_Lvl'>999</t>
+
+		<t k='ArrChongZhiGift1_On_Lvl'>999</t>
+		<t k='ArrChongZhiGift2_On_Lvl'>999</t>
+		<t k='ArrChongZhiGift3_On_Lvl'>999</t>
+		<t k='ArrXinShou_Mubiao_On_Lvl'>999</t>
+		<t k='ArrMeiRiFuLi_On_Lvl'>999</t>
+		<!-- 活动类 -->
+		<t k='ArrHongHuangLianYu_On_Lvl'>50</t>
+		<t k='ArrExpX2_On_Lvl'>40</t>
+		<t k='ArrMonsterAttackCity1_On_Lvl'>45</t>
+		<t k='ArrMonsterAttackCity_On_Lvl'>45</t>
+		<t k='ArrMoBaiChengZhu_On_Lvl'>45</t>
+		<t k='ArrPKKing_On_Lvl'>50</t>
+		<t k='ArrBaZhuShengJian'>45</t>
+		<t k='ArrBaoZouDaTi_On_Lvl'>45</t>
+		<t k='ArrBangPaiZhan_On_Lv1'>45</t>
+		<t k='ArrHuangCheng_On_Lvl'>45</t>
+		<t k='ArrBaoWeiHuangCheng_On_Lvl'>45</t>
+		<t k='ArrJueZhanZhanChang_On_Lvl'>45</t>
+		<t k='ArrQuanGuoYaYun_On_Lvl'>45</t>
+		<!-- 百服,始皇魔窟是否开放,1 开放 0关闭 -->
+		<t k='Shi_Huang_Mo_Ku'>0</t>
+		<!-- 以下屏蔽 -->
+		<t k='ArrYaSongJunXu_On_Lvl'>999</t>
+		<t k='ArrBoss_On_Lvl'>999</t>
+		<t k='ArrTongTianTa_On_Lvl'>999</t>
+		<t k='ArrJiaZuDaLuanDou_On_Lvl'>999</t>
+		<t k='ArrDiGongBoss_On_Lvl'>999</t>
+		<t k='ArrXianDaoHui_On_Lvl'>999</t>
+		<t k='ArrMoTian_On_Lvl'>999</t>
+		<t k='ArrJinMa_On_Lvl'>999</t>
+		<t k='ArrSeaWar_On_Lvl'>999</t>
+		<t k='ArrKuaFu_Boss_On_Lvl'>999</t>
+		<t k='ArrWuXingLianZhu_On_Lvl'>999</t>
+		<t k='ArrLingDiZhengDuo_On_Lv1'>999</t>
+		<t k='ArrYaoSaiZhengDuo_On_Lv1'>999</t>
+		<t k='ArrBangPaiMiGong_On_Lv1'>999</t>
+		<t k='ArrHuaShanLunJian_On_Lv1'>999</t>
+		<t k='ArrTianMenZhen_On_Lv1'>999</t>
+		<t k='ArrShenLongTuTeng_On_Lv1'>50</t>
+		<t k='ArrLongTuDaYe_On_Lvl'>999</t>
+		<t k='ArrDouZhanShen_On_Lvl'>999</t>
+		<t k='ArrDuiDuiPeng_On_Lvl'>999</t>
+		<!-- 小地图旁边的 活 特效 -->
+		<t k='Huo_On_Lvl'>25</t>
+		<t k='JiNengMain_ZhengFa_On_Lvl'>25</t>
+		<t k='JiNengMain_TianFu_On_Lvl'>40</t>
+		<!-- 装备提示 限制等级 -->
+		<t k='SHOW_EQUIP_LEVEL'>55</t>
+		<t k='40097_arrGRPW_Action_Desc_guize0'><![CDATA[贴心提示：跨服排位赛战场中不会红名，死亡不会掉落装备。<br>1. 开启时间：每周二、四、六的21:55-22:58。<br>2. 活动内容：组队参加跨服竞技对战，挑战各路高手，获取排位积分。<br>3. 对战次数：每日可参战10次，消耗元宝每日可额外获得10次机会。<br>4. 报名规则：组队后由队长报名参战，队伍人数2-3人。<br>5. 胜负规则：每场时间150秒，经过双方战斗，把对方全部击杀，或时间结束后最后总血量多的一方获得最终胜利。每场战场每人可在胜负未分之前复活一次。<br>6. 积分规则：获胜队伍，2人队每人40分，3人队每人30分。战败队伍每人10积分。<br>7. 匹配规则：系统会尽量在同一段位内为每个队伍匹配对手。<br>8. 奖励规则：每天上线参与活动，满足条件即可领取每日奖励。还可领取上周的总排名奖励，排名越靠前，奖励越高。<br>9. 排名规则：每日比赛结束后，将更新你的跨服排位名次。]]></t>
+		<t k="10000_welcome"><![CDATA[服务器登录成功！欢迎你进入七战<br/>      抵制不良游戏 拒绝盗版游戏<br/>      注意自我保护 谨防受骗上当<br/>      适度游戏益脑 沉迷游戏伤身<br/>      合理安排时间 享受健康生活]]></t>
+		<t k='10001_bao_guo'><![CDATA[该装备为<font color='#f7d446'>紫色装备</font>，确定要出售吗？]]></t>
+		<t k='10002_bao_guo'><![CDATA[该装备为<font color='#f7d446'>红色装备</font>，确定要出售吗？]]></t>
+		<t k='10003_bao_guo'><![CDATA[确定丢弃物品【#param】？]]></t>
+		<t k='10004_xuanshang'><![CDATA[确定花费80元宝，购一次降魔任务次数吗？<br/>(你今天还可购买#param次)]]></t>
+		<t k='10005_xuanshang'><![CDATA[兑换#param阶军阶称号需要：#param威望]]></t>
+		<t k='10006_xuanshang'><![CDATA[你的称号已经达到最高等级]]></t>
+		<t k='10007_shen_gong_lu'><![CDATA[已经锻造至最高等级！]]></t>
+		<t k='10008_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10009_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10010_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10011_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10012_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10013_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10014_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10015_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10016_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10017_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10018_bao_guo'><![CDATA[双击即可穿上]]></t>
+		<t k='10019_bao_guo'><![CDATA[双击即可卸下]]></t>
+		<t k='10020_missionmain'><![CDATA[确认放弃？放弃只可以获得1个金币袋(小)的奖励]]></t>
+		<t k='10021_hctupu'><![CDATA[#param级装备]]></t>
+		<t k='10022_xuanshang'><![CDATA[]]>
+		</t>
+		<t k='10023_xuanshang'><![CDATA[]]>
+		</t>
+		<t k='10024_lian_dan_lu'><![CDATA[]]>
+		</t>
+		<t k='10025_resctrl'><![CDATA[<font color='#ff9600'>强化+#param可再获得</font>]]></t>
+		<t k='10026_resctrl'><![CDATA[<font color='#928367'>捐献到帮派仓库可得<font color='#8afd5c'>#param</font>贡献<br/>从帮派仓库兑换需要<font color='#8afd5c'>#param</font>贡献</font>]]></t>
+		<t k='10027_shengonglu'><![CDATA[锻造【#param】需要消耗:]]></t>
+		<t k='10028_shengonglu'><![CDATA[(升级需要 #param #param)]]></t>
+		<t k='10029_shengonglu'><![CDATA[已锻造]]></t>
+		<t k='10030_shengonglu'><![CDATA[未锻造]]></t>
+		<t k='10032_bao_guo'><![CDATA[]]>
+		</t>
+		<t k='10033_resctrl'><![CDATA[]]>
+		</t>
+		<t k='10034_bao_guo'><![CDATA[]]>
+		</t>
+		<t k='10035_hao_you'><![CDATA[确定将<font color='#ff0000'>#param</font>从黑名单列表中删除吗？]]></t>
+		<t k='10036_ji_neng'><![CDATA[角色达到#param级激活]]></t>
+		<t k='10037_bao_guo'><![CDATA[<font color='#ff0000'>是否确定销毁?</font>]]></t>
+		<t k='10038_hao_you'><![CDATA[确定将<font color='#ff0000'>#param</font>从好友列表中删除吗？]]></t>
+		<t k='10039_hao_you'><![CDATA[<font color='#54e9d5'>#param</font>添加您为好友，是否添加<font color='#54e9d5'>#param</font>为好友？]]></t>
+		<t k='10040_vip'><![CDATA[再充值#param元宝,您将成为尊贵的#param级VIP玩家！]]></t>
+		<t k='10041_vip'><![CDATA[VIP是最尊贵的玩家身份象征，#param级VIP玩家可独享以下特权]]></t>
+		<t k='10042_vip'><![CDATA[#param级VIP大礼包]]></t>
+		<t k='10043_vip'><![CDATA[]]>
+		</t>
+		<t k='10044_pai_hang'><![CDATA[<font color='#eea875'>您当前的排名是第</font>#param<font color='#eea875'>名</font>]]></t>
+		<t k='10045_pai_hang'><![CDATA[榜上无名]]></t>
+		<t k='10046_jue_se_look'><![CDATA[星之星界]]></t>
+		<t k='10047_jue_se_look'><![CDATA[]]>
+		</t>
+		<t k='10048_jue_se_look'><![CDATA[]]>
+		</t>
+		<t k='10049_jue_se_look'><![CDATA[]]>
+		</t>
+		<t k='10050_jue_se_look'><![CDATA[尚未获得坐骑]]></t>
+		<t k='10051_vip'><![CDATA[花费<font color='#FF7200'>#param元宝</font>，获得<font color='#FF7200'>#param金币</font>]]></t>
+		<t k='10052_vip'><![CDATA[立即充值]]></t>
+		<t k='10053_vip'><![CDATA[领取礼包]]></t>
+		<t k='10054_vip'><![CDATA[已经领取]]></t>
+		<t k='10055_jue_se_look'><![CDATA[速度]]></t>
+		<t k='10056_jue_se_look'><![CDATA[]]>
+		</t>
+		<t k='10058_beibaoset'><![CDATA[55]]></t>
+		<t k='10059_huo_ban'><![CDATA[]]>
+		</t>
+		<t k='10060_findexp'><![CDATA[]]>
+		</t>
+		<t k='10061_findexp'><![CDATA[]]>
+		</t>
+		<t k='10062_hui_huan'><![CDATA[今天可兑换次数已使用完，提升vip等级获得更多兑换次数？]]></t>
+		<t k='10063_lian_dan_lu'><![CDATA[达到极限]]></t>
+		<t k='10064_ju_xian_ge'><![CDATA[]]>
+		</t>
+		<t k='10065_ju_xian_ge'><![CDATA[]]>
+		</t>
+		<t k='10066_chong_zhu'><![CDATA[]]>
+		</t>
+		<t k='10067_bao_guo'><![CDATA[卖出价格]]></t>
+		<t k='10068_bao_guo'><![CDATA[不可出售]]></t>
+		<t k='10069_lefantian'><![CDATA[到]]></t>
+		<t k='10070_bao_guo'><![CDATA[等级不足，无法使用]]></t>
+		<t k='10071_new_role'><![CDATA[]]>
+		</t>
+		<t k='10072_chou_jiang'><![CDATA[]]>
+		</t>
+		<t k='10073_zuoqi'><![CDATA[本次进阶消耗<font color='#56f2f4'>#param</font>个#param，不足部分由#param元宝代替。进阶坐骑？]]></t>
+		<t k='10074_zuoqi'><![CDATA[包裹中没有进阶丹，本次进阶需消耗<font color='#56f2f4'>#param</font>元宝代替。进阶坐骑？]]></t>
+		<t k='10075_vip'><![CDATA[是否充值#param元宝，提升VIP等级至#param级？]]></t>
+		<t k='10076_quickinfo'><![CDATA[你已经无#param药可吃，请备药！]]></t>
+		<t k='10077_uptarget'><![CDATA[我要努力升到#param级]]></t>
+		<t k='10078_qiandao'><![CDATA[补签可增加累积签到天数，领取大量金币和极品道具。花费10元宝补签吗？]]></t>
+		<t k='10079_guest'><![CDATA[]]>
+		</t>
+		<t k='10080_quickinfo'><![CDATA[气血药品]]></t>
+		<t k='10081_quickinfo'><![CDATA[魔法药品]]></t>
+		<t k='10082_quickinfo'><![CDATA[宠物气血药品]]></t>
+		<t k='10083_hao_you'><![CDATA[<font color='#13ff00'>#param</font>与你结为好友]]></t>
+		<t k='10084_bao_guo'><![CDATA[有效期至]]></t>
+		<t k='10085_controlbutton'>举世瞩目的【华山论剑】活动即将开始，快来参加吧！</t>
+		<t k='10086_chongzhu'>今天可免费洗属性#param次</t>
+		<t k='10087_chongzhu'>今天可免费洗属性#param次,需花费:#param</t>
+		<t k='10088_qianghua'></t>
+		<t k='10089_qianghua'></t>
+		<t k='10090_qianghua'></t>
+		<t k='10091_qianghua'></t>
+		<t k='10092_shengji'><![CDATA[可在京城<a href='event:0'><font color='#18FF02'><u>兑换商店</u></font></a>中使用<font color='#54E9D5'>昊天令</font>兑换]]></t>
+		<t k='10093_shengji'><![CDATA[参加<a href='event:4'><font color='#18FF02'><u>武林至尊</u></font></a>获得]]></t>
+		<t k='10094_shengji'><![CDATA[#param或<a href='event:#param'><font color='#18FF02'><u>神秘商店</u></font></a>可获得材料。<br/>把<font color='#54E9D5'>装备</font>放入升级框，即可查看详细信息。]]></t>
+		<t k='10095_shengji'><![CDATA[<font color='#18FF02'>对对碰</font></a>或<a href='event:2'><font color='#18FF02'><u>神秘商店</u></font></a>可获得材料。<br/>把<font color='#54E9D5'>卷轴</font>放入升级框，即可查看详细信息。]]></t>
+		<t k='10096_resctrl'><![CDATA[(#param级激活)]]></t>
+		<t k='10097_liandanlu'><![CDATA[材料副本]]></t>
+		<t k='10098_jue_se_look'><![CDATA[四神器]]></t>
+		<t k='10099_jue_se_look'><![CDATA[神魔录]]></t>
+		<t k='10100_jz'><![CDATA[<font color='#54e9d5'>#param</font>邀请你加入<font color='#ffc000'>【#param】</font>，是否同意？]]></t>
+		<t k='10100_jzkuafupaiweisai'><![CDATA[您的队伍报名了跨服排位赛，是否参加？]]></t>
+		<t k='10101_jz'><![CDATA[<font color='#54e9d5'>#param</font>推荐你加入<font color='#ffc000'>【#param】</font>，同意申请加入该帮派吗？]]></t>
+		<t k='10102_findexp'><![CDATA[花费<font color='#54e9d5'>#param</font>元宝，找回全部可找回的活动经验，共计<font color='#ffc000'>#param</font>经验和<font color='#ffc000'>#param</font>威望。]]></t>
+		<t k='10103_chongzhu'><![CDATA[]]>
+		</t>
+		<t k='10104_sysconfig'><![CDATA[隐藏玩家]]></t>
+		<t k='10105_sysconfig'><![CDATA[显示玩家]]></t>
+		<t k='10106_missionnpc'><![CDATA[35级开放此玩法]]></t>
+		<t k='10107_mainchat'><![CDATA[您的文字中有特殊字符]]></t>
+		<t k='10104_loading_mosaic_map'>加载马赛克地图</t>
+		<t k='10105_loaded_mosaic_map'>马赛克地图加载完成</t>
+		<t k='10108_myduiwu'><![CDATA[#param级怪物]]></t>
+		<t k='10109_uiindex'><![CDATA[宠物合体中]]></t>
+		<t k='10110_uiactmap'><![CDATA[<font color='#8afd5c'>恭喜您升到#param级！<br/>      #param #param-#param<br/>      魔法防御 #param-#param<br/>      物理防御 #param-#param<br/>      生    命 #param</font>]]></t>
+		<t k='10111_newplayergift'><![CDATA[#param级大礼包]]></t>
+		<t k='10112_rightdowntipjns'><![CDATA[恭喜你获得新技能书]]></t>
+		<t k='10113_rightdowntipjns'><![CDATA[学习装配]]></t>
+		<t k='10114_liandanlu'><![CDATA[您有条属性值已经非常完美了，确定要洗值吗？(可锁定该条属性后，再进行洗值)]]></t>
+		<t k='10115_shengji'><![CDATA[可在<a href='event:0'><font color='#18FF02'><u>兑换商店</u></font></a>中用<font color='#FF9C0F'>昊天令</font>兑换<font color='#FF9C0F'>项链、耳环、手镯、戒指。</font>]]></t>
+		<t k='10116_resctrl'><![CDATA[(尚未激活)]]></t>
+		<t k='10117_liandanlu'><![CDATA[强化消耗:<font color='#param'>#param</font>个#param,#param金币]]></t>
+		<t k='10118_stronghecheng'><![CDATA[可参与<a href='event:3'><font color='#18FF02'><u>强化石副本</u></font></a>中获得]]></t>
+		<t k='10119_stronghecheng'><![CDATA[消耗:#param元宝]]></t>
+		<t k='10120_liandanlu'><![CDATA[确定将装备强化等级，退一级吗？]]></t>
+		<t k='10121_liandanlu'><![CDATA[升级为神武装备可开启第10条属性]]></t>
+		<t k='10122_liandanlu'><![CDATA[<font color='#ff2400'>未升星</font>]]></t>
+		<t k='10123_liandanlu'><![CDATA[<font color='#12E712'>一级强化石</font>现有<font color='#12E712'>#param颗</font>，适用强化1～4级。<br/><font color='#41F2EC'>二级强化石</font>现有<font color='#41F2EC'>#param颗</font>，适用强化5～8级。<br/><font color='#F64BFC'>三级强化石</font>现有<font color='#F64BFC'>#param颗</font>，适用强化9～15级。<br/><font color='#FF9C0F'>四级强化石</font>现有<font color='#FF9C0F'>#param颗</font>，适用强化16～20级。<br/>]]></t>
+		<t k='10124_liangu'><![CDATA[需要完成45级炼骨奇术任务后，才可以修炼]]></t>
+		<t k='10125_liandanlu'><![CDATA[挑战<a href='event:4'><font color='#18FF02'><u>魔天万界</u></font></a>中<br/>第一层第7关boss获得]]></t>
+		<t k='10126_liandanlu'><![CDATA[提示：<font color='#f64bfc'>完美升星</font>是普通升星属性值的<font color='#ff9c0f'>2倍</font>]]></t>
+		<t k='10127_missionmain'><![CDATA[<a href='event:9958@1@1'><font color='#18FF02'><u>【我还能做点什么？】</u></font></a>]]></t>
+		<t k='10128_resctrl'><![CDATA[下一星]]>
+		</t>
+		<t k='10129_resctrl'><![CDATA[<font color='#ffad2c'><b>基础属性</b></font>]]></t>
+		<t k='10130_resctrl'><![CDATA[<font color='#ffad2c'><b>附加属性</b></font>]]></t>
+		<t k='10131_resctrl'><![CDATA[<font color='#ffad2c'><b>宝石属性</b></font>]]></t>
+		<t k='10132_resctrl'><![CDATA[<font color='#ffad2c'><b>物品简介</b></font>]]></t>
+		<t k='10133_resctrl'><![CDATA[装备升到20级可获得3条附加属性]]></t>
+		<t k='10134_husong'><![CDATA[是否花费1万金币进行一次刷新？]]></t>
+		<t k='10135_husong'><![CDATA[确认花费80元宝购买1次护送次数？]]></t>
+		<t k='10136_usetimes'><![CDATA[确定消耗#param元宝，领取超值限量大礼包?]]></t>
+		<t k='10137_husong'><![CDATA[注：押送途中无法参与活动、副本和使用传送功能。]]></t>
+		<t k='10138_husong'><![CDATA[确定消耗100元宝刷新传奇宝物吗?]]></t>
+		<t k='10139_wenquan'><![CDATA[#param邀请你香吻，是否同意?]]></t>
+		<t k='10140_expadd'><![CDATA[当前世界等级为<font color='#8afd5c'>#param级</font>,你比世界等级低<font color='#8afd5c'>#param级</font>。<br/>你可以在<font color='#8afd5c'>地宫杀怪中</font>享受<font color='#8afd5c'>#param%经验</font>加成！助你早日赶上高级玩家。]]></t>
+		<t k='10140_expaddCha'><![CDATA[当前世界等级为<font color='#8afd5c'>#param级</font>，你比世界等级高<font color='#8afd5c'>#param级</font>。<br/>你可以做<font color='#8afd5c'>降魔任务，完成经验副本，在地宫中挂机</font>，继续保持领先优势！]]></t>
+		<t k='10141_resctrl'><![CDATA[未强化]]></t>
+		
+		<t k='10142_zuoqi'><![CDATA[消耗：#param个#param，#param金币]]></t>
+		<t k='10143_resctrl'><![CDATA[]]></t>
+		<t k='10144_zuoqi'><![CDATA[参与每日任务“生旦净末丑”可获得马鞍材料]]></t>
+		<t k='10145_zuoqi_hecheng'><![CDATA[完成#param任务或<a href='event:5,10300035'><font color='#18FF02'><u>直接购买</u></font></a>获得]]></t>
+		<t k='10146_renwu'><![CDATA[圣诞]]></t>
+		<t k='10147_resctrl'><![CDATA[神器属性(增加#param#param)]]></t>
+		<t k='10148_expiredtip'><![CDATA[确定消耗#param元宝立刻拥有炫酷的#param吗？]]></t>
+		<t k='10149_resctrl'><![CDATA[<font color='#ffad2c'><b>神器强化</b></font>]]></t>
+		<t k='10150_zuoqi_hecheng'><![CDATA[]]>
+			生旦净末丑
+		</t>
+		<t k='10151_resctrl'><![CDATA[(#param级神器激活)]]></t>
+		<t k='10152_renwu'><![CDATA[脸谱]]></t>
+		<t k='10153_jiaose'><![CDATA[]]>
+		</t>
+		<t k='10154_zuoqi'><![CDATA[神兽魂器已经达到最大级]]></t>
+		<t k='10155_resctrl'><![CDATA[完美升星至#param级(暴击伤害增加5% )]]></t>
+		<t k='10156_resctrl'><![CDATA[完美升星至#param级(受到伤害减少5% )]]></t>
+		<t k='10157_resctrl'><![CDATA[完美升星至#param级(攻击速度提高5% )]]></t>
+		<t k='10158_resctrl'><![CDATA[完美升星至#param级(吸血增加3% )]]></t>
+		<t k='10159_shenyi'><![CDATA[]]>
+		</t>
+		<t k='10160_beibao'><![CDATA[使用【直升一级丹】可在80级之前直接升一级，推荐您在80级使用，可获得最佳效果。确认现在使用么？]]>
+		</t>
+		<t k='10161_beibao'><![CDATA[请降级回80级才可使用此物品]]></t>
+		<t k='10162_shenyi'><![CDATA[]]>
+		</t>
+		<t k='10163_shenyi'><![CDATA[]]>
+		</t>
+		<t k='10164_resctrl'><![CDATA[<font color='#ffad2c'><b>噬魂属性</b></font>]]></t>
+		<t k='10165_liandanlu'><![CDATA[]]>
+		</t>
+		<t k='10165_shenyi'><![CDATA[<a href='event:5,12200002'><u>立即购买</u></font>]]></t>
+		<t k='10166_chunjie'><![CDATA[你当前排行第#param名]]></t>
+		<t k='10167_renwu'><![CDATA[春节]]></t>
+		<t k='10168_uiactmap'><![CDATA[#param已经结束]]></t>
+		<t k='10169_welcome'><![CDATA[你是第<font color='#8afd5c'>#param</font>个进入七战的大侠]]></t>
+		<t k='10170_chatfilter'><![CDATA[输错#param次,你还有#param次机会]]></t>
+		<t k='10171_resctrl'><![CDATA[摊位价格]]></t>
+		<t k='10172_boothinfo'><![CDATA[你本次摊位持续了#param，共收入#param元宝]]></t>
+		<t k='10173_boothinfo'><![CDATA[#param成功出售#param个#param获得#param元宝]]></t>
+		<t k='10174_boothinfo'><![CDATA[#param:#param]]></t>
+		<t k='10175_booth'><![CDATA[确定要下架#param吗？]]></t>
+		<t k='10176_booth'><![CDATA[确定要下架#param并收摊吗？]]></t>
+		<t k='10177_booth'><![CDATA[#param的摊位]]></t>
+		<t k='10178_booth'><![CDATA[开始摆摊]]></t>
+		<t k='10179_booth'><![CDATA[收摊]]></t>
+		<t k='10180_booth'><![CDATA[确定要收摊吗？]]></t>
+		<t k='10181_booth'><![CDATA[确定消耗#param个元宝购买#param个#param吗？]]></t>
+		<t k='10182_booth'><![CDATA[确定取消本次摆摊吗]]></t>
+		<t k='10183_booth'><![CDATA[在{E@#param@fffb80@15@#param}处叫卖，#param {C@立刻前往@fffb80@#param@#param@#param}]]></t>
+		<t k='10184_booth'><![CDATA[此处不是摆摊区域，请前往比奇城的摆摊区(#param)]]></t>
+		<t k='101841_boss'><![CDATA[此处不是召唤Boss区域，请前往指定区域(#param)]]></t>
+		<t k='10185_booth'><![CDATA[消耗20000金币，可以在交易频道发送一条带购买链接的广告！]]></t>
+		<t k='10186_renwu'><![CDATA[经验]]></t>
+		<t k='10187_xuanshang'><![CDATA[免费次数已经用完，确定要花费1万金币刷新吗？]]></t>
+		<t k='10188_xuanshang'><![CDATA[确定要消耗#param元宝立即完成降魔任务吗？]]></t>
+		<t k='10189_xuanshang'><![CDATA[#param倍奖励:]]></t>
+		<t k='10190_missionmain'><![CDATA[<a href='event:5188@1@1'><font color='#18FF02'><u>【降魔任务】</u></font></a>]]></t>
+		<t k='10191_lefantian'><![CDATA[<font color='#8afd5c'>达成条件</font>]]></t>
+		<t k='10192_lefantian'><![CDATA[<font color='#928367'>未达成条件</font>]]></t>
+		<t k='10193_lefantian'><![CDATA[<font color='#8afd5c'>已经领取</font>]]></t>
+		
+		<t k='10194_newguest'><![CDATA[您已经达成降魔任务的任务目标，可以找#param交还任务]]>
+		</t>
+		<t k='10195_vip'><![CDATA[(#param每天额外增加#param次)]]></t>
+		<t k='10196_juxiange'><![CDATA[]]>
+		</t>
+		<t k='10197_vip'><![CDATA[(<a href='event:8'><u>购买vip</u><a>,每天额外增加#param次)]]></t>
+		<t k='10198_jue_se_look'><![CDATA[]]>
+		</t>
+		<t k='10199_jingmai'><![CDATA[]]>
+		</t>
+		<t k='10200_jianding'><![CDATA[]]>
+		</t>
+		<t k='10201_jianding'><![CDATA[]]>
+		</t>
+		<t k='10202_resctrl'><![CDATA[]]>
+		</t>
+		<t k='10203_resctrl'><![CDATA[<font color='#ffad2c'><b>升星属性</b></font>]]></t>
+		<t k='10204_jingmaiup'><![CDATA[]]>
+		</t>
+		<t k='10205_jingmaiup'><![CDATA[]]>
+		</t>
+		<t k='10206_jingmaiup'><![CDATA[]]>
+		</t>
+		<t k='10207_zuoqi'><![CDATA[参与每日活动“领地争夺战”可获得进阶丹。]]></t>
+		<t k='10208_liandanlu'><![CDATA[星级:]]></t>
+		<t k='10209_liandanlu'><![CDATA[战力:]]></t>
+		<t k='10210_liandanlu'><![CDATA[宝石:]]></t>
+		<t k='10211_shentie'><![CDATA[]]>
+		</t>
+		<t k='10212_rightdowntipzb'><![CDATA[一键传承]]></t>
+		<t k='10213_rightdowntipjns'><![CDATA[恭喜你获得新技能书：#param]]></t>
+		<t k='10214_jiazutree'><![CDATA[帮派歃血为盟，还差#param人,{E@立刻参与@fffb80@16}]]></t>
+		<t k='10215_bao_guo'><![CDATA[不可卸下]]></t>
+		<t k='10216_bao_guo'><![CDATA[双击可使用]]></t>
+		<t k='10217_jztree'><![CDATA[确定消耗100元宝，邀请神兵前来协助？]]></t>
+		<t k='10218_jiaose'><![CDATA[#param阶#param星]]></t>
+		<t k='10219_paihang'><![CDATA[修炼秘籍]]></t>
+		<t k='10220_resctrl'><![CDATA[<font color='#ff2400'>未升星</font>]]></t>
+		<t k='10221_resctrl'><![CDATA[升星可大幅提升装备属性]]></t>
+		<t k='10222_resctrl'><![CDATA[]]>
+		</t>
+		<t k='10223_jianding'><![CDATA[]]>
+		</t>
+		<t k='10224_jingmaiup'><![CDATA[]]>
+		</t>
+		<t k='10225_yueli'><![CDATA[花费<font color='#FF7200'>#param元宝</font>，获得<font color='#FF7200'>#param威望</font>]]></t>
+		<t k='10226_npcshop'><![CDATA[<font color='#FF9600'>当前拥有：</font>#param个#param]]></t>
+		<t k='10227_npcshop'><![CDATA[<font color='#8afd5c'>已有</font>]]></t>
+		<t k='10228_jingmai'><![CDATA[]]>
+		</t>
+		<t k='10229_fenjiezhuangbei'><![CDATA[确定要回收装备吗？]]></t>
+		<t k='10229_fenjiezhuangbei1'><![CDATA[您回收的装备中有<font color='#e65eff'>紫色装备</font>，确定要回收吗？]]></t>
+		<t k='10229_fenjiezhuangbei2'><![CDATA[您回收的装备中有<font color='#ff6a78'>红色装备</font>，确定要回收吗？]]></t>
+		<t k='10229_fenjiezhuangbei3'><![CDATA[您回收的装备中有<font color='#e65eff'>紫色</font>和<font color='#ff6a78'>红色</font>装备，确定要回收吗？]]></t>
+		<t k='10230_trade'><![CDATA[玩家<font color='#8afd5c'>#param</font>申请与你进行交易，是否同意？]]></t>
+		<t k='10230_vipCandanLable'><![CDATA[只需#param元宝即可立即成为VIP，尊享各种超值服务！]]></t>
+		<t k='10230_vipCandanLableBtn'><![CDATA[成为VIP]]></t>
+
+
+		<t k='10230_husong'><![CDATA[押送军需双倍时间开启了，是否立刻前往(#param)押送！]]></t>
+		<t k='10231_baoshi'><![CDATA[可镶嵌生命宝石]]></t>
+		<t k='10232_baoshi'><![CDATA[可镶嵌攻击宝石]]></t>
+		<t k='10233_baoshi'><![CDATA[可镶嵌外功防御宝石]]></t>
+		<t k='10234_baoshi'><![CDATA[可镶嵌内功防御宝石]]></t>
+		<t k='10235_resctrl'><![CDATA[不可镶嵌]]></t>	
+		<t k='10236_npcshop'><![CDATA[<font color='#FF9600'>当前拥有：</font>#param个#param]]></t>
+		<t k='10237_haoyou'><![CDATA[#param.#param<br/> <font color='#ff0000'>#param</font>在#param将你击杀]]></t>
+		<t k='10238_findexp'><![CDATA[]]>
+		</t>
+		<t k='10239_viptuijian'><![CDATA[您当前拥有#param #param时间，推荐您体验一下特权：]]></t>
+		<t k='10240_beibao'><![CDATA[第#param个背包格子]]></t>
+		<t k='10241_beibao'><![CDATA[]]>
+		</t>
+		<t k='10242_bao_guo'><![CDATA[]]>
+		</t>
+
+		<t k='10197_fuhuo_20'><![CDATA[(20元宝)]]></t>
+		<t k='10197_fuhuo_GRPW_50'><![CDATA[(50元宝)]]></t>
+		<t k='10197_fuhuo'><![CDATA[您被<font color='#FF0000'>#param</font>杀死了]]></t>
+		<t k='10197_fuhuo_GRPW'><![CDATA[在战斗结束前，每个玩家可付费复活一次，复活后，玩家复活在本队的复活点]]></t>
+		<t k='10197_fuhuo_GRPW2'><![CDATA[复活需要消耗50元宝]]></t>
+		<t k='10198_vip'><![CDATA[(<a href='event:8'><u>购买vip</u><a>,每天免费原地复活#param次)]]></t>
+		<t k='10199_vip'><![CDATA[VIP每日免费原地复活剩余#param次]]></t>
+		<t k='10120_vip'><![CDATA[(<a href='event:8'><u>购买vip</u><a>,每天领取4倍福利)]]></t>
+		<t k='10121_vip'><![CDATA[(您是#param，每天领取#param倍福利)]]></t>
+		<t k='10121_vip_data'><![CDATA[2,3,4]]></t>
+		<t k='10122_vip'><![CDATA[(<a href='event:8'><u>购买vip</u><a>,多领取100元宝)]]></t>
+		<t k='10123_vip'><![CDATA[(您是#param，多领取#param元宝)]]></t>
+		<t k='10123_vip_data'><![CDATA[0,50,100]]></t>
+		<t k='10124_vip'><![CDATA[(<a href='event:8'><u>购买vip</u><a>,每天增加重置次数1次)]]></t>
+		<t k='10125_vip'><![CDATA[(您是#param，每天增加重置次数#param次)]]></t>
+		<t k='10126_baoshi'><![CDATA[含有3级宝石确定要分解吗？]]></t>
+
+		<t k='20001_jineng_jiesuo'>级解锁</t>
+		<t k='20001_jineng_xuanze'>请选择一个新技能</t>
+
+		<t k='20001_jineng_miao'>秒</t>
+		<t k='20001_jineng_xiayiji'>人物#param级</t>
+		<t k='20004_MainChat'>大侠请勿重复发言</t>
+		<t k='20005_MainChat'>大侠请您语速慢一些</t>
+		<t k='20006_fuben'>该副本当天次数已用完，请选择别的副本！</t>
+		<t k='20007_NewRole'>姓名过短，请重新输入！</t>
+		<t k='20008_fuben'>关闭面板将会退出队伍，确认关闭？</t>
+		<t k='20009_fuben'>确认要离开队伍？</t>
+		<t k='20010_fuben'>人自动进入</t>
+		<t k='20011_fuben'>手动进入</t>
+		<t k='20012_NewRole'>姓名过长，请重新输入。</t>
+		<t k='20013_ZuDui'><![CDATA[<font color='#54e9d5'>#param</font>邀请您加入队伍，是否同意？]]></t>
+		<t k='20014_ZuDui'>未组队</t>
+		<t k='20015_ZuDui'>已组队</t>
+		<t k='20016_ZuDui'>确认要离开队伍？</t>
+		<t k='20017_ZuDui'>离队后将被传出副本，确认离队吗？</t>
+		<t k='20018_ZuDui'><![CDATA[您确定要将<font color='#54e9d5'>#param</font>踢出队伍吗？]]></t>
+		<t k='20019_ZuDui'><![CDATA[您确定要将<font color='#54e9d5'>#param</font>踢出队伍吗？(踢出队伍后，该队员将被传出副本)]]></t>
+		<t k='20020_JiShi'><![CDATA[你已被踢出队伍，#param秒后将被传出副本！]]></t>
+		<t k='20021_ZuDui'><![CDATA[<font color='#54e9d5'>#param</font>请求加入队伍，是否同意？]]></t>
+		<t k='20022_FuBen'>请先关闭队伍界面</t>
+		<t k='20023_DuiWu'>队伍已解散</t>
+		<t k='20024_SysConfig'>配置保存成功</t>
+		<t k='20025_SysConfig'>小贴士：</t>
+		<t k='20026_SysConfig'>请先关闭系统设置面板</t>
+		<t k='20027_LianDanLu'>包裹中没有足够的材料，是否使用#param元宝代替</t>
+		<t k='20028_UIMessage'> 您已累计在线1小时</t>
+		<t k='20029_UIMessage'> 您累计在线时间已满3小时，请您下线休息，做适当身体活动</t>
+		<t k='20030_UIMessage'> 您已经进入疲劳游戏时间，您的游戏收益将降为正常值的50％，请您尽快下线休息，做适当身体活动。</t>
+		<t k='20031_UIMessage'> 您已进入不健康游戏时间，请您立即下线休息。如不下线，您的身体健康将受到损害，您的收益已降为零。</t>
+		<t k='20032_ZhanLiZhi'>人物属性：</t>
+		<t k='20033_ZhanLiZhi'>宠物属性：</t>
+		<t k='20034_ZhanLiZhi'>人物炼骨：</t>
+		<t k='20035_ZhanLiZhi'>人物装备基础：</t>
+		<t k='20036_ZhanLiZhi'>宠物装备基础：</t>
+		<t k='20037_ZhanLiZhi'>人物装备升星：</t>
+		<t k='20038_ZhanLiZhi'>宠物装备升星：</t>
+		<t k='20039_ZhanLiZhi'>人物装备鉴定：</t>
+		<t k='20040_ZhanLiZhi'>宠物装备鉴定：</t>
+		<t k='20041_ZhanLiZhi'>人物武魂：</t>
+		<t k='20042_ZhanLiZhi'>宠物武魂：</t>
+		<t k='20043_ZhanLiZhi'>人物星界：</t>
+		<t k='20044_ZhanLiZhi'>宠物星界：</t>
+		<t k='20045_ZhanLiZhi'>坐骑属性：</t>
+		<t k='20046_DaTi'>您总共获得</t>
+		<t k='20047_ZuDui'>选择一个阵法</t>
+		<t k='20048_HuoDongJoin'>该活动到时间会自动参加，保持在线即可</t>
+		<t k='20049_RenWu'>回复</t>
+		<t k='20050_RenWu'>请选择一个任务</t>
+		<t k='20051_RenWu'>接受任务</t>
+		<t k='20052_RenWu'>是否放弃此任务？</t>
+		<t k='20053_RenWu'>请选择一个任务</t>
+		<t k='20054_RenWu'>已完成</t>
+		<t k='20055_RenWu'>主线</t>
+		<t k='20056_RenWu'>支线</t>
+		<t k='20057_RenWu'>日常</t>
+		<t k='20058_RenWu'>宠物</t>
+		<t k='20059_RenWu'>世界</t>
+		<t k='20060_RenWu'>环</t>
+		<t k='20061_RenWu'>可接受</t>
+		<t k='20062_RenWu'>进行中</t>
+		<t k='20063_RenWu'>不可接</t>
+		<t k='20064_RenWu'>已失败</t>
+		<t k='20065_UIActMap'>距离过远</t>
+		<t k='20066_UIAction'>系统</t>
+		<t k='20067_ZhanLiZhi'>榜上无名</t>
+		<t k='20068_TransMap'>您的等级与地图进入等级不符</t>
+		<t k='20069_RenWu'>与#param对话</t>
+		<t k='20070_chengjiu'>奖励</t>
+		<t k='2007101_chengjiudian'>点成就点</t>
+		<t k='20071_FuBen'>空前激烈的【BOSS战】活动即将开始，快来参加吧！</t>
+		<t k='200711_FuBen'>令人癫狂的【石中神剑】活动即将开始，快来参加吧！</t>
+		<t k='2007122_FuBen'>是否传送至锁云谷密探追云，接受门派密宝任务？</t>
+		<t k='2007123_FuBen'>是否传送至缥缈峰密探逐日，接受门派密宝任务？</t>
+		<t k='2007124_FuBen'>您是否要参加王者之剑活动？</t>
+		<t k='2007125_FuBen'>空前激烈的【沙城争霸战】活动即将开始，快来参加吧！</t>
+		<t k='2007126_FuBen'>空前激烈的【屠龙宝刀】活动即将开始，快来参加吧！</t>
+		<t k='2007127_FuBen'>您是否要参加战神无双活动？</t>
+		<t k='2007128_FuBen'>您是否要参加死亡深渊活动？</t>
+		<t k='2007129_FuBen'>您是否要参加玄仙海战活动？</t>
+		<t k='2007130_FuBen'>您是否要参加BOSS战(跨服)？</t>
+		<t k='200713_FuBen'>热血沸腾的【决战战场】活动即将开始，快来参加吧！</t>
+		<t k='200714_FuBen'>热血沸腾的【帮派大乱斗】活动即将开始，快来参加吧！</t>
+		<t k='200715_FuBen'>空前激烈的【帮派BOSS战】活动即将开始，快来参加吧！</t>
+		<t k='200716_FuBen'>空前激烈的【领地争夺战】活动即将开始，快来参加吧！</t>
+		<t k='200717_FuBen'>热血沸腾的【沙城争霸】活动即将开始，快来参加吧！</t>
+		<t k='2007171_FuBen'>热血沸腾的【#param】活动即将开始，快来参加吧！</t>
+		<t k='200718_FuBen'>【兵临城下】活动开启了！大批魔物在30分钟内不断进攻土城！海量经验、大量声望，更有无数的升星石，快来参加吧！</t>
+		<t k='200719_FuBen'>热血沸腾的【麒麟猜猜猜】活动开始了，快来参加吧！</t>
+		<t k='200720_FuBen'>膜拜城主活动开启了，海量经验等你拿，快去参加吧！</t>
+		<t k='200721_FuBen'>热血沸腾的【仙道大会】活动开始了，快来参加吧！</t>
+		<t k='200722_FuBen'>热血沸腾的【死亡深渊】活动开始了，快来参加吧！</t>
+		<t k='200723_ServerVerUpdate'>是否查阅服务器最新更新内容？</t>
+		<t k='200724_MyXiYou_Cancel'>离队将导致【生旦净末丑 】任务失败，确定离开吗？</t>
+		<t k='200725_FuBen'><![CDATA[<font color='#FF0000'>活动副本尚未结束、奖励尚未领取，确定退出吗？</font>]]></t>
+		<t k='20072_FuBen'>排名</t>
+		<t k='20073_FuBen'>你对BOSS造成的伤害</t>
+		<t k='20074_FuBen'>是否使用#param元宝，提高攻击力5%</t>
+		<t k='20075_FuBen'>是否花费#param金币，提高攻击力5%</t>
+		<t k='20076_DoubleExp'>开启双倍经验</t>
+		<t k='20077_DoubleExp'>暂停双倍经验</t>
+		<t k='20078_vip3'>VIP3级以上可享受此功能。</t>
+		<t k='20079_ZaiXianLiBao'><![CDATA[<font color='#cdcdcd'>尊敬的玩家，您今日第#param次开启在线大礼包，获得了</font><font color='#ffb831'><b>#param金币</b></font><font color='#cdcdcd'>的礼包奖励。</font>]]></t>
+		<t k='20080_JiNing'>您已解锁主动技能</t>
+		<t k='20080_JiNing_Shengji'><![CDATA[<font color='#12E712'>#param升到#param级</font>]]></t>
+		<t k='20080_JiNing_Shengji_next'><![CDATA[下次升级：<font color='#ff0000'>人物#param级</font>]]></t>
+		<t k='20080_JiNing_Shengji_nuli'>我知道了</t>
+		<t k='20080_JiNing_Shengji_max'><![CDATA[<font color='#FF9C0F'>技能已达最大等级！</font>]]></t>
+		<t k='20081_JiNing'><![CDATA[<font color='#FF9C0F'>获得被动技能</font>]]></t>
+		<t k='20082_ZaiXianLiBao'><![CDATA[<font color='#cdcdcd'>再过</font><font color='#ffb831'><b>#param分钟</b></font><font color='#cdcdcd'>就可以继续领取</font><font color='#ffb831'><b>#param礼金</b></font><font color='#cdcdcd'>奖励。</font>]]></t>
+		<t k='20083_ZaiXianLiBao'><![CDATA[<font color='#cdcdcd'>在线礼包已领取完毕，明天还可以继续领取哦！</font>]]></t>
+		<t k='20084_ZhanLiZhi'>人物装备宝石：</t>
+		<t k='20085_ZhanLiZhi'>宠物装备宝石：</t>
+		<t k='20086_ZhanLiZhi'>传</t>
+		<t k='20087_chuansong'><![CDATA[传送需要消耗1个小飞鞋<br/>成为VIP可无限免费传送<a href='event:8'><u><font color='#ad7a2d'>点击购买</font></u></a>]]></t>
+		<t k='20088_chuansong'>您的小飞鞋不足，无法快速传送！</t>
+		<t k='20089_JiNing'>您的宠物已解锁技能</t>
+		<t k='20090_JiNing'>立即装配</t>
+		<t k='20091_JiNing'>我知道了</t>
+		<t k='20092_RenWu'>帮派环</t>
+		<t k='20093_ResCtrl'>此技能已达最大等级</t>
+		<t k='20094_ResCtrl'>下一等级</t>
+		<t k='20095_ResCtrl'>升级最终效果</t>
+		<t k='20096_zaixianlibao'>第#param次领取奖励</t>
+		<t k='20097_zaixianlibao'><![CDATA[尊敬的玩家，您今日第#param次开启在线大礼包，获得大量道具奖励。]]></t>
+		<t k='20098_zaixianlibao'><![CDATA[尊敬的玩家，您今日第#param次开启在线大礼包，获得大量道具奖励。]]></t>
+		<t k='20099_zaixianlibao'>稍后领取</t>
+		<t k='20100_guaji'>开始挂机</t>
+		<t k='20101_guaji'>停止挂机</t>
+		<t k='20102_guaji'>你已进入自动挂机打怪模式！</t>
+		<t k='20103_RenWu'>挑战</t>
+		<t k='20104_RenWu'>经验</t>
+		<t k='20105_RenWu'>膜拜</t>
+		<t k='20106_RenWu'>材料</t>
+		<t k='20107_RenWu'>副本</t>
+		<t k='20108_RenWu'>金币</t>
+		<t k='20109_RenWu'>战场</t>
+		<t k='20110_RenWu'>威望</t>
+		<t k='20120_VipZuoJi'>是否花费180元宝，立刻拥有【萌熊猫】？</t>
+		<t k='20121_VipZuoJi'>是否花费480元宝，立刻拥有【剑齿虎】？</t>
+		<t k='20122_VipZuoJi'>是否花费1880元宝，立刻拥有【烈焰麒麟】？</t>
+
+		<t k='20123_VipZuoJi'>是否花费360元宝，立刻拥有【萌熊猫】？</t>
+		<t k='20124_VipZuoJi'>是否花费960元宝，立刻拥有【剑齿虎】？</t>
+		<t k='20125_VipZuoJi'>是否花费3760元宝，立刻拥有【烈焰麒麟】？</t>
+
+		<t k='20126_VipZuoJi'>是否花费#param元宝，立刻拥有【#param】？</t>
+
+		<t k='20127_VipZuoJiTerm'>(倒计时结束后，神兽将下架)</t>
+		<t k='20128_VipZuoJiTerm'>(倒计时结束后，将恢复原价)</t>
+		<t k='201232_chengjiujindu'>(进度：#param)</t>
+
+		<t k='20200_XianDaoHui'><![CDATA[<font color='#ffb831'><b>活动时间</b><br/>单周举行一次，每次周六晚上19：00-21：00<br/><font color='#ffb831'><b>选手参赛</b><br/>活动时间开始时，个人排位赛前32名的玩家可参与活动。<br/></font><font color='#ffb831'><b>大会赛制</b><br/>《武林大会》分为16强、8强、4强、半决赛、决赛共5场比赛，每场比赛采用三局二胜制。胜出者晋级，失败者淘汰。<br/><font color='#ffb831'><b>活动奖励</b><br/>第一名：玉灵龙*1,凤凰神石*20,1880礼金,四级升星石*20,三级马鞍石*20,10万威望。<br/>第二名：凤凰神石*10,888礼金,四级升星石*15,三级马鞍石*15,5万威望。<br/>四强：凤凰神石*6,588礼金,四级升星石*10,三级马鞍石*10,2万威望。<br/>8强：凤凰神石*4,388礼金,四级升星石*6,三级马鞍石*6,1万威望。<br/>16强：凤凰神石*2,288礼金,四级升星石*4,三级马鞍石*4,5000威望。<br/>32强：凤凰神石*1,188礼金,四级升星石*2,三级马鞍石*2,2000威望。]]></t>
+
+
+
+		<!-- 星界提示 -->
+		<t k='20301_JingJie_BaseAttr'>#param界属性</t>
+		<t k='20302_JingJie_ExtraAttr'>额外激活属性</t>
+		<t k='20303_JingJie_Level'>#param界#param阶#param星</t>
+		<t k='20304_JingJie_ShopBuy'>商城购买[#param元宝]</t>
+		<t k='20305_JingJie_OpenCondition'>#param星界开启条件</t>
+		<t k='20306_JingJie_LevelNeed'>需#param星界达到#param阶</t>
+		<t k='20307_JingJie_LevelUp'>点击提升星界</t>
+		<t k='20308_JingJie_EatPill'>本阶所需要的丹药不足，是否使用高级丹药替代？(高级丹药将产生与本阶丹药同样的效果)</t>
+		<t k='20309_JingJie_TotalAttr'><![CDATA[星界总属性]]></t>
+
+		<!-- 龙图霸业 -->
+		<t k='20400_LongTuBaYe_TimeOver'><![CDATA[今日活动已经结束]]></t>
+		<t k='20401_LongTuBaYe_NextTimeRefresh'><![CDATA[下轮将于<font color='#8afd5c'>#param</font>刷新]]></t>
+		<t k='20402_LongTuBaYe_TimeRefresh'><![CDATA[今日(<font color='#param'>#param</font> <font color='#param'>#param</font> <font color='#param'>#param</font> <font color='#param'>#param</font> <font color='#param'>#param</font>)]]></t>
+		<t k='20403_LongTuBaYe_NoRefresh'><![CDATA[未刷出]]></t>
+		<t k='20404_LongTuBaYe_hasRefresh'><![CDATA[已刷出]]></t>
+		<t k='20405_LongTuBaYe_hasBeKilled'><![CDATA[上轮已被#param击杀]]></t>
+		<arr k='20406_LongTuBaYe_NextOpenTime'>
+			<t k="0">周一21:00-21:30</t>
+			<t k="1">周二21:00-21:30</t>
+			<t k="2">周四21:00-21:30</t>
+			<t k="3">周四21:00-21:30</t>
+			<t k="4">周五21:00-21:30</t>
+			<t k="5">周六21:00-21:30</t>
+			<t k="6">周日21:00-21:30</t>
+		</arr>
+		<arr k='20407_LongTuBaYe_MapArea'>
+			<t k="0">策划基地</t>
+			<t k="1">策划1号、策划2号</t>
+			<t k="2">策划3号</t>
+			<t k="3">策划4号、策划5号</t>
+			<t k="4">策划4号、策划5号</t>
+			<t k="5">策划6号</t>
+			<t k="6">策划岗哨</t>
+		</arr>
+		<t k='20408_LongTuBaYe_NoGet'><![CDATA[未占领]]></t>
+		<t k='20409_LongTuBaYe_GetIt'><![CDATA[<font color='#8afd5c'>#param</font>占领]]></t>
+		<arr k='20410_LongTuBaYe_AreaInfo'>
+			<t k="0"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">金风旗</a></font> (#param)]]></t>
+			<t k="1"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">烈火旗</a></font> (#param)]]></t>
+			<t k="2"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">玄水旗</a></font> (#param)]]></t>
+			<t k="3"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">苍木旗</a></font> (#param)]]></t>
+			<t k="4"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">厚土旗</a></font> (#param)]]></t>
+		</arr>
+		<t k='20411_HuangChengZhengBa_Attacker'><![CDATA[<font color='#ff2400'>攻城方</font>]]></t>
+		<t k='20411_HuangChengZhengBa_Defenser'><![CDATA[守城方]]></t>
+		<t k='20411_HuangChengZhengBa_Boss'><![CDATA[<a href="event:1@#param">大将</a>]]></t>
+		<t k='20411_HuangChengZhengBa_Palace'><![CDATA[<a href="event:1@#param">皇位</a>]]></t>
+		<t k='20411_HuangChengZhengBa_NoMaster'><![CDATA[无人执掌玉玺]]></t>
+		<t k='20411_HuangChengZhengBa_NoGod'><![CDATA[沙城至尊：虚位以待]]></t>
+		<t k='20411_HuangChengZhengBa_God'><![CDATA[沙城至尊：#param]]></t>
+		<arr k='20411_HuangChengZhengBa_AreaInfo'>
+			<t k="0"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">左军旗</a></font> (#param)]]></t>
+			<t k="1"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">右军旗</a></font> (#param)]]></t>
+		</arr>
+		<!-- END -->
+
+		<!-- 帮派大乱斗 -->
+		<arr k='20410_BangPaiZhan_AreaInfo'>
+			<t k="0"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">天龙</a></font> (#param)]]></t>
+			<t k="1"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">天虎</a></font> (#param)]]></t>
+			<t k="2"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">天武</a></font> (#param)]]></t>
+			<t k="3"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">天玄</a></font> (#param)]]></t>
+			<t k="4"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">天寿</a></font> (#param)]]></t>
+			<t k="5"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">天秋</a></font> (#param)]]></t>
+			<t k="6"><![CDATA[<font color='#00FFFF'><a href="event:1@#param">天阙</a></font> (#param)]]></t>
+		</arr>
+		<t k='20411_BangPaiZhan_Mine'><![CDATA[您的帮派]]></t>
+		<!-- END -->
+		<!-- 帮派迷宫 -->
+		<t k='20412_BangPaiMiGong_Cost'><![CDATA[消耗100点帮贡]]></t>
+		<!-- END -->
+		<!-- 天门阵 -->
+		<t k="20500_TianMenZhen_Remove"><![CDATA[确认要拆除该建筑吗？]]></t>
+		<t k="20500_TianMenZhen_CurrentRes"><![CDATA[当前资源：#param]]></t>
+		<!-- 天门阵操作所需资源 0.资源建筑 1.单攻建筑 2.减速建筑 3.群攻建筑 4.高工建筑 5.防御建筑 6.大爆 -->
+		<arr k="20500_TianMenZhen_Resource">
+			<t k="0">100</t>
+			<t k="1">300</t>
+			<t k="2">400</t>
+			<t k="3">500</t>
+			<t k="4">600</t>
+			<t k="5">750</t>
+			<t k="6">200</t>
+		</arr>
+		<!-- END -->
+
+		<arr k='arrJingJie'>
+			<t k='0'>青龙</t>
+			<t k='1'>白虎</t>
+			<t k='2'>朱雀</t>
+			<t k='3'>玄武</t>
+		</arr>
+
+		<!-- END -->
+
+
+		<arr k='zhanlizhi_2101'>
+			<t k='0'><![CDATA[<font color='#00CCDD'>基础-</font>战斗力]]></t>
+			<t k='1'><![CDATA[<font color='#00CCDD'>装备-</font>战斗力]]></t>
+			<t k='2'><![CDATA[<font color='#00CCDD'>武魂-</font>战斗力]]></t>
+			<t k='3'><![CDATA[<font color='#00CCDD'>星界-</font>战斗力]]></t>
+			<t k='4'><![CDATA[<font color='#00CCDD'>坐骑-</font>战斗力]]></t>
+			<t k='5'><![CDATA[<font color='#00CCDD'>魔纹-</font>战斗力]]></t>
+		</arr>
+
+		<arr k='skill_jueshaji'>
+			<t k='0'><![CDATA[401110]]></t>
+			<t k='1'><![CDATA[401210]]></t>
+			<t k='2'><![CDATA[401310]]></t>
+			<t k='3'><![CDATA[401410]]></t>
+			<t k='4'><![CDATA[401510]]></t>
+			<t k='5'><![CDATA[401610]]></t>
+		</arr>
+
+		<arr k='skill_bishaji_pet'>
+			<t k='0'><![CDATA[404111]]></t>
+			<t k='1'><![CDATA[404112]]></t>
+			<t k='2'><![CDATA[404131]]></t>
+			<t k='3'><![CDATA[404132]]></t>
+			<t k='4'><![CDATA[404121]]></t>
+			<t k='5'><![CDATA[404122]]></t>
+			<t k='6'><![CDATA[404141]]></t>
+			<t k='7'><![CDATA[404142]]></t>
+			<t k='8'><![CDATA[404151]]></t>
+			<t k='9'><![CDATA[404152]]></t>
+		</arr>
+
+		<arr k='skill_bishaji_pet_isGaoJi'>
+			<t k='0'><![CDATA[0]]></t>
+			<t k='1'><![CDATA[1]]></t>
+			<t k='2'><![CDATA[0]]></t>
+			<t k='3'><![CDATA[1]]></t>
+			<t k='4'><![CDATA[0]]></t>
+			<t k='5'><![CDATA[1]]></t>
+			<t k='6'><![CDATA[0]]></t>
+			<t k='7'><![CDATA[1]]></t>
+			<t k='8'><![CDATA[0]]></t>
+			<t k='9'><![CDATA[1]]></t>
+		</arr>
+
+
+		<t k='30001_findpath'>起始地点无法获取</t>
+		<!--<t k='30002_findpath'>目标区域地点不可到达</t> -->
+		<t k='30003_loadPress'>界面加载中</t>
+		<t k='300031_jzWang'>[沙城]</t>
+		<t k='30004_monPrefix'>精英•</t>
+		<t k='30005_monPrefix'>魔王•</t>
+		<t k='30006_petPrefix'>的宠物</t>
+		<t k='30007_monPrefixEnd'>级</t>
+		<t k='30008_safeZoneRelive'>安全区复活</t>
+		<t k='30009_second'>秒</t>
+		<t k='30010_store'><![CDATA[成为至尊会员可免获得额外仓库空间，会员等级越高获得仓库空间越多。]]></t>
+
+		<t k='3001001_store'><![CDATA[成为至尊会员可免获得额外仓库空间，会员等级越高获得仓库空间越多。]]></t>
+		<t k='3001002_store'><![CDATA[成为至尊会员可免获得额外仓库空间，会员等级越高获得仓库空间越多。]]></t>
+		<t k='3001003_store'><![CDATA[成为至尊会员可免获得额外仓库空间，会员等级越高获得仓库空间越多。]]></t>
+
+		<t k='30011_shengJi'>您仓库中的空间不足，是否扩展仓库？</t>
+		<t k='30012_store_full'>仓库已满!</t>
+
+		<t k='30013_store_saveMoney'>存入成功</t>
+		<t k='30014_store_getMoney'>取出成功</t>
+		<t k='30015_store_extend_faild'>当前您的元宝数不足，无法扩展仓库！</t>
+		<t k='30016_store_saveMoneySuccess'>您已成功将钱币存入仓库中。</t>
+		<!--<t k='30017_xiuLian'>修炼中</t> -->
+
+		<t k='30018_pk_0'>和平</t>
+		<t k='30019_pk_1'>阵营</t>
+		<t k='300191_pk_2'>帮派</t>
+		<t k='300192_pk_3'>全体</t>
+		<t k='300193_pk_4'>善恶</t>
+		<t k='300194_pk_5'>组队</t>
+		<t k='30020_pk_setting_0'>成功切换为和平模式！</t>
+		<t k='30021_pk_setting_1'>成功切换为阵营模式！</t>
+		<t k='300221_pk_setting_2'>成功切换为帮派模式！</t>
+		<t k='300222_pk_setting_3'>成功切换为全体模式！</t>
+		<t k='300223_pk_setting_4'>成功切换为善恶模式！</t>
+		<t k='300224_pk_setting_5'>成功切换为组队模式！</t>
+		<t k='30024_monPrefix'>的</t>
+
+		<t k='30025_motianReset'><![CDATA[这是今天的第一次重置，系统将免费为您重置本区域所有BOSS。]]></t>
+		<t k='30026_motianReset'><![CDATA[消耗100元宝重置本区域所有BOSS？]]></t>
+		<t k='mrb_TishiShuangbei'><![CDATA[使用双倍经验<br/>畅享快速升级]]></t>
+
+
+
+		<t k='30027_hintDefLine'><![CDATA[结识宠物，将大幅度提升您的战斗力！]]></t>
+		<t k='50001_chuancheng'><![CDATA[该装备未鉴定，是否前往鉴定？]]></t>
+		<t k='50002_chuancheng'><![CDATA[1.挑战【武林至尊】获得装备卷轴]]></t>
+		<t k='50003_chuancheng'><![CDATA[2.然后从兑换商店中兑换出装备  <font color='#18FF02'><a href='event:50003@0@0'><u>立刻兑换</u><a></font>]]></t>
+		<t k='50004_chuancheng'><![CDATA[镶嵌宝石]]></t>
+		<t k='50005_chuancheng'><![CDATA[参加帮派BOSS活动，可获得极品戒指。 <font color='#18FF02'><a href='event:50005@0@0'><u>立刻参加</u><a></font>]]></t>
+		<t k='50006_chuancheng'><![CDATA[请加入帮派后，参加该活动！]]></t>
+		<t k='5007_zhaoHuiLixianJingyan'><![CDATA[选择<font color='#fcc738'>#param</font>可领取<font color='#fcc738'>#param</font>经验]]></t>
+		<t k='5008_zhaoHuiSanBeiJingyan'><![CDATA[选择三倍找回可领取<font color='#fcc738'>#param</font>经验]]></t>
+		<t k='5009_BuNengFenJieMsg'><![CDATA[该装备无法回收]]></t>
+		<t k='5010_xunBaoJiFen'><![CDATA[当前寻宝积分：<font color='#56f2f4'>#param</font>]]></t>
+
+		<t k='5011_xuyaojifen1'><![CDATA[需要<font color='#8afd5c'><u>#param</u></font>+<font color='#ff0000'>#param</font>积分]]></t>
+		<t k='5011_xuyaojifen2'><![CDATA[需要<font color='#8afd5c'><u>#param</u></font>+<font color='#8afd5c'>#param</font>积分]]></t>
+		<t k='5011_xuyaojifen3'><![CDATA[需要<font color='#ff0000'><u>#param</u></font>+<font color='#8afd5c'>#param</font>积分]]></t>
+		<t k='5011_xuyaojifen4'><![CDATA[需要<font color='#ff0000'><u>#param</u></font>+<font color='#ff0000'>#param</font>积分]]></t>
+		<t k='5012_xuyaojifen'><![CDATA[需要<font color='#8afd5c'>#param</font>积分]]></t>
+		<t k='5012_xuyaojifen2'><![CDATA[需要<font color='#ff0000'>#param</font>积分]]></t>
+		<t k='5012_xuyao'><![CDATA[需要]]></t>
+		<t k='5012_jifen'><![CDATA[积分]]></t>
+		<t k='5013_jiehunguize'><![CDATA[1.结婚双方必须为异性，角色等级必须≥60级。<br/>2.结婚申请时间为：每天19:30-22:00。<br/>3.申请结婚时双方必须组队，且只有结婚双方。<br/>4.离婚后，第二天才可再次申请结婚。<br/>5.普通婚礼的彩礼和烟花每个角色只能领一次。<br/>6.结婚属性加成：<br/>结婚后，夫妻双方将会获得一个属性加成。<br/>普通婚礼加成：增加攻击40-20<br/>豪华婚礼加成：增加攻击80-40<br/>奢华婚礼加成：增加攻击200-100]]></t>
+		<t k='yinliang'><![CDATA[金币]]></t>
+		<t k='lijin'><![CDATA[礼金]]></t>
+		<t k='yuanbao'><![CDATA[元宝]]></t>
+		<t k='5014_shenbingweikaiqi'><![CDATA[请锻造你的神兵]]></t>
+		<t k='5014_shenbingxhyb'><![CDATA[消耗#param元宝成功率100%]]></t>
+		<t k='5014_shentiesuipian'><![CDATA[神铁碎片]]></t>
+		<t k='5014_shentiemanji'><![CDATA[已达满级]]></t>
+		<arr k='arrPaiHang'>
+			<t k='1'><![CDATA[【总战力】收录20级以上，总战力前100名玩家。]]></t>
+			<t k='2'><![CDATA[【宠物】收录20级以上，宠物战力前100名宠物。]]></t>
+			<t k='3'><![CDATA[【等级】收录20级以上，玩家等级前100名玩家。]]></t>
+			<t k='9'><![CDATA[【星界】收录20级以上，玩家星界前100名玩家。]]></t>
+			<t k='5'><![CDATA[【武魂】收录20级以上，武魂总战力前100名玩家。]]></t>
+			<t k='12'><![CDATA[【藏经阁】收录20级以上，藏经阁战力前100名玩家。]]></t>
+		</arr>
+		<!-- 1为分职业物品，0为不分职业物品 -->
+		<arr k='arrJiFenDuihuan'>
+			<t k='0'><![CDATA[<font color='#8afd5c'><u><a href='event:10@1'>兑换高等级武器、衣服</a></u></font>_10]]></t>
+			<t k='1'><![CDATA[<font color='#8afd5c'><u><a href='event:11@1'>兑换高等级防具、饰品</a></u></font>_11]]></t>
+			<t k='2'><![CDATA[<font color='#8afd5c'><u><a href='event:12@0'>兑换稀有道具</a></u></font>_12]]></t>
+
+		</arr>
+		<arr k='arrChengHaoDesc'>
+			<t k='1'><![CDATA[武林至尊:使你的外功攻击+1000,内功攻击+1000]]></t>
+			<t k='2'><![CDATA[天榜王者:使你的外功攻击+500,内功攻击+500]]></t>
+			<t k='3'><![CDATA[驯龙圣手:使你的暴击+1000]]></t>
+			<t k='4'><![CDATA[驯兽宗师:使你的暴击+500]]></t>
+			<t k='5'><![CDATA[江湖领袖:使你的生命+500]]></t>
+			<t k='6'><![CDATA[门派首席:使你的生命+200]]></t>
+			<t k='7'><![CDATA[天人合一:使你的闪避+1000]]></t>
+			<t k='8'><![CDATA[超凡入圣:使你的闪避+500]]></t>
+			<t k='9'><![CDATA[独孤求败:使你的物理防御+500,魔法防御+500]]></t>
+			<t k='10'><![CDATA[一代宗师:使你的物理防御+250,魔法防御+250]]></t>
+			<t k='11'><![CDATA[盖世神功:使你的生命+500,命中+500]]></t>
+			<t k='12'><![CDATA[绝世武功:使你的生命+250,命中+250]]></t>
+			<t k='19'><![CDATA[十大高手:使你的外功攻击+200,内功攻击+200]]></t>
+			<t k='20'><![CDATA[驯宠高手:使你的暴击+200]]></t>
+			<t k='21'><![CDATA[练级高手:使你的生命+100]]></t>
+			<t k='22'><![CDATA[星界高手:使你的闪避+200]]></t>
+			<t k='23'><![CDATA[武斗高手:使你的物理防御+100,魔法防御+100]]></t>
+			<t k='24'><![CDATA[内功高手:使你的生命+100,命中+100]]></t>
+		</arr>
+		<arr k='arrFindExpDate'>
+			<t k='1'><![CDATA[昨天]]></t>
+			<t k='2'><![CDATA[前天]]></t>
+			<t k='3'><![CDATA[大前天]]></t>
+		</arr>
+
+		<arr k='arrEquipNextLevel'>
+			<t k='10'><![CDATA[20]]></t>
+			<t k='20'><![CDATA[30]]></t>
+			<t k='30'><![CDATA[40]]></t>
+			<t k='40'><![CDATA[60]]></t>
+			<t k='50'><![CDATA[60]]></t>
+			<t k='60'><![CDATA[70]]></t>
+			<t k='70'><![CDATA[80]]></t>
+			<t k='80'><![CDATA[90]]></t>
+			<t k='90'><![CDATA[100]]></t>
+			<t k='100'><![CDATA[110]]></t>
+			<t k='110'><![CDATA[1000]]></t>
+			<t k='120'><![CDATA[1000]]></t>
+			<t k='130'><![CDATA[1000]]></t>
+			<t k='140'><![CDATA[1000]]></t>
+			<t k='150'><![CDATA[1000]]></t>
+			<t k='160'><![CDATA[1000]]></t>
+			<t k='170'><![CDATA[1000]]></t>
+			<t k='180'><![CDATA[1000]]></t>
+			<t k='190'><![CDATA[1000]]></t>
+			<t k='200'><![CDATA[1000]]></t>
+		</arr>
+		<arr k='arrQuickInfo'>
+			<t k='1'><![CDATA[有可修炼的神兵决，赶快去修炼吧！]]></t>
+			<t k='2'><![CDATA[招募【#param】，获得更强大的战斗力！]]></t>
+			<t k='3'><![CDATA[#param已耗尽，请及时使用包裹中的【随身商店】或到【药店】补充]]></t>
+			<t k='4'><![CDATA[怒气已满，按快捷键【E】施放绝技吧！可攻击全屏怪物。]]></t>
+			<t k='5'><![CDATA[今天还有#param次免费洗属性机会未使用，快进行洗属性吧，极品属性免费获得！]]></t>
+			<t k='6'><![CDATA[开启双倍经验，让你的升级效率更高]]></t>
+			<t k='7'><![CDATA[开启双倍经验，让你的升级效率更高]]></t>
+			<t k='8'><![CDATA[您的双倍时间用尽，影响到您的升级速度，购买双倍经验时间助您飞速升级]]></t>
+			<t k='9'><![CDATA[使用福星高照每次必定获得紫色，橙色武魂]]></t>
+			<t k='10'><![CDATA[神秘商店已刷新，去看看有什么宝贝可买吧！]]></t>
+			<t k='11'><![CDATA[点击体验]]></t>
+
+		</arr>
+		<arr k='arrQuickSay'>
+			<t k='0'><![CDATA[土豪，我们做朋友吧]]></t>
+			<t k='1'><![CDATA[我和我的小伙伴们都惊呆了！]]></t>
+			<t k='2'><![CDATA[还能不能一起快乐的玩耍了？]]></t>
+			<t k='3'><![CDATA[你这么吊你家里人知道吗？]]></t>
+			<t k='4'><![CDATA[感觉不会再爱了……]]></t>
+			<t k='5'><![CDATA[你为何放弃治疗？]]></t>
+		</arr>
+		<arr k='arrQuickSayPrivate'>
+			<t k='0'><![CDATA[你在哪里？]]></t>
+			<t k='1'><![CDATA[你在吗？]]></t>
+			<t k='2'><![CDATA[一起打BOSS吧]]></t>
+			<t k='3'><![CDATA[组队挂机去吧]]></t>
+			<t k='4'><![CDATA[我离开下，马上回来！]]></t>
+			<t k='5'><![CDATA[我去吃饭了]]></t>
+		</arr>
+
+		<arr k='arrPKHuoDong'>
+			<!-- 图标名称 -->
+			<t k='100'><![CDATA[PK_1.png]]></t>
+			<!-- 活动名称 -->
+			<t k='101'><![CDATA[【镇国神将】称号]]></t>
+			<!-- 增加属性 -->
+			<t k='102'><![CDATA[使你的生命+500]]></t>
+			<!-- 活动时间 -->
+			<t k='103'><![CDATA[每周六 21:00]]></t>
+			<!-- 活动奖励 -->
+			<t k='104'><![CDATA[大量经验、金币、威望和【镇国神将】属性称号]]></t>
+			<!-- 活动描述 -->
+			<t k='105'><![CDATA[活动结束时，向御林军据点交纳水晶资源最多的帮派胜出。]]></t>
+
+			<!-- 图标名称 -->
+			<t k='200'><![CDATA[PK_1.png]]></t>
+			<!-- 活动名称 -->
+			<t k='201'><![CDATA[【镇国神将】称号]]></t>
+			<!-- 增加属性 -->
+			<t k='202'><![CDATA[使你的生命+500]]></t>
+			<!-- 活动时间 -->
+			<t k='203'><![CDATA[每周六 21:00]]></t>
+			<!-- 活动奖励 -->
+			<t k='204'><![CDATA[大量经验、金币、威望和【镇国神将】属性称号]]></t>
+			<!-- 活动描述 -->
+			<t k='205'><![CDATA[活动结束时，向天策符据点交纳水晶资源最多的帮派胜出。]]></t>
+
+			<!-- 图标名称 -->
+			<t k='300'><![CDATA[PK_1.png]]></t>
+			<!-- 活动名称 -->
+			<t k='301'><![CDATA[【镇国神将】称号]]></t>
+			<!-- 增加属性 -->
+			<t k='302'><![CDATA[使你的生命+500]]></t>
+			<!-- 活动时间 -->
+			<t k='303'><![CDATA[每周六 21:00]]></t>
+			<!-- 活动奖励 -->
+			<t k='304'><![CDATA[大量经验、金币、威望和【镇国神将】属性称号]]></t>
+			<!-- 活动描述 -->
+			<t k='305'><![CDATA[活动结束时，向九龙卫据点交纳水晶资源最多的帮派胜出。]]></t>
+
+			<!-- 图标名称 -->
+			<t k='400'><![CDATA[PK_2.png]]></t>
+			<!-- 活动名称 -->
+			<t k='401'><![CDATA[【战神无双】称号]]></t>
+			<!-- 增加属性 -->
+			<t k='402'><![CDATA[使你的生命+1500,暴击+1500]]></t>
+			<!-- 活动时间 -->
+			<t k='403'><![CDATA[每天 16:00]]></t>
+			<!-- 活动奖励 -->
+			<t k='404'><![CDATA[【战神无双】属性称号、建立战神雕像]]></t>
+			<!-- 活动描述 -->
+			<t k='405'><![CDATA[参与【战神无双】活动，活动结束时，积分最高者胜出。]]></t>
+
+			<!-- 图标名称 -->
+			<t k='500'><![CDATA[PK_4.png]]></t>
+			<!-- 活动名称 -->
+			<t k='501'><![CDATA[【沙城至尊】称号]]></t>
+			<!-- 增加属性 -->
+			<t k='502'><![CDATA[使你的物攻+1500,魔攻+1500]]></t>
+			<!-- 活动时间 -->
+			<t k='503'><![CDATA[每周日 21:00]]></t>
+			<!-- 活动奖励 -->
+			<t k='504'><![CDATA[【沙城至尊】称号]]></t>
+			<!-- 活动描述 -->
+			<t k='505'><![CDATA[参与【沙城至尊】，活动结束时，成功抢夺“玉玺”的帮主将胜出。]]></t>
+			<!-- 图标名称 -->
+			<t k='600'><![CDATA[PK_5.png]]></t>
+			<!-- 活动名称 -->
+			<t k='601'><![CDATA[【圣兽－墨麟蛟龙】]]></t>
+			<!-- 活动描述 -->
+			<t k='605'><![CDATA[传说是护国神兽，具备神秘力量。]]></t>
+
+			<!-- 图标名称 -->
+			<t k='700'><![CDATA[PK_3.png]]></t>
+			<!-- 活动名称 -->
+			<t k='701'><![CDATA[【九天龙魂】]]></t>
+			<!-- 活动描述 -->
+			<t k='705'><![CDATA[参加【战神无双】活动，获得战神无双后的专有装饰，象征着最强大的战神之力。]]></t>
+		</arr>
+
+		<arr k='arrJingJieQi'>
+			<t k='1'><![CDATA[筑基期]]></t>
+			<t k='2'><![CDATA[结丹期]]></t>
+			<t k='3'><![CDATA[辟谷期]]></t>
+			<t k='4'><![CDATA[元婴期]]></t>
+			<t k='5'><![CDATA[出窍期]]></t>
+			<t k='6'><![CDATA[分身期]]></t>
+			<t k='7'><![CDATA[合体期]]></t>
+			<t k='8'><![CDATA[渡劫期]]></t>
+			<t k='9'><![CDATA[大乘期]]></t>
+			<t k='10'><![CDATA[飞升期]]></t>
+		</arr>
+
+		<!-- 武林大会阶段时间描述 -->
+		<arr k='arrXDH_Step_Main_Time'>
+			<t k='1'><![CDATA[19:10]]></t>
+			<t k='2'><![CDATA[19:30]]></t>
+			<t k='3'><![CDATA[19:50]]></t>
+			<t k='4'><![CDATA[20:10]]></t>
+			<t k='5'><![CDATA[20:30]]></t>
+		</arr>
+
+		<!-- 武林大会阶段名称描述 -->
+		<arr k='arrXDH_Step_Main_Name'>
+			<t k='0'><![CDATA[争夺32强]]></t>
+			<t k='1'><![CDATA[争夺16强]]></t>
+			<t k='2'><![CDATA[争夺8强]]></t>
+			<t k='3'><![CDATA[争夺4强]]></t>
+			<t k='4'><![CDATA[半决赛]]></t>
+			<t k='5'><![CDATA[决赛]]></t>
+		</arr>
+
+		<!-- 武林大会投注奖励描述 -->
+		<arr k='arrXDH_Step_TouZhu'>
+			<t k='1'><![CDATA[猜对可领取奖金5千金币]]></t>
+			<t k='2'><![CDATA[猜对可领取奖金1万金币]]></t>
+			<t k='3'><![CDATA[猜对可领取奖金2万金币]]></t>
+			<t k='4'><![CDATA[猜对可领取奖金4万金币]]></t>
+			<t k='5'><![CDATA[猜对可领取奖金8万金币]]></t>
+		</arr>
+
+		<arr k='guest'>
+			<t k='0'><![CDATA[请点击这里]]></t>
+			<t k='1'><![CDATA[请选择装备]]></t>
+			<t k='2'><![CDATA[请点击关闭]]></t>
+			<t k='3'><![CDATA[点击进行对话]]></t>
+			<t k='4'><![CDATA[请点击]]></t>
+
+
+			<t k='10'><![CDATA[点击升级]]></t>
+			<t k='11'><![CDATA[双击装备]]></t>
+			<t k='12'><![CDATA[关闭面板]]></t>
+			<t k='13'><![CDATA[选择装备]]></t>
+			<t k='14'><![CDATA[装备冲星]]></t>
+			<t k='15'><![CDATA[再次冲星]]></t>
+			<t k='16'><![CDATA[鉴定装备]]></t>
+			<t k='17'><![CDATA[点击选择]]></t>
+			<t k='18'><![CDATA[点击修炼]]></t>
+			<t k='19'><![CDATA[再次修炼]]></t>
+			<t k='20'><![CDATA[点击骑乘]]></t>
+			<t k='21'><![CDATA[点击出战]]></t>
+			<t k='22'><![CDATA[点击退出副本]]></t>
+			<t k='23'><![CDATA[继续任务]]></t>
+			<t k='24'><![CDATA[开始游戏]]></t>
+
+			<t k='25'><![CDATA[选择副本]]></t>
+			<t k='26'><![CDATA[加入队伍]]></t>
+			<t k='27'><![CDATA[立即开启]]></t>
+			<t k='28'><![CDATA[点击解封]]></t>
+			<t k='29'><![CDATA[推荐加点]]></t>
+			<t k='30'><![CDATA[确定保存]]></t>
+			<t k='31'><![CDATA[宠物鉴定]]></t>
+			<t k='32'><![CDATA[点击强化]]></t>
+			<t k='33'><![CDATA[放入装备]]></t>
+			<t k='34'><![CDATA[点击传承]]></t>
+			<t k='35'><![CDATA[服用丹药]]></t>
+			<t k='36'><![CDATA[洗属性]]></t>
+			<t k='37'><![CDATA[炼制丹药]]></t>
+			<t k='38'><![CDATA[使用丹方]]></t>
+			<t k='39'><![CDATA[提升天赋]]></t>
+			<t k='40'><![CDATA[保存天赋]]></t>
+			<t k='41'><![CDATA[点击选择]]></t>
+			<t k='42'><![CDATA[选择宝石]]></t>
+			<t k='43'><![CDATA[点击继续]]></t>
+			<t k='44'><![CDATA[点击拾取]]></t>
+			<t k='45'><![CDATA[了解规则]]></t>
+			<t k='46'><![CDATA[点击挑战]]></t>
+			<t k='47'><![CDATA[立即挑战]]></t>
+			<t k='48'><![CDATA[双击使用]]></t>
+			<t k='49'><![CDATA[双击使用]]></t>
+			<t k='50'><![CDATA[点击炼丹]]></t>
+			<t k='51'><![CDATA[点击提升]]></t>
+			<t k='52'><![CDATA[装备传承]]></t>
+			<t k='53'><![CDATA[免费传承]]></t>
+			<t k='54'><![CDATA[升级宝石]]></t>
+			<t k='55'><![CDATA[点击体验]]></t>
+			<t k='56'><![CDATA[点击兑换]]></t>
+
+			<t k='1001'><![CDATA[点击强化装备]]></t>
+			<t k='1002'><![CDATA[再次强化]]></t>
+			<t k='1003'><![CDATA[点击鉴定装备获得极品附加属性]]></t>
+			<t k='1004'><![CDATA[请双击骑乘坐骑]]></t>
+			<t k='1005'><![CDATA[请选择宠物]]></t>
+			<t k='1006'><![CDATA[请点击招募]]></t>
+			<t k='1007'><![CDATA[请点击修炼]]></t>
+			<t k='1008'><![CDATA[请点击复活您的宠物]]></t>
+			<t k='1009'><![CDATA[继续强化，记得经常强化哦]]></t>
+			<t k='1010'><![CDATA[请点击强化第三次]]></t>
+			<t k='1011'><![CDATA[请点{传}快速传到指定地点]]></t>
+			<t k='1012'><![CDATA[点击兑换金币]]></t>
+			<t k='1013'><![CDATA[强化装备轻松虐怪]]></t>
+			<t k='1014'><![CDATA[获得了强化石快强化一下吧]]></t>
+			<t k='1015'><![CDATA[点击进入挑战地图]]></t>
+			<t k='1016'><![CDATA[挑战BOSS获得装备升级令牌]]></t>
+			<t k='1017'><![CDATA[请点击可退出副本]]></t>
+			<t k='1018'><![CDATA[与宠物合体获得神秘效果]]></t>
+
+			<t k='2001'><![CDATA[打开技能配置界面]]></t>
+			<t k='2002'><![CDATA[单击配置技能]]></t>
+			<t k='2003'><![CDATA[单击选择技能]]></t>
+			<t k='2004'><![CDATA[单击关闭技能界面]]></t>
+			<t k='2005'><![CDATA[单击施放技能]]></t>
+			<t k='2006'><![CDATA[单击加入阵营]]></t>
+
+			<t k='2007'><![CDATA[单击打开丹炉界面]]></t>
+			<t k='2008'><![CDATA[单击选择炼丹]]></t>
+			<t k='2009'><![CDATA[单击将丹方放入丹炉]]></t>
+			<t k='2010'><![CDATA[单击炼制丹药]]></t>
+			<t k='2011'><![CDATA[单击关闭丹炉界面]]></t>
+
+			<t k='3001'><![CDATA[]]>
+				单击打开武魂
+			</t>
+			<t k='3002'><![CDATA[]]>
+				单击获得一次武魂
+			</t>
+			<t k='3003'><![CDATA[]]>
+				单击拾取武魂
+			</t>
+			<t k='3004'><![CDATA[]]>
+				单击打开武魂包裹
+			</t>
+			<t k='3005'><![CDATA[]]>
+				双击装备武魂
+			</t>
+			<t k='3006'><![CDATA[]]>
+				单击关闭武魂包裹
+			</t>
+			<t k='3007'><![CDATA[]]>
+				单击完成任务
+			</t>
+			<t k='3008'><![CDATA[]]>
+				双击打开星界
+			</t>
+			<t k='3009'><![CDATA[]]>
+				单击服用丹药并提升星界
+			</t>
+			<t k='3010'><![CDATA[]]>
+				点击自动穿戴最好的装备
+			</t>
+			<t k='3011'><![CDATA[]]>
+				点击隐藏周围玩家
+			</t>
+			<t k='3012'><![CDATA[]]>
+				点击可切换为极速模式
+			</t>
+			<t k='3013'><![CDATA[]]>
+				点击配置技能
+			</t>
+			<t k='3014'><![CDATA[]]>
+				点击装配该技能
+			</t>
+			<t k='3015'><![CDATA[]]>
+				点击将装备放入乾坤炉
+			</t>
+			<t k='3016'><![CDATA[]]>
+				点击升级装备获得新装备
+			</t>
+			<t k='3017'><![CDATA[]]>
+				点击将装备放入乾坤炉
+			</t>
+			<t k='3018'><![CDATA[]]>
+				点击升级装备获得新装备
+			</t>
+			<t k='3019'><![CDATA[]]>
+				点击切换为最佳游戏模式
+			</t>
+			<t k='3020'><![CDATA[]]>
+				点击进入副本
+			</t>
+			<t k='3021'><![CDATA[]]>
+				点击创建一个队伍
+			</t>
+			<t k='3022'><![CDATA[]]>
+				点击进入副本
+			</t>
+			<t k='3023'><![CDATA[]]>
+				猛击获得武魂
+			</t>
+			<t k='3024'><![CDATA[]]>
+				点击拾取获得的武魂
+			</t>
+			<t k='3025'><![CDATA[]]>
+				点击打开武魂包裹
+			</t>
+			<t k='3026'><![CDATA[]]>
+				双击装备武魂获得战力提升
+			</t>
+			<t k='3027'><![CDATA[]]>
+				使用魔纹卷轴合成高级魔纹
+			</t>
+			<t k='3028'><![CDATA[]]>
+				点击合成高级魔纹
+			</t>
+			<t k='3029'><![CDATA[]]>
+				点击打开封印魔纹界面
+			</t>
+			<t k='3030'><![CDATA[]]>
+				点击选择要封印魔纹的装备
+			</t>
+			<t k='3031'><![CDATA[]]>
+				点击将魔纹封印到装备上
+			</t>
+			<t k='3032'><![CDATA[]]>
+				点击查看新物品
+			</t>
+			<t k='3033'><![CDATA[]]>
+				点击学习阵法
+			</t>
+			<t k='3034'><![CDATA[]]>
+				点击镶嵌魔纹
+			</t>
+			<t k='3035'><![CDATA[]]>
+				点击放入魔纹
+			</t>
+			<t k='3036'><![CDATA[]]>
+				点击完成任务
+			</t>
+			<t k='3037'><![CDATA[]]>
+				继续加油
+			</t>
+			<t k='3038'><![CDATA[]]>
+				点击接受任务
+			</t>
+			<t k='3039'><![CDATA[]]>
+				继续下面任务
+			</t>
+
+		</arr>
+
+
+
+		<arr k='arrPKMatch'>
+			<t k='0'><![CDATA[场]]></t>
+			<t k='1'><![CDATA[轮空]]></t>
+			<t k='2'><![CDATA[获胜]]></t>
+			<t k='3'><![CDATA[失败]]></t>
+			<t k='4'><![CDATA[连胜]]></t>
+			<t k='5'><![CDATA[逃跑]]></t>
+			<t k='6'><![CDATA[平局]]></t>
+			<t k='10'><![CDATA[待]]></t>
+			<t k='11'><![CDATA[战]]></t>
+			<t k='12'><![CDATA[本轮]]></t>
+			<t k='13'><![CDATA[击败了]]></t>
+			<t k='14'><![CDATA[获得]]></t>
+			<t k='15'><![CDATA[武魂点]]></t>
+			<t k='16'><![CDATA[威望]]></t>
+			<t k='17'><![CDATA[真人秀]]></t>
+			<t k='18'><![CDATA[秀真人]]></t>
+			<t k='100'><![CDATA[100名以外]]></t>
+			<t k='101'><![CDATA[很遗憾，没有进入前100名，请再接再厉。]]></t>
+			<t k='102'><![CDATA[排名越高，所获得的奖励越高]]></t>
+			<t k='103'><![CDATA[10名以外]]></t>
+			<t k='104'><![CDATA[很遗憾，没有进入前10名，请再接再厉。]]></t>
+		</arr>
+
+		<arr k='arrTf_tishi_chaolianjie_level'>
+			<!-- 身上有 可强化 装备 开启等级 -->
+			<t k='0'>20</t>
+			<!-- 身上有 可激活属性 装备 开启等级 -->
+			<t k='1'>45</t>
+			<!-- 身上有 可升级 装备 开启等级 -->
+			<t k='2'>25</t>
+			<!-- 可升级的星界 开启等级 -->
+			<t k='3'>50</t>
+			<!-- 身上有 可镶嵌 装备 开启等级 -->
+			<t k='4'>40</t>
+			<!-- 身上有 可以升级魔纹 开启等级 -->
+			<t k='5'>42</t>
+			<!-- 身上有 可镶嵌 武魂 开启等级 -->
+			<t k='6'>60</t>
+			<!-- 身上有 可升级 武魂 开启等级 -->
+			<t k='7'>62</t>
+		</arr>
+
+
+
+
+		<arr k='arrFourShenQi'>
+			<t k='0'><![CDATA[点]]></t>
+			<t k='1'><![CDATA[您当前未开始神器挑战]]></t>
+			<t k='2'><![CDATA[提升雷电伤害]]></t>
+			<t k='3'><![CDATA[提升生命]]></t>
+			<t k='4'><![CDATA[提升闪避]]></t>
+			<t k='5'><![CDATA[提升冰冻伤害]]></t>
+			<t k='6'><![CDATA[提升攻击]]></t>
+			<t k='7'><![CDATA[提升火焰伤害]]></t>
+			<t k='8'><![CDATA[提升暴击]]></t>
+			<t k='9'><![CDATA[提升毒素伤害]]></t>
+			<t k='10'><![CDATA[提升防御]]></t>
+			<t k='11'><![CDATA[您当前未开启玄剑诛魔(40级开启)<br/>你需要在魔物进入城门前把它们全部击杀！]]></t>
+			<t k='12'><![CDATA[您当前未开启冰海急斩(45级开启)<br/>你需要在规定时间内杀死所有魔物！]]></t>
+			<t k='13'><![CDATA[您当前未开启魔域求生(50级开启)<br/>你需要抗住怪物的攻击不死，并击杀所有怪物！]]></t>
+			<t k='14'><![CDATA[您当前未开启七战(55级开启)<br/>你需要守护住长天弓，不让他被魔物击杀！]]></t>
+
+			<t k='15'><![CDATA[玄剑诛魔]]></t>
+			<t k='16'><![CDATA[冰海急斩]]></t>
+			<t k='17'><![CDATA[魔域求生]]></t>
+			<t k='18'><![CDATA[七战]]></t>
+
+			<t k='19'><![CDATA[类型：个人挑战副本    开放等级：40级 玄剑诛魔创造了完全开放式的守护规则，击杀每波前往逃脱点的怪物，保证怪物逃跑不到5个。]]></t>
+			<t k='20'><![CDATA[类型：个人挑战副本    开放等级：45级 冰海急斩完全会让你感受到畅快淋漓虐杀怪物的快感，在每波限规定时间内需击杀所有怪物，每一波的效率就是为下一波提供成功的机会。]]></t>
+			<t k='21'><![CDATA[类型：个人挑战副本    开放等级：50级 怎么样杀怪才叫爽？是不是无论多少怪物也能给你群杀的快感？来吧,体验身处炼狱的感觉！抵挡住每波怪物的攻击，并将怪物击杀！]]></t>
+			<t k='22'><![CDATA[类型：个人挑战副本    开放等级：55级 全新进化后的守护型游戏，比守护玄黄剑更加刺激有趣！彰显个人能力的时候来了，抵挡住每波怪物的进攻，且成功守护住长天弓！]]></t>
+
+
+		</arr>
+
+		<arr k='arrXuanxian_baodian'>
+			<t k='1'>立即升级</t>
+			<t k='2'>立即鉴定</t>
+			<t k='3'>立即强化</t>
+			<t k='4'>立即封魔</t>
+			<t k='5'>立即占星</t>
+			<t k='6'>提升星界</t>
+			<t k='7'>立即前往</t>
+			<t k='8'>立即参加</t>
+			<t k='9'>开始兑换</t>
+			<t k='10'>查看包裹</t>
+		</arr>
+
+		<!-- 新手礼包掉落ID -->
+		<arr k='arrNewPlayerGift'>
+			<t k='0'>10200018,60100170</t>
+			<t k='1'>10200019,60100170</t>
+			<t k='2'>10200020,60100171</t>
+			<t k='3'>10200021,60100172</t>
+			<t k='4'>10200022,60100173</t>
+			<t k='5'>10200023,60100174</t>
+			<t k='6'>10200024,60100175</t>
+		</arr>
+		<!-- 新手礼包掉落ID -->
+		<arr k='arrLeFanTian'>
+			<t k='1'>60102381</t>
+			<t k='2'>60102382</t>
+			<t k='3'>60102383</t>
+			<t k='4'></t>
+			<t k='5'></t>
+			<t k='6'>60102391</t>
+			<t k='7'>60102392</t>
+			<t k='8'>60102393</t>
+			<t k='9'></t>
+			<t k='10'></t>
+			<t k='11'>60102401</t>
+			<t k='12'>60102402</t>
+			<t k='13'>60102403</t>
+			<t k='14'></t>
+			<t k='15'></t>
+			<t k='16'>60102411</t>
+			<t k='17'>60102412</t>
+			<t k='18'>60102413</t>
+			<t k='19'></t>
+			<t k='20'></t>
+			<t k='21'>60102421</t>
+			<t k='22'>60102422</t>
+			<t k='23'>60102423</t>
+			<t k='24'></t>
+			<t k='25'></t>
+		</arr>
+		<arr k='arrMoWenCailiaoDesc'>
+			<t k='0'><![CDATA[可在<font color='#18FF02'><a href='event:1_0'><u>卷轴商店</u></a></font>中使用魔纹碎片兑换]]></t>
+			<t k='1'><![CDATA[可在<font color='#18FF02'><a href='event:2_0'><u>魔天万界</u></a></font>中击杀BOSS获得]]></t>
+			<t k='2'><![CDATA[<font color='#18FF02'><a href='event:3_0'><u>魔天万界</u></a></font>中击杀BOSS可获得魔纹。]]></t>
+			<t k='3'><![CDATA[<font color='#18FF02'><a href='event:3_1'><u>神秘商店</u></a></font>中有几率出现魔魂。]]></t>
+			<t k='4'><![CDATA[<font color='#18FF02'><a href='event:3_2'><u>每日抽奖</u></a></font>中有几率获得魔魂。]]></t>
+			<t k='5'><![CDATA[高级魔纹通过同类低级魔纹合成获得。]]></t>
+			<t k='6'><![CDATA[<font color='#18FF02'><a href='event:4_0'><u>魔天万界</u></a></font>中击杀BOSS可获得。]]></t>
+			<t k='7'><![CDATA[<font color='#18FF02'><a href='event:5_0'><u>神秘商店</u></a></font>中可获得魔魂]]></t>
+			<t k='8'><![CDATA[35级开放此玩法]]></t>
+		</arr>
+		<!-- 逐级开放主界面菜单 -->
+		<arr k='arrIndexMenu'>
+			<t k='0'>0,btnJiaoSe</t>
+			<t k='1'>0,btnBeiBao</t>
+			<t k='2'>5,btnJiNeng</t>
+			<t k='3'>40,btnMoWen</t>
+			<t k='4'>45,btnLianGu</t>
+			<t k='5'>50,btnJingJie</t>
+			<t k='6'>60,btnXingHun</t>
+			<t k='7'>50,btnShenQi</t>
+			<t k='8'>45,btnShenYi</t>
+			<t k='9'>15,btnZuoQi</t>
+			<t k='10'>30,btnJiaZu</t>
+			<t k='11'>10,btnZhaoMu</t>
+			<t k='12'>35,btnShenMoLu</t>
+			<t k='13'>20,btnSheJiao</t>
+			<t k='14'>17,btnLianDanLu</t>
+		</arr>
+		<!-- 角色装备部位逐级开放 -->
+		<arr k='arrEquipLimit'>
+			<t k='1'>0</t>
+			<t k='2'>0</t>
+			<t k='3'>0</t>
+			<t k='4'>0</t>
+			<t k='5'>0</t>
+			<t k='6'>0</t>
+			<t k='7'>0</t>
+			<t k='8'>0</t>
+			<t k='9'>0</t>
+			<t k='10'>0</t>
+			<t k='11'>0</t>
+			<t k='12'>0</t>
+			<t k='13'>0</t>
+			<t k='14'>0</t>
+			<t k='15'>0</t>
+		</arr>
+		<!-- 包裹双击下拉菜单排序 -->
+		<arr k='arrBagMenuSort'>
+			<t k='1'>1</t>
+			<t k='2'>2</t>
+			<t k='3'>12</t>
+			<t k='4'>13</t>
+			<t k='5'>7</t>
+			<t k='6'>8</t>
+			<t k='7'>9</t>
+			<t k='8'>10</t>
+			<t k='9'>3</t>
+			<t k='10'>4</t>
+			<t k='11'>11</t>
+			<t k='12'>5</t>
+			<t k='13'>6</t>
+		</arr>
+		<!-- 普通鉴定需要材料 -->
+		<arr k='arrJianDingNeed'>
+			<t k='1'>0</t>
+			<t k='2'>0</t>
+			<t k='3'>0</t>
+			<t k='4'>5</t>
+			<t k='5'>10</t>
+			<t k='6'>20</t>
+			<t k='7'>50</t>
+			<t k='8'>100</t>
+			<t k='9'>200</t>
+			<t k='10'>400</t>
+		</arr>
+		<!-- 完美鉴定需要材料 -->
+		<arr k='arrJianDingNeed'>
+			<t k='1'>0</t>
+			<t k='2'>0</t>
+			<t k='3'>0</t>
+			<t k='4'>5</t>
+			<t k='5'>10</t>
+			<t k='6'>20</t>
+			<t k='7'>50</t>
+			<t k='8'>100</t>
+			<t k='9'>200</t>
+			<t k='10'>400</t>
+		</arr>
+		<!-- 冲星热卖道具 -->
+		<arr k='arrChongXingHot'>
+			<t k='0'>11900001</t>
+			<t k='1'>11900002</t>
+		</arr>
+		<!-- 七日登录礼包 -->
+		<arr k='_7RiDengluLibao'>
+			<t k='0'>60101540</t>
+			<t k='1'>60101541</t>
+			<t k='2'>60101542</t>
+			<t k='3'>60101543</t>
+			<t k='4'>60101544</t>
+			<t k='5'>60101545</t>
+			<t k='6'>60101546</t>
+		</arr>
+		<!-- 七日登录礼包天数 -->
+		<arr k='_7RiDengluLibaoTian'>
+			<t k='0'>第一天</t>
+			<t k='1'>第二天</t>
+			<t k='2'>第三天</t>
+			<t k='3'>第四天</t>
+			<t k='4'>第五天</t>
+			<t k='5'>第六天</t>
+			<t k='6'>第七天</t>
+		</arr>
+		<!-- 声音大小配置 0.背景 1.音效 -->
+		<arr k='arrSoundValue'>
+			<t k='0'>30</t>
+			<t k='1'>50</t>
+		</arr>
+		<!-- 商店兑换默认打开等级区间 -->
+		<arr k='arrJianDingNeed'>
+			<t k='0'>1,20</t>
+			<t k='1'>21,40</t>
+		</arr>
+		<!-- 创建角色描述 -->
+		<arr k='arrMetierDesc'>
+			<t k='1'><![CDATA[<font color='#FF9C0F'>天斗：</font>化身狂神战神，狂暴无双的战士。<br/><font color='#FF9C0F'>战斗定位：</font>战斗定位：永恒的冲锋第一人。]]></t>
+			<t k='2'><![CDATA[<font color='#FF9C0F'>天斗：</font>化身狂神战神，狂暴无双的战士。<br/><font color='#FF9C0F'>战斗定位：</font>战斗定位：永恒的冲锋第一人。]]></t>
+			<t k='3'><![CDATA[<font color='#FF9C0F'>玄道：</font>领悟冰火玄奥，群攻卓越的道士。<br/><font color='#FF9C0F'>战斗定位：</font>群战攻击第一人。]]></t>
+			<t k='4'><![CDATA[<font color='#FF9C0F'>玄道：</font>领悟冰火玄奥，群攻卓越的道士。<br/><font color='#FF9C0F'>战斗定位：</font>群战攻击第一人。]]></t>
+			<t k='5'><![CDATA[<font color='#FF9C0F'>仙羽：</font>召唤神兽相助，精湛控制的弓手。<br/><font color='#FF9C0F'>战斗定位：</font>单挑游斗，持久战第一人。]]></t>
+			<t k='6'><![CDATA[<font color='#FF9C0F'>仙羽：</font>召唤神兽相助，精湛控制的弓手。<br/><font color='#FF9C0F'>战斗定位：</font>单挑游斗，持久战第一人。]]></t>
+		</arr>
+
+		<!-- 坐骑主面板技能格子 开 描述 -->
+		<arr k='arrZuoQiSkDesc'>
+			<t k='1'><![CDATA[默认开启]]></t>
+			<t k='2'><![CDATA[默认开启]]></t>
+			<t k='3'><![CDATA[默认开启]]></t>
+			<t k='4'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+			<t k='5'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+			<t k='6'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+			<t k='7'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+			<t k='8'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+			<t k='9'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+			<t k='10'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+			<t k='11'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+			<t k='12'><![CDATA[花费100元宝开启新的坐骑技能栏]]></t>
+		</arr>
+
+		<arr k='arrJZTree'>
+			<t k='1'>聚灵中</t>
+			<t k='2'>聚灵中</t>
+			<t k='3'>聚灵中</t>
+		</arr>
+		<!-- 冲星石 升级描述 -->
+		<arr k='arrChongXingStone'>
+			<t k='1'>(1-3星)</t>
+			<t k='2'>(4-6星)</t>
+			<t k='3'>(7-10星)</t>
+			<t k='4'>(11-15星)</t>
+			<t k='5'>(16-20星)</t>
+		</arr>
+
+		<arr k='arrFuXiCanJu'>
+			<t k='1'>妖怪，快放开我爷爷！</t>
+			<t k='2'>黄毛小儿，竟然来找死？</t>
+			<t k='3'>快走！！！</t>
+			<t k='4'>爷爷？！畜生，你杀我爷爷，拿命来！！</t>
+			<t k='5'>我要用这噬魂珠，把你慢慢的吸干！</t>
+			<t k='6'>大胆妖孽！还不受死！！</t>
+		</arr>
+
+		<arr k='arrYuanXiaoCanJu'>
+			<t k='1'>在中秋灯会的烟火光影下两人四目相对， 回想怒蛟水寨相遇不禁暗生情愫。</t>
+			<t k='2'>易芸瞳双颊绯红正欲开口，忽得脸色惨白一把推开你。</t>
+			<t k='3'>小心！！！</t>
+			<t k='4'>耳畔响起一道震耳欲聋的爆响，你绝望的看到一抹血色侵染了曈曈一身的雪白。</t>
+			<t k='5'>啊……不！！</t>
+		</arr>
+
+		<arr k='arrPet_Quality_tf_desc'>
+			<t k='0'>鉴定后将额外增加基础属性</t>
+			<t k='1'>额外增加5%基础属性</t>
+			<t k='2'>额外增加10%基础属性</t>
+			<t k='3'>额外增加20%基础属性</t>
+			<t k='4'>额外增加50%基础属性</t>
+			<t k='5'>额外增加80%基础属性</t>
+		</arr>
+		<arr k='jingYanDanArr'>
+			<t k='0'></t>
+			<t k='1'>二倍找回需要离线经验丹：2个</t>
+			<t k='2'>三倍找回需要离线经验丹：5个</t>
+		</arr>
+		<arr k='jingYanXuanZeArr'>
+			<t k='0'>免费领取</t>
+			<t k='1'>二倍找回</t>
+			<t k='2'>三倍找回</t>
+		</arr>
+
+		<arr k='arrChengjiu2'>
+			<t k='1'>玄仙宝典</t>
+			<t k='2'>炼器大师</t>
+			<t k='3'>绝世高手</t>
+			<t k='4'>富可敌国</t>
+			<t k='5'>江湖义气</t>
+		</arr>
+
+		<!-- 每日功能类提醒 -->
+		<arr k='arrMsgDailyWarnning'>
+			<!-- 帮派神树可浇水 -->
+			<t k='0'>80700687</t>
+			<!-- 帮派神树可施肥 -->
+			<t k='1'>80700688</t>
+			<!-- 帮派神树可捉虫 -->
+			<t k='2'>80700689</t>
+			<!-- 可押送军需次数 -->
+			<t k='3'>80700685</t>
+			<!-- 可膜拜镇国神将次数 -->
+			<t k='4'>80700627</t>
+			<!-- 可膜拜战神无双(战神无双)次数 -->
+			<t k='5'>80700628</t>
+			<!-- 可膜拜沙城至尊次数 -->
+			<t k='6'>80700629</t>
+			<!-- 魔天万界－碧落黄泉 -->
+			<t k='7'>80700690</t>
+			<!-- 魔天万界－十方绝域 -->
+			<t k='8'>80700691</t>
+			<!-- 魔天万界－魔泉弱水 -->
+			<t k='9'>80700692</t>
+			<!-- 魔天万界－英雄冢 -->
+			<t k='10'>80700693</t>
+			<!-- 魔天万界－都天魔煞 -->
+			<t k='11'>80700694</t>
+			<!-- 魔天万界－魔域九天 -->
+			<t k='12'>80700695</t>
+			<!-- 可膜拜镇国神将免费次数 -->
+			<t k='13'>80700700</t>
+			<!-- 可膜拜战神无双(战神无双)免费次数 -->
+			<t k='14'>80700701</t>
+			<!-- 可膜拜沙城至尊免费次数 -->
+			<t k='15'>80700702</t>
+		</arr>
+		<!-- 每日功能类提醒 开启等级 -->
+		<arr k='arrMsgDailyWarnning_level'>
+			<!-- 帮派神树可浇水 -->
+			<t k='0'>30</t>
+			<!-- 帮派神树可施肥 -->
+			<t k='1'>30</t>
+			<!-- 帮派神树可捉虫 -->
+			<t k='2'>30</t>
+			<!-- 可押送军需次数 -->
+			<t k='3'>35</t>
+			<!-- 可膜拜镇国神将次数 -->
+			<t k='4'>40</t>
+			<!-- 可膜拜战神无双(战神无双)次数 -->
+			<t k='5'>40</t>
+			<!-- 可膜拜沙城至尊次数 -->
+			<t k='6'>40</t>
+			<!-- 魔天万界－碧落黄泉 -->
+			<t k='7'>25</t>
+			<!-- 魔天万界－十方绝域 -->
+			<t k='8'>40</t>
+			<!-- 魔天万界－魔泉弱水 -->
+			<t k='9'>50</t>
+			<!-- 魔天万界－英雄冢 -->
+			<t k='10'>60</t>
+			<!-- 魔天万界－都天魔煞 -->
+			<t k='11'>70</t>
+			<!-- 魔天万界－魔域九天 -->
+			<t k='12'>80</t>
+			<!-- 可膜拜镇国神将免费次数 -->
+			<t k='13'>40</t>
+			<!-- 可膜拜战神无双(战神无双)免费次数 -->
+			<t k='14'>40</t>
+			<!-- 可膜拜沙城至尊免费次数 -->
+			<t k='15'>40</t>
+		</arr>
+
+		<!-- 新手目标 -->
+		<arr k='arrXinShouMuBiao'>
+			<t k='0'>80700687</t>
+			<t k='1'>80700687</t>
+			<t k='2'>80700687</t>
+			<t k='3'>80700687</t>
+			<t k='4'>80700687</t>
+			<t k='5'>80700687</t>
+			<t k='6'>80700687</t>
+		</arr>
+
+		<!-- 御剑飞行参数 -->
+		<arr k='arrYuJianFly'>
+			<!-- 地图缩放比例 0.5 - 1.0 之间，目前0.5，勿轻易改动 -->
+			<t k='0'>0.5</t>
+		</arr>
+
+		<!-- 泡温泉参数 -->
+		<arr k='arrSPA'>
+			<!-- 泡温泉的形象 -->
+			<t k='0'>31000005</t>
+		</arr>
+
+		<!-- 新战神无双地图ID -->
+		<arr k='PkKing2'>
+			<!-- 地图ID -->
+			<t k='0'>20200019</t>
+		</arr>
+
+		<!-- 预加载 begin -->
+
+		<arr k='swim_map'>
+			<!-- 地图ID -->
+			<t k='0'>20100002</t>
+		</arr>
+
+		<arr k='yjf_map'>
+			<!-- 地图ID -->
+			<t k='0'>20100002</t>
+		</arr>
+
+		<arr k='spa_map'>
+			<!-- 地图ID -->
+			<t k='0'>20200014</t>
+			<t k='1'>20200020</t>
+			<t k='2'>20200021</t>
+		</arr>
+
+		<arr k='motian_map'>
+			<!-- 地图ID -->
+			<t k='0'>20100001</t>
+			<t k='1'>20100002</t>
+			<t k='2'>20100003</t>
+		</arr>
+
+		<arr k='jump_map'>
+			<!-- 地图ID -->
+			<t k='0'>20100002</t>
+		</arr>
+
+
+		<arr k='boat_map'>
+			<!-- 行船加载 -->
+			<t k='0'>20100007</t>
+		</arr>
+
+
+		<!-- 预加载 end -->
+
+		<!-- 当前视野里允许有多少人可见，多出将隐藏 -->
+		<arr k='hideHumanAndPet_NumberLess_Count'>
+			<!-- 单位:个 -->
+			<t k='0'>500</t>
+		</arr>
+
+		<arr k='hideHuman_Guide'>
+			<!-- 单位:个 -->
+			<t k='0'>20</t>
+		</arr>
+
+		<arr k='auto_refresh_page_mapid'>
+			<!-- 跳地图前不在 -->
+			<t k='0'>20100005,20100003,20100004,20200011</t>
+			<!-- 跳地图后在 -->
+			<t k='1'>20100001</t>
+		</arr>
+
+		<!-- 消费返利 元宝数量列表 -->
+		<arr k='arrConsumeRebate_YB_Number'>
+			<t k='0'>500</t>
+			<t k='1'>1000</t>
+			<t k='2'>5000</t>
+			<t k='3'>10000</t>
+			<t k='4'>20000</t>
+			<t k='5'>35000</t>
+			<t k='6'>50000</t>
+			<t k='7'>100000</t>
+		</arr>
+
+		<!-- 消费返利 掉落ID列表 -->
+		<arr k='arrConsumeRebate_DropID'>
+			<t k='0'>60100120</t>
+			<t k='1'>60100121</t>
+			<t k='2'>60100122</t>
+			<t k='3'>60100123</t>
+			<t k='4'>60100124</t>
+			<t k='5'>60100125</t>
+			<t k='6'>60100126</t>
+			<t k='7'>60100127</t>
+		</arr>
+		<!-- 聊天过滤字 -->
+		<arr k='arrFilterFont'>
+			<t k='0'>y</t>
+			<t k='1'>q</t>
+			<t k='2'>元</t>
+			<t k='3'>宝</t>
+			<t k='4'>钱</t>
+			<t k='5'>送</t>
+			<t k='6'>充</t>
+			<t k='7'>冲</t>
+			<t k='8'>1</t>
+			<t k='9'>2</t>
+			<t k='10'>3</t>
+			<t k='11'>4</t>
+			<t k='12'>5</t>
+			<t k='13'>6</t>
+			<t k='14'>7</t>
+			<t k='15'>8</t>
+			<t k='16'>9</t>
+			<t k='17'>0</t>
+			<t k='18'>一</t>
+			<t k='19'>二</t>
+			<t k='20'>三</t>
+			<t k='21'>四</t>
+			<t k='22'>五</t>
+			<t k='23'>六</t>
+			<t k='24'>七</t>
+			<t k='25'>八</t>
+			<t k='26'>九</t>
+			<t k='27'>零</t>
+			<t k='28'>壹</t>
+			<t k='29'>贰</t>
+			<t k='30'>叁</t>
+			<t k='31'>肆</t>
+			<t k='32'>伍</t>
+			<t k='33'>陆</t>
+			<t k='34'>柒</t>
+			<t k='35'>捌</t>
+			<t k='36'>玖</t>
+			<t k='37'>㈠</t>
+			<t k='38'>㈡</t>
+			<t k='39'>㈢</t>
+			<t k='40'>㈣</t>
+			<t k='41'>㈤</t>
+			<t k='42'>㈥</t>
+			<t k='43'>㈦</t>
+			<t k='44'>㈧</t>
+			<t k='45'>㈨</t>
+			<t k='46'>㈩</t>
+			<t k='47'>⑴</t>
+			<t k='48'>⑵</t>
+			<t k='49'>⑶</t>
+			<t k='50'>⑷</t>
+			<t k='51'>⑸</t>
+			<t k='52'>⑹</t>
+			<t k='53'>⑺</t>
+			<t k='54'>⑻</t>
+			<t k='55'>⑼</t>
+			<t k='56'>⑽</t>
+			<t k='57'>①</t>
+			<t k='58'>②</t>
+			<t k='59'>③</t>
+			<t k='60'>④</t>
+			<t k='61'>⑤</t>
+			<t k='62'>⑥</t>
+			<t k='63'>⑦</t>
+			<t k='64'>⑧</t>
+			<t k='65'>⑨</t>
+			<t k='66'>⑩</t>
+			<t k='67'>⒈</t>
+			<t k='68'>⒉</t>
+			<t k='69'>⒊</t>
+			<t k='70'>⒋</t>
+			<t k='71'>⒌</t>
+			<t k='72'>⒍</t>
+			<t k='73'>⒎</t>
+			<t k='74'>⒏</t>
+			<t k='75'>⒐</t>
+			<t k='76'>⒑</t>
+			<t k='77'>０</t>
+			<t k='78'>１</t>
+			<t k='79'>２</t>
+			<t k='80'>３</t>
+			<t k='81'>４</t>
+			<t k='82'>５</t>
+			<t k='83'>６</t>
+			<t k='84'>７</t>
+			<t k='85'>８</t>
+			<t k='86'>９</t>
+
+		</arr>
+
+
+		<!-- $2000之力属性列表 -->
+		<arr k='arrQQ_YD_ShenLi_ShuXing'>
+			<t k='0'><![CDATA[1.最大物攻:10＋2×等级]]></t>
+			<t k='1'><![CDATA[2.最大魔攻:10＋2×等级]]></t>
+			<t k='2'><![CDATA[3.最大道功:10＋2×等级]]></t>
+			<t k='3'><![CDATA[4.最大物防:10＋1×等级]]></t>
+			<t k='4'><![CDATA[5.最大魔防:10＋1×等级]]></t>
+		</arr>
+
+
+
+		<!-- 重新整合充值福利， 端午节版本 -->
+		<arr k='arrChong_zhi_fu_li_list'>
+			<t k='0'>首充大礼</t>
+			<t k='1'>充值福利</t>
+			<t k='2'>充值送魔纹</t>
+			<t k='3'>充值返利</t>
+			<t k='4'>洪福齐天</t>
+			<t k='5'>充值送元宝</t>
+		</arr>
+		<!-- 暴走答题 奖励 -->
+		<arr k='arrbaozoudati_jiangli'>
+			<t k='0'>第一波宝箱已出现，快来捡宝啦！</t>
+			<t k='1'>第二波宝箱已出现，快来捡宝啦！</t>
+			<t k='2'>第三波宝箱已出现，快来捡宝啦！</t>
+		</arr>
+		<!-- 充值送魔纹 (冲XXX送)， 端午节版本 -->
+		<arr k='arrChong_zhi_fu_li_MoWen_Desc'>
+			<t k='0'>充1000送</t>
+			<t k='1'>冲2000送</t>
+			<t k='2'>冲5000送</t>
+			<t k='3'>冲10000送</t>
+			<t k='4'>冲20000送</t>
+			<t k='5'>冲50000送</t>
+			<t k='6'>冲100000送</t>
+			<t k='7'>冲200000送</t>
+			<t k='8'>冲500000送</t>
+		</arr>
+
+		<!-- 充值送魔纹 (物品ID)， 端午节版本 -->
+		<arr k='arrChong_zhi_fu_li_MoWen_ID'>
+			<t k='0'>10200004</t>
+			<t k='1'>10200004</t>
+			<t k='2'>10200004</t>
+			<t k='3'>10200004</t>
+			<t k='4'>10200004</t>
+			<t k='5'>10200005</t>
+			<t k='6'>10200005</t>
+			<t k='7'>10200005</t>
+			<t k='8'>10200005</t>
+		</arr>
+
+		<!-- 充值送魔纹 (数量)， 端午节版本 -->
+		<arr k='arrChong_zhi_fu_li_MoWen_Num'>
+			<t k='0'>2</t>
+			<t k='1'>7</t>
+			<t k='2'>12</t>
+			<t k='3'>24</t>
+			<t k='4'>72</t>
+			<t k='5'>12</t>
+			<t k='6'>25</t>
+			<t k='7'>54</t>
+			<t k='8'>168</t>
+		</arr>
+
+		<!-- 个人排位赛 段位  积分对应的段位—— 初出茅庐：000-200 江湖高手：201-400 上古豪杰：401-600 上古大仙：600以上 -->
+		<arr k='arrGRPW_DuanWei'>
+			<t k='0'>初入江湖</t>
+			<t k='1'>江湖高手</t>
+			<t k='2'>决战豪杰</t>
+			<t k='3'>决战王者</t>
+		</arr>
+
+		<!-- 个人排位赛 组队参赛 Tip 描述信息 -->
+		<arr k='arrGRPW_DuiWu_Tip'>
+			<t k='0'>3人组队参赛若你的队伍获胜，您可获得总积分1/3</t>
+			<t k='1'>2人组队参赛若你的队伍获胜，您可获得总积分1/2</t>
+			<t k='2'>1人参赛，若获胜可获得全部积分</t>
+		</arr>
+
+
+		<!-- 宠物品质分为：普通、良好、优秀、完美、传说。 -->
+		<arr k='arrPetQuality'>
+			<t k='0'>普通</t>
+			<t k='1'>良好</t>
+			<t k='2'>优秀</t>
+			<t k='3'>完美</t>
+			<t k='4'>传说</t>
+		</arr>
+
+		<!-- 中文数字。 -->
+		<arr k='arrChineseNumber'>
+			<t k='0'>零</t>
+			<t k='1'>一</t>
+			<t k='2'>二</t>
+			<t k='3'>三</t>
+			<t k='4'>四</t>
+			<t k='5'>五</t>
+			<t k='6'>六</t>
+			<t k='7'>七</t>
+			<t k='8'>八</t>
+			<t k='9'>九</t>
+			<t k='10'>十</t>
+			<t k='11'>十一</t>
+			<t k='12'>十二</t>
+			<t k='13'>十三</t>
+			<t k='14'>十四</t>
+			<t k='15'>十五</t>
+		</arr>
+
+		<!-- 找你妹 活动 100011104 三个阶段描述 -->
+		<arr k='arrHuoDong_DuoMaoMao'>
+			<t k='0'>准备阶段</t>
+			<t k='1'>躲藏阶段</t>
+			<t k='2'>找人阶段</t>
+		</arr>
+		<!-- 装备提示框 -->
+		<arr k='arrShowEquipTip'>
+		
+		<t k='0'>11304101</t>
+			<t k='1'>11304301</t>
+			<t k='2'>11304501</t>
+			<t k='3'>11304151</t>
+			<t k='4'>11304351</t>
+			<t k='5'>11304551</t>
+			<t k='6'>11301101</t>
+			<t k='7'>11301301</t>
+			<t k='8'>11301501</t>
+			<t k='9'>11302101</t>
+			<t k='10'>11302301</t>
+			<t k='11'>11302501</t>
+			<t k='12'>11306101</t>
+			<t k='13'>11306301</t>
+			<t k='14'>11306501</t>
+			<t k='15'>11307102</t>
+			<t k='16'>11307302</t>
+			<t k='17'>11307502</t>
+			<t k='18'>11308102</t>
+			<t k='19'>11308302</t>
+			<t k='20'>11308502</t>
+			<t k='21'>11312102</t>
+			<t k='22'>11312302</t>
+			<t k='23'>11312502</t>
+			<t k='24'>11314102</t>
+			<t k='25'>11314302</t>
+			<t k='26'>11314502</t>
+			<t k='27'>11312101</t>
+			<t k='28'>11312301</t>
+			<t k='29'>11312501</t>
+			<t k='30'>11314101</t>
+			<t k='31'>11314301</t>
+			<t k='32'>11314501</t>
+			<t k='33'>11304103</t>
+			<t k='34'>11304303</t>
+			<t k='35'>11304503</t>
+			<t k='36'>11304153</t>
+			<t k='37'>11304353</t>
+			<t k='38'>11304553</t>
+			<t k='39'>11308103</t>
+			<t k='40'>11308303</t>
+			<t k='41'>11308503</t>
+			<t k='42'>11302103</t>
+			<t k='43'>11302303</t>
+			<t k='44'>11302503</t>
+			<t k='45'>11314103</t>
+			<t k='46'>11314303</t>
+			<t k='47'>11314503</t>
+			<t k='48'>11307103</t>
+			<t k='49'>11307303</t>
+			<t k='50'>11307503</t>
+			<t k='51'>11301104</t>
+			<t k='52'>11301304</t>
+			<t k='53'>11301504</t>
+			<t k='54'>11312103</t>
+			<t k='55'>11312303</t>
+			<t k='56'>11312503</t>
+			<t k='57'>11310101</t>
+			<t k='58'>11314103</t>
+			<t k='59'>11314303</t>
+			<t k='60'>11314503</t>
+			<t k='61'>11306103</t>
+			<t k='62'>11306303</t>
+			<t k='63'>11306503</t>
+			<t k='64'>11312103</t>
+			<t k='65'>11312303</t>
+			<t k='66'>11312503</t>
+			<t k='67'>11304105</t>
+			<t k='68'>11304305</t>
+			<t k='69'>11304505</t>
+			<t k='70'>11304155</t>
+			<t k='71'>11304355</t>
+			<t k='72'>11304555</t>
+			<t k='73'>11301106</t>
+			<t k='74'>11301306</t>
+			<t k='75'>11301506</t>
+			<t k='76'>11301102</t>
+			<t k='77'>11301302</t>
+			<t k='78'>11301502</t>
+			<t k='79'>11307103</t>
+			<t k='80'>11307303</t>
+			<t k='81'>11307503</t>
+			<t k='82'>11308104</t>
+			<t k='83'>11308304</t>
+			<t k='84'>11308504</t>
+			<t k='85'>11301105</t>
+			<t k='86'>11301305</t>
+			<t k='87'>11301505</t>
+			<t k='88'>11314104</t>
+			<t k='89'>11314304</t>
+			<t k='90'>11314504</t>
+		    <t k='91'>11304102</t>
+			<t k='92'>11304302</t>
+			<t k='93'>11304502</t>
+			<t k='94'>11304152</t>
+			<t k='95'>11304352</t>
+			<t k='96'>11304552</t>
+			<t k='97'>11301102</t>
+			<t k='98'>11301302</t>
+			<t k='99'>11301502</t>
+			<t k='100'>11308105</t>
+			<t k='101'>11308305</t>
+			<t k='102'>11308505</t>
+			<t k='103'>11312105</t>
+			<t k='104'>11312305</t>
+			<t k='105'>11312505</t>
+			<t k='106'>11301126</t>
+			<t k='107'>11301326</t>
+			<t k='108'>11301526</t>
+		</arr>
+
+
+
+
+
+
+
+		<!-- 0013504: 20级装备副本副本界面 , 几个阶段对应的中文描述 -->
+		<arr k='arrHuoDong_20JiFuBen'>
+			<t k='1'>丧尸怪物</t>
+			<t k='2'>尸王</t>
+			<t k='3'>沃玛怪物</t>
+			<t k='4'>沃玛教主</t>
+			<t k='5'>猪妖怪物</t>
+			<t k='6'>猪妖王</t>
+			<t k='7'>赤月怪物</t>
+			<t k='8'>赤月恶魔</t>
+			<t k='9'>封魔谷怪物</t>
+			<t k='10'>嗜血狼魔</t>
+			<t k='11'>封魔谷怪物</t>
+			<t k='12'>霸王教主</t>
+			<t k='13'>深渊怪物</t>
+			<t k='14'>地狱冥龙</t>
+			<t k='15'>分身·嚎天野猪</t>
+			<t k='16'>嚎天野猪</t>
+			<t k='17'>分身·幽鳞豹</t>
+			<t k='18'>幽鳞豹</t>
+			<t k='19'>分身·怒蛟龙皇</t>
+			<t k='20'>怒蛟龙皇</t>
+			<t k='21'>分身·玄冥蛇卫</t>
+			<t k='22'>玄冥蛇卫</t>
+			<t k='23'>分身·葵阴蛇精</t>
+			<t k='24'>葵阴蛇精</t>
+			<t k='25'>分身·黑峰邪皇</t>
+			<t k='26'>黑峰邪皇</t>
+			<t k='27'>分身·萧红玉</t>
+			<t k='28'>血娘子·萧红玉</t>
+			<t k='29'>分身·白绫</t>
+			<t k='30'>雪罗刹·白绫</t>
+			<t k='31'>分身·迦楼蛇皇</t>
+			<t k='32'>黑峰邪皇</t>
+			<t k='33'>分身·余有崖</t>
+			<t k='34'>逆手剑·余有崖</t>
+			<t k='35'>分身·云苍生</t>
+			<t k='36'>烈火修罗·云苍生</t>
+			<t k='37'>分身·极寒骨皇</t>
+			<t k='38'>极寒骨皇</t>
+			<t k='39'>分身·血魄游魂</t>
+			<t k='40'>血魄游魂</t>
+			<t k='41'>分身·吞骨残兵</t>
+			<t k='42'>吞骨残兵</t>
+			<t k='43'>分身·骸骨残龙</t>
+			<t k='44'>迦楼蛇皇</t>
+			<t k='45'>分身·骷髅卫士</t>
+			<t k='46'>骷髅卫士</t>
+			<t k='47'>分身·铁甲骨弓</t>
+			<t k='48'>铁甲骨弓</t>
+			<t k='49'>分身·覆海蛟皇</t>
+			<t k='50'>覆海蛟皇</t>
+			<t k='51'>分身·沈云奕</t>
+			<t k='52'>血浮屠·沈云奕</t>
+			<t k='53'>分身·宁不乐</t>
+			<t k='54'>大漠刀魔·宁不乐</t>
+			<t k='55'>分身·霍海敌</t>
+			<t k='56'>极寒骨皇</t>
+			<t k='57'>骷髅怪物</t>
+			<t k='58'>狱火魔皇</t>
+			<t k='59'>分身·焦土</t>
+			<t k='60'>急先锋·焦土</t>
+			<t k='61'>分身·陆霆</t>
+			<t k='62'>混世魔王·陆霆</t>
+			<t k='63'>分身·秦沐森</t>
+			<t k='64'>百步神拳·秦沐森</t>
+			<t k='65'>分身·圆智</t>
+			<t k='66'>护法罗汉·圆智</t>
+			<t k='67'>分身·玄通</t>
+			<t k='68'>伏魔神僧·玄通</t>
+			<t k='69'>分身·赤炎狻猊兽</t>
+			<t k='70'>赤炎狻猊兽</t>
+			<t k='71'>分身·憾海麒麟兽</t>
+			<t k='72'>憾海麒麟兽</t>
+			<t k='73'>分身·开天牛魔</t>
+			<t k='74'>开天牛魔</t>
+		</arr>
+		<!-- 神器灵件 默认描述 -->
+		<arr k='arr_shenqi_default_desc'>
+			<t k='1'><![CDATA[器魂[50级开启]<br/>挑战神器副本兑换获得]]></t>
+			<t k='2'><![CDATA[护锷[50级开启]<br/>挑战神器副本兑换获得]]></t>
+			<t k='3'><![CDATA[玄刃[50级开启]<br/>挑战神器副本兑换获得]]></t>
+			<t k='4'><![CDATA[神胚[神器完美5星开启]<br/>挑战神器副本兑换获得]]></t>
+			<t k='5'><![CDATA[灵珠[神器完美7星开启]<br/>挑战神器副本兑换获得]]></t>
+			<t k='6'><![CDATA[剑柄[神器完美10星开启]<br/>挑战神器副本兑换获得]]></t>
+		</arr>
+		<!-- 神器灵件 升级描述 -->
+		<arr k='arr_shenqi_up_desc'>
+			<t k='1'><![CDATA[点击升级灵件(击杀神器副本可获得升级材料)]]></t>
+			<t k='20'><![CDATA[点击升级灵件(击杀神器副本可获得升级材料)]]></t>
+			<t k='40'><![CDATA[点击升级灵件(击杀神器副本可获得升级材料)]]></t>
+			<t k='60'><![CDATA[点击升级灵件(击杀神器副本可获得升级材料)]]></t>
+			<t k='80'><![CDATA[点击升级灵件(击杀神器副本可获得升级材料)]]></t>
+			<t k='100'><![CDATA[点击升级灵件(击杀神器副本可获得升级材料)]]></t>
+		</arr>
+
+
+		<arr k='arr_wuhun_money_desc'>
+			<t k='0'><![CDATA[元宝：可充值获得。]]></t>
+			<t k='1'><![CDATA[武魂点：完成帮派任务和拜关公、帮派BOSS、帮派迷宫、帮派大乱斗、擎天七煞活动可获得。]]></t>
+			<t k='2'><![CDATA[武魂碎片：和东方白或张三丰比武有几率获得。集齐对应数量，可直接兑换极品武魂]]></t>
+		</arr>
+
+
+		<arr k='arr_jump'>
+			<!-- 幻影数量 目前是6 -->
+			<t k='0'>6</t>
+			<!-- 幻影的最大透明度 -->
+			<t k='1'>0.6</t>
+			<!-- 幻影的模糊度 x方向 单位:像素 -->
+			<t k='2'>1</t>
+			<!-- 幻影的模糊度 y方向 单位:像素 -->
+			<t k='3'>1</t>
+			<!-- 幻影的黑度 0x000000 amount:0.4 -->
+			<t k='4'>0.1</t>
+			<!-- 人物落地的动作 目前是距落点 150 像素，就切换 -->
+			<t k='5'>300</t>
+			<!-- 每个幻影之间的间隔 单位:毫秒 ，是以时间来估算间隔的距离 -->
+			<t k='6'>40</t>
+		</arr>
+
+		<arr k='arr_driveOff'>
+			<!-- 击退基本距离 x方向 (击多远) driveOffDistanceX -->
+			<t k='0'>250</t>
+			<!-- 击退基本距离 y方向 (击多高) driveOffDistanceY -->
+			<t k='1'>0</t>
+			<!-- 击退效果的播放时间总长 driveOffTime 单位:秒 -->
+			<t k='2'>0.5</t>
+			<!-- 击飞出现几率 越大越难 -->
+			<t k='3'>0.6</t>
+			<!-- 由快到慢，还是由慢到快 0 - easeIn,1 - easeOut,2 - easeInOut 3- easeNone -->
+			<t k='4'>0</t>
+		</arr>
+
+		<!-- 后台关闭充值功能后，充值接口隐藏不显示 (大图标不显示) -->
+		<arr k='closeArrByName'>
+			<!-- 首充图标 -->
+			<t k='0'>arrShouChong</t>
+			<!-- 4折宝石礼包 -->
+			<t k='1'>arrMoWenGift</t>
+			<!-- 3.5折强化礼包 -->
+			<t k='2'>arrQiangHuaGift</t>
+			<!-- 消费返利 -->
+			<t k='3'>arrXiaoFeiFanLi</t>
+			<!-- 领取神兽 -->
+			<t k='4'>arrLingShou</t>
+			<!-- 领取神将 -->
+			<t k='5'>arrShenJiang</t>
+			<!-- 神武礼包 -->
+			<t k='6'>arrChongZhi1Gift</t>
+			<!-- 充值礼包 -->
+			<t k='7'></t>
+			<!-- 充值福利 -->
+			<t k='8'>arrKaiFuLiBao</t>
+		</arr>
+
+		<!-- 点折叠按钮，隐藏的大图标 -->
+		<arr k='btnCBArr'>
+
+			<!-- 每日福利 -->
+			<t k='0'>arrHuoYue</t>
+			<!-- 在线礼包 -->
+			<t k='1'>arrZaiXian</t>
+			<!--全民嘉年华 -->
+			<t k='2'>arrKaiFu</t>
+			<!-- 黄钻特权 -->
+			<t k='3'>arrQQYellowGift</t>
+			<!-- 每日首充 -->
+			<t k='4'>arrLoginDayGift</t>
+			<!-- 开服礼包 -->
+			<t k='5'>arrKaiFuLiBao</t>
+			<!-- 邀请好友 -->
+			<t k='6'>arrYaoQing</t>
+			<!-- 武林宝典 -->
+			<t k='7'>arrWuLinBaoDian</t>
+			<!-- 七日登录 -->
+			<t k='8'>arrQiRiDengLu</t>
+			<!-- 寻宝图标 -->
+			<t k='9'>arrXunBao</t>
+			<!-- 连续登陆 -->
+			<t k='10'>arrxinshou_mubiao</t>
+			<!-- 黄钻回馈 -->
+			<t k='11'>arrQQYellowHuiKui</t>
+			<!-- 消费返利 -->
+			<t k='12'>arrXiaoFeiFanLi</t>
+			<!-- 宝石礼包 -->
+			<t k='13'>arrMoWenGift</t>
+			<!-- 升星礼包 -->
+			<t k='14'>arrQiangHuaGift</t>
+			<!-- 充值礼包 -->
+			<t k='15'>arrChongZhi1Gift</t>
+			<!-- 地宫Boss -->
+			<t k='16'>arrDiGongBoss</t>
+			<!-- 暴走答题 -->
+			<t k='17'>arrBaoZouDaTi</t>
+			<!-- 怪物攻城 -->
+			<t k='18'>arrMonsterAttackCity</t>
+			<!-- 帮派迷宫 -->
+			<t k='19'>arrBangPaiMiGong</t>
+			<!-- 战神无双 -->
+			<t k='20'>arrPKKing</t>
+			<!-- 沙城争霸 -->
+			<t k='21'>arrHuangCheng</t>
+			<!-- 兵临城下 -->
+			<t k='22'>arrMonsterAttackCity1</t>
+			<!-- 神龙图腾 -->
+			<t k='23'>arrShenLongTuTeng</t>
+			<!-- 押送军需 -->
+			<t k='24'>arrYaSongJunXu</t>
+			<!-- 帮派大乱斗 -->
+			<t k='25'>arrBangPaiZhan</t>
+			<!-- 屠龙宝刀 -->
+			<t k='26'>arrBaZhuShengJian</t>
+			<!-- 保卫沙城 -->
+			<t k='27'>arrBaoWeiHuangCheng</t>
+			<!-- 决战战场 -->
+			<t k='28'>arrJueZhanZhanChang</t>
+			<!-- 膜拜城主 -->
+			<t k='29'>arrMoBaiChengZhu</t>
+			<!-- 双倍经验(新) -->
+			<t k='30'>arrExpX2</t>
+			<!-- 合服礼包 -->
+			<t k='31'>arrHeFuLiBao</t>
+			<t k='32'>arrHongHuangLianYu</t>
+			<!-- 百服活动 -->
+			>
+			<t k='33'>arrBaiFuHuoDong</t>
+			<!-- 合服沙城礼包第一天 -->
+			>
+			<t k='34'>arrHuangChengLiBao</t>
+			<!-- 合服沙城礼包第二天 -->
+			>
+			<t k='35'>arrHuangChengLiBao1</t>
+			<!-- 合服沙城礼包第三天 -->
+			>
+			<t k='36'>arrHuangChengLiBao2</t>
+
+			<t k='37'>arrHuangZuanZhuanFu</t>
+			<!-- 首充 -->
+			<t k='38'>arrShouChong </t>
+			<!-- 怒斩boss -->
+			<t k='39'>arrNuSha</t>
+			<!-- 超级返利日 -->
+			<t k='40'>arrFanLiRi</t>
+			<!-- 金券大放送 -->
+			<t k='41'>arrJinQuanDaFangSong</t>
+			<!-- 充值返利日 -->
+			<t k='42'>arrChongZhiFanLiRi</t>
+			<!-- 充值返利公司自己的 -->
+			<t k='43'>arrChaoZhiFanLi</t>
+			<!-- 十分-->
+			<t k='44'>arrShiFenYouLi</t>
+		</arr>
+
+		<!-- 全部的大图标名字，6个一排，含排序功能 ， -->
+		<arr k='arrName'>
+
+			<!-- 每日福利 -->
+			<t k='0'>arrHuoYue</t>
+			<!-- 在线礼包 -->
+			<t k='1'>arrZaiXian</t>
+			<!--全民嘉年华 -->
+			<t k='2'>arrKaiFu</t>
+			<!-- 黄钻特权 -->
+			<t k='3'>arrQQYellowGift</t>
+			<!-- 每日首充 -->
+			<t k='4'>arrLoginDayGift</t>
+			<!-- 开服礼包 -->
+			<t k='5'>arrKaiFuLiBao</t>
+			<!-- 邀请好友 -->
+			<t k='6'>arrYaoQing</t>
+			<!-- 武林宝典 -->
+			<t k='7'>arrWuLinBaoDian</t>
+			<!-- 七日登录 -->
+			<t k='8'>arrQiRiDengLu</t>
+			<!-- 寻宝图标 -->
+			<t k='9'>arrXunBao</t>
+			<!-- 连续登陆 -->
+			<t k='10'>arrxinshou_mubiao</t>
+			<!-- 黄钻回馈 -->
+			<t k='11'>arrQQYellowHuiKui</t>
+			<!-- 消费返利 -->
+			<t k='12'>arrXiaoFeiFanLi</t>
+			<!-- 宝石礼包 -->
+			<t k='13'>arrMoWenGift</t>
+			<!-- 升星礼包 -->
+			<t k='14'>arrQiangHuaGift</t>
+			<!-- 充值礼包 -->
+			<t k='15'>arrChongZhi1Gift</t>
+			<!-- 地宫Boss -->
+			<t k='16'>arrDiGongBoss</t>
+			<!-- 暴走答题 -->
+			<t k='17'>arrBaoZouDaTi</t>
+			<!-- 怪物攻城 -->
+			<t k='18'>arrMonsterAttackCity</t>
+			<!-- 帮派迷宫 -->
+			<t k='19'>arrBangPaiMiGong</t>
+			<!-- 战神无双 -->
+			<t k='20'>arrPKKing</t>
+			<!-- 沙城争霸 -->
+			<t k='21'>arrHuangCheng</t>
+			<!-- 兵临城下 -->
+			<t k='22'>arrMonsterAttackCity1</t>
+			<!-- 神龙图腾 -->
+			<t k='23'>arrShenLongTuTeng</t>
+			<!-- 押送军需 -->
+			<t k='24'>arrYaSongJunXu</t>
+			<!-- 帮派大乱斗 -->
+			<t k='25'>arrBangPaiZhan</t>
+			<!-- 屠龙宝刀 -->
+			<t k='26'>arrBaZhuShengJian</t>
+			<!-- 保卫沙城 -->
+			<t k='27'>arrBaoWeiHuangCheng</t>
+			<!-- 决战战场 -->
+			<t k='28'>arrJueZhanZhanChang</t>
+			<!-- 膜拜城主 -->
+			<t k='29'>arrMoBaiChengZhu</t>
+			<!-- 双倍经验(新) -->
+			<t k='30'>arrExpX2</t>
+			<!-- 合服礼包 -->
+			<t k='31'>arrHeFuLiBao</t>
+			<t k='32'>arrHongHuangLianYu</t>
+			<!-- 百服活动 -->
+			<t k='33'>arrBaiFuHuoDong</t>
+			<!-- 合服沙城礼包第一天 -->
+			<t k='34'>arrHuangChengLiBao</t>
+			<!-- 合服沙城礼包第二天 -->
+			<t k='35'>arrHuangChengLiBao1</t>
+			<!-- 合服沙城礼包第三天 -->
+			<t k='36'>arrHuangChengLiBao2</t>
+			<!-- 黄钻专服 -->
+			<t k='37'>arrHuangZuanZhuanFu</t>
+			<!-- 首充 -->
+			<t k='38'>arrShouChong </t>
+			<t k='39'>arrNuSha</t>
+			<!-- 乐翻天 -->
+			<t k='40'>arrLeFanTian</t>
+			<!-- 端午 -->
+			<t k='41'>arrDuanWuHuoDong</t>
+			<!-- 端午 -->
+			<t k='42'>arrVipGuide</t>
+			<!-- 超级返利日 -->
+			<t k='43'>arrFanLiRi</t>
+			<!-- 金券大放送 -->
+			<t k='44'>arrJinQuanDaFangSong</t>
+			<!-- 充值返利日 -->
+			<t k='45'>arrChongZhiFanLiRi</t>
+			<!-- 充值返利公司自己的 -->
+			<t k='46'>arrChaoZhiFanLi</t>
+			<!-- 投资-->
+			<t k='47'>arrTouZi</t>
+			<!-- 十分-->
+			<t k='48'>arrShiFenYouLi</t>
+			<!-- 十分-->
+			<t k='49'>arrQuanGuoYaYun</t>
+		</arr>
+
+		<arr k='xi_you_follow_list'>
+			<t k='0'>31000068</t>
+			<t k='1'>31000069</t>
+			<t k='2'>31000070</t>
+			<t k='3'>31000071</t>
+		</arr>
+
+		<arr k='xi_you_leader'>
+			<t k='0'>31000067</t>
+		</arr>
+
+		<arr k='xi_you'>
+			<t k='0'>31000019</t>
+		</arr>
+
+		<arr k='MoveNpcStatus_No_Show_Map'>
+			<!--连环坞 -->
+			<t k='0'>20210015</t>
+			<!-- 连环坞 -->
+			<t k='1'>20210016</t>
+			<!-- 连环坞 -->
+			<t k='2'>20210017</t>
+			<!-- 连环坞 -->
+			<t k='3'>20210018</t>
+			<!-- 连环坞 -->
+			<t k='4'>20210019</t>
+			<!-- 连环坞 -->
+			<t k='5'>20210020</t>
+			<!-- 连环坞 -->
+			<t k='6'>20210021</t>
+			<!-- 达摩堂 -->
+			<t k='7'>20210022</t>
+			<!-- 达摩堂 -->
+			<t k='8'>20210023</t>
+			<!-- 达摩堂 -->
+			<t k='9'>20210024</t>
+			<!-- 达摩堂 -->
+			<t k='10'>20210025</t>
+			<!-- 达摩堂 -->
+			<t k='11'>20210026</t>
+			<!-- 达摩堂 -->
+			<t k='12'>20210027</t>
+			<!-- 达摩堂 -->
+			<t k='13'>20210028</t>
+			<!-- 金沙滩 -->
+			<t k='14'>20210029</t>
+			<!-- 金沙滩 -->
+			<t k='15'>20210030</t>
+			<!-- 金沙滩 -->
+			<t k='16'>20210031</t>
+			<!-- 金沙滩 -->
+			<t k='17'>20210032</t>
+			<!-- 金沙滩 -->
+			<t k='18'>20210033</t>
+			<!-- 金沙滩 -->
+			<t k='19'>20210034</t>
+			<!-- 金沙滩 -->
+			<t k='20'>20210035</t>
+			<!-- 天剑峰 -->
+			<t k='21'>20210036</t>
+			<!-- 天剑峰 -->
+			<t k='22'>20210037</t>
+			<!-- 天剑峰 -->
+			<t k='23'>20210038</t>
+			<!-- 天剑峰 -->
+			<t k='24'>20210039</t>
+			<!-- 天剑峰 -->
+			<t k='25'>20210040</t>
+			<!-- 天剑峰 -->
+			<t k='26'>20210041</t>
+			<!-- 天剑峰 -->
+			<t k='27'>20210042</t>
+			<!-- 天王殿 -->
+			<t k='28'>20210043</t>
+			<!-- 天王殿 -->
+			<t k='29'>20210044</t>
+			<!-- 天王殿 -->
+			<t k='30'>20210045</t>
+			<!-- 天王殿 -->
+			<t k='31'>20210046</t>
+			<!-- 天王殿 -->
+			<t k='32'>20210047</t>
+			<!-- 天王殿 -->
+			<t k='33'>20210048</t>
+			<!-- 天王殿 -->
+			<t k='34'>20210049</t>
+			<!-- 万魔窟 -->
+			<t k='35'>20210050</t>
+			<!-- 万魔窟 -->
+			<t k='36'>20210051</t>
+			<!-- 万魔窟 -->
+			<t k='37'>20210052</t>
+			<!-- 万魔窟 -->
+			<t k='38'>20210053</t>
+			<!-- 万魔窟 -->
+			<t k='39'>20210054</t>
+			<!-- 万魔窟 -->
+			<t k='40'>20210055</t>
+			<!-- 万魔窟 -->
+			<t k='41'>20210056</t>
+			<!-- 秦皇陵 -->
+			<t k='42'>20210057</t>
+			<!-- 秦皇陵 -->
+			<t k='43'>20210058</t>
+			<!-- 秦皇陵 -->
+			<t k='44'>20210059</t>
+			<!-- 秦皇陵 -->
+			<t k='45'>20210060</t>
+			<!-- 秦皇陵 -->
+			<t k='46'>20210061</t>
+			<!-- 秦皇陵 -->
+			<t k='47'>20210062</t>
+			<!-- 秦皇陵 -->
+			<t k='48'>20210063</t>
+		</arr>
+
+		<arr k='WaftNumber_No_Show_Map'>
+			<t k='0'>20220017</t>
+		</arr>
+
+		<arr k='arr_chongzhi1'>
+			<t k='0'>60100130</t>
+			<t k='1'>60100131</t>
+			<t k='2'>60100132</t>
+		</arr>
+
+
+		<!-- 传送相关功能 标题 -->
+		<arr k='arr_ChuanSong_Title'>
+			<t k='0'><![CDATA[<font color='#ff9600'>城市地区</font><br>]]></t>
+			<t k='1'><![CDATA[<font color='#ff9600'>地宫区域</font><br>]]></t>
+			<t k='2'><![CDATA[<font color='#ff9600'>活动地图</font><br>]]></t>
+		</arr>
+
+		<!-- 传送相关功能 城市区域 -->
+		<arr k='arr_ChuanSong_ChengShi'>
+			<t k='0'><![CDATA[<font color='#8afd5c'><u><a href='event:1@id'>比 奇 城</a></u></font><font color='#ffee91'>(20级)</font>    ]]></t>
+			<t k='1'><![CDATA[<font color='#8afd5c'><u><a href='event:2@id'>土    城</a></u></font><font color='#ffee91'>(30级)</font>    ]]></t>
+			<t k='2'><![CDATA[<font color='#8afd5c'><u><a href='event:3@id'>沙    城</a></u></font><font color='#ffee91'>(40级)</font><br>]]></t>
+		</arr>
+
+		<!-- 传送相关功能 地宫区域 -->
+		<arr k='arr_ChuanSong_DiGong'>
+			<t k='0'><![CDATA[<font color='#8afd5c'><u><a href='event:4@id'>矿    洞</a></u></font><font color='#ffee91'>(30级)</font>    ]]></t>
+			<t k='1'><![CDATA[<font color='#8afd5c'><u><a href='event:5@id'>沃玛寺庙</a></u></font><font color='#ffee91'>(40级)</font>    ]]></t>
+			<t k='2'><![CDATA[<font color='#8afd5c'><u><a href='event:6@id'>石 墓 阵</a></u></font><font color='#ffee91'>(50级)</font><br>]]></t>
+			<t k='3'><![CDATA[<font color='#8afd5c'><u><a href='event:7@id'>赤月峡谷</a></u></font><font color='#ffee91'>(60级)</font>    ]]></t>
+			<t k='4'><![CDATA[<font color='#8afd5c'><u><a href='event:8@id'>封 魔 谷</a></u></font><font color='#ffee91'>(70级)</font>    ]]></t>
+			<t k='5'><![CDATA[<font color='#8afd5c'><u><a href='event:9@id'>绝 命 谷</a></u></font><font color='#ffee91'>(80级)</font><br>]]></t>
+			<t k='6'><![CDATA[<font color='#8afd5c'><u><a href='event:10@id'>潘夜石窟</a></u></font><font color='#ffee91'>(80级)</font>    ]]></t>
+			<t k='7'><![CDATA[<font color='#8afd5c'><u><a href='event:14@id'>祖玛神庙</a></u></font><font color='#ffee91'>(2转)</font><br>]]></t>
+		</arr>
+
+		<!-- 传送相关功能 活动地图 -->
+		<arr k='arr_ChuanSong_HuoDong'>
+			<t k='0'><![CDATA[<font color='#8afd5c'><u><a href='event:11@id'>安全挂机</a></u></font><font color='#ffee91'>(40级)</font>    ]]></t>
+			<t k='1'><![CDATA[<font color='#8afd5c'><u><a href='event:12@id'>V I P挂机</a></u></font><font color='#ffee91'>(VIP)</font>    ]]></t>
+			<t k='2'><![CDATA[<font color='#8afd5c'><u><a href='event:13@id'>BOSS巢穴</a></u></font><font color='#ffee91'>(VIP)</font><br>]]></t>
+			<t k='3'><![CDATA[<font color='#8afd5c'><u><a href='event:15@id'>神 龙 殿</a></u></font><font color='#ffee91'>(卷轴)</font><br>]]></t>
+		</arr>
+		<t k='hefu_huang_cheng'><![CDATA[活动介绍：活动期间，合服后第一次占领沙城、累计2次、累计4次占领沙城的帮派帮主可任意挑选以下一件装备作为奖励。]]></t>
+		<t k='hefu_chong_zhi'><![CDATA[活动介绍：合服5天内充值指定金额并且将元宝提取到本角色下，可免费领取海量豪礼。]]></t>
+		<t k='hefu_chong_desc1'><![CDATA[已充]]></t>
+		<t k='hefu_chong_desc'><![CDATA[再充值<font color='#50eb40'>#param</font>元宝，即可领取第<font color='#50eb40'>#param</font>个充值大礼包。]]></t>
+
+		<t k='40000_xinghun_kaiqi'><![CDATA["点击开启 "+_star+" - "+#param+" 格子<br>需要花费 "+#param+" 元宝"]]></t>
+		<t k='40001_xinghun_bag_full'>武魂包裹已满，无法拾取！</t>
+		<t k='40002_guaji_bag_full'>包裹已满，无法拾取！</t>
+		<t k='40010_guaji_max_time'>可用挂机时间累积已达最大值，请使用完后再进行补充！</t>
+		<t k='40011_guaji_huafei'>您要花费30元宝，补充3小时挂机时间吗？</t>
+		<t k='40012_guaji_vip'>VIP玩家才可以使用该功能！</t>
+		<t k='40012_jingjie_vip'>没有丹药可服用！</t>
+		<t k='40013_OpenStarCompose'><![CDATA[花费#param元宝，扩充#param格武魂背包格吗？]]></t>
+		<t k='40014_xinghun_up_vip'><![CDATA[VIP3级才可享受该特权。]]></t>
+		<t k='40015_btn_guan_xing'>消耗5000金币，进行一次武魂摘取</t>
+		<t k='40016_btn_fu_xing_gao_zhao'><![CDATA[消耗200元宝，每次必定获得<font color='#f44cfb'>紫色</font>、<font color='#ff9c10'>橙色</font>武魂、超高经验的武魂]]></t>
+		<t k='40017_btn_mo_wen_he_cheng'>需要5个相同魔纹才可以进行合成！</t>
+		<t k='40018_jingjie_buy_and_eat_pill'><![CDATA[<font>购买【#param】并服用，支付#param元宝。</font><br/><font>提示：所购买的丹药等级与您的星界的等级相对应。</font>]]></t>
+		<t k='40019_xinghun_yijian_hecheng'>
+			合成武魂，可提高武魂等级、品质，使武魂更强大！进行合成吗？
+			<br />
+			同类武魂合成会提高武魂的等级，武魂等级越高所带来的属性值也越高。
+		</t>
+		<t k='40020_xinghun_hecheng'><![CDATA[【#param】将吞噬【#param】获得 #param 点经验]]></t>
+		<t k='40021_jingjie_danyaobuzu'><![CDATA[没有丹药可服用!可使用 #param 元宝购买丹药。]]></t>
+		<t k='40022_xinghun_yijianguanxing_tip'>星神转世自动为您获取武魂，直到观星台达到存储上限。</t>
+		<t k='40023_npc_shop_mowen_2'>您需通过魔天万界内碧落黄泉(LV30)区域，才可开启此页签。</t>
+		<t k='40023_npc_shop_mowen_3'>您需通过魔天万界内十方绝域(LV40)区域，才可开启此页签。</t>
+		<t k='40023_npc_shop_mowen_4'>您需通过魔天万界内英雄冢(LV50)区域，才可开启此页签。</t>
+		<t k='40023_npc_shop_mowen_5'>您需通过魔天万界内魔泉弱水(LV60)区域，才可开启此页签。</t>
+		<t k='40023_npc_shop_mowen_6'>您需通过魔天万界内都天魔煞(LV70)区域，才可开启此页签。</t>
+		<t k='40024_world_chat_under_10'>世界喊话20级以上开放!</t>
+		<t k='40025_huode_xin_zhuangbei'>恭喜您获得新装备</t>
+		<t k='40026_huode_xin_zhuangbei'>您可使用#param级礼包</t>
+		<t k='40027_change_quality'>更改当前的游戏画面品质需要刷新页面重新登录！</t>
+		<t k='40028_fang_ru_mo_wen'>在此处放入魔纹</t>
+		<t k='40029_xinghun_yijian_guanxing_vip'><![CDATA[自动为您获取武魂，直到观星台达到存储上限，达到VIP3时，即可享受此尊贵功能，是否提升VIP？]]></t>
+		<t k='40030_xinghun_fuxing_gaozhao_vip'><![CDATA[大幅度提高摘取极品武魂的概率，达到VIP5时，即可享受此尊贵功能，是否提升VIP？]]></t>
+		<t k='40031_mowen_fangru_cichu'>请选择装备放入此处</t>
+		<t k='40032_baodian_'>请选择装备放入此处</t>
+		<t k='40033_mowen_fangru_cichu'>请选择装备放入此处</t>
+		<t k='40034_xuanxian_baodian_shengji_1'>完成地宫降魔可获得#param经验</t>
+		<t k='40035_xuanxian_baodian_shengji_2'>每天下经验副本可获得海量经验</t>
+		<t k='40036_xuanxian_baodian_zhuanqian_1'>您还可以兑换#param次，共计#param金币</t>
+		<t k='40037_xuanxian_baodian_zhuanqian_2'>完成门派建设可以获得#param金币</t>
+		<t k='40038_xuanxian_baodian_zhuanqian_3'>每天使用藏宝图最高可获得#param金币</t>
+		<t k='40039_xuanxian_baodian_huoban_1'>对BOSS的伤害越高，所获得的威望越多</t>
+		<t k='40040_xuanxian_baodian_huoban_2'>20点开始活动，连胜越高获得威望越高</t>
+		<t k='40041_xuanxian_baodian_PK_1'>每晚8点开始活动，激烈PK获丰厚奖励</t>
+		<t k='40042_xuanxian_baodian_PK_2'>每晚7点开始活动，掠夺敌方阵营的宝箱</t>
+		<t k='40043_xuanxian_baodian_PK_3'>每晚9点开始活动，与敌对阵营进行PK</t>
+		<t k='40044_mowen_shengji'>是否支付#param元宝,升级您当前的魔纹</t>
+		<t k='40045_jiazu_op'>缺少#param道具，是否消耗#param元宝完成操作？(完成我爱我家环任务，可获得#param道具)</t>
+		<t k='40046_jiazu_jianzhu_vip3'>VIP3级以上玩家，才可以为帮派捐助资金。提升VIP等级吗？</t>
+		<t k='40047_jiazu_jiaoshui'><![CDATA[浇水成功，获得5贡献、500资金、大量金币]]></t>
+		<t k='40048_jiazu_shifei'><![CDATA[施肥成功，获得5贡献、500资金、大量经验]]></t>
+		<t k='40049_jiazu_zhuochong'><![CDATA[除虫成功，获得5贡献、500资金、大量威望]]></t>
+		<t k='40050_jiazu_zhizhun_quanxian_tishi'>帮派排行榜前三名的玩家且战力最高前10名玩家才可参与该活动</t>
+		<t k='40051_jiazu_tuichu'><![CDATA[<font color='#FF0000'>退出帮派后，帮派技能和标识将被删除，帮派贡献也将被清空。在2小时内无法加入新帮派。确认退出帮派吗？</font>]]></t>
+		<t k='40052_mowen_gailv'>当前成功几率为#param%</t>
+		<t k='40053_mowen_tigao_gailv'>100%成功率#param</t>
+		<t k='40054_mowen_yuanbao_daiti'>元宝代替魔纹#param</t>
+		<t k='40055_mowen_shengji_chenggong'>合成成功，您获得#param</t>
+		<t k='40056_mowen_shengji_shibai'>合成失败</t>
+		<t k='40057_mowen_txt_tip7'><![CDATA[魔纹可在<font color='#18FF02'><u><a href='event:1@txt_tip'>神秘商店</a></u></font>或<font color='#18FF02'><u><a href='event:2@txt_tip'>魔天万界</a></u></font>中获得]]></t>
+		<t k='40058_mowen_callback_tip'><![CDATA[本次合成概率为80%，是否继续进行合成？<br>合成失败后魔纹会降低一级]]></t>
+		<t k='40059_kapian_shouji_jindu'>收集进度</t>
+		<t k='40060_kapian_weizhi'>未知卡片</t>
+		<t k='40061_kapian_quanbu_huode'>收集全部卡片即可获得</t>
+		<t k='40062_bang_shang_wu_ming'>榜上无名</t>
+		<t k='40063_kaiqi_1'>玄剑诛魔开启等级为40级</t>
+		<t k='40064_kaiqi_2'>冰海急斩开启等级为45级</t>
+		<t k='40065_kaiqi_3'>魔域求生开启等级为50级</t>
+		<t k='40066_kaiqi_4'>七战开启等级为55级</t>
+		<t k='40067_RewardOfAddMoney_1'>恭喜您，已经达到最高VIP等级！</t>
+		<t k='40068_RewardOfAddMoney_2'>再充值</t>
+		<t k='40069_RewardOfAddMoney_3'>元宝 ， 您就能领取 </t>
+		<t k='400610_RewardOfAddMoney_4'>内容</t>
+		<t k='40062_fuben_sayToWorld'><![CDATA[#param已有#param人,缺#param人 #param {E@我要加入@fffb80@12@#param@#param}]]></t>
+		<t k='40063_huo_dong_pk'><![CDATA[此称号尚未被摘取]]></t>
+		<t k='40064_leave_instance'><![CDATA[<font color='#FF0000'>活动副本尚未结束、奖励尚未领取，确定退出吗？</font>]]></t>
+		<t k='40064_leave_dahanghai'><![CDATA[<font color='#FF0000'>离开活动，无法获得奖励且当天无法再次参与！真的要离开吗？</font>]]></t>
+		<t k='40064_leave_duomaomao'><![CDATA[<font color='#FF0000'>确定退出活动地图吗，退出后不能再次进入。</font>]]></t>
+		<t k='40064_leave_wuzilianzhu'><![CDATA[<font color='#FF0000'>确认要离开活动副本吗，离开后，将无法再次进入。</font>]]></t>
+		<t k='40064_leave_jueZhanZhanChang'><![CDATA[<font color='#FF0000'>确认要离开活动副本吗，离开后，将无法再次进入。</font>]]></t>
+		<t k='40065_qilin_renshu_1'><![CDATA[当前支持火麒麟的人数是：#param人]]></t>
+		<t k='40065_qilin_renshu_2'><![CDATA[当前支持玉麒麟的人数是：#param人]]></t>
+		<t k='40065_QQ_Yellow_1'><![CDATA[已经领取]]></t>
+		<t k='40065_QQ_Yellow_2'><![CDATA[等级不足]]></t>
+		<t k='40065_QQ_Yellow_3'><![CDATA[可以领取]]></t>
+		<t k='40065_QQ_Yellow_4'><![CDATA[$2000可领]]></t>
+		<t k='40066_getQB_1'><![CDATA[恭喜你升到90级，请联系客服领取奖励！(QQ:#param  电话:#param)]]></t>
+		<t k='40066_getQB_2'><![CDATA[尚未达到90级，请继续努力！]]></t>
+		<t k='40066_getQB_3'><![CDATA[感谢您参加活动，请在#param领取奖励！]]></t>
+		<t k='40067_getYB_1'><![CDATA[没有可兑换的元宝]]></t>
+		<t k='40068_mowen_checheng'><![CDATA[合成魔纹需要消耗#param元宝]]></t>
+		<t k='40069_jingjie_zengjia_pinjie'><![CDATA[当前星界可服用<font color='#FF9900'>【#param】</font>以上丹药]]></t>
+		<t k='40069_jingjie_zengjia_pinzi'>品</t>
+		<t k='40070_Tf_tishi_chaolianjie_string_0'><![CDATA[【装备】可强化(<font color='#18FF02'><u><a href='event:0@txt_tip'>还有#param件装备</a></u></font>)<br/>]]></t>
+		<t k='40070_Tf_tishi_chaolianjie_string_1'><![CDATA[【属性】可激活(<font color='#18FF02'><u><a href='event:1@txt_tip'>还有#param件装备</a></u></font>)<br/>]]></t>
+		<t k='40070_Tf_tishi_chaolianjie_string_2'><![CDATA[【装备】可升级(<font color='#18FF02'><u><a href='event:2@txt_tip'>还有#param件装备</a></u></font>)<br/>]]></t>
+		<t k='40070_Tf_tishi_chaolianjie_string_3'><![CDATA[【星界】可提升(<font color='#18FF02'><u><a href='event:3@txt_tip'>#param可提升</a></u></font>)<br/>]]></t>
+		<t k='40070_Tf_tishi_chaolianjie_string_4'><![CDATA[【魔纹】可镶嵌(<font color='#18FF02'><u><a href='event:4@txt_tip'>还有#param件装备</a></u></font>)<br/>]]></t>
+		<t k='40070_Tf_tishi_chaolianjie_string_5'><![CDATA[【魔纹】可升级(<font color='#18FF02'><u><a href='event:5@txt_tip'>还有#param件装备</a></u></font>)<br/>]]></t>
+		<t k='40070_Tf_tishi_chaolianjie_string_6'><![CDATA[【武魂】可镶嵌(<font color='#18FF02'><u><a href='event:6@txt_tip'>还有#param个栏位</a></u></font>)<br/>]]></t>
+		<t k='40070_Tf_tishi_chaolianjie_string_7'><![CDATA[【武魂】可升级(<font color='#18FF02'><u><a href='event:7@txt_tip'>还有#param个武魂</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700687'><![CDATA[【神树】可浇水(<font color='#18FF02'><u><a href='event:0@msg_daily_warnning'>还有#param次</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700688'><![CDATA[【神树】可施肥(<font color='#18FF02'><u><a href='event:1@msg_daily_warnning'>还有#param次</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700689'><![CDATA[【神树】可捉虫(<font color='#18FF02'><u><a href='event:2@msg_daily_warnning'>还有#param次</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700685'><![CDATA[【护送】可护送(<font color='#18FF02'><u><a href='event:3@msg_daily_warnning'>美人#param次</a></u></font><font color='#E17D24'><u><a href='event:3@msg_daily_warnning_chuan'>{传}</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700627'><![CDATA[【膜拜】可膜拜(<font color='#18FF02'><u><a href='event:4@msg_daily_warnning'>镇国神将#param次</a></u></font><font color='#E17D24'><u><a href='event:4@msg_daily_warnning_chuan'>{传}</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700628'><![CDATA[【膜拜】可膜拜(<font color='#18FF02'><u><a href='event:5@msg_daily_warnning'>战神无双#param次</a></u></font><font color='#E17D24'><u><a href='event:5@msg_daily_warnning_chuan'>{传}</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700629'><![CDATA[【膜拜】可膜拜(<font color='#18FF02'><u><a href='event:6@msg_daily_warnning'>沙城至尊#param次</a></u></font><font color='#E17D24'><u><a href='event:6@msg_daily_warnning_chuan'>{传}</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700690'><![CDATA[【魔天】可挑战(<font color='#18FF02'><u><a href='event:7@msg_daily_warnning'>碧落黄泉BOSS#param个</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700691'><![CDATA[【魔天】可挑战(<font color='#18FF02'><u><a href='event:7@msg_daily_warnning'>十方绝域BOSS#param个</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700692'><![CDATA[【魔天】可挑战(<font color='#18FF02'><u><a href='event:7@msg_daily_warnning'>魔泉弱水BOSS#param个</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700693'><![CDATA[【魔天】可挑战(<font color='#18FF02'><u><a href='event:7@msg_daily_warnning'>英雄冢BOSS#param个</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700694'><![CDATA[【魔天】可挑战(<font color='#18FF02'><u><a href='event:7@msg_daily_warnning'>都天魔煞BOSS#param个</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700695'><![CDATA[【魔天】可挑战(<font color='#18FF02'><u><a href='event:7@msg_daily_warnning'>魔域九天BOSS#param个</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700700'><![CDATA[【膜拜】可膜拜(<font color='#18FF02'><u><a href='event:4@msg_daily_warnning'>镇国神将</a></u></font><font color='#E17D24'><u><a href='event:4@msg_daily_warnning_chuan'>{传}</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700701'><![CDATA[【膜拜】可膜拜(<font color='#18FF02'><u><a href='event:5@msg_daily_warnning'>战神无双</a></u></font><font color='#E17D24'><u><a href='event:5@msg_daily_warnning_chuan'>{传}</a></u></font>)<br/>]]></t>
+		<t k='40071_Tf_msg_daily_warnning_80700702'><![CDATA[【膜拜】可膜拜(<font color='#18FF02'><u><a href='event:6@msg_daily_warnning'>沙城至尊</a></u></font><font color='#E17D24'><u><a href='event:6@msg_daily_warnning_chuan'>{传}</a></u></font>)<br/>]]></t>
+		<t k='40072_husong_sex_girl_jiangli'><![CDATA[经验:#param  金币:#param]]></t>
+		<t k='40073_Tf_msg_daily_warnning_complete'><![CDATA[今天的种树、护送、膜拜已全部完成了！]]></t>
+		<t k='40074_QQ_huang_zuan_xinshou_yiling'><![CDATA[$2000新手礼包已经领取!]]></t>
+		<t k='40074_Consume_Rebate_Remainder_Time'><![CDATA[(活动剩余时间，#param)]]></t>
+		<t k='40074_Consume_Rebate_Desc'><![CDATA[在活动期间，累积消费元宝达到相应数量时，即可领取对应礼包。]]></t>
+		<t k='40075_shenmi_huodong'><![CDATA[神秘活动]]></t>
+		<t k='40076_xiaohao_yuanbao'><![CDATA[消耗:#param元宝]]></t>
+		<t k='40077_shen_tie_sui_pian'><![CDATA[]]>
+		</t>
+		<t k='40078_mowen_vip_libao'><![CDATA[同件装备不可封印同类魔纹，<u><a href='event:0@click'>VIP礼包免费送大量魔纹。</a></u>]]></t>
+		<t k='40079_shenqi_renwu'><![CDATA[接取【神器传说】任务]]></t>
+		<t k='40080_DayHuoDong_condition'><![CDATA[<font color='#FF0000'>等级开启:#param级-#param级</font>]]></t>
+		<t k='40081_QQ_YD_ShenLi_desc'><![CDATA[<font size='14'>$2000之力获得说明:</font><br/>1.当玩家成为$2000后，重新登录即可获得$2000之力属性效果<br/>2.当玩家$2000过期时，$2000之力所获得的额外属性将失效]]></t>
+		<t k='40082_QQ_YD_huoban_0'><![CDATA[<font color='#FFE21D'>生命资质	800-1325</font><br/><font color='#F64BFC'>物攻资质	640-1458</font><br/><font color='#00fffc'>魔攻资质	840-1258</font><br/><font color='#66FF00'>防御资质	880-1590</font>]]></t>
+		<t k='40082_QQ_YD_huoban_1'><![CDATA[<font color='#FFE21D'>领取条件：<br/>在本页开通$2000或续费$2000即可领取，机会只有一次哦！(若无法领取，请重新登录即可)</font>]]></t>
+		<t k='40081_XianDaoHui_Di_Ji_jie'><![CDATA[第#param届]]></t>
+		<t k='40082_JiaZu_sayToWorld_0'><![CDATA[[#param]广招天下英雄，同生共死真兄弟，共闯三界鬼神泣。 {E@我要加入@fffb80@14@#param}]]></t>
+		<t k='40082_JiaZu_sayToWorld_1'><![CDATA[[#param]广招天下豪杰，大碗吃肉、大碗喝酒，无兄弟不帮派。 {E@我要加入@fffb80@14@#param}]]></t>
+		<t k='40082_JiaZu_sayToWorld_2'><![CDATA[[#param]求高端精英加入共谋天下，好男儿自当建功立业战死黄沙。 {E@我要加入@fffb80@14@#param}]]></t>
+		<t k='40083_Da_Hai_Zhan_0'><![CDATA[青龙军:#param分]]></t>
+		<t k='40083_Da_Hai_Zhan_1'><![CDATA[朱雀军:#param分]]></t>
+		<t k='40083_Da_Hai_Zhan_2'><![CDATA[玄武军:#param分]]></t>
+		<t k='40083_Da_Hai_Zhan_3'><![CDATA[青龙主将:(#param)]]></t>
+		<t k='40083_Da_Hai_Zhan_4'><![CDATA[朱雀主将:(#param)]]></t>
+		<t k='40083_Da_Hai_Zhan_5'><![CDATA[玄武主将:(#param)]]></t>
+		<t k='40084_Da_Hai_Zhan_0'><![CDATA[分组中请等待...]]></t>
+		<t k='40084_Da_Hai_Zhan_1'><![CDATA[前方等待人数：#param人]]></t>
+		<t k='40085_pet_XiZiZhi_XiaoHao'><![CDATA[锁定消耗#param元宝]]></t>
+		<t k='40085_pet_UnSeal_Tip_Desc'><![CDATA[宠物每次升级，都会获得封印属性。只有解封才可激活属性。今天还可解封10次。]]></t>
+		<t k='40085_pet_Ralent_Tip_Desc'><![CDATA[宠物资质越高，战斗力越高，使用宠物资质丹或元宝可以为宠物洗出更高资质。]]></t>
+		<t k='40085_pet_Enhance_Tip_Desc'><![CDATA[星级是宠物重要属性之一，提升星级可提高宠物的基础属性。]]></t>
+		<t k='40085_pet_Quality_Tip_Desc'><![CDATA[宠物的品质越高，宠物的战斗力越强]]></t>
+		<t k='40085_pet_XiPinZhi_ShangCheng'><![CDATA[金币替代【#param金币】]]></t>
+		<t k='40085_pet_qianghua_ShangCheng'><![CDATA[元宝替代【#param元宝】]]></t>
+
+		<t k='40085_pet_ChongZhiDan_0'><![CDATA[确定消耗一颗宠物天赋重置丹，重新分配所有潜力点吗？]]></t>
+		<t k='40085_pet_ChongZhiDan_1'><![CDATA[缺少宠物天赋重置丹，确定花费#param元宝重新分配所有潜力点吗？]]></t>
+		<t k='40085_pet_Skill_Lock'><![CDATA[锁定消耗#param个真不换]]></t>
+		<t k='40085_pet_tf_current_desc'><![CDATA[强化可额外获得属性]]></t>
+
+		<t k='40086_wuhun_free_times'><![CDATA[今日还可免费比武#param次  宗师级别越高获得高级武魂几率越大]]></t>
+		<t k='40086_wuhun_QueryLog'><![CDATA[#param获得#param个<font color="#param">#param</font>]]></t>
+		<t k='40086_wuhun_QiYu'><![CDATA[确定消耗50万金币，直接与宗师东方白比武吗？]]></t>
+		<t k='40086_wuhun_duihuan'><![CDATA[兑换需要#param个#param]]></t>
+		<t k='40086_wuhun_jingyan'><![CDATA[武魂经验]]></t>
+		<t k='40086_wuhun_full'><![CDATA[武魂存储位置已满]]></t>
+		<t k='40089_XunBaoChouJiang'><![CDATA[#param获得#param个<font color="#param"><u><a href='event:#param'>#param</a></u></font>]]></t>
+		<t k='40089_XunBaoChouJiang_1_1'><![CDATA[获得#param个<font color="#param"><u><a href='event:#param'>#param</a></u></font>]]></t>
+		<t k='40089_XunBaoChouJiang_2'><![CDATA[<font color='#8afd5c'><u><a href='event:0@click'>领取</a></u></font>]]></t>
+		<t k='40089_XunBaoChouJiang_3'><![CDATA[<font color='#fff5d2'>#param阶奖励</font>]]></t>
+		<t k='40089_XunBaoChouJiang_4'><![CDATA[<font color='#8afd5c'>明天再来</font>]]></t>
+		<t k='40090_ZhiZun_TeQuan_3'><![CDATA[确认花费#param元宝购买vip卡]]></t>
+		<t k='40090_ZhiZun_TeQuan_2'><![CDATA[确认花费#param元宝购买vip卡]]></t>
+		<t k='40090_ZhiZun_TeQuan_1'><![CDATA[确认花费#param元宝购买vip卡]]></t>
+
+		<t k='40092_pet_0'><![CDATA[是否消耗10元宝获得一个宠物栏位]]></t>
+		<t k='40093_wuzilianzhu_lianji_0'><![CDATA[<font color='#FF0000'>连击#param次</font>]]></t>
+		<t k='40093_wuzilianzhu_lianji_1'><![CDATA[<font color='#66FF00'>连击#param次</font>]]></t>
+
+		<t k='40094_pet_zhuangbei_fugai_beibao'><![CDATA[当前已穿戴了#param，确定穿戴新装备吗？(新装备穿戴后，原装备将被覆盖)]]></t>
+		<t k='40094_pet_fengyin_beibao'><![CDATA[包裹已满，无法封印]]></t>
+		<t k='40094_pet_fengyin_0'><![CDATA[确定把该宠物封印成宠物蛋吗]]></t>
+		<t k='40094_pet_fengyin_1'><![CDATA[宠物身上有装备，请先脱去装备。]]></t>
+		<t k='40094_pet_jiefeng_0'><![CDATA[您的宠物携带栏不足，请扩展或封印一个宠物。]]></t>
+		<t k='40094_pet_jiefeng_1'><![CDATA[孵化宠物后将被绑定，请确定是否孵化。]]></t>
+		<t k='40094_pet_UnSeal_YB_tidai'><![CDATA[元宝替代(#param元宝)]]></t>
+		<t k='40095_PKMatchWindow_0'><![CDATA[<font color='#ec8929'>("#param"人)</font>]]></t>
+		<t k='40095_PKMatchWindow_1'><![CDATA[<font color='#21fff7'>("#param"人)</font>]]></t>
+
+		<t k='40010_WoYaoBianQiang_Level'><![CDATA[15级功能开启]]></t>
+		<t k='40096_remainder_num'><![CDATA[今日还可挑战#param次]]></t>
+		<t k='40097_GRPW_GanTanHao'><![CDATA[跨服排位赛已开启，是否立即参与？]]></t>
+		<t k='40097_GRPW_DuanWei_0'><![CDATA[(再获得<font color='#8afd5c'>#param积分</font>可进入<font color='#8afd5c'>#param组</font>)]]></t>
+		<t k='40097_GRPW_prize_0'><![CDATA[每日胜利5次即可领取奖励(#param/5)]]></t>
+		<t k='40097_GRPW_prize_1'><![CDATA[每日参与10次战斗即可领取此奖励(#param/10)]]></t>
+		<t k='40097_GRPW_prize_2'><![CDATA[连续5天参加个人排位赛可领取奖励(#param/5)]]></t>
+		<t k='40097_GRPW_add_tiaozhan_num'><![CDATA[确定花费20元宝，增加一次挑战次数？]]></t>
+		<t k='40098_SelectRole_btnCreateRole'><![CDATA[已达最大角色创建数量！]]></t>
+		<t k='40098_SelectRole_btnDeleteRole'><![CDATA[确定删除该角色吗，删除后将无法恢复?]]></t>
+		<t k='40099_YBExtractWindow_0'><![CDATA[当前您的帐号在本服中共有#param元宝]]></t>
+		<t k='40100_tf_soar_exp_coin'><![CDATA[兑换消耗：#param金币]]></t>
+		<t k='40100_tf_soar_0'><![CDATA[尚未渡劫]]></t>
+		<t k='40100_tf_soar_1'><![CDATA[消耗转生经验]]></t>
+		<t k='40100_tf_soar_2'><![CDATA[您已达到最高修为]]></t>
+		<t k='40101_ZhiZunVIP_New_tf_desc_0'><![CDATA[<b>您当前为：<font color='#f7d446'>至尊会员0级</font></b>，只需充值1000元宝即可升级为至尊会员1级(需提取元宝到本角色)]]></t>
+		<t k='40101_ZhiZunVIP_New_tf_desc_1'><![CDATA[<b>您当前为：<font color='#f7d446'>至尊会员#param级</font></b>]]></t>
+		<t k='40101_ZhiZunVIP_New_tf_desc_2'><![CDATA[再充值<font color='#f7d446'>#param元宝</font>即可升级为至尊会员<font color='#f7d446'>#param级</font>]]></t>
+		<t k='40101_ZhiZunVIP_New_tf_desc_3'><![CDATA[<b>您当前为：<font color='#f7d446'>至尊会员#param级</font></b>,已经达到最高等级]]></t>
+		<t k='40101_ZhiZunVIP_New_tf_desc_4'><![CDATA[当前会员等级:<font color='#f7d446'>#param级</font><br><font color='#f7d446'>[至尊会员#param级]</font>可享受以下特权:]]></t>
+		<t k='40101_ZhiZunVIP_New_tf_desc_5'><![CDATA[<font color='#f7d446'>再充值#param元宝可升级为至尊会员#param级</font><br><font color='#f7d446'>[至尊会员#param级]</font>可享受以下特权:]]></t>
+		<t k='40101_ZhiZunVIP_New_tf_desc_6'><![CDATA[<b>您当前会员等级：<font color='#f7d446'>至尊会员0级</font></b><br>无法享受至尊会员特权]]></t>
+
+		<t k='50000_JinMaSignDota'><![CDATA[排队中请等待...]]></t>
+		<t k='50000_JinMaSignDotaing'><![CDATA[前方等待人数：#param]]></t>
+		<t k='50001_JinMaTop'>榜上无名</t>
+		<t k='50002_MoTian'>第#param层魔王</t>
+		<t k='50003_NewGM'>内容不能留空，请填写内容！</t>
+		<t k='500031_NewGM'>角色名称</t>
+		<t k='50004_JiaZu'>#param天前</t>
+		<t k='5000411_JiaZu'>离线#param小时</t>
+		<t k='500041_JiaZu'>活动奖励</t>
+		<t k='500042_JiaZu'>确定消耗#param帮派资金升级帮派吗?</t>
+		<t k='5000421_JiaZu'>确定降级帮派吗?</t>
+		<t k='5000422_JiaZu'>确认销毁【#param】，一旦销毁，无法找回。</t>
+		<t k='50004221_JiaZu'>您确定要销毁装备【#param】么?</t>
+		<t k='500043_JiaZu'>请先转让帮派帮主职位再离开帮派</t>
+		<t k='500044_JiaZu'>确定要解散帮派吗？</t>
+		<t k='500045_JiaZu'>我要提升</t>
+		<t k='500046_JiaZu'><![CDATA[<font color='#FF0000'>您确定将帮主转让给#param？转让后，你将失去沙城至尊称号，且对方不能获得该称号！</font>]]></t>
+		<t k='500047_JiaZu'>降为成员</t>
+		<t k='500048_JiaZu'>升副帮主</t>
+		<t k='50005_RightDownTip'>立即使用</t>
+		<t k='500051_RightDownTip'>立即装配</t>
+		<t k='500052_RightDownTip'>我知道了</t>
+		<t k='50006_UI_index'>25级开放魔天万界</t>
+		<t k='500061_UI_index'>需参加帮派才可参与该活动</t>
+		<t k='50007_PkShow'>请点击确定</t>
+		<t k='50008_NewRole_new'>自动选择已创建的角色</t>
+		<t k='50009_NetSocket2'>与服务器连接断开连接</t>
+		<t k='500100_ThreeBoxJiangLi'>经 验：</t>
+		<t k='500101_ThreeBoxJiangLi'>银 两：</t>
+		<t k='500102_ThreeBoxJiangLi'>声 望：</t>
+		<t k='500103_ThreeBoxJiangLi'>资 金：</t>
+		<t k='500104_ThreeBoxJiangLi'>贡 献：</t>
+
+		<t k='50011_PanelJiangLi'>显示玩家</t>
+		<t k='50012_PanelJiangLi'>隐藏玩家</t>
+		<t k='50013_PanelJiangLi'>取消挂机</t>
+		<t k='50014_PanelJiangLi'>开启挂机</t>
+		<t k='50015_chuancheng'>请加入帮派后，参加该活动！</t>
+		<t k='50016_mianfeizhaoh'>选择免费找回可领取：</t>
+
+		<t k='600000_XDHChuanSong'><![CDATA[<font color='#8afd5c'>[武林大会]<font color='ff6633'>#param</font>就要开始了，你即将被传入赛场。</font>]]></t>
+
+		<t k='600001_XDHZhanBao'>#param胜利了</t>
+		<t k='600002_XDHZhanBao'><![CDATA[<font color='#8afd5c'>您共支持了#param场比赛    共赢得奖金#param金币</font>]]></t>
+
+		<t k='700000_TongTianTa_yin_liang'>原地复活需要消耗#param金币</t>
+		<t k='700001_TongTianTa_yuan_bao'>原地复活需要消耗#param元宝</t>
+
+		<t k='800001_ChongZhi4_DaHuiKui'><![CDATA[<FONT COLOR='#FFF9CA'>活动结束时，排名前三的玩家可获得奖励，金额达到#param元宝</FONT><FONT COLOR='#FFF9CA'>也可获得奖励</FONT><FONT COLOR='#8afd5c'>(注：前三名的充值金额必须高于10万元宝,才可获得奖励。若排名并列，以充值先后顺序统计，活动期间外的充值不计算在内，奖励由系统发放，请注意查收。)</FONT>]]></t>
+
+		<t k='800002_ChongZhi4_DaHuiKui'>空缺</t>
+
+		<t k='800003_ChongZhi4_DaHuiKui'>今天是开服第#param天,活动已结束</t>
+
+		<t k='800004_JiNengMain_StudyGeniusSkill'>您确认选择#param天赋，并分配#param点天赋吗？(可点击【重置天赋】按钮，更改天赋系别)</t>
+
+		<t k='8000041_JiNengMain_StudyGeniusSkill'>您确认保存当前所分配的天赋吗？</t>
+
+		<t k='800008_JiNengMain'>未学习</t>
+		<t k='jinengdengji'>技能等级.</t>
+
+		<t k='8000090_Free_ResetGeniusSkill_Lvl'>50</t>
+
+		<t k='8000091_JiNengMain_ResetGeniusSkill'>确定重置所有天赋点数吗？(50级内可免费重置)</t>
+		<t k='8000092_JiNengMain_ResetGeniusSkill'>确定消耗一颗【脱胎换骨丹】重置所有天赋点数吗？</t>
+
+		<t k='900001_HuoDongFuLi'><![CDATA[<FONT COLOR="#fff5d2">您每天在线<FONT COLOR="#8afd5c">1小时</FONT>可积累<FONT COLOR="#8afd5c">#param礼金</FONT>与<FONT COLOR="#8afd5c">#param金币</FONT>的工资</FONT>]]></t>
+
+		<t k='900002_CangJingGe_CardTipTemplate'><![CDATA[<FONT COLOR="#fff5d2">#param</FONT>(#param/#param)<br/>招式效果<br/>#param<br/>套装招式<br/>#param<br/>点击学习秘籍]]></t>
+
+		<t k='9000020_CangJingGe_CardTipTemplate'><![CDATA[<FONT COLOR="#fff5d2">#param</FONT>(全部领悟)<br/>招式效果<br/>#param<br/>套装招式<br/>#param<br/>点击学习秘籍]]></t>
+
+		<t k='9000021_CangJingGe_CardTipTemplate'><![CDATA[<FONT COLOR="#fff5d2">#param</FONT>(未学习)<br/>秘籍介绍<br/>#param<br/>                              点击可学习]]></t>
+
+		<t k='9000022_CangJingGe_CardTipTemplate'><![CDATA[<FONT COLOR="#fff5d2">#param</FONT>(缺失)<br/>秘籍介绍<br/>#param<br/>江湖传言<br/>#param<br/>]]></t>
+
+
+		<t k='900002_CangJingGe_Card_No_Att'><![CDATA[无效果]]></t>
+
+		<t k='900002_CangJingGe_Card_No_Att_Max'><![CDATA[已达最大效果]]></t>
+
+		<t k='900002_CangJingGe_Col_bg'><![CDATA[<FONT COLOR="#FF9900">神秘武功：</FONT>传说是神留下的武功秘籍，修成之后能够破碎虚空。<br/>]]></t>
+
+		<t k='900003_ZuoQiShenXin'><![CDATA[#param元宝]]]></t>
+		<t k='900003_ZuoQiShenXin_Stop'>停止</t>
+		<t k='900003_ZuoQiShenXin_OneKey'>一键升阶</t>
+		<t k='900003_ZuoQi_OpenBar'><![CDATA[确定消耗20元宝获得一个坐骑栏位?]]></t>
+		<t k='900003_chk1_coin3'><![CDATA[使用#param元宝保证成功率100%]]></t>
+		<t k='900003_ZuoQi_JinJieMax'>12</t>
+
+		<t k='900004_Duo_Mao_Mao_Desc'><![CDATA[报名人数达到<FONT COLOR="#8afd5c">10人</FONT>或达到<FONT COLOR="#8afd5c">5人</FONT>并持续<FONT COLOR="#8afd5c">1分钟</FONT>，将自动传入活动地图。]]></t>
+		<t k='9000041_Duo_Mao_Mao_SayToWorld'><![CDATA[<font color='#fffb80'>找你妹活动已火爆开启，参与可获得海量经验，稀有材料。</font>{E@我要参加@fffb80@18}]]></t>
+		<t k='900005_Duo_Mao_Mao_!'>欢迎参加非常有趣的【找你妹】活动！</t>
+		<t k='9000051_Duo_Mao_Mao_Man_Win'>你共找到#param个躲藏者</t>
+		<t k='9000052_Duo_Mao_Mao_Man_Failed'>你未找到躲藏者</t>
+		<t k='9000053_Duo_Mao_Mao_Ghost_Win'>你未被找到获得双倍奖励</t>
+		<t k='9000053_Duo_Mao_Mao_Ghost_Failed'>很遗憾你被发现了</t>
+
+		<t k='9000056_BaoZuoDaTi'>欢迎参加非常有趣的【暴走答题】活动！</t>
+
+		<t k='900006_Bang_Pai_Max_Lvl'>已达到最高等级</t>
+		<t k='9000061_Bang_Pai_Yan_Fa'>#param#param级</t>
+		<t k='9000062_Bang_Pai_Yan_Fa'>帮派等级大于#param级</t>
+		<t k='9000063_Bang_Pai_Yan_Fa'>消耗#param帮派资金</t>
+		<t k='9000064_Bang_Pai'><![CDATA[<font color='#8afd5c'>个人威望值>=#param</font>]]></t>
+		<t k='9000064_Bang_Pai2'><![CDATA[<font color='#FF0000'>个人威望值>=#param</font>]]></t>
+		<t k='9000065_Bang_Pai'>消耗#param个人帮贡</t>
+		<t k='90000651_Bang_Pai'>消耗#param金币</t>
+		<t k='90000651_Bang_Pai_Red'><![CDATA[<font color='#FF0000'>消耗#param金币</font>]]></t>
+		<t k='9000066_Bang_Pai'>技能已经达到最高等级</t>
+		<t k='9000067_Bang_Pai'>Boss已经达到最高等级</t>
+		<t k='9000068_Bang_Pai'>珍宝已经达到最高等级</t>
+		<t k='9000069_Bang_Pai'>消耗#param点</t>
+		<t k='9000070_Blade'>#param点</t>
+
+		<t k='9000071_Bang_Pai_Boss_JiangLiFenPei'>该玩家已分配过，请选择一个新玩家！</t>
+
+		<t k='9000071_Blade'>低级英雄[#param星]</t>
+		<t k='9000072_Blade'>需要#param英雄值</t>
+		<t k='9000073_Blade_enough'><![CDATA[<font color='#FFF5D2'>#param级招募</font>]]></t>
+		<t k='9000073_Blade_not_enough'><![CDATA[<font color='#FF6A78'>#param级开启</font>]]></t>
+
+		<t k='1000000_ShiHuang_txt_11'><![CDATA[<u>进入始皇魔窟击杀怪物(可进#param次)</u>]]></t>
+		<t k='1000000_ShiHuang_txt_12'><![CDATA[<u>领取始皇魔窟经验</u>]]></t>
+
+		<t k='1000000_ShiHuang_free_linqu'><![CDATA[<u>免费领取</u>]]></t>
+		<t k='1000000_ShiHuang_2_bei_linqu'><![CDATA[<u>二倍领取(#param元宝)</u>]]></t>
+		<t k='1000000_ShiHuang_3_bei_linqu'></t>
+		<t k='1000000_ShiHuang_4_bei_linqu'></t>
+		<t k='1000000_ShiHuang_5_bei_linqu'></t>
+		<!-- 结婚系统 -->
+		<t k='900015_marry_alert0'><![CDATA[您确定消耗#param，选择<font color="#4eff00">【#param】</font>进行求婚吗？]]></t>
+		<t k='900015_marry_alert'><![CDATA[您愿意与<font color="#4eff00">#param</font>结为夫妻，同生死，共甘若，相亲相爱，白头偕老吗？]]></t>
+		<t k='900015_marry_alert2'><![CDATA[一日夫妻百日恩，确定要离婚吗？]]></t>
+		<t k='900015_marry_alert3'><![CDATA[一日夫妻百日恩，确定消耗#param元宝，强制离婚吗？]]></t>
+		<t k='900015_marry_alert4'><![CDATA[<font color="#4eff00">【#param】</font>]]></t>
+		<t k='900015_marry_alert5'><![CDATA[<font color="#4eff00">#param</font>与<font color="#4eff00">#param</font>喜结良缘，快去祝福他们获得丰厚奖励吧！]]></t>
+		<t k='900015_marry_alert6'><![CDATA[<font color="#4eff00">#param</font>与<font color="#4eff00">#param</font>正在举行花车游街仪式，快去观礼吧，满地礼包等你拿！]]></t>
+		<t k='900015_marry_alert_yes'><![CDATA[祝福他们]]></t>
+		<t k='900015_marry_alert_yes1'><![CDATA[立刻前往]]></t>
+		<t k='900015_marry_alert_no'><![CDATA[下次再说]]></t>
+		<t k='900015_marry_alert_no1'><![CDATA[一会再去]]></t>
+		<t k='900015_marry_award_day'><![CDATA[#param天可领取]]></t>
+		<t k='900015_marry_chat_suffix'><![CDATA[<font color="#ff90f1"><b>[婚礼]</b></font>]]></t>
+		<t k='900015_marry_info'><![CDATA[<font color="#4eff00">#param</font>与<font color="#4eff00">#param</font>于<font color="#4eff00">#param</font>喜结良缘至今，<br/>已共渡<font color="#4eff00">#param</font>天。<br/>恭喜他们已达：<font color="#4eff00">#param</font>]]></t>
+		<t k='900015_marry_gui_ze'><![CDATA[1、结婚时需角色等级≥30级<br/>2、结婚时间每天19：30<br/>3、结婚的两个人必须组队可由其中一个人提出申请]]></t>
+		<t k='900016_chibangkaiqi'><![CDATA[<font color="#4eff00">已解封</font>]]></t>
+		<t k='900017_chibangkaiqi'><![CDATA[<font color="#ff0000">未解封</font>]]></t>
+		<t k='900018_chibangkaiqi'><![CDATA[翅膀未开启]]></t>
+		<t k='900019_chibangjiefeng'><![CDATA[升到#param星可解封此翅膀]]></t>
+		<arr k='900015_marry_alert4_desc'>
+			<t k='1'>亲爱的，我爱你一生一世永不变！</t>
+			<t k='2'>宝贝儿，我会一直守护着你，让你幸福，直到永远！</t>
+		</arr>
+		<t k='zhuangbeifenjie_txt'><![CDATA[1、装备回收后将消失，请谨慎操作。<br/>2、一键放入装备可方便将背包内装备放入回收栏中。]]></t>
+		<arr k='arr_bangpai_boss_actionId'>
+			<t k='0'>100001</t>
+			<t k='1'>100002</t>
+			<t k='2'>100003</t>
+			<t k='3'>100004</t>
+			<t k='4'>100005</t>
+		</arr>
+
+		<arr k='arr_bangpai_bossId'>
+			<t k='0'>1</t>
+			<t k='1'>2</t>
+			<t k='2'>3</t>
+			<t k='3'>4</t>
+			<t k='4'>5</t>
+		</arr>
+
+		<arr k='arr_bangpai_jiang_li'>
+			<t k='0'><![CDATA[<font color='#ff6a78'>[<u>1倍奖励]</u></font>]]></t>
+			<t k='1'><![CDATA[<font color='#ff6a78'>[<u>1.5倍奖励]</u></font>]]></t>
+			<t k='2'><![CDATA[<font color='#ff6a78'>[<u>2倍奖励]</u></font>]]></t>
+			<t k='3'><![CDATA[<font color='#ff6a78'>[<u>4倍奖励]</u></font>]]></t>
+			<t k='4'><![CDATA[<font color='#ff6a78'>[<u>6倍奖励]</u></font>]]></t>
+		</arr>
+
+
+		<t k='chongzhiboxTxt'>
+			开服前七天，单笔充值达到对应数额，即可获赠【宝石宝箱】。充的越多送的越多，机不
+			<br />
+			可失，失不再来，快快行动吧！(充值后，刷新页面即可收到奖励)
+		</t>
+
+		<!-- 星界激活等级 -->
+		<t k="daTi_baoXiang">宝箱</t>
+		<t k="daTi_level0">默默无闻</t>
+		<t k="daTi_level1">文曲星</t>
+		<t k="daTi_level2">学士</t>
+		<t k="daTi_level3">才子</t>
+		<!-- end -->
+
+
+		<!-- 神兵绝威望显示 -->
+		<t k='9000065_Jing_Mai_YueLi'><![CDATA[<font color='#8afd5c'>获得途径：</font><br/>1.主线任务奖励<br/>2.完成每日任务<br/>3.参加华山论剑]]></t>
+
+		<!-- 职业必杀技对应的黑屏时间(单位为：毫秒) -->
+		<arr k='arr_profession_darkscreen_time'>
+			<!-- 职业名称 -->
+			<t k='1'>3500</t>
+			<!-- 职业名称 -->
+			<t k='2'>3500</t>
+			<!-- 职业名称 -->
+			<t k='3'>3500</t>
+			<!-- 职业名称 -->
+			<t k='4'>3500</t>
+			<!-- 职业名称 -->
+			<t k='5'>3500</t>
+			<!-- 职业名称 -->
+			<t k='6'>3500</t>
+		</arr>
+		<!-- end -->
+
+		<!-- 人物展示形像，武器位置 参数说明:k="职业名+角色形像资源编号" 值[1,2,3,4,5,6] 0,1人物形像定位 2,3人物身上翅膀的定位 
+			4,5人物脚下光环的定位 -->
+		<arr k='arr_pos'>
+			<t k='110002'>66,177,-53,169,110,287</t>
+			<t k='110102'>124,144,-20,85,40,90</t>
+			<t k='130102'>124,144,-20,85,40,90</t>
+			<t k='140102'>124,144,-20,85,40,90</t>
+			<t k='150102'>124,144,-20,85,40,90</t>
+			<t k='160102'>124,144,-20,85,40,90</t>
+			<t k='170102'>124,144,-20,85,40,90</t>
+			<t k='140105'>124,144,-20,85,40,90</t>
+			<t k='130105'>124,144,-20,85,40,90</t>
+			<t k='180102'>124,144,-20,85,40,90</t>
+			<t k='190102'>124,144,-20,85,40,90</t>
+
+			<t k='310002'>66,177,-53,169,110,287</t>
+			<t k='320302'>74,169,-32,61,40,90</t>
+			<t k='330302'>74,169,-32,61,40,90</t>
+			<t k='340302'>74,169,-32,61,40,90</t>
+			<t k='350302'>74,169,-32,61,40,90</t>
+			<t k='360302'>74,169,-32,61,40,90</t>
+			<t k='370302'>74,169,-32,61,40,90</t>
+			<t k='340305'>74,169,-32,61,40,90</t>
+			<t k='330305'>74,169,-32,61,40,90</t>
+			<t k='380302'>74,169,-32,61,40,90</t>
+			<t k='390302'>74,169,-32,61,40,90</t>
+
+			<t k='410002'>93,180,6,169,110,287</t>
+			<t k='410402'>76,170,-40,80,40,90</t>
+			<t k='430402'>76,170,-40,80,40,90</t>
+			<t k='440402'>76,170,-40,80,40,90</t>
+			<t k='450402'>76,170,-40,80,40,90</t>
+			<t k='460402'>76,170,-40,80,40,90</t>
+			<t k='470402'>76,170,-40,80,40,90</t>
+			<t k='440405'>76,170,-40,80,40,90</t>
+			<t k='430405'>76,170,-40,80,40,90</t>
+			<t k='480402'>76,170,-40,80,40,90</t>
+			<t k='490402'>76,170,-40,80,40,90</t>
+
+			<t k='610002'>93,180,6,169,110,287</t>
+			<t k='610602'>86,179,-37,96,126,299</t>
+			<t k='630602'>86,179,-37,96,126,299</t>
+			<t k='640602'>86,179,-37,96,126,299</t>
+			<t k='650602'>86,179,-37,96,126,299</t>
+			<t k='660602'>86,179,-37,96,126,299</t>
+			<t k='670602'>86,179,-37,96,126,299</t>
+			<t k='640605'>86,179,-37,96,126,299</t>
+			<t k='630605'>86,179,-37,96,126,299</t>
+			<t k='680602'>86,179,-37,96,126,299</t>
+			<t k='690602'>86,179,-37,96,126,299</t>
+		</arr>
+		<!-- end -->
+
+		<!-- vip -->
+		<t k='pub_vip_0'><![CDATA[体验VIP]]></t>
+		<t k='pub_vip_1'><![CDATA[vip]]></t>
+		<t k='pub_vip_2'><![CDATA[vip]]></t>
+		<t k='pub_vip_3'><![CDATA[vip]]></t>
+		<t k='pub_vip_4'><![CDATA[体验VIP]]></t>
+
+		<arr k='arr_vip_rmb_shop_refresh'>
+			<!-- 未购买VIP -->
+			<t k='0'><![CDATA[<a href="event:3"><font color="#8afd5c"><u>购买vip</u></font></a>，每天可免费刷新1次]]></t>
+			<!-- vip -->
+			<t k='1'><![CDATA[<a href="event:3"><font color="#8afd5c"><u>购买vip</u></font></a>，每天可免费刷新1次]]></t>
+			<!-- vip -->
+			<t k='2'><![CDATA[你是vip，每天可免费刷新1次]]></t>
+			<!-- vip -->
+			<t k='3'><![CDATA[你是vip，每天可免费刷新1次]]></t>
+		</arr>
+		<!-- END -->
+
+		<t k='chuansongBuy'><![CDATA[确认使用回城卷轴快速回城吗？<br/>(卷轴不足时，消耗2000金币快速回城)]]></t>
+
+		<t k='jie_xia_lai_kai_qi_huodong'><![CDATA[<font color='#fbd396'>接下来即将开启的活动</font>]]></t>
+		<t k='BossAppearTip'><![CDATA[地宫BOSS已刷新，奖励海量经验、金币，更有极品装备珍宝！赶快参加吧！]]></t>
+
+		<t k='900008_skill_need_1'>需要 #param 天赋点加在本系天赋</t>
+		<t k='900008_skill_need_2'>需要 #param 天赋点加在 #param 天赋</t>
+		<t k='900008_skill_need_3'>需要 #param 本 #param 技能书</t>
+		<t k='zuo_qi_jineng_zheng_bao_ge'>该技能尚未学习，点击转至珍宝阁进行购买？</t>
+
+		<!-- 魔天万界道具提示 -->
+		<arr k='MoTianWanJieItemTips'>
+			<t k='11800631'><![CDATA[可兑换20级紫色饰品]]></t>
+			<t k='11800632'><![CDATA[可兑换40级紫色饰品]]></t>
+			<t k='11800633'><![CDATA[可兑换60级紫色饰品]]></t>
+			<t k='11800634'><![CDATA[可兑换70级紫色饰品]]></t>
+			<t k='11800635'><![CDATA[可兑换80级紫色饰品]]></t>
+			<t k='11800636'><![CDATA[可兑换90级紫色饰品]]></t>
+			<t k='11800637'><![CDATA[可兑换100级紫色饰品]]></t>
+			<t k='11800380'><![CDATA[可兑换20级紫色装备]]></t>
+			<t k='11800381'><![CDATA[可兑换40级紫色装备]]></t>
+			<t k='11800382'><![CDATA[可兑换60级紫色装备]]></t>
+			<t k='11800383'><![CDATA[可兑换70级紫色装备]]></t>
+			<t k='11800384'><![CDATA[可兑换80级紫色装备]]></t>
+			<t k='11800385'><![CDATA[可兑换90级紫色装备]]></t>
+			<t k='11800386'><![CDATA[可兑换100级紫色装备]]></t>
+			<t k='11800651'><![CDATA[可兑换20级法宝]]></t>
+			<t k='11800652'><![CDATA[可兑换40级法宝]]></t>
+			<t k='11800653'><![CDATA[可兑换60级法宝]]></t>
+			<t k='11800654'><![CDATA[可兑换70级法宝]]></t>
+			<t k='11800655'><![CDATA[可兑换80级法宝]]></t>
+			<t k='11800656'><![CDATA[可兑换90级法宝]]></t>
+			<t k='11800657'><![CDATA[可兑换100级法宝]]></t>
+		</arr>
+
+		<!-- 0018615: 【1118】宠物技能栏开启规则优化－客户端 -->
+		<arr k='Pet_LanWei_Open_tips'>
+			<t k='0'><![CDATA[第一个宠物技能100%学成功。]]></t>
+			<t k='1'><![CDATA[宠物升到30级免费开启(点击可消耗50元宝直接开启)]]></t>
+			<t k='2'><![CDATA[宠物升到40级免费开启(点击可消耗100元宝直接开启)]]></t>
+			<t k='3'><![CDATA[宠物升到55级免费开启(点击可消耗200元宝直接开启)]]></t>
+			<t k='4'><![CDATA[宠物升到65级免费开启(点击可消耗400元宝直接开启)]]></t>
+			<t k='5'><![CDATA[宠物升到80级免费开启(点击可消耗600元宝直接开启)]]></t>
+			<t k='6'><![CDATA[点击消耗800元宝立刻开启]]></t>
+			<t k='7'><![CDATA[点击消耗1000元宝立刻开启]]></t>
+			<t k='8'><![CDATA[点击消耗2000元宝立刻开启]]></t>
+			<t k='9'><![CDATA[点击消耗4000元宝立刻开启]]></t>
+			<t k='10'><![CDATA[点击消耗8000元宝立刻开启]]></t>
+			<t k='11'><![CDATA[点击消耗10000元宝立刻开启]]></t>
+		</arr>
+
+		<arr k='Pet_LanWei_Open_Need_Money'>
+			<t k='0'>0</t>
+			<t k='1'>50</t>
+			<t k='2'>100</t>
+			<t k='3'>200</t>
+			<t k='4'>400</t>
+			<t k='5'>600</t>
+			<t k='6'>800</t>
+			<t k='7'>1000</t>
+			<t k='8'>2000</t>
+			<t k='9'>4000</t>
+			<t k='10'>8000</t>
+			<t k='11'>10000</t>
+		</arr>
+
+		<t k='Pet_LanWei_Open_Need_Money_desc'><![CDATA[确定消耗#param元宝开启本栏吗？]]></t>
+
+		<t k='FuBenMain_need_item_enough'><![CDATA[<font color='#BEA755'>(需要<font color='#8afd5c'>#param/#param</font>#param)</font>]]></t>
+		<t k='FuBenMain_need_item_not_enough'><![CDATA[<font color='#BEA755'>(需要<font color='#FF0000'>#param/#param</font>#param)</font>]]></t>
+
+		<t k='url_qq'>http://im.qq.com/download/pc.shtml</t>
+
+		<!-- END -->
+	</lbls>
+</root>
+
+
+
