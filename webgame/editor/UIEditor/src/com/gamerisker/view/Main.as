@@ -28,9 +28,9 @@ package com.gamerisker.view
 			ControlManager.Init();
 			MultipleManager.Init();
 			new AeonDesktopTheme();
-			RookieEditor.getInstante().LoadBar.OnTextureComplete();
+//			RookieEditor.getInstante().LoadBar.OnTextureComplete();
 			
-			RookieEditor.getInstante().ResetPosition();
+//			RookieEditor.getInstante().ResetPosition();
 			
 			Define.Scene_Edit.Init(this.stage);
 			

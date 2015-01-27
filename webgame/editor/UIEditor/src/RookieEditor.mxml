@@ -14,7 +14,9 @@
 		<![CDATA[
 			import air.update.ApplicationUpdaterUI;
 			import air.update.events.UpdateEvent;
-			
+
+			import boomiui.manager.ComponentManager;
+
 			import com.gamerisker.core.Define;
 			import com.gamerisker.manager.ControlManager;
 			import com.gamerisker.manager.FileManager;
@@ -33,12 +35,14 @@
 			import com.gamerisker.view.SetSystemWindow;
 			import com.gamerisker.view.SkinBrowse;
 			import com.gamerisker.view.TreeWindow;
-			
+
+			import flash.utils.setTimeout;
+
 			import mx.collections.XMLListCollection;
 			import mx.controls.Alert;
 			import mx.events.ColorPickerEvent;
 			import mx.events.MenuEvent;
-			
+
 			import spark.events.IndexChangeEvent;
 
 			private var appUpdater:ApplicationUpdaterUI=new ApplicationUpdaterUI();
@@ -64,9 +68,9 @@
 					<menuitem label="保存" data="1"/>
 					<menuitem label="清空编辑区" data="2"/>
 					<menuitem label="对齐" data="3"/>
-					<menuitem label="打包" data="4"/>
+					<!--<menuitem label="打包" data="4"/>
 					<menuitem label="解包" data="5"/>
-					<menuitem label="一键打包" data="6"/>
+					<menuitem label="一键打包" data="6"/>-->
 					<menuitem label="显示源码" data="7"/>
 					<menuitem label="设置" data="8"/>
 					<menuitem label="关于" data="9"/>
@@ -81,16 +85,16 @@
 				stage.addEventListener(Event.RESIZE, OnResizeStage);
 				m_Rookie=this;
 
-				visible=false;
+//				visible=false;
 
 				Define.fullScreenWidth=stage.fullScreenWidth;
 				Define.fullScreenHeight=stage.fullScreenHeight;
 
 				var _x:int=Math.max(0, (stage.fullScreenWidth - LoadBar.width) >> 1);
 				var _y:int=Math.max(0, (stage.fullScreenHeight - LoadBar.height) >> 1);
-				LoadBar.open();
-				LoadBar.move(_x, _y);
-
+//				LoadBar.open();
+//				LoadBar.move(_x, _y);
+				Start();
 			}
 
 			public function Start():void
@@ -106,19 +110,20 @@
 
 //				Select.open();
 				Select.panel=SelectComponet;
-
+				
+				Select.refreshCustom();
 //				Histroy.open();
 				HistroyWindow.instance(list);
 
 				statusBar.height=3;
 
-				Hide();
+//				Hide();
 
 				CheckVersion(); //检查版本更新
 			}
 
-			public function Hide():void
-			{
+//			public function Hide():void
+//			{
 //				Editor.visible = false;
 
 //				Tree.visible = false;
@@ -129,9 +134,8 @@
 
 //				Histroy.visible = false;
 
-				this.visible=false;
-			}
-
+//				this.visible=false;
+//			}
 
 			public static function getInstante():RookieEditor
 			{
@@ -337,8 +341,8 @@
 				return m_histroy;
 			}
 
-			public function ResetPosition():void
-			{
+//			public function ResetPosition():void
+//			{
 //				SelectW.visible = true;
 //				PropertyW.visible = true;
 //				TreeW.visible = true;
@@ -359,7 +363,7 @@
 //				PropertyW.move(SelectW.width + this.width,0);
 //				m_histroy.move(SelectW.width + this.width,PropertyW.height);
 
-				//所有窗口初始化完成后 显示
+			//所有窗口初始化完成后 显示
 //				Editor.visible = true;
 //				
 //				Tree.visible = true;
@@ -370,16 +374,16 @@
 //				
 //				Histroy.visible = true;
 
-				this.visible=true;
+//				this.visible=true;
 
-				LoadBar.close();
-			}
+//				LoadBar.close();
+//			}
 
-			public function setResizeStage(w:int, h:int):void
-			{
+//			public function setResizeStage(w:int, h:int):void
+//			{
 //				_width.text = String(w);
 //				_height.text = String(h);
-			}
+//			}
 
 			public function OnCloseWindow(event:Event):void
 			{
@@ -461,20 +465,20 @@
 				FileManager.openViewFile();
 			}
 
-			private function OnPack():void
-			{
-				FileManager.packXMLFile();
-			}
-
-			private function OnPrasePacke():void
-			{
-				FileManager.onPrasePacke();
-			}
-
-			private function OnKeyPacker():void
-			{
-				FileManager.keyPackXMLFile();
-			}
+//			private function OnPack():void
+//			{
+//				FileManager.packXMLFile();
+//			}
+//
+//			private function OnPrasePacke():void
+//			{
+//				FileManager.onPrasePacke();
+//			}
+//
+//			private function OnKeyPacker():void
+//			{
+//				FileManager.keyPackXMLFile();
+//			}
 
 			private function OnOpenComponent():void
 			{
@@ -573,11 +577,11 @@
 				RookieEditor.getInstante().Editor.setStatsVisble(value);
 			}
 
-			private function OnOpenSource(event:MouseEvent):void
-			{
-				var file:File=new File(SharedManager.getInstance().getTextureUrl());
-				file.openWithDefaultApplication();
-			}
+//			private function OnOpenSource(event:MouseEvent):void
+//			{
+//				var file:File=new File(SharedManager.getInstance().getTextureUrl());
+//				file.openWithDefaultApplication();
+//			}
 
 			protected function dataGrid_addedToStageHandler(event:Event):void
 			{
@@ -599,7 +603,8 @@
 
 			protected function menubar_changeHandler(event:MouseEvent):void
 			{
-				if(event.target.hasOwnProperty("data")==false){
+				if (event.target.hasOwnProperty("data") == false)
+				{
 					return;
 				}
 				var m_index:int=event.target.data.@data;
@@ -617,16 +622,16 @@
 					case 3:
 						OnShowAlign();
 						break;
-					case 4:
-						OnPack();
-						break;
-					case 5:
-						OnPrasePacke();
-						break;
-					case 6:
-						trace("有问题")
+//					case 4:
+//						OnPack();
+//						break;
+//					case 5:
+//						OnPrasePacke();
+//						break;
+//					case 6:
+//						trace("有问题")
 //						OnKeyPacker();
-						break;
+//						break;
 					case 7:
 						OnShowCode();
 						break;
@@ -652,7 +657,7 @@
 			 height="571"
 			 cornerRadius="0"
 			 dropShadowVisible="false"
-			 title="选择组件">
+			 title="选中">
 		<s:Button x="29"
 				  y="0"
 				  width="120"
@@ -706,74 +711,89 @@
 				  y="140"
 				  width="120"
 				  height="21"
+				  label="SkinMovieClip"
+				  click="SelectWindow.instance.OnComponentClick(event)"
+				  name="SkinMovieClip"/>
+		<s:Button x="29"
+				  y="160"
+				  width="120"
+				  height="21"
 				  label="List"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  name="List"/>
 		<s:Button x="29"
-				  y="319"
+				  y="339"
 				  width="120"
 				  height="21"
 				  label="Scroll Container"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  name="ScrollContainer"/>
 		<s:Button x="29"
-				  y="339"
+				  y="359"
+				  width="120"
+				  height="21"
+				  label="转为模板"
+				  click="SelectWindow.instance.OnComponentToCustom(event)"
+				  toolTip="把当前组件转为模版"/>
+		<s:Button id="btnClear"
+				  x="29"
+				  y="379"
 				  width="120"
 				  height="21"
 				  label="清除"
 				  click="SelectWindow.instance.OnComponentRemove(event)"
 				  toolTip="清除当前绑定在鼠标上的组件"/>
 		<s:Button x="29"
-				  y="219"
+				  y="239"
 				  width="120"
 				  height="21"
 				  name="GroupedList"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  label="Grouped List"/>
 		<s:Button x="29"
-				  y="239"
+				  y="259"
 				  width="120"
 				  height="21"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  name="NumericStepper"
 				  label="Numeric Stepper"/>
 		<s:Button x="29"
-				  y="259"
+				  y="279"
 				  width="120"
 				  height="21"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  name="PageIndicator"
 				  label="Page Indicator"/>
 		<s:Button x="29"
-				  y="279"
+				  y="299"
 				  width="120"
 				  height="21"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  name="PickerList"
 				  label="Picker List"/>
 		<s:Button x="29"
-				  y="299"
+				  y="319"
 				  width="120"
 				  height="21"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  name="ProgressBar"
 				  label="Progress Bar"/>
 		<s:Button x="29"
-				  y="199"
+				  y="219"
 				  width="120"
 				  height="21"
 				  name="ScrollText"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  label="Scroll Text"/>
 		<s:Button x="29"
-				  y="179"
+				  y="199"
 				  width="120"
 				  height="21"
 				  name="TextInput"
 				  click="SelectWindow.instance.OnComponentClick(event)"
 				  label="Text Input"/>
 		<s:Button x="29"
-				  y="160"
+				  y="180"
 				  width="120"
 				  height="21"
 				  click="SelectWindow.instance.OnComponentClick(event)"

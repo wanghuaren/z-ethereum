@@ -19,8 +19,8 @@ package com.gamerisker.manager
 
 	/**
 	 *	资源管理类、提供加载服务。 目前支持0：图片，1：xml,2：二进制文件 
-	 * @author YangDan
-	 * 
+	 * @author Bommie
+	 * AIR中可用的Load类
 	 */	
 	public class LoadManager
 	{

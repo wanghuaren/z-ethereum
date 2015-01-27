@@ -68,8 +68,8 @@ package com.gamerisker.scene
 			KeyboardManager.AddKeyEvent(KeyboardEvent.KEY_DOWN, OnKeyDownLEFT, KeyboardManager.LEFT); //批量设置组件向上移动
 			KeyboardManager.AddKeyEvent(KeyboardEvent.KEY_DOWN, OnKeyDownRIGHT, KeyboardManager.RIGHT); //批量设置组件向下移动
 
-			KeyboardManager.AddKeyEvent(KeyboardEvent.KEY_DOWN, OnKeyDownF, KeyboardManager.F, true); //打包目录下的所有XML文件
-			KeyboardManager.AddKeyEvent(KeyboardEvent.KEY_DOWN, OnKeyDownR, KeyboardManager.R, true); //解析.cfg文件
+//			KeyboardManager.AddKeyEvent(KeyboardEvent.KEY_DOWN, OnKeyDownF, KeyboardManager.F, true); //打包目录下的所有XML文件
+//			KeyboardManager.AddKeyEvent(KeyboardEvent.KEY_DOWN, OnKeyDownR, KeyboardManager.R, true); //解析.cfg文件
 
 			KeyboardManager.AddKeyEvent(KeyboardEvent.KEY_DOWN, OnKeyDownSwapUp, KeyboardManager.UP, true);
 			KeyboardManager.AddKeyEvent(KeyboardEvent.KEY_DOWN, OnKeyDownSwapDown, KeyboardManager.DOWN, true);
@@ -98,7 +98,7 @@ package com.gamerisker.scene
 			image.width=w;
 			image.height=h;
 
-			RookieEditor.getInstante().setResizeStage(w, h);
+//			RookieEditor.getInstante().setResizeStage(w, h);
 		}
 
 		/**
@@ -111,14 +111,19 @@ package com.gamerisker.scene
 			var posX:int;
 			var posY:int;
 			var editor:Editor=ComponentManager.getComponentByClass(MouseManager.GetName());
-
+			if (editor)
+			{
+				MouseManager.AddTouch(TouchPhase.BEGAN, editor, OnTouchDownClick);
+				MouseManager.AddTouch(TouchPhase.HOVER, editor, OnTouchMoveComponent);
+			}
+			else
+			{
+				editor=ComponentManager.getCustomComponentByName(MouseManager.GetName(), MouseManager.AddTouch, Define.Scene_Edit.OnTouchDownClick, Define.Scene_Edit.OnTouchMoveComponent);
+			}
 			if (editor)
 			{
 				editor.create();
-				MouseManager.AddTouch(TouchPhase.BEGAN, editor, OnTouchDownClick);
-				MouseManager.AddTouch(TouchPhase.HOVER, editor, OnTouchMoveComponent);
 				MouseManager.RemoveBand();
-
 				posX=touch.globalX;
 				posY=touch.globalY;
 
@@ -127,8 +132,8 @@ package com.gamerisker.scene
 
 				function create(event:*):void
 				{
-					editor.x = posX - (editor.width >> 1);
-					editor.y = posY - (editor.height >> 1);
+					editor.x=posX - (editor.width >> 1);
+					editor.y=posY - (editor.height >> 1);
 
 					RookieEditor.getInstante().Operate.addCommand(new Command(Command.AddName)); //记录命令
 
@@ -319,9 +324,9 @@ package com.gamerisker.scene
 				{
 					editorContainer.removeChild(child);
 				}
-				else if (child.parent as Editor)
+				else if (ControlManager.getParent(child))
 				{
-					component=child.parent as Editor;
+					component=ControlManager.getParent(child);
 					component.removeEditor(CurrentEditor);
 				}
 
@@ -339,25 +344,21 @@ package com.gamerisker.scene
 		{
 			MultipleManager.SetUp();
 		}
-		;
 
 		private function OnKeyDownDOWN(event:starling.events.KeyboardEvent):void
 		{
 			MultipleManager.SetDown();
 		}
-		;
 
 		private function OnKeyDownLEFT(event:starling.events.KeyboardEvent):void
 		{
 			MultipleManager.SetLeft();
 		}
-		;
 
 		private function OnKeyDownRIGHT(event:starling.events.KeyboardEvent):void
 		{
 			MultipleManager.SetRight();
 		}
-		;
 
 
 		private function OnKeyDownA(event:starling.events.KeyboardEvent):void
@@ -441,20 +442,20 @@ package com.gamerisker.scene
 		 * @param event
 		 *
 		 */
-		private function OnKeyDownR(event:starling.events.KeyboardEvent):void
-		{
-			FileManager.onPrasePacke()
-		}
+//		private function OnKeyDownR(event:starling.events.KeyboardEvent):void
+//		{
+//			FileManager.onPrasePacke()
+//		}
 
 		/**
 		 *	打包文件夹
 		 * @param event
 		 *
 		 */
-		private function OnKeyDownF(event:starling.events.KeyboardEvent):void
-		{
-			FileManager.packXMLFile()
-		}
+//		private function OnKeyDownF(event:starling.events.KeyboardEvent):void
+//		{
+//			FileManager.packXMLFile()
+//		}
 
 		/**
 		 *	打开XML文件

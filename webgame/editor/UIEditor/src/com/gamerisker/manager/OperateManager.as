@@ -4,7 +4,7 @@ package com.gamerisker.manager
 
 	/**
 	 *	操作管理器 
-	 * @author YangDan
+	 * @author Bommie
 	 * 
 	 */	
 	public class OperateManager

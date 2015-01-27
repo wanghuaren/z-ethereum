@@ -12,6 +12,7 @@ package com.gamerisker.manager
 	import flash.filesystem.FileStream;
 	import flash.net.FileFilter;
 	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
 
@@ -20,7 +21,7 @@ package com.gamerisker.manager
 	/**
 	 *	本地文件管理 <br>
 	 *  主要完成本地文件操作 <br>
-	 * @author YangDan
+	 * @author Bommie
 	 *
 	 */
 	public class FileManager
@@ -45,7 +46,7 @@ package com.gamerisker.manager
 		}
 
 		/**
-		 *	开发界面配置文件
+		 *	打开界面配置文件
 		 * @param event
 		 *
 		 */
@@ -77,10 +78,10 @@ package com.gamerisker.manager
 		//======================================保存界面配置文件===========================
 		/**
 		 *	保存界面配置文件
-		 * @param eidtor
+		 * @param value 是否是自定义组件
 		 *
 		 */
-		public static function saveXMLFile():void
+		public static function saveXMLFile(value:Boolean=false):void
 		{
 			if (Index > Define.editorContainer.numChildren - 1)
 				Index=1;
@@ -92,7 +93,11 @@ package com.gamerisker.manager
 				var xml:String=editor.toXMLString();
 				FileXML=new XML(xml);
 
-				var m_XMLFile:File=new File(SharedManager.getInstance().getUiSrcUrl() + "\\" + editor.id + ".xml");
+				var m_XMLFile:File;
+				if (value)
+					m_XMLFile=new File(SharedManager.getInstance().getCustomUiSrcUrl() + "\\" + editor.id + ".xml");
+				else
+					m_XMLFile=new File(SharedManager.getInstance().getUiSrcUrl() + "\\" + editor.id + ".xml");
 				m_XMLFile.addEventListener(Event.SELECT, onSaveXMLFile, false, 0, true);
 				m_XMLFile.addEventListener(Event.CANCEL, onCancelFile);
 				m_XMLFile.browseForSave("保存界面配置 " + String(FileXML.@id));
@@ -132,30 +137,51 @@ package com.gamerisker.manager
 			}
 		}
 
+		public static function refreshCustomEditor():void
+		{
+			var mDicFile:Dictionary=new Dictionary();
+			var m_XMLFile:File=new File(SharedManager.getInstance().getCustomUiSrcUrl());
+			var m_stm:FileStream;
+			var m_editorXML:XML;
+			for each (var m_file:File in m_XMLFile.getDirectoryListing())
+			{
+				if (m_file.isDirectory == false)
+				{
+					m_stm=new FileStream();
+					m_stm.open(m_file, FileMode.READ);
+					m_editorXML=XML(m_stm.readUTFBytes(m_stm.bytesAvailable));
+					m_stm.close();
+					if (m_editorXML)
+						mDicFile[m_file.name.substring(0, m_file.name.indexOf("."))]=m_editorXML;
+				}
+			}
+			ComponentManager.customEditor=mDicFile;
+		}
+
 		//======================================打包界面配置文件 ===========================
-		private static var Interval:int;
+//		private static var Interval:int;
 
 		/**
 		 *	打包界面配置文件
 		 */
-		public static function packXMLFile():void
-		{
-			var m_XMLFile:File=new File(SharedManager.getInstance().getConfigUrl());
-			m_XMLFile.addEventListener(Event.SELECT, OnOpenXMLDirectoryPackage);
-			m_XMLFile.browseForDirectory("打开界面配置目录");
-		}
+//		public static function packXMLFile():void
+//		{
+//			var m_XMLFile:File=new File(SharedManager.getInstance().getConfigUrl());
+//			m_XMLFile.addEventListener(Event.SELECT, OnOpenXMLDirectoryPackage);
+//			m_XMLFile.browseForDirectory("打开界面配置目录");
+//		}
 
-		private static function OnOpenXMLDirectoryPackage(event:Event):void
-		{
-			var m_XMLFile:File=event.target as File;
-			m_XMLFile.removeEventListener(Event.SELECT, OnOpenXMLDirectoryPackage);
-
-			packTemp=new Object;
-
-			GetXMLFileList(m_XMLFile);
-
-			Interval=setInterval(OnPackageTimerTick, 300);
-		}
+//		private static function OnOpenXMLDirectoryPackage(event:Event):void
+//		{
+//			var m_XMLFile:File=event.target as File;
+//			m_XMLFile.removeEventListener(Event.SELECT, OnOpenXMLDirectoryPackage);
+//
+//			packTemp=new Object;
+//
+//			GetXMLFileList(m_XMLFile);
+//
+//			Interval=setInterval(OnPackageTimerTick, 300);
+//		}
 
 		private static function GetXMLFileList(file:File):void
 		{
@@ -186,109 +212,109 @@ package com.gamerisker.manager
 			}
 		}
 
-		private static function OnPackageTimerTick():void
-		{
-			clearInterval(Interval);
+//		private static function OnPackageTimerTick():void
+//		{
+//			clearInterval(Interval);
+//
+//			var m_packageFile:File=new File(SharedManager.getInstance().getConfigUrl());
+//			m_packageFile.addEventListener(Event.SELECT, OnSavePackageFile);
+//			m_packageFile.browseForSave("保存界面包");
+//		}
 
-			var m_packageFile:File=new File(SharedManager.getInstance().getConfigUrl());
-			m_packageFile.addEventListener(Event.SELECT, OnSavePackageFile);
-			m_packageFile.browseForSave("保存界面包");
-		}
-
-		private static function OnSavePackageFile(event:Event):void
-		{
-			var m_packageFile:File=event.target as File;
-			m_packageFile.removeEventListener(Event.SELECT, OnSavePackageFile);
-
-			var saveStream:FileStream=new FileStream;
-			saveStream.open(m_packageFile, FileMode.WRITE);
-
-			var binaryData:ByteArray=new ByteArray;
-			binaryData.writeObject(packTemp);
-			binaryData.compress();
-
-			saveStream.writeBytes(binaryData);
-			saveStream.close();
-
-			Alert.show("打包界面配置成功！", "打包成功", Alert.OK, RookieEditor.getInstante().Editor.panel);
-		}
+//		private static function OnSavePackageFile(event:Event):void
+//		{
+//			var m_packageFile:File=event.target as File;
+//			m_packageFile.removeEventListener(Event.SELECT, OnSavePackageFile);
+//
+//			var saveStream:FileStream=new FileStream;
+//			saveStream.open(m_packageFile, FileMode.WRITE);
+//
+//			var binaryData:ByteArray=new ByteArray;
+//			binaryData.writeObject(packTemp);
+//			binaryData.compress();
+//
+//			saveStream.writeBytes(binaryData);
+//			saveStream.close();
+//
+//			Alert.show("打包界面配置成功！", "打包成功", Alert.OK, RookieEditor.getInstante().Editor.panel);
+//		}
 
 		//======================================解压配置文件 ===========================
 
-		/**
-		 *	 解压配置文件
-		 *
-		 */
-		public static function onPrasePacke():void
-		{
-			var m_packageFile:File=new File(SharedManager.getInstance().getConfigUrl());
-			m_packageFile.addEventListener(Event.SELECT, OnOpenPackageFile);
-			m_packageFile.browseForOpen("打开界面包");
-		}
+	/**
+	 *	 解压配置文件
+	 *
+	 */
+//		public static function onPrasePacke():void
+//		{
+//			var m_packageFile:File=new File(SharedManager.getInstance().getConfigUrl());
+//			m_packageFile.addEventListener(Event.SELECT, OnOpenPackageFile);
+//			m_packageFile.browseForOpen("打开界面包");
+//		}
 
-		private static function OnOpenPackageFile(event:Event):void
-		{
-			var m_packageFile:File=event.target as File;
-			m_packageFile.removeEventListener(Event.SELECT, OnOpenPackageFile);
+//		private static function OnOpenPackageFile(event:Event):void
+//		{
+//			var m_packageFile:File=event.target as File;
+//			m_packageFile.removeEventListener(Event.SELECT, OnOpenPackageFile);
+//
+//			var packageStream:FileStream=new FileStream;
+//			packageStream.open(m_packageFile, FileMode.READ);
+//
+//			var binaryData:ByteArray=new ByteArray;
+//			packageStream.readBytes(binaryData);
+//			binaryData.uncompress();
+//
+//			packTemp=binaryData.readObject();
+//
+//			packageStream.close();
+//
+//			var m_directoryFile:File=new File;
+//			m_directoryFile.addEventListener(Event.SELECT, OnSaveUnPackageFile);
+//			m_directoryFile.browseForDirectory("请选择解包目录的配置文件");
+//		}
 
-			var packageStream:FileStream=new FileStream;
-			packageStream.open(m_packageFile, FileMode.READ);
+//		private static function OnSaveUnPackageFile(event:Event):void
+//		{
+//			var m_directoryFile:File=event.target as File;
+//			m_directoryFile.removeEventListener(Event.SELECT, OnSaveUnPackageFile);
+//
+//			for (var componentXMLName:String in packTemp)
+//			{
+//				var xmlFile:File=new File(m_directoryFile.nativePath + "\\" + componentXMLName + ".xml");
+//				var xmlStream:FileStream=new FileStream;
+//				xmlStream.open(xmlFile, FileMode.WRITE);
+//				xmlStream.writeUTFBytes(packTemp[componentXMLName].toXMLString());
+//				xmlStream.close();
+//			}
+//
+//			Alert.show("解包界面配置成功！", "解包成功", Alert.OK, RookieEditor.getInstante().Editor.panel);
+//		}
 
-			var binaryData:ByteArray=new ByteArray;
-			packageStream.readBytes(binaryData);
-			binaryData.uncompress();
+		 //======================================一键打包配置文件 ===========================
 
-			packTemp=binaryData.readObject();
-
-			packageStream.close();
-
-			var m_directoryFile:File=new File;
-			m_directoryFile.addEventListener(Event.SELECT, OnSaveUnPackageFile);
-			m_directoryFile.browseForDirectory("请选择解包目录的配置文件");
-		}
-
-		private static function OnSaveUnPackageFile(event:Event):void
-		{
-			var m_directoryFile:File=event.target as File;
-			m_directoryFile.removeEventListener(Event.SELECT, OnSaveUnPackageFile);
-
-			for (var componentXMLName:String in packTemp)
-			{
-				var xmlFile:File=new File(m_directoryFile.nativePath + "\\" + componentXMLName + ".xml");
-				var xmlStream:FileStream=new FileStream;
-				xmlStream.open(xmlFile, FileMode.WRITE);
-				xmlStream.writeUTFBytes(packTemp[componentXMLName].toXMLString());
-				xmlStream.close();
-			}
-
-			Alert.show("解包界面配置成功！", "解包成功", Alert.OK, RookieEditor.getInstante().Editor.panel);
-		}
-
-		//======================================一键打包配置文件 ===========================
-
-		/**
-		 *	 一键打包配置文件
-		 *
-		 */
-		public static function keyPackXMLFile():void
-		{
-			packTemp=new Object;
-
-			GetXMLFileList(new File(SharedManager.getInstance().getUiSrcUrl()));
-
-			var m_packageFile:File=new File(SharedManager.getInstance().getConfigUrl());
-
-			var saveStream:FileStream=new FileStream;
-			saveStream.open(m_packageFile, FileMode.WRITE);
-
-			var binaryData:ByteArray=new ByteArray;
-			binaryData.writeObject(packTemp);
-			binaryData.compress();
-
-			saveStream.writeBytes(binaryData);
-			saveStream.close();
-
-			Alert.show("打包界面配置成功！", "打包成功", Alert.OK, RookieEditor.getInstante().Editor.panel);
-		}
+	/**
+	 *	 一键打包配置文件
+	 *
+	 */
+//		public static function keyPackXMLFile():void
+//		{
+//			packTemp=new Object;
+//
+//			GetXMLFileList(new File(SharedManager.getInstance().getUiSrcUrl()));
+//
+//			var m_packageFile:File=new File(SharedManager.getInstance().getConfigUrl());
+//
+//			var saveStream:FileStream=new FileStream;
+//			saveStream.open(m_packageFile, FileMode.WRITE);
+//
+//			var binaryData:ByteArray=new ByteArray;
+//			binaryData.writeObject(packTemp);
+//			binaryData.compress();
+//
+//			saveStream.writeBytes(binaryData);
+//			saveStream.close();
+//
+//			Alert.show("打包界面配置成功！", "打包成功", Alert.OK, RookieEditor.getInstante().Editor.panel);
+//		}
 	}
 }

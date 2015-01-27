@@ -11,7 +11,7 @@ package com.gamerisker.manager
 
 	/**
 	 * 资源管理类
-	 * @author YangDan
+	 * @author Bommie
 	 * 
 	 */
 	public class TexturesManager
@@ -70,14 +70,16 @@ package com.gamerisker.manager
 		public static const TileGroupIcon:Class;
 		[Embed(source="../../../ComponentIcon/ModelLoadBox.jpg")] 
 		public static const ModelLoadBoxIcon:Class;
-		[Embed(source="../../../ComponentIcon/UIMovie.jpg")]
-		public static const UIMovieIcon:Class;
 		[Embed(source="../../../ComponentIcon/UIImage.jpg")] 
 		public static const SkinImageIcon:Class;
+		[Embed(source="../../../ComponentIcon/UIMovie.jpg")] 
+		public static const SkinMovieClipIcon:Class;
 		[Embed(source="../../../ComponentIcon/UIFrame.jpg")] 
 		public static const SkinFrameIcon:Class;
 		[Embed(source="../../../ComponentIcon/PopupWindow.jpg")] 
 		public static const TitleWindowIcon:Class;
+		[Embed(source="../../../ComponentIcon/PopupWindow.jpg")] 
+		public static const CustomIcon:Class;
 		[Embed(source="../../../ComponentIcon/ComponentBag.jpg")] 
 		public static const ComponentBagIcon:Class;		
 		[Embed(source="../../../ComponentIcon/ImageNumber.jpg")] 
@@ -134,7 +136,13 @@ package com.gamerisker.manager
 		
 		public static function getIcon(name : String) : Sprite
 		{
-			var bitmap : Bitmap = new TexturesManager[name+"Icon"]();
+			var mClass:Class;
+			if(TexturesManager[name+"Icon"]==null){
+				mClass=TexturesManager["CustomIcon"];
+			}else{
+				mClass=TexturesManager[name+"Icon"];
+			}
+			var bitmap : Bitmap = new mClass();
 			var container : Sprite = new Sprite;
 			var text : TextField = new TextField();
 			text.text = name;

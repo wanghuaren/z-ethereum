@@ -29,18 +29,20 @@
 				if(os.indexOf("Mac") > -1)
 				{
 					SharedManager.getInstance().setConfigUrl(url+"/source/XMLSource/UIConfig.cfg");
-					SharedManager.getInstance().setTextureUrl(url+"/source");
-					SharedManager.getInstance().setSkinUrl(url+"/source/XMLSource/SkinConfig.xml");
+//					SharedManager.getInstance().setTextureUrl(url+"/source");
+//					SharedManager.getInstance().setSkinUrl(url+"/source/XMLSource/SkinConfig.xml");
 					SharedManager.getInstance().setUiSrcUrl(url+"/source/UIXML");
-					SharedManager.getInstance().setSceneUrl(url+"/source/XMLSource/SceneSource.xml");
+					SharedManager.getInstance().setCustomUiSrcUrl(url+"/source/CustomUIXML");
+//					SharedManager.getInstance().setSceneUrl(url+"/source/XMLSource/SceneSource.xml");
 				}
 				else
 				{
 					SharedManager.getInstance().setConfigUrl(url+"\\source\\XMLSource\\UIConfig.cfg");
-					SharedManager.getInstance().setTextureUrl(url+"\\source");
-					SharedManager.getInstance().setSkinUrl(url+"\\source\\XMLSource\\SkinConfig.xml");
+//					SharedManager.getInstance().setTextureUrl(url+"\\source");
+//					SharedManager.getInstance().setSkinUrl(url+"\\source\\XMLSource\\SkinConfig.xml");
 					SharedManager.getInstance().setUiSrcUrl(url+"\\source\\UIXML");
-					SharedManager.getInstance().setSceneUrl(url+"\\source\\XMLSource\\SceneSource.xml");
+					SharedManager.getInstance().setCustomUiSrcUrl(url+"\\source\\CustomUIXML");
+//					SharedManager.getInstance().setSceneUrl(url+"\\source\\XMLSource\\SceneSource.xml");
 				}
 			}
 			
@@ -48,10 +50,11 @@
 			{
 				statusBar.height = 3;
 				cfgPath.text = SharedManager.getInstance().getConfigUrl();
-				texturePath.text = SharedManager.getInstance().getTextureUrl();
-				skinPath.text = SharedManager.getInstance().getSkinUrl();
+//				texturePath.text = SharedManager.getInstance().getTextureUrl();
+//				skinPath.text = SharedManager.getInstance().getSkinUrl();
 				uiPath.text = SharedManager.getInstance().getUiSrcUrl();
-				scenePath.text = SharedManager.getInstance().getSceneUrl();
+				customUIPath.text = SharedManager.getInstance().getCustomUiSrcUrl();
+//				scenePath.text = SharedManager.getInstance().getSceneUrl();
 				
 			}
 			
@@ -66,27 +69,27 @@
 				});
 			}
 			
-			private function openTexturePath() : void
-			{
-				var m_XMLFile : File = new File(SharedManager.getInstance().getTextureUrl());
-				m_XMLFile.browseForDirectory("选择纹理保存路径");
-				m_XMLFile.addEventListener(Event.SELECT,
-					function(event : Event):void
-					{
-						texturePath.text = (event.target as File).parent.nativePath;
-					});
-			}
+//			private function openTexturePath() : void
+//			{
+//				var m_XMLFile : File = new File(SharedManager.getInstance().getTextureUrl());
+//				m_XMLFile.browseForDirectory("选择纹理保存路径");
+//				m_XMLFile.addEventListener(Event.SELECT,
+//					function(event : Event):void
+//					{
+//						texturePath.text = (event.target as File).parent.nativePath;
+//					});
+//			}
 			
-			private function openSkinnablePath() : void
-			{
-				var m_XMLFile : File = new File(SharedManager.getInstance().getSkinUrl());
-				m_XMLFile.browseForOpen("选择皮肤保存路径");
-				m_XMLFile.addEventListener(Event.SELECT,
-					function(event : Event):void
-					{
-						skinPath.text = (event.target as File).nativePath;
-					});
-			}
+//			private function openSkinnablePath() : void
+//			{
+//				var m_XMLFile : File = new File(SharedManager.getInstance().getSkinUrl());
+//				m_XMLFile.browseForOpen("选择皮肤保存路径");
+//				m_XMLFile.addEventListener(Event.SELECT,
+//					function(event : Event):void
+//					{
+//						skinPath.text = (event.target as File).nativePath;
+//					});
+//			}
 			
 			private function openUiConfigPath() : void
 			{
@@ -98,17 +101,27 @@
 						uiPath.text = (event.target as File).nativePath;
 					});
 			}
-			
-			private function openScenePath() : void
+			private function openCustomUiConfigPath() : void
 			{
-				var m_XMLFile : File = new File(SharedManager.getInstance().getSceneUrl());
-				m_XMLFile.browseForOpen("选择场景配置文件路径");
+				var m_XMLFile : File = new File(SharedManager.getInstance().getCustomUiSrcUrl());
+				m_XMLFile.browseForDirectory("选择自定义界面配置文件路径");
 				m_XMLFile.addEventListener(Event.SELECT,
 					function(event : Event):void
 					{
-						scenePath.text = (event.target as File).nativePath;
+						customUIPath.text = (event.target as File).nativePath;
 					});
 			}
+			
+//			private function openScenePath() : void
+//			{
+//				var m_XMLFile : File = new File(SharedManager.getInstance().getSceneUrl());
+//				m_XMLFile.browseForOpen("选择场景配置文件路径");
+//				m_XMLFile.addEventListener(Event.SELECT,
+//					function(event : Event):void
+//					{
+//						scenePath.text = (event.target as File).nativePath;
+//					});
+//			}
 			
 			private function onSureEvent() : void
 			{
@@ -119,17 +132,17 @@
 					isBool = true;
 				}
 				
-				if(SharedManager.getInstance().getTextureUrl() != texturePath.text)
-				{
-					SharedManager.getInstance().setTextureUrl(texturePath.text);
-					isBool = true;
-				}
+//				if(SharedManager.getInstance().getTextureUrl() != texturePath.text)
+//				{
+//					SharedManager.getInstance().setTextureUrl(texturePath.text);
+//					isBool = true;
+//				}
 				
-				if(SharedManager.getInstance().getSkinUrl() != skinPath.text)
-				{
-					SharedManager.getInstance().setSkinUrl(skinPath.text);
-					isBool = true;
-				}
+//				if(SharedManager.getInstance().getSkinUrl() != skinPath.text)
+//				{
+//					SharedManager.getInstance().setSkinUrl(skinPath.text);
+//					isBool = true;
+//				}
 				
 				if(SharedManager.getInstance().getUiSrcUrl() != uiPath.text)
 				{
@@ -137,11 +150,11 @@
 					isBool = true;
 				}
 				
-				if(SharedManager.getInstance().getSceneUrl() != scenePath.text)
-				{
-					SharedManager.getInstance().setSceneUrl(scenePath.text);
-					isBool = true;
-				}
+//				if(SharedManager.getInstance().getSceneUrl() != scenePath.text)
+//				{
+//					SharedManager.getInstance().setSceneUrl(scenePath.text);
+//					isBool = true;
+//				}
 				
 				if(isBool)
 				{
@@ -166,7 +179,7 @@
 				<s:TextInput id="cfgPath" width="84%" height="24" editable="false" toolTip="UI界面打包路径（一般都存放在项目文件夹中）"/>
 				<s:Button width="46" height="24" label="浏览" click="openConfigPath()"/>
 			</s:HGroup>
-			<s:HGroup width="100%" height="24">
+			<!--<s:HGroup width="100%" height="24">
 				<s:Label width="93" height="100%" text="场景纹理路径：" textAlign="center" verticalAlign="middle"/>
 				<s:TextInput id="texturePath" width="84%" height="24" editable="false" toolTip="皮肤资源纹理保存路径,atf文件（这里显示的是纹理路径的父路径）"/>
 				<s:Button width="46" height="24" label="浏览" click="openTexturePath()"/>
@@ -180,10 +193,15 @@
 				<s:Label width="93" height="100%" text="Skin配置文件：" textAlign="center" verticalAlign="middle"/>
 				<s:TextInput id="skinPath" width="84%" height="24" editable="false" toolTip="组件界面配置文件	SkinConfig.xml"/>
 				<s:Button width="46" height="24" label="浏览" click="openSkinnablePath()"/>
+			</s:HGroup>-->
+			<s:HGroup width="100%" height="24">
+				<s:Label width="93" height="100%" text="界面保存路径：" textAlign="center" verticalAlign="middle"/>
+				<s:TextInput id="uiPath" width="84%" height="24" editable="false" toolTip="界面的XML配置文件保存路径（一般不需要将这些文件放在项目文件夹中）"/>
+				<s:Button width="46" height="24" label="浏览" click="openUiConfigPath()"/>
 			</s:HGroup>
 			<s:HGroup width="100%" height="24">
-				<s:Label width="93" height="100%" text="界面配置文件：" textAlign="center" verticalAlign="middle"/>
-				<s:TextInput id="uiPath" width="84%" height="24" editable="false" toolTip="界面的XML配置文件保存路径（一般不需要将这些文件放在项目文件夹中）"/>
+				<s:Label width="93" height="100%" text="自定义模板路径：" textAlign="center" verticalAlign="middle"/>
+				<s:TextInput id="customUIPath" width="84%" height="24" editable="false" toolTip="自定义界面模板XML配置文件保存路径"/>
 				<s:Button width="46" height="24" label="浏览" click="openUiConfigPath()"/>
 			</s:HGroup>
 			<s:HGroup width="100%" height="24"></s:HGroup>

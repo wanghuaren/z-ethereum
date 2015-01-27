@@ -14,11 +14,11 @@ package com.gamerisker.manager
 			var str : String;
 			if(os.indexOf("Mac") > -1)
 			{
-				str = SharedManager.getInstance().getTextureUrl() + "/" +url.replace(/\\/g,"\/");
+//				str = SharedManager.getInstance().getTextureUrl() + "/" +url.replace(/\\/g,"\/");
 			}
 			else
 			{
-				str = SharedManager.getInstance().getTextureUrl() + "\\" +url.replace(/\//g,"\\");
+//				str = SharedManager.getInstance().getTextureUrl() + "\\" +url.replace(/\//g,"\\");
 			}
 			return str;
 		}

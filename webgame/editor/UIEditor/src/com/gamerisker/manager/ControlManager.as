@@ -141,7 +141,7 @@ package com.gamerisker.manager
 			ResetComponent();
 
 			RookieEditor.getInstante().Property.setTarget(editor);
-			RookieEditor.getInstante().Select.panel.title="选择组件:" + editor.type;
+			RookieEditor.getInstante().Select.panel.title="选中:" + editor.type;
 //			PropertyManager.SetComponentValue(m_component);
 //			
 			RookieEditor.getInstante().Tree.selectItem(editor.id);
@@ -522,7 +522,7 @@ package com.gamerisker.manager
 		/**
 		 * 取得当前元件的Editor类型的父级
 		 * */
-		private static function getParent(value:DisplayObject):Editor
+		public static function getParent(value:DisplayObject):Editor
 		{
 			var m_parent:DisplayObject=value.parent;
 			while (m_parent != null)
