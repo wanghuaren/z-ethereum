@@ -23,7 +23,7 @@ package boomiui.editor
 
 		public function NumericStepperEditor()
 		{
-			m_type="Button";
+			m_type="NumericStepper";
 
 			m_numericStepper=new NumericStepper;
 			m_numericStepper.addEventListener(FeathersEventType.CREATION_COMPLETE, onCreateComponent);

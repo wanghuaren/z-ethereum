@@ -240,7 +240,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * Constructor.
@@ -248,6 +248,7 @@ package feathers.controls
 		public function TextArea()
 		{
 			super();
+			this._measureViewPort = false;
 			this.addEventListener(TouchEvent.TOUCH, textArea_touchHandler);
 			this.addEventListener(Event.REMOVED_FROM_STAGE, textArea_removedFromStageHandler);
 		}
@@ -297,7 +298,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return TextArea.styleProvider;
+			return TextArea.globalStyleProvider;
 		}
 
 		/**
@@ -305,7 +306,7 @@ package feathers.controls
 		 */
 		override public function get isFocusEnabled():Boolean
 		{
-			return this._isEditable && this._isFocusEnabled;
+			return this._isEditable && this._isEnabled && this._isFocusEnabled;
 		}
 
 		/**
@@ -867,45 +868,6 @@ package feathers.controls
 		}
 
 		/**
-		 * @inheritDoc
-		 */
-		override protected function autoSizeIfNeeded():Boolean
-		{
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
-			if(!needsWidth && !needsHeight)
-			{
-				return false;
-			}
-
-			var newWidth:Number = this.explicitWidth;
-			var newHeight:Number = this.explicitHeight;
-			if(needsWidth)
-			{
-				if(this.originalBackgroundWidth == this.originalBackgroundWidth) //!isNaN
-				{
-					newWidth = this.originalBackgroundWidth;
-				}
-				else
-				{
-					newWidth = 0;
-				}
-			}
-			if(needsHeight)
-			{
-				if(this.originalBackgroundHeight == this.originalBackgroundHeight) //!isNaN
-				{
-					newHeight = this.originalBackgroundHeight;
-				}
-				else
-				{
-					newHeight = 0;
-				}
-			}
-			return this.setSizeInternal(newWidth, newHeight, false);
-		}
-
-		/**
 		 * Creates and adds the <code>textEditorViewPort</code> sub-component and
 		 * removes the old instance, if one exists.
 		 *
@@ -1015,11 +977,11 @@ package feathers.controls
 				if(this.currentBackgroundSkin)
 				{
 					this.addChildAt(this.currentBackgroundSkin, 0);
-					if(this.originalBackgroundWidth != this.originalBackgroundWidth) //isNaN
+					if(this.originalBackgroundWidth !== this.originalBackgroundWidth) //isNaN
 					{
 						this.originalBackgroundWidth = this.currentBackgroundSkin.width;
 					}
-					if(this.originalBackgroundHeight != this.originalBackgroundHeight) //isNaN
+					if(this.originalBackgroundHeight !== this.originalBackgroundHeight) //isNaN
 					{
 						this.originalBackgroundHeight = this.currentBackgroundSkin.height;
 					}

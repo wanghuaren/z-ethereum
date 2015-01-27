@@ -86,7 +86,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * @private
@@ -212,9 +212,9 @@ package feathers.controls
 		public static const VERTICAL_ALIGN_JUSTIFY:String = "justify";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the buttons.
+		 * The default value added to the <code>styleNameList</code> of the buttons.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_BUTTON:String = "feathers-button-group-button";
 
@@ -235,7 +235,7 @@ package feathers.controls
 		}
 
 		/**
-		 * The value added to the <code>nameList</code> of the buttons. This
+		 * The value added to the <code>styleNameList</code> of the buttons. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the button name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_BUTTON</code>.
@@ -244,29 +244,29 @@ package feathers.controls
 		 * <code>customButtonName</code>.</p>
 		 *
 		 * @see #customButtonName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var buttonName:String = DEFAULT_CHILD_NAME_BUTTON;
 
 		/**
-		 * The value added to the <code>nameList</code> of the first button.
+		 * The value added to the <code>styleNameList</code> of the first button.
 		 *
 		 * <p>To customize the first button name without subclassing, see
 		 * <code>customFirstButtonName</code>.</p>
 		 *
 		 * @see #customFirstButtonName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var firstButtonName:String = DEFAULT_CHILD_NAME_BUTTON;
 
 		/**
-		 * The value added to the <code>nameList</code> of the last button.
+		 * The value added to the <code>styleNameList</code> of the last button.
 		 *
 		 * <p>To customize the last button name without subclassing, see
 		 * <code>customLastButtonName</code>.</p>
 		 *
 		 * @see #customLastButtonName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var lastButtonName:String = DEFAULT_CHILD_NAME_BUTTON;
 
@@ -310,7 +310,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return ButtonGroup.styleProvider;
+			return ButtonGroup.globalStyleProvider;
 		}
 
 		/**
@@ -346,8 +346,8 @@ package feathers.controls
 		 *     <li>selectedDownIcon</li>
 		 *     <li>selectedHoverIcon</li>
 		 *     <li>selectedDisabledIcon</li>
-		 *     <li>isSelected</li>
-		 *     <li>isToggle</li>
+		 *     <li>isSelected (only supported by <code>ToggleButton</code>)</li>
+		 *     <li>isToggle (only supported by <code>ToggleButton</code>)</li>
 		 *     <li>isEnabled</li>
 		 * </ul>
 		 *
@@ -355,8 +355,12 @@ package feathers.controls
 		 *
 		 * <ul>
 		 *     <li>Event.TRIGGERED</li>
-		 *     <li>Event.CHANGE</li>
+		 *     <li>Event.CHANGE (only supported by <code>ToggleButton</code>)</li>
 		 * </ul>
+		 *
+		 * <p>To use properties and events that are only supported by
+		 * <code>ToggleButton</code>, you must provide a <code>buttonFactory</code>
+		 * that returns a <code>ToggleButton</code> instead of a <code>Button</code>.</p>
 		 *
 		 * <p>You can pass a function to the <code>buttonInitializer</code>
 		 * property that can provide custom logic to interpret each item in the
@@ -1077,14 +1081,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customButtonInitializer, "my-custom-button");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-button", setCustomButtonStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_BUTTON
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
-		 * @see http://wiki.starling-framework.org/feathers/custom-themes
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public function get customButtonName():String
 		{
@@ -1122,13 +1124,11 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customFirstButtonInitializer, "my-custom-first-button");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-first-button", setCustomFirstButtonStyles );</listing>
 		 *
 		 * @default null
 		 *
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
-		 * @see http://wiki.starling-framework.org/feathers/custom-themes
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public function get customFirstButtonName():String
 		{
@@ -1166,13 +1166,11 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customLastButtonInitializer, "my-custom-last-button");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-last-button", setCustomLastButtonStyles );</listing>
 		 *
 		 * @default null
 		 *
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
-		 * @see http://wiki.starling-framework.org/feathers/custom-themes
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public function get customLastButtonName():String
 		{

@@ -36,7 +36,7 @@ package feathers.controls.text
 	 * Renders text with a native <code>flash.text.TextField</code> and draws
 	 * it to <code>BitmapData</code> to convert to Starling textures. Textures
 	 * are completely managed by this component, and they will be automatically
-	 * disposed when the component is removed from the stage.
+	 * disposed when the component is disposed.
 	 *
 	 * <p>For longer passages of text, this component will stitch together
 	 * multiple individual textures both horizontally and vertically, as a grid,
@@ -71,7 +71,7 @@ package feathers.controls.text
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * Constructor.
@@ -145,7 +145,7 @@ package feathers.controls.text
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return TextFieldTextRenderer.styleProvider;
+			return TextFieldTextRenderer.globalStyleProvider;
 		}
 
 		/**
@@ -590,6 +590,9 @@ package feathers.controls.text
 		 * Specifies whether the text field has a border. Use the
 		 * <code>borderColor</code> property to set the border color.
 		 *
+		 * <p>Note: this property cannot be used when the <code>useGutter</code>
+		 * property is set to <code>false</code> (the default value!).</p>
+		 *
 		 * <p>In the following example, the border is enabled:</p>
 		 *
 		 * <listing version="3.0">
@@ -989,6 +992,10 @@ package feathers.controls.text
 				}
 				this.textSnapshots = null;
 			}
+			//this isn't necessary, but if a memory leak keeps the text renderer
+			//from being garbage collected, freeing up the text field may help
+			//ease major memory pressure from native filters
+			this.textField = null;
 
 			this._previousActualWidth = NaN;
 			this._previousActualHeight = NaN;
@@ -1032,19 +1039,21 @@ package feathers.controls.text
 				result = new Point();
 			}
 
-			if(!this.textField)
-			{
-				result.x = result.y = 0;
-				return result;
-			}
-
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				result.x = this.explicitWidth;
 				result.y = this.explicitHeight;
 				return result;
+			}
+
+			//if a parent component validates before we're added to the stage,
+			//measureText() may be called before initialization, so we need to
+			//force it.
+			if(!this._isInitialized)
+			{
+				this.initializeInternal();
 			}
 
 			this.commit();
@@ -1062,6 +1071,9 @@ package feathers.controls.text
 			if(!this.textField)
 			{
 				this.textField = new TextField();
+				var scaleFactor:Number = Starling.contentScaleFactor;
+				this.textField.scaleX = scaleFactor;
+				this.textField.scaleY = scaleFactor;
 				this.textField.mouseEnabled = this.textField.mouseWheelEnabled = false;
 				this.textField.selectable = false;
 				this.textField.multiline = true;
@@ -1148,12 +1160,13 @@ package feathers.controls.text
 				result = new Point();
 			}
 
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 
 			this.textField.autoSize = TextFieldAutoSize.LEFT;
 			this.textField.wordWrap = false;
 
+			var scaleFactor:Number = Starling.contentScaleFactor;
 			var gutterDimensionsOffset:Number = 4;
 			if(this._useGutter)
 			{
@@ -1168,7 +1181,7 @@ package feathers.controls.text
 				//first time results in an incorrect value, but if you query it
 				//again, for some reason, it reports the correct width value.
 				var hackWorkaround:Number = this.textField.width;
-				newWidth = this.textField.width - gutterDimensionsOffset;
+				newWidth = (this.textField.width / scaleFactor) - gutterDimensionsOffset;
 				if(newWidth < this._minWidth)
 				{
 					newWidth = this._minWidth;
@@ -1183,7 +1196,7 @@ package feathers.controls.text
 			//width getter (when TextFieldAutoSize.LEFT is used) to the width
 			//setter. In other words, the value technically isn't changing, but
 			//TextField behaves differently.
-			if(!needsWidth || (this.textField.width - gutterDimensionsOffset) > newWidth)
+			if(!needsWidth || ((this.textField.width / scaleFactor) - gutterDimensionsOffset) > newWidth)
 			{
 				this.textField.width = newWidth + gutterDimensionsOffset;
 				this.textField.wordWrap = this._wordWrap;
@@ -1191,7 +1204,7 @@ package feathers.controls.text
 			var newHeight:Number = this.explicitHeight;
 			if(needsHeight)
 			{
-				newHeight = this.textField.height - gutterDimensionsOffset;
+				newHeight = (this.textField.height / scaleFactor) - gutterDimensionsOffset;
 				if(newHeight < this._minHeight)
 				{
 					newHeight = this._minHeight;
@@ -1223,7 +1236,9 @@ package feathers.controls.text
 		{
 			var stylesInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_STYLES);
 			var dataInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_DATA);
+			var stateInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_STATE);
 
+			var scaleFactor:Number = Starling.contentScaleFactor;
 			var gutterDimensionsOffset:Number = 4;
 			if(this._useGutter)
 			{
@@ -1232,11 +1247,11 @@ package feathers.controls.text
 
 			//if measure() isn't called, we need to apply the same workaround
 			//for the flash.text.TextField bug with wordWrap.
-			if(!this._hasMeasured && this._wordWrap && this.explicitWidth != this.explicitWidth)
+			if(!this._hasMeasured && this._wordWrap)
 			{
 				this.textField.autoSize = TextFieldAutoSize.LEFT;
 				this.textField.wordWrap = false;
-				if((this.textField.width - gutterDimensionsOffset) > this.actualWidth)
+				if(((this.textField.width / scaleFactor) - gutterDimensionsOffset) > this.actualWidth)
 				{
 					this.textField.wordWrap = true;
 				}
@@ -1248,7 +1263,7 @@ package feathers.controls.text
 				this.textField.width = this.actualWidth + gutterDimensionsOffset;
 				this.textField.height = this.actualHeight + gutterDimensionsOffset;
 				var canUseRectangleTexture:Boolean = Starling.current.profile != Context3DProfile.BASELINE_CONSTRAINED;
-				var rectangleSnapshotWidth:Number = this.actualWidth * Starling.contentScaleFactor;
+				var rectangleSnapshotWidth:Number = this.actualWidth * scaleFactor;
 				if(canUseRectangleTexture)
 				{
 					if(rectangleSnapshotWidth > this._maxTextureDimensions)
@@ -1271,7 +1286,7 @@ package feathers.controls.text
 						this._snapshotWidth = getNextPowerOfTwo(rectangleSnapshotWidth);
 					}
 				}
-				var rectangleSnapshotHeight:Number = this.actualHeight * Starling.contentScaleFactor;
+				var rectangleSnapshotHeight:Number = this.actualHeight * scaleFactor;
 				if(canUseRectangleTexture)
 				{
 					if(rectangleSnapshotHeight > this._maxTextureDimensions)
@@ -1301,7 +1316,7 @@ package feathers.controls.text
 			//instead of checking sizeInvalid, which will often be triggered by
 			//changing maxWidth or something for measurement, we check against
 			//the previous actualWidth/Height used for the snapshot.
-			if(stylesInvalid || dataInvalid || this._needsNewTexture ||
+			if(stylesInvalid || dataInvalid || stateInvalid || this._needsNewTexture ||
 				this.actualWidth != this._previousActualWidth ||
 				this.actualHeight != this._previousActualHeight)
 			{
@@ -1339,8 +1354,8 @@ package feathers.controls.text
 		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -1421,7 +1436,7 @@ package feathers.controls.text
 			var snapshotIndex:int = -1;
 			var useNativeFilters:Boolean = this._nativeFilters && this._nativeFilters.length > 0 &&
 				totalBitmapWidth <= this._maxTextureDimensions && totalBitmapHeight <= this._maxTextureDimensions;
-			var gutterPositionOffset:Number = 2;
+			var gutterPositionOffset:Number = 2 * scaleFactor;
 			if(this._useGutter)
 			{
 				gutterPositionOffset = 0;
@@ -1455,7 +1470,8 @@ package feathers.controls.text
 					}
 					HELPER_MATRIX.tx = -(xPosition + gutterPositionOffset);
 					HELPER_MATRIX.ty = -(yPosition + gutterPositionOffset);
-					bitmapData.draw(this.textField, HELPER_MATRIX);
+					HELPER_RECTANGLE.setTo(0, 0, this.actualWidth * scaleFactor, this.actualHeight * scaleFactor);
+					bitmapData.draw(this.textField, HELPER_MATRIX, null, null, HELPER_RECTANGLE);
 					if(useNativeFilters)
 					{
 						this.measureNativeFilters(bitmapData, HELPER_RECTANGLE);

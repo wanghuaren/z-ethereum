@@ -26,8 +26,7 @@ package boomiui.themes
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.text.TextFormat;
-	
+
 	import starling.events.Event;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
@@ -42,13 +41,21 @@ package boomiui.themes
 	 */
 	public class AeonDesktopTheme extends BaseAeonDesktopTheme
 	{
-		[Embed(source="/resource/aeon_desktop.png")]
+		/**
+		 * @private
+		 */
+		[Embed(source="resource/aeon_desktop.png")]
 		protected static const ATLAS_BITMAP:Class;
 
-		[Embed(source="/resource/aeon_desktop.xml",mimeType="application/octet-stream")]
+		/**
+		 * @private
+		 */
+		[Embed(source="resource/aeon_desktop.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
-		public static var m_headerTitleTextFormat:TextFormat;
-		public static var m_defaultTextFormat:TextFormat;
+
+		/**
+		 * Constructor.
+		 */
 		public function AeonDesktopTheme()
 		{
 			super();
@@ -56,22 +63,27 @@ package boomiui.themes
 			this.dispatchEventWith(Event.COMPLETE);
 		}
 
+		/**
+		 * @private
+		 */
 		override protected function initialize():void
 		{
 			var atlasBitmapData:BitmapData = Bitmap(new ATLAS_BITMAP()).bitmapData;
-			this.atlasTexture = Texture.fromBitmapData(atlasBitmapData, false);
-			this.atlasTexture.root.onRestore = this.atlasTexture_onRestore;
+			var atlasTexture:Texture = Texture.fromBitmapData(atlasBitmapData, false, false, 1);
+			atlasTexture.root.onRestore = this.atlasTexture_onRestore;
 			atlasBitmapData.dispose();
 			this.atlas = new TextureAtlas(atlasTexture, XML(new ATLAS_XML()));
-			m_headerTitleTextFormat=headerTitleTextFormat;
-			m_defaultTextFormat=defaultTextFormat;
+
 			super.initialize();
 		}
 
+		/**
+		 * @private
+		 */
 		protected function atlasTexture_onRestore():void
 		{
 			var atlasBitmapData:BitmapData = Bitmap(new ATLAS_BITMAP()).bitmapData;
-			this.atlasTexture.root.uploadBitmapData(atlasBitmapData);
+			this.atlas.texture.root.uploadBitmapData(atlasBitmapData);
 			atlasBitmapData.dispose();
 		}
 	}

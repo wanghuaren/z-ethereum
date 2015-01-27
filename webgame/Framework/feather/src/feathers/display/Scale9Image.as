@@ -17,6 +17,7 @@ package feathers.display
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
+	import starling.core.RenderSupport;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -256,7 +257,7 @@ package feathers.display
 		 *
 		 * @default starling.textures.TextureSmoothing.BILINEAR
 		 *
-		 * @see starling.textures.TextureSmoothing
+		 * @see http://doc.starling-framework.org/core/starling/textures/TextureSmoothing.html starling.textures.TextureSmoothing
 		 */
 		public function get smoothing():String
 		{
@@ -456,10 +457,13 @@ package feathers.display
 		/**
 		 * @private
 		 */
-		override public function flatten():void
+		override public function render(support:RenderSupport, parentAlpha:Number):void
 		{
-			this.validate();
-			super.flatten();
+			if(this._isInvalid)
+			{
+				this.validate();
+			}
+			super.render(support, parentAlpha);
 		}
 
 		/**
@@ -467,15 +471,18 @@ package feathers.display
 		 */
 		public function validate():void
 		{
-			if(!this._validationQueue || !this.stage || !this._isInvalid)
+			if(!this._isInvalid)
 			{
 				return;
 			}
 			if(this._isValidating)
 			{
-				//we were already validating, and something else told us to
-				//validate. that's bad.
-				this._validationQueue.addControl(this, true);
+				if(this._validationQueue)
+				{
+					//we were already validating, and something else told us to
+					//validate. that's bad.
+					this._validationQueue.addControl(this, true);
+				}
 				return;
 			}
 			this._isValidating = true;
@@ -496,23 +503,27 @@ package feathers.display
 
 				var grid:Rectangle = this._textures.scale9Grid;
 				var scaledLeftWidth:Number = grid.x * this._textureScale;
-				var scaledTopHeight:Number = grid.y * this._textureScale;
 				var scaledRightWidth:Number = (this._frame.width - grid.x - grid.width) * this._textureScale;
+				var sumLeftAndRight:Number = scaledLeftWidth + scaledRightWidth;
+				if(sumLeftAndRight > this._width)
+				{
+					var distortionScale:Number = (this._width / sumLeftAndRight);
+					scaledLeftWidth *= distortionScale;
+					scaledRightWidth *= distortionScale;
+					sumLeftAndRight + scaledLeftWidth + scaledRightWidth;
+				}
+				var scaledCenterWidth:Number = this._width - sumLeftAndRight;
+				var scaledTopHeight:Number = grid.y * this._textureScale;
 				var scaledBottomHeight:Number = (this._frame.height - grid.y - grid.height) * this._textureScale;
-				var scaledCenterWidth:Number = this._width - scaledLeftWidth - scaledRightWidth;
-				var scaledMiddleHeight:Number = this._height - scaledTopHeight - scaledBottomHeight;
-				if(scaledCenterWidth < 0)
+				var sumTopAndBottom:Number = scaledTopHeight + scaledBottomHeight;
+				if(sumTopAndBottom > this._height)
 				{
-					var offset:Number = scaledCenterWidth / 2;
-					scaledLeftWidth += offset;
-					scaledRightWidth += offset;
+					distortionScale = (this._height / sumTopAndBottom);
+					scaledTopHeight *= distortionScale;
+					scaledBottomHeight *= distortionScale;
+					sumTopAndBottom = scaledTopHeight + scaledBottomHeight;
 				}
-				if(scaledMiddleHeight < 0)
-				{
-					offset = scaledMiddleHeight / 2;
-					scaledTopHeight += offset;
-					scaledBottomHeight += offset;
-				}
+				var scaledMiddleHeight:Number = this._height - sumTopAndBottom;
 
 				if(scaledTopHeight > 0)
 				{

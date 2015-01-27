@@ -35,7 +35,6 @@ package feathers.controls.text
 	import starling.core.RenderSupport;
 	import starling.core.Starling;
 	import starling.display.Image;
-	import starling.events.Event;
 	import starling.textures.ConcreteTexture;
 	import starling.textures.Texture;
 	import starling.utils.getNextPowerOfTwo;
@@ -45,7 +44,7 @@ package feathers.controls.text
 	 * Flash Text Engine (FTE), and draws it to <code>BitmapData</code> to
 	 * convert to Starling textures. Textures are completely managed by this
 	 * component, and they will be automatically disposed when the component is
-	 * removed from the stage.
+	 * disposed.
 	 *
 	 * <p>For longer passages of text, this component will stitch together
 	 * multiple individual textures both horizontally and vertically, as a grid,
@@ -127,7 +126,7 @@ package feathers.controls.text
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * Constructor.
@@ -155,6 +154,16 @@ package feathers.controls.text
 		 * snapshots appearing after the first are stored here.
 		 */
 		protected var textSnapshots:Vector.<Image>;
+
+		/**
+		 * @private
+		 */
+		protected var _textSnapshotScrollX:Number = 0;
+
+		/**
+		 * @private
+		 */
+		protected var _textSnapshotScrollY:Number = 0;
 
 		/**
 		 * @private
@@ -226,7 +235,7 @@ package feathers.controls.text
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return TextBlockTextRenderer.styleProvider;
+			return TextBlockTextRenderer.globalStyleProvider;
 		}
 
 		/**
@@ -1047,6 +1056,16 @@ package feathers.controls.text
 				}
 				this.textSnapshots = null;
 			}
+			//this isn't necessary, but if a memory leak keeps the text renderer
+			//from being garbage collected, freeing up these things may help
+			//ease memory pressure from native filters and other expensive stuff
+			this.textBlock = null;
+			this._textLineContainer = null;
+			this._textLines = null;
+			this._measurementTextLineContainer = null;
+			this._measurementTextLines = null;
+			this._textElement = null;
+			this._content = null;
 
 			this._previousContentWidth = NaN;
 			this._previousContentHeight = NaN;
@@ -1090,19 +1109,21 @@ package feathers.controls.text
 				result = new Point();
 			}
 
-			if(!this.textBlock)
-			{
-				result.x = result.y = 0;
-				return result;
-			}
-
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				result.x = this.explicitWidth;
 				result.y = this.explicitHeight;
 				return result;
+			}
+
+			//if a parent component validates before we're added to the stage,
+			//measureText() may be called before initialization, so we need to
+			//force it.
+			if(!this._isInitialized)
+			{
+				this.initializeInternal();
 			}
 
 			this.commit();
@@ -1162,8 +1183,12 @@ package feathers.controls.text
 					{
 						this._textElement.elementFormat = this._disabledElementFormat;
 					}
-					else if(this._elementFormat)
+					else
 					{
+						if(!this._elementFormat)
+						{
+							this._elementFormat = new ElementFormat();
+						}
 						this._textElement.elementFormat = this._elementFormat;
 					}
 				}
@@ -1198,8 +1223,8 @@ package feathers.controls.text
 				result = new Point();
 			}
 
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			var newWidth:Number = this.explicitWidth;
 			var newHeight:Number = this.explicitHeight;
 			if(needsWidth)
@@ -1226,6 +1251,10 @@ package feathers.controls.text
 			if(needsHeight)
 			{
 				newHeight = this._measurementTextLineContainer.height;
+				if(newHeight <= 0 && this._elementFormat)
+				{
+					newHeight = this._elementFormat.fontSize;
+				}
 			}
 
 			result.x = newWidth;
@@ -1241,6 +1270,7 @@ package feathers.controls.text
 		{
 			var stylesInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_STYLES);
 			var dataInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_DATA);
+			var stateInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_STATE);
 
 			if(sizeInvalid)
 			{
@@ -1298,7 +1328,7 @@ package feathers.controls.text
 			//instead of checking sizeInvalid, which will often be triggered by
 			//changing maxWidth or something for measurement, we check against
 			//the previous actualWidth/Height used for the snapshot.
-			if(stylesInvalid || dataInvalid || this._needsNewTexture ||
+			if(stylesInvalid || dataInvalid || stateInvalid || this._needsNewTexture ||
 				this.actualWidth != this._previousContentWidth ||
 				this.actualHeight != this._previousContentHeight)
 			{
@@ -1334,8 +1364,8 @@ package feathers.controls.text
 		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -1445,8 +1475,8 @@ package feathers.controls.text
 						//clear the bitmap data and reuse it
 						bitmapData.fillRect(bitmapData.rect, 0x00ff00ff);
 					}
-					HELPER_MATRIX.tx = -xPosition;
-					HELPER_MATRIX.ty = -yPosition;
+					HELPER_MATRIX.tx = -xPosition - this._textSnapshotScrollX;
+					HELPER_MATRIX.ty = -yPosition - this._textSnapshotScrollY;
 					HELPER_RECTANGLE.setTo(0, 0, clipWidth, clipHeight);
 					bitmapData.draw(this._textLineContainer, HELPER_MATRIX, null, null, HELPER_RECTANGLE);
 					if(useNativeFilters)
@@ -1572,8 +1602,23 @@ package feathers.controls.text
 		{
 			if(this._textElement)
 			{
-				this._textElement.text = this._text;
-				this._truncationOffset = 0;
+				if(this._text)
+				{
+					this._textElement.text = this._text;
+					if(this._text !== null && this._text.charAt(this._text.length - 1) == " ")
+					{
+						//add an invisible control character because FTE apparently
+						//doesn't think that it's important to include trailing
+						//spaces in its width measurement.
+						this._textElement.text += String.fromCharCode(3);
+					}
+				}
+				else
+				{
+					//similar to above. this hack ensures that the baseline is
+					//measured properly when the text is an empty string.
+					this._textElement.text = String.fromCharCode(3);
+				}
 			}
 			HELPER_TEXT_LINES.length = 0;
 			var yPosition:Number = 0;
@@ -1619,6 +1664,7 @@ package feathers.controls.text
 				var inactiveTextLineCount:int = HELPER_TEXT_LINES.length;
 				while(true)
 				{
+					this._truncationOffset = 0;
 					var previousLine:TextLine = line;
 					var lineWidth:Number = width;
 					if(!this._wordWrap)
@@ -1699,23 +1745,7 @@ package feathers.controls.text
 				}
 			}
 
-			lineCount = textLines.length;
-			for(i = 0; i < lineCount; i++)
-			{
-				line = textLines[i];
-				if(this._textAlign == TEXT_ALIGN_CENTER)
-				{
-					line.x = (width - line.width) / 2;
-				}
-				else if(this._textAlign == TEXT_ALIGN_RIGHT)
-				{
-					line.x = width - line.width;
-				}
-				else
-				{
-					line.x = 0;
-				}
-			}
+			this.alignTextLines(textLines, width, this._textAlign);
 
 			inactiveTextLineCount = HELPER_TEXT_LINES.length;
 			for(i = 0; i < inactiveTextLineCount; i++)
@@ -1724,6 +1754,30 @@ package feathers.controls.text
 				textLineParent.removeChild(line);
 			}
 			HELPER_TEXT_LINES.length = 0;
+		}
+
+		/**
+		 * @private
+		 */
+		protected function alignTextLines(textLines:Vector.<TextLine>, width:Number, textAlign:String):void
+		{
+			var lineCount:int = textLines.length;
+			for(var i:int = 0; i < lineCount; i++)
+			{
+				var line:TextLine = textLines[i];
+				if(textAlign == TEXT_ALIGN_CENTER)
+				{
+					line.x = (width - line.width) / 2;
+				}
+				else if(textAlign == TEXT_ALIGN_RIGHT)
+				{
+					line.x = width - line.width;
+				}
+				else
+				{
+					line.x = 0;
+				}
+			}
 		}
 	}
 }

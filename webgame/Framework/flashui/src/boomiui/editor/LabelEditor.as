@@ -50,13 +50,13 @@ package boomiui.editor
 		}
 		
 		private function initGlobalTextFormat():void{
-			if(globalTextFormat==null){
-				globalTextFormat=new TextFormat();
-				var m_properties_array:Array=ObjectUtil.getClassInfo(AeonDesktopTheme.m_headerTitleTextFormat).properties as Array;
-				for each(var m_proper:String in m_properties_array){
-					globalTextFormat[m_proper]=AeonDesktopTheme.m_defaultTextFormat[m_proper];
-				}
-			}
+//			if(globalTextFormat==null){
+//				globalTextFormat=new TextFormat();
+//				var m_properties_array:Array=ObjectUtil.getClassInfo(AeonDesktopTheme.m_headerTitleTextFormat).properties as Array;
+//				for each(var m_proper:String in m_properties_array){
+//					globalTextFormat[m_proper]=AeonDesktopTheme.m_defaultTextFormat[m_proper];
+//				}
+//			}
 		}
 		
 		public function get bold():Boolean

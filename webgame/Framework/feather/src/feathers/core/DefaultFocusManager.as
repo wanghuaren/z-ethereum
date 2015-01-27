@@ -175,7 +175,7 @@ package feathers.core
 				return;
 			}
 			var oldFocus:IFeathersDisplayObject = this._focus;
-			if(this._isEnabled && value && value.isFocusEnabled)
+			if(this._isEnabled && value && value.isFocusEnabled && value.focusManager == this)
 			{
 				this._focus = value;
 			}
@@ -232,6 +232,30 @@ package feathers.core
 					var child:DisplayObject = container.getChildAt(i);
 					this.setFocusManager(child);
 				}
+				if(container is IFocusExtras)
+				{
+					var containerWithExtras:IFocusExtras = IFocusExtras(container);
+					var extras:Vector.<DisplayObject> = containerWithExtras.focusExtrasBefore;
+					if(extras)
+					{
+						childCount = extras.length;
+						for(i = 0; i < childCount; i++)
+						{
+							child = extras[i];
+							this.setFocusManager(child);
+						}
+					}
+					extras = containerWithExtras.focusExtrasAfter;
+					if(extras)
+					{
+						childCount = extras.length;
+						for(i = 0; i < childCount; i++)
+						{
+							child = extras[i];
+							this.setFocusManager(child);
+						}
+					}
+				}
 			}
 		}
 
@@ -243,11 +267,15 @@ package feathers.core
 			if(target is IFocusDisplayObject)
 			{
 				var targetWithFocus:IFocusDisplayObject = IFocusDisplayObject(target);
-				if(this._focus == targetWithFocus)
+				if(targetWithFocus.focusManager == this)
 				{
-					this.focus = null;
+					if(this._focus == targetWithFocus)
+					{
+						//change to focus owner, which falls back to null
+						this.focus = targetWithFocus.focusOwner;
+					}
+					targetWithFocus.focusManager = null;
 				}
-				targetWithFocus.focusManager = null;
 			}
 			if(target is DisplayObjectContainer)
 			{
@@ -257,6 +285,30 @@ package feathers.core
 				{
 					var child:DisplayObject = container.getChildAt(i);
 					this.clearFocusManager(child);
+				}
+				if(container is IFocusExtras)
+				{
+					var containerWithExtras:IFocusExtras = IFocusExtras(container);
+					var extras:Vector.<DisplayObject> = containerWithExtras.focusExtrasBefore;
+					if(extras)
+					{
+						childCount = extras.length;
+						for(i = 0; i < childCount; i++)
+						{
+							child = extras[i];
+							this.clearFocusManager(child);
+						}
+					}
+					extras = containerWithExtras.focusExtrasAfter;
+					if(extras)
+					{
+						childCount = extras.length;
+						for(i = 0; i < childCount; i++)
+						{
+							child = extras[i];
+							this.clearFocusManager(child);
+						}
+					}
 				}
 			}
 		}
@@ -513,11 +565,7 @@ package feathers.core
 		 */
 		protected function isValidFocus(child:IFocusDisplayObject):Boolean
 		{
-			if(!child)
-			{
-				return false;
-			}
-			if(!child.isFocusEnabled)
+			if(!child || !child.isFocusEnabled || child.focusManager != this)
 			{
 				return false;
 			}
@@ -550,7 +598,11 @@ package feathers.core
 
 			var newFocus:IFocusDisplayObject;
 			var currentFocus:IFocusDisplayObject = this._focus;
-			if(event.shiftKey)
+			if(currentFocus && currentFocus.focusOwner)
+			{
+				newFocus = currentFocus.focusOwner;
+			}
+			else if(event.shiftKey)
 			{
 				if(currentFocus)
 				{

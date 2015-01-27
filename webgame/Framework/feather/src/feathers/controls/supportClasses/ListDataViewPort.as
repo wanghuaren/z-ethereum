@@ -71,7 +71,7 @@ package feathers.controls.supportClasses
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("minVisibleWidth cannot be NaN");
 			}
@@ -92,7 +92,7 @@ package feathers.controls.supportClasses
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("maxVisibleWidth cannot be NaN");
 			}
@@ -112,7 +112,7 @@ package feathers.controls.supportClasses
 		public function set visibleWidth(value:Number):void
 		{
 			if(this.explicitVisibleWidth == value ||
-				(value != value && this.explicitVisibleWidth != this.explicitVisibleWidth)) //isNaN
+				(value !== value && this.explicitVisibleWidth !== this.explicitVisibleWidth)) //isNaN
 			{
 				return;
 			}
@@ -133,7 +133,7 @@ package feathers.controls.supportClasses
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("minVisibleHeight cannot be NaN");
 			}
@@ -154,7 +154,7 @@ package feathers.controls.supportClasses
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("maxVisibleHeight cannot be NaN");
 			}
@@ -174,7 +174,7 @@ package feathers.controls.supportClasses
 		public function set visibleHeight(value:Number):void
 		{
 			if(this.explicitVisibleHeight == value ||
-				(value != value && this.explicitVisibleHeight != this.explicitVisibleHeight)) //isNaN
+				(value !== value && this.explicitVisibleHeight !== this.explicitVisibleHeight)) //isNaN
 			{
 				return;
 			}
@@ -566,8 +566,6 @@ package feathers.controls.supportClasses
 			this._ignoreRendererResizing = true;
 			var oldIgnoreLayoutChanges:Boolean = this._ignoreLayoutChanges;
 			this._ignoreLayoutChanges = true;
-			var oldIgnoreSelectionChanges:Boolean = this._ignoreSelectionChanges;
-			this._ignoreSelectionChanges = true;
 
 			if(scrollInvalid || sizeInvalid)
 			{
@@ -591,14 +589,20 @@ package feathers.controls.supportClasses
 			}
 			if(selectionInvalid || basicsInvalid)
 			{
+				//unlike resizing renderers and layout changes, we only want to
+				//stop listening for selection changes when we're forcibly
+				//updating selection. other property changes on item renderers
+				//can validly change selection, and we need to detect that.
+				var oldIgnoreSelectionChanges:Boolean = this._ignoreSelectionChanges;
+				this._ignoreSelectionChanges = true;
 				this.refreshSelection();
+				this._ignoreSelectionChanges = oldIgnoreSelectionChanges;
 			}
 			if(stateInvalid || basicsInvalid)
 			{
 				this.refreshEnabled();
 			}
 			this._ignoreLayoutChanges = oldIgnoreLayoutChanges;
-			this._ignoreSelectionChanges = oldIgnoreSelectionChanges;
 
 			if(stateInvalid || selectionInvalid || stylesInvalid || basicsInvalid)
 			{

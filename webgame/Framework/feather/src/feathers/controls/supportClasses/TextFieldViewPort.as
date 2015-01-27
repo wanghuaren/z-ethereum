@@ -480,7 +480,7 @@ package feathers.controls.supportClasses
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("minVisibleWidth cannot be NaN");
 			}
@@ -501,7 +501,7 @@ package feathers.controls.supportClasses
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("maxVisibleWidth cannot be NaN");
 			}
@@ -509,21 +509,27 @@ package feathers.controls.supportClasses
 			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
 
-		private var _visibleWidth:Number = NaN;
+		private var _actualVisibleWidth:Number = 0;
+
+		private var _explicitVisibleWidth:Number = NaN;
 
 		public function get visibleWidth():Number
 		{
-			return this._visibleWidth;
+			if(this._explicitVisibleWidth !== this._explicitVisibleWidth) //isNaN
+			{
+				return this._actualVisibleWidth;
+			}
+			return this._explicitVisibleWidth;
 		}
 
 		public function set visibleWidth(value:Number):void
 		{
-			if(this._visibleWidth == value ||
-				(value != value && this._visibleWidth != this._visibleWidth)) //isNaN
+			if(this._explicitVisibleWidth == value ||
+				(value !== value && this._explicitVisibleWidth !== this._explicitVisibleWidth)) //isNaN
 			{
 				return;
 			}
-			this._visibleWidth = value;
+			this._explicitVisibleWidth = value;
 			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
 
@@ -540,7 +546,7 @@ package feathers.controls.supportClasses
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("minVisibleHeight cannot be NaN");
 			}
@@ -561,7 +567,7 @@ package feathers.controls.supportClasses
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("maxVisibleHeight cannot be NaN");
 			}
@@ -569,21 +575,27 @@ package feathers.controls.supportClasses
 			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
 
-		private var _visibleHeight:Number = NaN;
+		private var _actualVisibleHeight:Number = 0;
+
+		private var _explicitVisibleHeight:Number = NaN;
 
 		public function get visibleHeight():Number
 		{
-			return this._visibleHeight;
+			if(this._explicitVisibleHeight !== this._explicitVisibleHeight) //isNaN
+			{
+				return this._actualVisibleHeight;
+			}
+			return this._explicitVisibleHeight;
 		}
 
 		public function set visibleHeight(value:Number):void
 		{
-			if(this._visibleHeight == value ||
-				(value != value && this._visibleHeight != this._visibleHeight)) //isNaN
+			if(this._explicitVisibleHeight == value ||
+				(value !== value && this._explicitVisibleHeight !== this._explicitVisibleHeight)) //isNaN
 			{
 				return;
 			}
-			this._visibleHeight = value;
+			this._explicitVisibleHeight = value;
 			this.invalidate(INVALIDATION_FLAG_SIZE);
 		}
 
@@ -786,6 +798,7 @@ package feathers.controls.supportClasses
 			var sizeInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_SIZE);
 			var scrollInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_SCROLL);
 			var stylesInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_STYLES);
+			var stateInvalid:Boolean = this.isInvalid(INVALIDATION_FLAG_STATE);
 
 			if(stylesInvalid)
 			{
@@ -804,7 +817,7 @@ package feathers.controls.supportClasses
 				this._textField.y = this._paddingTop;
 			}
 
-			if(dataInvalid || stylesInvalid)
+			if(dataInvalid || stylesInvalid || stateInvalid)
 			{
 				if(this._styleSheet)
 				{
@@ -833,7 +846,7 @@ package feathers.controls.supportClasses
 				this._scrollStep = this._textField.getLineMetrics(0).height * Starling.contentScaleFactor;
 			}
 
-			var calculatedVisibleWidth:Number = this._visibleWidth;
+			var calculatedVisibleWidth:Number = this._explicitVisibleWidth;
 			if(calculatedVisibleWidth != calculatedVisibleWidth)
 			{
 				if(this.stage)
@@ -855,7 +868,7 @@ package feathers.controls.supportClasses
 			}
 			this._textField.width = calculatedVisibleWidth - this._paddingLeft - this._paddingRight;
 			var totalContentHeight:Number = this._textField.height + this._paddingTop + this._paddingBottom;
-			var calculatedVisibleHeight:Number = this._visibleHeight;
+			var calculatedVisibleHeight:Number = this._explicitVisibleHeight;
 			if(calculatedVisibleHeight != calculatedVisibleHeight)
 			{
 				calculatedVisibleHeight = totalContentHeight;
@@ -869,6 +882,8 @@ package feathers.controls.supportClasses
 				}
 			}
 			sizeInvalid = this.setSizeInternal(calculatedVisibleWidth, totalContentHeight, false) || sizeInvalid;
+			this._actualVisibleWidth = calculatedVisibleWidth;
+			this._actualVisibleHeight = calculatedVisibleHeight;
 
 			if(sizeInvalid || scrollInvalid)
 			{

@@ -104,17 +104,21 @@ package feathers.controls
 	 * <listing version="3.0">
 	 * list.horizontalScrollBarFactory = function():IScrollBar
 	 * {
-	 *     return new ScrollBar();
+	 *     var scrollBar:ScrollBar = new ScrollBar();
+	 *     scrollBar.direction = ScrollBar.DIRECTION_HORIZONTAL;
+	 *     return scrollBar;
 	 * };
 	 * list.verticalScrollBarFactory = function():IScrollBar
 	 * {
-	 *     return new ScrollBar();
+	 *     var scrollBar:ScrollBar = new ScrollBar();
+	 *     scrollBar.direction = ScrollBar.DIRECTION_VERTICAL;
+	 *     return scrollBar;
 	 * };</listing>
 	 *
 	 * @see http://wiki.starling-framework.org/feathers/scroll-bar
 	 * @see SimpleScrollBar
 	 */
-	public class ScrollBar extends FeathersControl implements IScrollBar
+	public class ScrollBar extends FeathersControl implements IDirectionalScrollBar
 	{
 		/**
 		 * @private
@@ -191,41 +195,41 @@ package feathers.controls
 		public static const TRACK_LAYOUT_MODE_MIN_MAX:String = "minMax";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the minimum
+		 * The default value added to the <code>styleNameList</code> of the minimum
 		 * track.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_MINIMUM_TRACK:String = "feathers-scroll-bar-minimum-track";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the maximum
+		 * The default value added to the <code>styleNameList</code> of the maximum
 		 * track.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_MAXIMUM_TRACK:String = "feathers-scroll-bar-maximum-track";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the thumb.
+		 * The default value added to the <code>styleNameList</code> of the thumb.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_THUMB:String = "feathers-scroll-bar-thumb";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the decrement
+		 * The default value added to the <code>styleNameList</code> of the decrement
 		 * button.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_DECREMENT_BUTTON:String = "feathers-scroll-bar-decrement-button";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the increment
+		 * The default value added to the <code>styleNameList</code> of the increment
 		 * button.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_INCREMENT_BUTTON:String = "feathers-scroll-bar-increment-button";
 
@@ -236,7 +240,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * @private
@@ -288,7 +292,7 @@ package feathers.controls
 		}
 
 		/**
-		 * The value added to the <code>nameList</code> of the minimum track. This
+		 * The value added to the <code>styleNameList</code> of the minimum track. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the minimum track name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_MINIMUM_TRACK</code>.
@@ -297,12 +301,12 @@ package feathers.controls
 		 * <code>customMinimumTrackName</code>.</p>
 		 *
 		 * @see #customMinimumTrackName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var minimumTrackName:String = DEFAULT_CHILD_NAME_MINIMUM_TRACK;
 
 		/**
-		 * The value added to the <code>nameList</code> of the maximum track. This
+		 * The value added to the <code>styleNameList</code> of the maximum track. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the maximum track name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_MAXIMUM_TRACK</code>.
@@ -311,12 +315,12 @@ package feathers.controls
 		 * <code>customMaximumTrackName</code>.</p>
 		 *
 		 * @see #customMaximumTrackName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var maximumTrackName:String = DEFAULT_CHILD_NAME_MAXIMUM_TRACK;
 
 		/**
-		 * The value added to the <code>nameList</code> of the thumb. This
+		 * The value added to the <code>styleNameList</code> of the thumb. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the thumb name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_THUMB</code>.
@@ -325,12 +329,12 @@ package feathers.controls
 		 * <code>customThumbName</code>.</p>
 		 *
 		 * @see #customThumbName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var thumbName:String = DEFAULT_CHILD_NAME_THUMB;
 
 		/**
-		 * The value added to the <code>nameList</code> of the decrement button. This
+		 * The value added to the <code>styleNameList</code> of the decrement button. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the decrement button name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_DECREMENT_BUTTON</code>.
@@ -339,12 +343,12 @@ package feathers.controls
 		 * <code>customDecrementButtonName</code>.</p>
 		 *
 		 * @see #customDecrementButtonName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var decrementButtonName:String = DEFAULT_CHILD_NAME_DECREMENT_BUTTON;
 
 		/**
-		 * The value added to the <code>nameList</code> of the increment button. This
+		 * The value added to the <code>styleNameList</code> of the increment button. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the increment button name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_INCREMENT_BUTTON</code>.
@@ -353,7 +357,7 @@ package feathers.controls
 		 * <code>customIncrementButtonName</code>.</p>
 		 *
 		 * @see #customIncrementButtonName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var incrementButtonName:String = DEFAULT_CHILD_NAME_INCREMENT_BUTTON;
 
@@ -442,7 +446,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return ScrollBar.styleProvider;
+			return ScrollBar.globalStyleProvider;
 		}
 
 		/**
@@ -988,13 +992,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customMinimumTrackInitializer, "my-custom-minimum-track");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-minimum-track", setCustomMinimumTrackStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_MINIMUM_TRACK
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #minimumTrackFactory
 		 * @see #minimumTrackProperties
 		 */
@@ -1162,13 +1165,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customMaximumTrackInitializer, "my-custom-maximum-track");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-maximum-track", setCustomMaximumTrackStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_MAXIMUM_TRACK
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #maximumTrackFactory
 		 * @see #maximumTrackProperties
 		 */
@@ -1336,13 +1338,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customThumbInitializer, "my-custom-thumb");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-thumb", setCustomThumbStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_THUMB
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #thumbFactory
 		 * @see #thumbProperties
 		 */
@@ -1509,13 +1510,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customDecrementButtonInitializer, "my-custom-decrement-button");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-decrement-button", setCustomDecrementButtonStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_DECREMENT_BUTTON
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #decrementButtonFactory
 		 * @see #decrementButtonProperties
 		 */
@@ -1683,13 +1683,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customIncrementInitializer, "my-custom-increment-button");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-increment-button", setCustomIncrementButtonStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_INCREMENT_BUTTON
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #incrementButtonFactory
 		 * @see #incrementButtonProperties
 		 */
@@ -1920,8 +1919,8 @@ package feathers.controls
 		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
-			if(this.minimumTrackOriginalWidth != this.minimumTrackOriginalWidth || //isNaN
-				this.minimumTrackOriginalHeight != this.minimumTrackOriginalHeight) //isNaN
+			if(this.minimumTrackOriginalWidth !== this.minimumTrackOriginalWidth || //isNaN
+				this.minimumTrackOriginalHeight !== this.minimumTrackOriginalHeight) //isNaN
 			{
 				this.minimumTrack.validate();
 				this.minimumTrackOriginalWidth = this.minimumTrack.width;
@@ -1929,16 +1928,16 @@ package feathers.controls
 			}
 			if(this.maximumTrack)
 			{
-				if(this.maximumTrackOriginalWidth != this.maximumTrackOriginalWidth || //isNaN
-					this.maximumTrackOriginalHeight != this.maximumTrackOriginalHeight) //isNaN
+				if(this.maximumTrackOriginalWidth !== this.maximumTrackOriginalWidth || //isNaN
+					this.maximumTrackOriginalHeight !== this.maximumTrackOriginalHeight) //isNaN
 				{
 					this.maximumTrack.validate();
 					this.maximumTrackOriginalWidth = this.maximumTrack.width;
 					this.maximumTrackOriginalHeight = this.maximumTrack.height;
 				}
 			}
-			if(this.thumbOriginalWidth != this.thumbOriginalWidth || //isNaN
-				this.thumbOriginalHeight != this.thumbOriginalHeight) //isNaN
+			if(this.thumbOriginalWidth !== this.thumbOriginalWidth || //isNaN
+				this.thumbOriginalHeight !== this.thumbOriginalHeight) //isNaN
 			{
 				this.thumb.validate();
 				this.thumbOriginalWidth = this.thumb.width;
@@ -1947,8 +1946,8 @@ package feathers.controls
 			this.decrementButton.validate();
 			this.incrementButton.validate();
 
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -2263,6 +2262,9 @@ package feathers.controls
 				this.incrementButton.x = this.actualWidth - this.incrementButton.width;
 				this.incrementButton.y = (this.actualHeight - this.incrementButton.height) / 2;
 			}
+			var showButtons:Boolean = this._maximum != this._minimum;
+			this.decrementButton.visible = showButtons;
+			this.incrementButton.visible = showButtons;
 		}
 
 		/**
@@ -2271,7 +2273,7 @@ package feathers.controls
 		protected function layoutThumb():void
 		{
 			var range:Number = this._maximum - this._minimum;
-			this.thumb.visible = range > 0;
+			this.thumb.visible = range > 0 && this._isEnabled;
 			if(!this.thumb.visible)
 			{
 				return;
@@ -2318,28 +2320,57 @@ package feathers.controls
 		 */
 		protected function layoutTrackWithMinMax():void
 		{
+			var showButtons:Boolean = this._maximum != this._minimum;
 			if(this._direction == DIRECTION_VERTICAL)
 			{
 				this.minimumTrack.x = 0;
-				this.minimumTrack.y = 0;
+				if(showButtons)
+				{
+					this.minimumTrack.y = this.decrementButton.height;
+				}
+				else
+				{
+					this.minimumTrack.y = 0;
+				}
 				this.minimumTrack.width = this.actualWidth;
 				this.minimumTrack.height = (this.thumb.y + this.thumb.height / 2) - this.minimumTrack.y;
 
 				this.maximumTrack.x = 0;
 				this.maximumTrack.y = this.minimumTrack.y + this.minimumTrack.height;
 				this.maximumTrack.width = this.actualWidth;
-				this.maximumTrack.height = this.actualHeight - this.maximumTrack.y;
+				if(showButtons)
+				{
+					this.maximumTrack.height = this.actualHeight - this.incrementButton.height - this.maximumTrack.y;
+				}
+				else
+				{
+					this.maximumTrack.height = this.actualHeight - this.maximumTrack.y;
+				}
 			}
 			else //horizontal
 			{
-				this.minimumTrack.x = 0;
+				if(showButtons)
+				{
+					this.minimumTrack.x = this.decrementButton.width;
+				}
+				else
+				{
+					this.minimumTrack.x = 0;
+				}
 				this.minimumTrack.y = 0;
 				this.minimumTrack.width = (this.thumb.x + this.thumb.width / 2) - this.minimumTrack.x;
 				this.minimumTrack.height = this.actualHeight;
 
 				this.maximumTrack.x = this.minimumTrack.x + this.minimumTrack.width;
 				this.maximumTrack.y = 0;
-				this.maximumTrack.width = this.actualWidth - this.maximumTrack.x;
+				if(showButtons)
+				{
+					this.maximumTrack.width = this.actualWidth - this.incrementButton.width - this.maximumTrack.x;
+				}
+				else
+				{
+					this.maximumTrack.width = this.actualWidth - this.maximumTrack.x;
+				}
 				this.maximumTrack.height = this.actualHeight;
 			}
 
@@ -2353,18 +2384,47 @@ package feathers.controls
 		 */
 		protected function layoutTrackWithSingle():void
 		{
+			var showButtons:Boolean = this._maximum != this._minimum;
 			if(this._direction == DIRECTION_VERTICAL)
 			{
 				this.minimumTrack.x = 0;
-				this.minimumTrack.y = 0;
+				if(showButtons)
+				{
+					this.minimumTrack.y = this.decrementButton.height;
+				}
+				else
+				{
+					this.minimumTrack.y = 0;
+				}
 				this.minimumTrack.width = this.actualWidth;
-				this.minimumTrack.height = this.actualHeight - this.minimumTrack.y;
+				if(showButtons)
+				{
+					this.minimumTrack.height = this.actualHeight - this.minimumTrack.y - this.incrementButton.height;
+				}
+				else
+				{
+					this.minimumTrack.height = this.actualHeight - this.minimumTrack.y;
+				}
 			}
 			else //horizontal
 			{
-				this.minimumTrack.x = 0;
+				if(showButtons)
+				{
+					this.minimumTrack.x = this.decrementButton.width;
+				}
+				else
+				{
+					this.minimumTrack.x = 0;
+				}
 				this.minimumTrack.y = 0;
-				this.minimumTrack.width = this.actualWidth - this.minimumTrack.x;
+				if(showButtons)
+				{
+					this.minimumTrack.width = this.actualWidth - this.minimumTrack.x - this.incrementButton.width;
+				}
+				else
+				{
+					this.minimumTrack.width = this.actualWidth - this.minimumTrack.x;
+				}
 				this.minimumTrack.height = this.actualHeight;
 			}
 

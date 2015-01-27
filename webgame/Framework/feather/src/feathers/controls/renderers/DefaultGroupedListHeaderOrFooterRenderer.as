@@ -10,6 +10,7 @@ package feathers.controls.renderers
 	import feathers.controls.GroupedList;
 	import feathers.controls.ImageLoader;
 	import feathers.core.FeathersControl;
+	import feathers.core.IFeathersControl;
 	import feathers.core.ITextRenderer;
 	import feathers.core.IValidating;
 	import feathers.core.PropertyProxy;
@@ -84,10 +85,10 @@ package feathers.controls.renderers
 		public static const VERTICAL_ALIGN_JUSTIFY:String = "justify";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the content
-		 * label.
+		 * The default value added to the <code>styleNameList</code> of the
+		 * content label.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_CONTENT_LABEL:String = "feathers-header-footer-renderer-content-label";
 
@@ -98,7 +99,7 @@ package feathers.controls.renderers
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * @private
@@ -117,9 +118,10 @@ package feathers.controls.renderers
 		}
 
 		/**
-		 * The value added to the <code>nameList</code> of the content label.
+		 * The value added to the <code>styleNameList</code> of the content
+		 * label.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var contentLabelName:String = DEFAULT_CHILD_NAME_CONTENT_LABEL;
 
@@ -143,7 +145,7 @@ package feathers.controls.renderers
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return DefaultGroupedListHeaderOrFooterRenderer.styleProvider;
+			return DefaultGroupedListHeaderOrFooterRenderer.globalStyleProvider;
 		}
 
 		/**
@@ -1256,6 +1258,11 @@ package feathers.controls.renderers
 				this.refreshContentLabelStyles();
 			}
 
+			if(dataInvalid || stateInvalid)
+			{
+				this.refreshEnabled();
+			}
+
 			sizeInvalid = this.autoSizeIfNeeded() || sizeInvalid;
 
 			if(dataInvalid || stylesInvalid || sizeInvalid)
@@ -1291,8 +1298,8 @@ package feathers.controls.renderers
 		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -1328,7 +1335,7 @@ package feathers.controls.renderers
 			if(needsWidth)
 			{
 				newWidth = this.content.width + this._paddingLeft + this._paddingRight;
-				if(this.originalBackgroundWidth == this.originalBackgroundWidth && //!isNaN
+				if(this.originalBackgroundWidth === this.originalBackgroundWidth && //!isNaN
 					this.originalBackgroundWidth > newWidth)
 				{
 					newWidth = this.originalBackgroundWidth;
@@ -1337,7 +1344,7 @@ package feathers.controls.renderers
 			if(needsHeight)
 			{
 				newHeight = this.content.height + this._paddingTop + this._paddingBottom;
-				if(this.originalBackgroundHeight == this.originalBackgroundHeight && //!isNaN
+				if(this.originalBackgroundHeight === this.originalBackgroundHeight && //!isNaN
 					this.originalBackgroundHeight > newHeight)
 				{
 					newHeight = this.originalBackgroundHeight;
@@ -1366,11 +1373,11 @@ package feathers.controls.renderers
 			}
 			if(this.currentBackgroundSkin)
 			{
-				if(this.originalBackgroundWidth != this.originalBackgroundWidth) //isNaN
+				if(this.originalBackgroundWidth !== this.originalBackgroundWidth) //isNaN
 				{
 					this.originalBackgroundWidth = this.currentBackgroundSkin.width;
 				}
-				if(this.originalBackgroundHeight != this.originalBackgroundHeight) //isNaN
+				if(this.originalBackgroundHeight !== this.originalBackgroundHeight) //isNaN
 				{
 					this.originalBackgroundHeight = this.currentBackgroundSkin.height;
 				}
@@ -1440,6 +1447,17 @@ package feathers.controls.renderers
 			{
 				DisplayObject(this.contentLabel).removeFromParent(true);
 				this.contentLabel = null;
+			}
+		}
+
+		/**
+		 * @private
+		 */
+		protected function refreshEnabled():void
+		{
+			if(this.content is IFeathersControl)
+			{
+				IFeathersControl(this.content).isEnabled = this._isEnabled;
 			}
 		}
 

@@ -79,23 +79,23 @@ package feathers.controls
 	public class Alert extends Panel
 	{
 		/**
-		 * The default value added to the <code>nameList</code> of the header.
+		 * The default value added to the <code>styleNameList</code> of the header.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_HEADER:String = "feathers-alert-header";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the button group.
+		 * The default value added to the <code>styleNameList</code> of the button group.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_BUTTON_GROUP:String = "feathers-alert-button-group";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the message.
+		 * The default value added to the <code>styleNameList</code> of the message.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_MESSAGE:String = "feathers-alert-message";
 
@@ -155,7 +155,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * The default factory that creates alerts when <code>Alert.show()</code>
@@ -233,13 +233,13 @@ package feathers.controls
 		}
 
 		/**
-		 * The value added to the <code>nameList</code> of the alert's message
-		 * text renderer. This variable is <code>protected</code> so that
-		 * sub-classes can customize the message name in their constructors
+		 * The value added to the <code>styleNameList</code> of the alert's
+		 * message text renderer. This variable is <code>protected</code> so
+		 * that sub-classes can customize the message name in their constructors
 		 * instead of using the default name defined by
 		 * <code>DEFAULT_CHILD_NAME_MESSAGE</code>.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var messageName:String = DEFAULT_CHILD_NAME_MESSAGE;
 
@@ -269,7 +269,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return Alert.styleProvider;
+			return Alert.globalStyleProvider;
 		}
 
 		/**
@@ -604,13 +604,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( ButtonGroup, customButtonGroupInitializer, "my-custom-button-group");</listing>
+		 * getStyleProviderForClass( ButtonGroup ).setFunctionForStyleName( "my-custom-button-group", setCustomButtonGroupStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_BUTTON_GROUP
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #buttonGroupFactory
 		 * @see #buttonGroupProperties
 		 */
@@ -721,8 +720,8 @@ package feathers.controls
 		 */
 		override protected function autoSizeIfNeeded():Boolean
 		{
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -758,7 +757,7 @@ package feathers.controls
 				if(this._icon)
 				{
 					var iconWidth:Number = this._icon.width;
-					if(iconWidth == iconWidth) //!isNaN
+					if(iconWidth === iconWidth) //!isNaN
 					{
 						newWidth += this._icon.width + this._gap;
 					}
@@ -768,7 +767,7 @@ package feathers.controls
 				{
 					newWidth = Math.max(newWidth, this.footer.width);
 				}
-				if(this.originalBackgroundWidth == this.originalBackgroundWidth) //!isNaN
+				if(this.originalBackgroundWidth === this.originalBackgroundWidth) //!isNaN
 				{
 					newWidth = Math.max(newWidth, this.originalBackgroundWidth);
 				}
@@ -779,13 +778,13 @@ package feathers.controls
 				if(this._icon)
 				{
 					var iconHeight:Number = this._icon.height;
-					if(iconHeight == iconHeight) //!isNaN
+					if(iconHeight === iconHeight) //!isNaN
 					{
 						newHeight = Math.max(newHeight, this._icon.height);
 					}
 				}
 				newHeight += this._bottomViewPortOffset + this._topViewPortOffset
-				if(this.originalBackgroundHeight == this.originalBackgroundHeight) //!isNaN
+				if(this.originalBackgroundHeight === this.originalBackgroundHeight) //!isNaN
 				{
 					newHeight = Math.max(newHeight, this.originalBackgroundHeight);
 				}

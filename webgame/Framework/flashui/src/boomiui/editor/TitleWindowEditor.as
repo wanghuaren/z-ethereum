@@ -4,16 +4,17 @@ package boomiui.editor
 	import boomiui.utils.GUI;
 	import boomiui.utils.Tools;
 	
+	import feathers.controls.Header;
 	import feathers.controls.Panel;
 	import feathers.events.FeathersEventType;
 	
 	import flash.text.TextFormat;
-	
-	import mx.collections.ArrayList;
 
 	public class TitleWindowEditor extends Editor
 	{
 		private var m_window:Panel;
+		private var m_head:Header;
+		
 		private var m_title:String;
 		private var m_skin:String;
 		private var m_fontSize:int;
@@ -31,6 +32,8 @@ package boomiui.editor
 			m_window=new Panel;
 			m_window.addEventListener(FeathersEventType.CREATION_COMPLETE, onCreateComponent);
 			addChild(m_window);
+			m_head=new Header();
+			addChild(m_head);
 		}
 
 		override public function create():void
@@ -53,10 +56,10 @@ package boomiui.editor
 
 		private function initGlobalTextFormat():void
 		{
-			if (globalTextFormat == null)
-			{
-				globalTextFormat=Tools.copyTextFormat(AeonDesktopTheme.m_headerTitleTextFormat);
-			}
+//			if (globalTextFormat == null)
+//			{
+//				globalTextFormat=Tools.copyTextFormat(AeonDesktopTheme.m_headerTitleTextFormat);
+//			}
 		}
 
 		public function get title():String
@@ -67,7 +70,8 @@ package boomiui.editor
 		public function set title(value:String):void
 		{
 			m_title=value;
-			m_window.headerProperties.title=value;
+//			m_window.headerProperties.title=value;
+			m_head.title=value;
 		}
 
 		public function get skin():String
@@ -83,6 +87,7 @@ package boomiui.editor
 
 		override public function set width(value:Number):void
 		{
+			m_head.x=(value-235)/2;
 			m_window.width=value
 		}
 
@@ -109,9 +114,9 @@ package boomiui.editor
 		public function set fontSize(value:int):void
 		{
 			m_fontSize=value;
-			globalTextFormat.size=value;
+//			globalTextFormat.size=value;
 
-			m_window.headerProperties.@titleProperties.textFormat=Tools.copyTextFormat(globalTextFormat);
+//			m_window.headerProperties.@titleProperties.textFormat=Tools.copyTextFormat(globalTextFormat);
 		}
 
 		public function get textWidth():int

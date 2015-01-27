@@ -99,6 +99,10 @@ package feathers.core
 	 * Base class for all UI controls. Implements invalidation and sets up some
 	 * basic template functions like <code>initialize()</code> and
 	 * <code>draw()</code>.
+	 *
+	 * <p>For a base component class that supports layouts, see <code>LayoutGroup</code>.</p>
+	 *
+	 * @see feathers.controls.LayoutGroup
 	 */
 	public class FeathersControl extends Sprite implements IFeathersControl, ILayoutDisplayObject
 	{
@@ -258,7 +262,9 @@ package feathers.core
 		 * selectors. In Feathers, they are a non-unique identifier that can
 		 * differentiate multiple styles of the same type of UI control. A
 		 * single control may have many style names, and many controls can share
-		 * a single style name. A <a href="">theme</a> or another
+		 * a single style name. A <a href="http://wiki.starling-framework.org/feathers/themes">theme</a>
+		 * or another skinning mechanism may use style names to provide a
+		 * variety of visual appearances for a single component class.
 		 *
 		 * <p>In general, the <code>styleName</code> property should not be set
 		 * directly on a Feathers component. You should add and remove style
@@ -267,6 +273,7 @@ package feathers.core
 		 * @default ""
 		 *
 		 * @see #styleNameList
+		 * @see http://wiki.starling-framework.org/feathers/themes
 		 * @see http://wiki.starling-framework.org/feathers/extending-themes
 		 */
 		public function get styleName():String
@@ -292,15 +299,20 @@ package feathers.core
 		 * like classes in CSS selectors. They are a non-unique identifier that
 		 * can differentiate multiple styles of the same type of UI control. A
 		 * single control may have many names, and many controls can share a
-		 * single name. Names may be added, removed, or toggled on the <code>nameList</code>.
-		 * Names cannot contain spaces.
+		 * single name. A <a href="http://wiki.starling-framework.org/feathers/themes">theme</a>
+		 * or another skinning mechanism may use style names to provide a
+		 * variety of visual appearances for a single component class.
+		 *
+		 * <p>Names may be added, removed, or toggled on the
+		 * <code>styleNameList</code>. Names cannot contain spaces.</p>
 		 *
 		 * <p>In the following example, a name is added to the name list:</p>
 		 *
 		 * <listing version="3.0">
 		 * control.styleNameList.add( "custom-component-name" );</listing>
 		 *
-		 * @see #name
+		 * @see #styleName
+		 * @see http://wiki.starling-framework.org/feathers/themes
 		 * @see http://wiki.starling-framework.org/feathers/extending-themes
 		 */
 		public function get styleNameList():TokenList
@@ -309,12 +321,15 @@ package feathers.core
 		}
 
 		/**
-		 * DEPRECATED: Replaced by the <code>styleNameList</code> property.
+		 * DEPRECATED: Replaced by the <code>styleNameList</code>
+		 * property.
 		 *
 		 * <p><strong>DEPRECATION WARNING:</strong> This property is deprecated
-		 * starting with Feathers 1.4. It will be removed in a future version of
+		 * starting with Feathers 2.0. It will be removed in a future version of
 		 * Feathers according to the standard
 		 * <a href="http://wiki.starling-framework.org/feathers/deprecation-policy">Feathers deprecation policy</a>.</p>
+		 *
+		 * @see #styleNameList
 		 */
 		public function get nameList():TokenList
 		{
@@ -334,7 +349,7 @@ package feathers.core
 		 *
 		 * @see #styleName
 		 * @see #styleNameList
-		 * @see http://wiki.starling-framework.org/feathers/custom-themes
+		 * @see http://wiki.starling-framework.org/feathers/themes
 		 */
 		public function get styleProvider():IStyleProvider
 		{
@@ -355,18 +370,18 @@ package feathers.core
 
 		/**
 		 * When the <code>FeathersControl</code> constructor is called, the
-		 * <code>styleProvider</code> property is set to this value. May be
+		 * <code>globalStyleProvider</code> property is set to this value. May be
 		 * <code>null</code>.
 		 *
 		 * <p>Typically, a subclass of <code>FeathersControl</code> will
-		 * override this function to return its static <code>styleProvider</code>
+		 * override this function to return its static <code>globalStyleProvider</code>
 		 * value. For instance, <code>feathers.controls.Button</code> overrides
 		 * this function, and its implementation looks like this:</p>
 		 *
 		 * <listing version="3.0">
 		 * override protected function get defaultStyleProvider():IStyleProvider
 		 * {
-		 *     return Button.styleProvider;
+		 *     return Button.globalStyleProvider;
 		 * }</listing>
 		 *
 		 * @see #styleProvider
@@ -540,7 +555,7 @@ package feathers.core
 		 * <listing version="3.0">
 		 * control.width = NaN;</listing>
 		 * 
-		 * @see feathers.core.IFeathersControl#validate()
+		 * @see feathers.core.FeathersControl#validate()
 		 */
 		override public function get width():Number
 		{
@@ -556,8 +571,8 @@ package feathers.core
 			{
 				return;
 			}
-			var valueIsNaN:Boolean = value != value; //isNaN
-			if(valueIsNaN && this.explicitWidth != this.explicitWidth)
+			var valueIsNaN:Boolean = value !== value; //isNaN
+			if(valueIsNaN && this.explicitWidth !== this.explicitWidth)
 			{
 				return;
 			}
@@ -624,7 +639,7 @@ package feathers.core
 		 * <listing version="3.0">
 		 * control.height = NaN;</listing>
 		 * 
-		 * @see feathers.core.IFeathersControl#validate()
+		 * @see feathers.core.FeathersControl#validate()
 		 */
 		override public function get height():Number
 		{
@@ -640,8 +655,8 @@ package feathers.core
 			{
 				return;
 			}
-			var valueIsNaN:Boolean = value != value; //isNaN
-			if(valueIsNaN && this.explicitHeight != this.explicitHeight)
+			var valueIsNaN:Boolean = value !== value; //isNaN
+			if(valueIsNaN && this.explicitHeight !== this.explicitHeight)
 			{
 				return;
 			}
@@ -761,7 +776,7 @@ package feathers.core
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("minWidth cannot be NaN");
 			}
@@ -803,7 +818,7 @@ package feathers.core
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("minHeight cannot be NaN");
 			}
@@ -845,7 +860,7 @@ package feathers.core
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("maxWidth cannot be NaN");
 			}
@@ -887,7 +902,7 @@ package feathers.core
 			{
 				return;
 			}
-			if(value != value) //isNaN
+			if(value !== value) //isNaN
 			{
 				throw new ArgumentError("maxHeight cannot be NaN");
 			}
@@ -985,6 +1000,10 @@ package feathers.core
 		/**
 		 * @copy feathers.core.IFocusDisplayObject#focusManager
 		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
+		 *
 		 * @default null
 		 */
 		public function get focusManager():IFocusManager
@@ -1021,10 +1040,41 @@ package feathers.core
 		/**
 		 * @private
 		 */
+		protected var _focusOwner:IFocusDisplayObject;
+
+		/**
+		 * @copy feathers.core.IFocusDisplayObject#focusOwner
+		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
+		 *
+		 * @default null
+		 */
+		public function get focusOwner():IFocusDisplayObject
+		{
+			return this._focusOwner;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set focusOwner(value:IFocusDisplayObject):void
+		{
+			this._focusOwner = value;
+		}
+
+		/**
+		 * @private
+		 */
 		protected var _isFocusEnabled:Boolean = true;
 
 		/**
 		 * @copy feathers.core.IFocusDisplayObject#isFocusEnabled
+		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
 		 *
 		 * @default true
 		 */
@@ -1057,6 +1107,10 @@ package feathers.core
 		/**
 		 * @copy feathers.core.IFocusDisplayObject#nextTabFocus
 		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
+		 *
 		 * @default null
 		 */
 		public function get nextTabFocus():IFocusDisplayObject
@@ -1083,6 +1137,10 @@ package feathers.core
 
 		/**
 		 * @copy feathers.core.IFocusDisplayObject#previousTabFocus
+		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
 		 *
 		 * @default null
 		 */
@@ -1120,6 +1178,10 @@ package feathers.core
 		 * component or its sub-components. This skin will not affect the
 		 * dimensions of the component or its hit area. It is simply a visual
 		 * indicator of focus.</p>
+		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
 		 *
 		 * <p>In the following example, the focus indicator skin is set:</p>
 		 *
@@ -1167,6 +1229,10 @@ package feathers.core
 		 * <code>focusPaddingTop</code>, but the other focus padding values may
 		 * be different.
 		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
+		 *
 		 * <p>The following example gives the button 2 pixels of focus padding
 		 * on all sides:</p>
 		 *
@@ -1206,6 +1272,10 @@ package feathers.core
 		 * top edge of the focus indicator skin. A negative value may be used
 		 * to expand the focus indicator skin outside the bounds of the object.
 		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
+		 *
 		 * <p>The following example gives the focus indicator skin -2 pixels of
 		 * padding on the top edge only:</p>
 		 *
@@ -1241,6 +1311,10 @@ package feathers.core
 		 * The minimum space, in pixels, between the object's right edge and the
 		 * right edge of the focus indicator skin. A negative value may be used
 		 * to expand the focus indicator skin outside the bounds of the object.
+		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
 		 *
 		 * <p>The following example gives the focus indicator skin -2 pixels of
 		 * padding on the right edge only:</p>
@@ -1278,6 +1352,10 @@ package feathers.core
 		 * bottom edge of the focus indicator skin. A negative value may be used
 		 * to expand the focus indicator skin outside the bounds of the object.
 		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
+		 *
 		 * <p>The following example gives the focus indicator skin -2 pixels of
 		 * padding on the bottom edge only:</p>
 		 *
@@ -1313,6 +1391,10 @@ package feathers.core
 		 * The minimum space, in pixels, between the object's left edge and the
 		 * left edge of the focus indicator skin. A negative value may be used
 		 * to expand the focus indicator skin outside the bounds of the object.
+		 *
+		 * <p>The implementation of this property is provided for convenience,
+		 * but it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
 		 *
 		 * <p>The following example gives the focus indicator skin -2 pixels of
 		 * padding on the right edge only:</p>
@@ -1579,7 +1661,7 @@ package feathers.core
 		 * 
 		 * @see #invalidate()
 		 * @see #initialize()
-		 * @see feathers.events.FeathersEventType#INITIALIZE
+		 * @see #event:initialize feathers.events.FeathersEventType.INITIALIZE
 		 */
 		public function validate():void
 		{
@@ -1669,13 +1751,13 @@ package feathers.core
 			var widthIsNaN:Boolean = width != width;
 			if(widthIsNaN)
 			{
-				this.actualWidth = 0;
+				this.actualWidth = this.scaledActualWidth = 0;
 			}
 			this.explicitHeight = height;
 			var heightIsNaN:Boolean = height != height;
 			if(heightIsNaN)
 			{
-				this.actualHeight = 0;
+				this.actualHeight = this.scaledActualHeight = 0;
 			}
 
 			if(widthIsNaN || heightIsNaN)
@@ -1690,6 +1772,10 @@ package feathers.core
 
 		/**
 		 * @copy feathers.core.IFocusDisplayObject#showFocus()
+		 *
+		 * <p>The implementation of this method is provided for convenience, but
+		 * it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
 		 */
 		public function showFocus():void
 		{
@@ -1704,6 +1790,10 @@ package feathers.core
 
 		/**
 		 * @copy feathers.core.IFocusDisplayObject#hideFocus()
+		 *
+		 * <p>The implementation of this method is provided for convenience, but
+		 * it cannot be used unless a subclass implements the
+		 * <code>IFocusDisplayObject</code> interface.</p>
 		 */
 		public function hideFocus():void
 		{
@@ -1724,7 +1814,7 @@ package feathers.core
 		 */
 		protected function setSizeInternal(width:Number, height:Number, canInvalidate:Boolean):Boolean
 		{
-			if(this.explicitWidth == this.explicitWidth) //!isNaN
+			if(this.explicitWidth === this.explicitWidth) //!isNaN
 			{
 				width = this.explicitWidth;
 			}
@@ -1739,7 +1829,7 @@ package feathers.core
 					width = this._maxWidth;
 				}
 			}
-			if(this.explicitHeight == this.explicitHeight) //!isNaN
+			if(this.explicitHeight === this.explicitHeight) //!isNaN
 			{
 				height = this.explicitHeight;
 			}
@@ -1754,11 +1844,11 @@ package feathers.core
 					height = this._maxHeight;
 				}
 			}
-			if(width != width) //isNaN
+			if(width !== width) //isNaN
 			{
 				throw new ArgumentError(ILLEGAL_WIDTH_ERROR);
 			}
-			if(height != height) //isNaN
+			if(height !== height) //isNaN
 			{
 				throw new ArgumentError(ILLEGAL_HEIGHT_ERROR);
 			}
@@ -1801,7 +1891,7 @@ package feathers.core
 		 * After this function is called, <code>FeathersEventType.INITIALIZE</code>
 		 * is dispatched.
 		 *
-		 * @see feathers.events.FeathersEventType#INITIALIZE
+		 * @see #event:initialize feathers.events.FeathersEventType.INITIALIZE
 		 */
 		protected function initialize():void
 		{
@@ -1892,7 +1982,7 @@ package feathers.core
 				this._hitArea.width = this.actualWidth;
 			}
 			var hitAreaX:Number = (this.actualWidth - this._hitArea.width) / 2;
-			if(hitAreaX != hitAreaX) //isNaN
+			if(hitAreaX !== hitAreaX) //isNaN
 			{
 				this._hitArea.x = 0;
 			}
@@ -1916,7 +2006,7 @@ package feathers.core
 				this._hitArea.height = this.actualHeight;
 			}
 			var hitAreaY:Number = (this.actualHeight - this._hitArea.height) / 2;
-			if(hitAreaY != hitAreaY) //isNaN
+			if(hitAreaY !== hitAreaY) //isNaN
 			{
 				this._hitArea.y = 0;
 			}
@@ -1931,6 +2021,10 @@ package feathers.core
 		 */
 		protected function initializeInternal():void
 		{
+			if(this._isInitialized)
+			{
+				return;
+			}
 			this.initialize();
 			this.invalidate(); //invalidate everything
 			this._isInitialized = true;

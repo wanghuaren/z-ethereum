@@ -15,6 +15,7 @@ package feathers.display
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
+	import starling.core.RenderSupport;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -216,7 +217,7 @@ package feathers.display
 		 *
 		 * @default starling.textures.TextureSmoothing.BILINEAR
 		 *
-		 * @see starling.textures.TextureSmoothing
+		 * @see http://doc.starling-framework.org/core/starling/textures/TextureSmoothing.html starling.textures.TextureSmoothing
 		 */
 		public function get smoothing():String
 		{
@@ -453,10 +454,13 @@ package feathers.display
 		/**
 		 * @private
 		 */
-		override public function flatten():void
+		override public function render(support:RenderSupport, parentAlpha:Number):void
 		{
-			this.validate();
-			super.flatten();
+			if(this._isInvalid)
+			{
+				this.validate();
+			}
+			super.render(support, parentAlpha);
 		}
 
 		/**
@@ -464,15 +468,18 @@ package feathers.display
 		 */
 		public function validate():void
 		{
-			if(!this._validationQueue || !this.stage || !this._isInvalid)
+			if(!this._isInvalid)
 			{
 				return;
 			}
 			if(this._isValidating)
 			{
-				//we were already validating, and something else told us to
-				//validate. that's bad.
-				this._validationQueue.addControl(this, true);
+				if(this._validationQueue)
+				{
+					//we were already validating, and something else told us to
+					//validate. that's bad.
+					this._validationQueue.addControl(this, true);
+				}
 				return;
 			}
 			this._isValidating = true;

@@ -14,13 +14,20 @@ package boomiui.manager
 	import boomiui.editor.ScrollContainerEditor;
 	import boomiui.editor.ScrollTextEditor;
 	import boomiui.editor.SkinImageEditor;
+//	import boomiui.editor.SkinMovieEditor;
 	import boomiui.editor.SliderEditor;
 	import boomiui.editor.TabBarEditor;
 	import boomiui.editor.TextInputEditor;
 	import boomiui.editor.TitleWindowEditor;
-
+	
+	import feathers.core.IFeathersControl;
+	
+	import flash.utils.Dictionary;
+	
 	import mx.controls.Alert;
-
+	
+	import spark.components.supportClasses.Skin;
+	
 	import starling.events.TouchPhase;
 
 	public class ComponentManager
@@ -36,22 +43,25 @@ package boomiui.manager
 		{
 			var name:String=xml.localName();
 			var editor:Editor=getComponentByClass(name);
-			editor.xmlToComponent(xml);
-
-			var child:Editor;
-			for each (var item:XML in xml.elements())
+			if (editor)
 			{
-				child=setComponentByXML(item,addEventFunc,eventCallBackClick,eventCallBackMove);
+				editor.xmlToComponent(xml);
 
-				if (child)
+				var child:Editor;
+				for each (var item:XML in xml.elements())
 				{
-					editor.addEditor(child);
+					child=setComponentByXML(item, addEventFunc, eventCallBackClick, eventCallBackMove);
+
+					if (child)
+					{
+						editor.addEditor(child);
+					}
 				}
-			}
-			if (addEventFunc != null)
-			{
-				addEventFunc(TouchPhase.BEGAN, editor, eventCallBackClick);
-				addEventFunc(TouchPhase.HOVER, editor, eventCallBackMove);
+				if (addEventFunc != null)
+				{
+					addEventFunc(TouchPhase.BEGAN, editor, eventCallBackClick);
+					addEventFunc(TouchPhase.HOVER, editor, eventCallBackMove);
+				}
 			}
 			return editor
 		}
@@ -83,6 +93,8 @@ package boomiui.manager
 					return new SliderEditor;
 				case "SkinImage":
 					return new SkinImageEditor;
+//				case "SkinMovieClip":
+//					return new SkinMovieEditor;
 				case "List":
 					return new ListEditor;
 				case "TabBar":
@@ -104,7 +116,31 @@ package boomiui.manager
 				case "ScrollContainer":
 					return new ScrollContainerEditor;
 			}
-			Alert.show("ComponentManager : 没有找到组件", "错误", 4);
+//			Alert.show("ComponentManager : 没有找到组件" + className, "错误", 4);
+			return null;
+		}
+		private static var _customEditor:Dictionary;
+
+		public static function get customEditor():Dictionary
+		{
+			return _customEditor;
+		}
+
+		public static function set customEditor(value:Dictionary):void
+		{
+			_customEditor=value;
+		}
+
+		public static function getCustomComponentByName(editorName:String, addEventFunc:Function=null, eventCallBackClick:Function=null, eventCallBackMove:Function=null):Editor
+		{
+			if (_customEditor)
+			{
+				if (_customEditor[editorName] is XML)
+				{
+					_customEditor[editorName]=setComponentByXML(_customEditor[editorName],addEventFunc,eventCallBackClick,eventCallBackMove);
+				}
+				return _customEditor[editorName];
+			}
 			return null;
 		}
 	}

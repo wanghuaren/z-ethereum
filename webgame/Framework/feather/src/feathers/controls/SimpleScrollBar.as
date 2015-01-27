@@ -103,17 +103,21 @@ package feathers.controls
 	 * <listing version="3.0">
 	 * list.horizontalScrollBarFactory = function():IScrollBar
 	 * {
-	 *     return new SimpleScrollBar();
+	 *     var scrollBar:SimpleScrollBar = new SimpleScrollBar();
+	 *     scrollBar.direction = SimpleScrollBar.DIRECTION_HORIZONTAL;
+	 *     return scrollBar;
 	 * };
 	 * list.verticalScrollBarFactory = function():IScrollBar
 	 * {
-	 *     return new SimpleScrollBar();
+	 *     var scrollBar:SimpleScrollBar = new SimpleScrollBar();
+	 *     scrollBar.direction = SimpleScrollBar.DIRECTION_VERTICAL;
+	 *     return scrollBar;
 	 * };</listing>
 	 *
 	 * @see http://wiki.starling-framework.org/feathers/simple-scroll-bar
 	 * @see ScrollBar
 	 */
-	public class SimpleScrollBar extends FeathersControl implements IScrollBar
+	public class SimpleScrollBar extends FeathersControl implements IDirectionalScrollBar
 	{
 		/**
 		 * @private
@@ -140,9 +144,9 @@ package feathers.controls
 		public static const DIRECTION_VERTICAL:String = "vertical";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the thumb.
+		 * The default value added to the <code>styleNameList</code> of the thumb.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_THUMB:String = "feathers-simple-scroll-bar-thumb";
 
@@ -153,7 +157,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * @private
@@ -173,7 +177,7 @@ package feathers.controls
 		}
 
 		/**
-		 * The value added to the <code>nameList</code> of the thumb. This
+		 * The value added to the <code>styleNameList</code> of the thumb. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the thumb name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_THUMB</code>.
@@ -182,7 +186,7 @@ package feathers.controls
 		 * <code>customThumbName</code>.</p>
 		 *
 		 * @see #customThumbName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var thumbName:String = DEFAULT_CHILD_NAME_THUMB;
 
@@ -216,7 +220,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return SimpleScrollBar.styleProvider;
+			return SimpleScrollBar.globalStyleProvider;
 		}
 
 		/**
@@ -733,13 +737,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customThumbInitializer, "my-custom-thumb");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-thumb", setCustomThumbStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_THUMB
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #thumbFactory
 		 * @see #thumbProperties
 		 */
@@ -929,16 +932,16 @@ package feathers.controls
 		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
-			if(this.thumbOriginalWidth != this.thumbOriginalWidth ||
-				this.thumbOriginalHeight != this.thumbOriginalHeight) //isNaN
+			if(this.thumbOriginalWidth !== this.thumbOriginalWidth ||
+				this.thumbOriginalHeight !== this.thumbOriginalHeight) //isNaN
 			{
 				this.thumb.validate();
 				this.thumbOriginalWidth = this.thumb.width;
 				this.thumbOriginalHeight = this.thumb.height;
 			}
 
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;

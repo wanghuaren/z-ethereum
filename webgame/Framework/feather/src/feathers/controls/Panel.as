@@ -47,16 +47,16 @@ package feathers.controls
 	public class Panel extends ScrollContainer implements IFocusExtras
 	{
 		/**
-		 * The default value added to the <code>nameList</code> of the header.
+		 * The default value added to the <code>styleNameList</code> of the header.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_HEADER:String = "feathers-panel-header";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the footer.
+		 * The default value added to the <code>styleNameList</code> of the footer.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_FOOTER:String = "feathers-panel-footer";
 
@@ -161,7 +161,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * @private
@@ -210,7 +210,7 @@ package feathers.controls
 		protected var footer:IFeathersControl;
 
 		/**
-		 * The default value added to the <code>nameList</code> of the header.
+		 * The default value added to the <code>styleNameList</code> of the header.
 		 *
 		 * <p>To customize the header name without subclassing, see
 		 * <code>customHeaderName</code>.</p> This
@@ -219,12 +219,12 @@ package feathers.controls
 		 * name defined by <code>DEFAULT_CHILD_NAME_HEADER</code>.
 		 *
 		 * @see #customHeaderName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var headerName:String = DEFAULT_CHILD_NAME_HEADER;
 
 		/**
-		 * The default value added to the <code>nameList</code> of the footer. This
+		 * The default value added to the <code>styleNameList</code> of the footer. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the footer name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_FOOTER</code>.
@@ -233,7 +233,7 @@ package feathers.controls
 		 * <code>customFooterName</code>.</p>
 		 *
 		 * @see #customFooterName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var footerName:String = DEFAULT_CHILD_NAME_FOOTER;
 
@@ -242,7 +242,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return Panel.styleProvider;
+			return Panel.globalStyleProvider;
 		}
 
 		/**
@@ -282,7 +282,7 @@ package feathers.controls
 		 *
 		 * @default null
 		 *
-		 * @see feathers.core.IFeathersControl
+		 * @see feathers.core.FeathersControl
 		 * @see feathers.controls.Header
 		 * @see #headerProperties
 		 */
@@ -328,13 +328,12 @@ package feathers.controls
 		 * <code>IFeathersControl</code>):</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Header, customHeaderInitializer, "my-custom-header");</listing>
+		 * getStyleProviderForClass( Header ).setFunctionForStyleName( "my-custom-header", setCustomHeaderStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_HEADER
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #headerFactory
 		 * @see #headerProperties
 		 */
@@ -370,7 +369,7 @@ package feathers.controls
 		 * <code>feathers.core.IFeathersControl</code> instance, but the default
 		 * is a <code>feathers.controls.Header</code> instance. The available
 		 * properties depend on what type of component is returned by
-		 * <code>footerFactory</code>.
+		 * <code>headerFactory</code>.
 		 *
 		 * <p>If the subcomponent has its own subcomponents, their properties
 		 * can be set too, using attribute <code>&#64;</code> notation. For example,
@@ -462,7 +461,7 @@ package feathers.controls
 		 *
 		 * @default null
 		 *
-		 * @see feathers.core.IFeathersControl
+		 * @see feathers.core.FeathersControl
 		 * @see #footerProperties
 		 */
 		public function get footerFactory():Function
@@ -507,13 +506,12 @@ package feathers.controls
 		 * <code>IFeathersControl</code>):</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( ScrollContainer, customFooterInitializer, "my-custom-footer");</listing>
+		 * getStyleProviderForClass( ScrollContainer ).setFunctionForStyleName( "my-custom-footer", setCustomFooterStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_FOOTER
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #footerFactory
 		 * @see #footerProperties
 		 */
@@ -639,6 +637,215 @@ package feathers.controls
 		}
 
 		/**
+		 * Quickly sets all outer padding properties to the same value. The
+		 * <code>outerPadding</code> getter always returns the value of
+		 * <code>outerPaddingTop</code>, but the other padding values may be
+		 * different.
+		 *
+		 * <p>In the following example, the outer padding is set to 20 pixels:</p>
+		 *
+		 * <listing version="3.0">
+		 * panel.outerPadding = 20;</listing>
+		 *
+		 * @default 0
+		 *
+		 * @see #outerPaddingTop
+		 * @see #outerPaddingRight
+		 * @see #outerPaddingBottom
+		 * @see #outerPaddingLeft
+		 * @see feathers.controls.Scroller#padding
+		 */
+		public function get outerPadding():Number
+		{
+			return this._outerPaddingTop;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set outerPadding(value:Number):void
+		{
+			this.outerPaddingTop = value;
+			this.outerPaddingRight = value;
+			this.outerPaddingBottom = value;
+			this.outerPaddingLeft = value;
+		}
+
+		/**
+		 * @private
+		 */
+		protected var _outerPaddingTop:Number = 0;
+
+		/**
+		 * The minimum space, in pixels, between the panel's top edge and the
+		 * panel's header.
+		 *
+		 * <p>Note: The <code>paddingTop</code> property applies to the
+		 * middle content only, and it does not affect the header. Use
+		 * <code>outerPaddingTop</code> if you want to include padding above
+		 * the header. <code>outerPaddingTop</code> and <code>paddingTop</code>
+		 * may be used simultaneously to define padding around the outer edges
+		 * of the panel and additional padding around its middle content.</p>
+		 *
+		 * <p>In the following example, the top padding is set to 20 pixels:</p>
+		 *
+		 * <listing version="3.0">
+		 * panel.outerPaddingTop = 20;</listing>
+		 *
+		 * @default 0
+		 *
+		 * @see feathers.controls.Scroller#paddingTop
+		 */
+		public function get outerPaddingTop():Number
+		{
+			return this._outerPaddingTop;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set outerPaddingTop(value:Number):void
+		{
+			if(this._outerPaddingTop == value)
+			{
+				return;
+			}
+			this._outerPaddingTop = value;
+			this.invalidate(INVALIDATION_FLAG_STYLES);
+		}
+
+		/**
+		 * @private
+		 */
+		protected var _outerPaddingRight:Number = 0;
+
+		/**
+		 * The minimum space, in pixels, between the panel's right edge and the
+		 * panel's header, middle content, and footer.
+		 *
+		 * <p>Note: The <code>paddingRight</code> property applies to the middle
+		 * content only, and it does not affect the header or footer. Use
+		 * <code>outerPaddingRight</code> if you want to include padding around
+		 * the header and footer too. <code>outerPaddingRight</code> and
+		 * <code>paddingRight</code> may be used simultaneously to define
+		 * padding around the outer edges of the panel plus additional padding
+		 * around its middle content.</p>
+		 *
+		 * <p>In the following example, the right outer padding is set to 20 pixels:</p>
+		 *
+		 * <listing version="3.0">
+		 * panel.outerPaddingRight = 20;</listing>
+		 *
+		 * @default 0
+		 *
+		 * @see feathers.controls.Scroller#paddingRight
+		 */
+		public function get outerPaddingRight():Number
+		{
+			return this._outerPaddingRight;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set outerPaddingRight(value:Number):void
+		{
+			if(this._outerPaddingRight == value)
+			{
+				return;
+			}
+			this._outerPaddingRight = value;
+			this.invalidate(INVALIDATION_FLAG_STYLES);
+		}
+
+		/**
+		 * @private
+		 */
+		protected var _outerPaddingBottom:Number = 0;
+
+		/**
+		 * The minimum space, in pixels, between the panel's bottom edge and the
+		 * panel's footer.
+		 *
+		 * <p>Note: The <code>paddingBottom</code> property applies to the
+		 * middle content only, and it does not affect the footer. Use
+		 * <code>outerPaddingBottom</code> if you want to include padding below
+		 * the footer. <code>outerPaddingBottom</code> and <code>paddingBottom</code>
+		 * may be used simultaneously to define padding around the outer edges
+		 * of the panel and additional padding around its middle content.</p>
+		 *
+		 * <p>In the following example, the bottom outer padding is set to 20 pixels:</p>
+		 *
+		 * <listing version="3.0">
+		 * panel.outerPaddingBottom = 20;</listing>
+		 *
+		 * @default 0
+		 *
+		 * @see feathers.controls.Scroller#paddingBottom
+		 */
+		public function get outerPaddingBottom():Number
+		{
+			return this._outerPaddingBottom;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set outerPaddingBottom(value:Number):void
+		{
+			if(this._outerPaddingBottom == value)
+			{
+				return;
+			}
+			this._outerPaddingBottom = value;
+			this.invalidate(INVALIDATION_FLAG_STYLES);
+		}
+
+		/**
+		 * @private
+		 */
+		protected var _outerPaddingLeft:Number = 0;
+
+		/**
+		 * The minimum space, in pixels, between the panel's left edge and the
+		 * panel's header, middle content, and footer.
+		 *
+		 * <p>Note: The <code>paddingLeft</code> property applies to the middle
+		 * content only, and it does not affect the header or footer. Use
+		 * <code>outerPaddingLeft</code> if you want to include padding around
+		 * the header and footer too. <code>outerPaddingLeft</code> and
+		 * <code>paddingLeft</code> may be used simultaneously to define padding
+		 * around the outer edges of the panel and additional padding around its
+		 * middle content.</p>
+		 *
+		 * <p>In the following example, the left outer padding is set to 20 pixels:</p>
+		 *
+		 * <listing version="3.0">
+		 * scroller.outerPaddingLeft = 20;</listing>
+		 *
+		 * @default 0
+		 *
+		 * @see feathers.controls.Scroller#paddingLeft
+		 */
+		public function get outerPaddingLeft():Number
+		{
+			return this._outerPaddingLeft;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set outerPaddingLeft(value:Number):void
+		{
+			if(this._outerPaddingLeft == value)
+			{
+				return;
+			}
+			this._outerPaddingLeft = value;
+			this.invalidate(INVALIDATION_FLAG_STYLES);
+		}
+
+		/**
 		 * @private
 		 */
 		protected var _ignoreHeaderResizing:Boolean = false;
@@ -685,8 +892,8 @@ package feathers.controls
 		 */
 		override protected function autoSizeIfNeeded():Boolean
 		{
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -723,7 +930,7 @@ package feathers.controls
 				{
 					newWidth = Math.max(newWidth, this.footer.width);
 				}
-				if(this.originalBackgroundWidth == this.originalBackgroundWidth) //!isNaN
+				if(this.originalBackgroundWidth === this.originalBackgroundWidth) //!isNaN
 				{
 					newWidth = Math.max(newWidth, this.originalBackgroundWidth);
 				}
@@ -731,7 +938,7 @@ package feathers.controls
 			if(needsHeight)
 			{
 				newHeight = this._viewPort.height + this._bottomViewPortOffset + this._topViewPortOffset;
-				if(this.originalBackgroundHeight == this.originalBackgroundHeight) //!isNaN
+				if(this.originalBackgroundHeight === this.originalBackgroundHeight) //!isNaN
 				{
 					newHeight = Math.max(newHeight, this.originalBackgroundHeight);
 				}
@@ -847,15 +1054,25 @@ package feathers.controls
 		{
 			super.calculateViewPortOffsets(forceScrollBars);
 
+			this._leftViewPortOffset += this._outerPaddingLeft;
+			this._rightViewPortOffset += this._outerPaddingRight;
+
 			var oldIgnoreHeaderResizing:Boolean = this._ignoreHeaderResizing;
 			this._ignoreHeaderResizing = true;
 			var oldHeaderWidth:Number = this.header.width;
 			var oldHeaderHeight:Number = this.header.height;
-			this.header.width = useActualBounds ? this.actualWidth : this.explicitWidth;
-			this.header.maxWidth = this._maxWidth;
+			if(useActualBounds)
+			{
+				this.header.width = this.actualWidth - this._outerPaddingLeft - this._outerPaddingRight;
+			}
+			else
+			{
+				this.header.width = this.explicitWidth - this._outerPaddingLeft - this._outerPaddingRight;
+			}
+			this.header.maxWidth = this._maxWidth - this._outerPaddingLeft - this._outerPaddingRight;
 			this.header.height = NaN;
 			this.header.validate();
-			this._topViewPortOffset += this.header.height;
+			this._topViewPortOffset += this.header.height + this._outerPaddingTop;
 			this.header.width = oldHeaderWidth;
 			this.header.height = oldHeaderHeight;
 			this._ignoreHeaderResizing = oldIgnoreHeaderResizing;
@@ -866,11 +1083,18 @@ package feathers.controls
 				this._ignoreFooterResizing = true;
 				var oldFooterWidth:Number = this.footer.width;
 				var oldFooterHeight:Number = this.footer.height;
-				this.footer.width = useActualBounds ? this.actualWidth : this.explicitWidth;
-				this.footer.maxWidth = this._maxWidth;
+				if(useActualBounds)
+				{
+					this.footer.width = this.actualWidth - this._outerPaddingLeft - this._outerPaddingRight;
+				}
+				else
+				{
+					this.header.width = this.explicitWidth - this._outerPaddingLeft - this._outerPaddingRight;
+				}
+				this.footer.maxWidth = this._maxWidth - this._outerPaddingLeft - this._outerPaddingRight;
 				this.footer.height = NaN;
 				this.footer.validate();
-				this._bottomViewPortOffset += this.footer.height;
+				this._bottomViewPortOffset += this.footer.height + this._outerPaddingBottom;
 				this.footer.width = oldFooterWidth;
 				this.footer.height = oldFooterHeight;
 				this._ignoreFooterResizing = oldIgnoreFooterResizing;
@@ -886,7 +1110,9 @@ package feathers.controls
 
 			var oldIgnoreHeaderResizing:Boolean = this._ignoreHeaderResizing;
 			this._ignoreHeaderResizing = true;
-			this.header.width = this.actualWidth;
+			this.header.x = this._outerPaddingLeft;
+			this.header.y = this._outerPaddingTop;
+			this.header.width = this.actualWidth - this._outerPaddingLeft - this._outerPaddingRight;
 			this.header.height = NaN;
 			this.header.validate();
 			this._ignoreHeaderResizing = oldIgnoreHeaderResizing;
@@ -895,10 +1121,11 @@ package feathers.controls
 			{
 				var oldIgnoreFooterResizing:Boolean = this._ignoreFooterResizing;
 				this._ignoreFooterResizing = true;
-				this.footer.width = this.actualWidth;
+				this.footer.x = this._outerPaddingLeft;
+				this.footer.width = this.actualWidth - this._outerPaddingLeft - this._outerPaddingRight;
 				this.footer.height = NaN;
 				this.footer.validate();
-				this.footer.y = this.actualHeight - this.footer.height;
+				this.footer.y = this.actualHeight - this.footer.height - this._outerPaddingBottom;
 				this._ignoreFooterResizing = oldIgnoreFooterResizing;
 			}
 		}

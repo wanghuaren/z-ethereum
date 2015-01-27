@@ -21,6 +21,7 @@ package feathers.controls
 	import feathers.skins.StateValueSelector;
 
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.ui.Mouse;
 	import flash.ui.MouseCursor;
 
@@ -226,7 +227,7 @@ package feathers.controls
 		 * the default text input skin.
 		 *
 		 * <p>An alternate name should always be added to a component's
-		 * <code>nameList</code> before the component is added to the stage for
+		 * <code>styleNameList</code> before the component is added to the stage for
 		 * the first time. If it is added later, it will be ignored.</p>
 		 *
 		 * <p>In the following example, the searc style is applied to a text
@@ -237,7 +238,7 @@ package feathers.controls
 		 * input.styleNameList.add( TextInput.ALTERNATE_NAME_SEARCH_TEXT_INPUT );
 		 * this.addChild( input );</listing>
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const ALTERNATE_NAME_SEARCH_TEXT_INPUT:String = "feathers-search-text-input";
 
@@ -280,7 +281,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * Constructor.
@@ -341,7 +342,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return TextInput.styleProvider;
+			return TextInput.globalStyleProvider;
 		}
 
 		/**
@@ -349,7 +350,7 @@ package feathers.controls
 		 */
 		override public function get isFocusEnabled():Boolean
 		{
-			return this._isEditable && this._isFocusEnabled;
+			return this._isEditable && this._isEnabled && this._isFocusEnabled;
 		}
 
 		/**
@@ -492,7 +493,7 @@ package feathers.controls
 		/**
 		 * @private
 		 */
-		protected var _prompt:String;
+		protected var _prompt:String = null;
 
 		/**
 		 * The prompt, hint, or description text displayed by the input when the
@@ -762,6 +763,9 @@ package feathers.controls
 		 * <p>The factory should have the following function signature:</p>
 		 * <pre>function():ITextRenderer</pre>
 		 *
+		 * <p>If the <code>prompt</code> property is <code>null</code>, the
+		 * prompt text renderer will not be created.</p>
+		 *
 		 * <p>In the following example, a custom prompt factory is passed to the
 		 * text input:</p>
 		 *
@@ -773,6 +777,7 @@ package feathers.controls
 		 *
 		 * @default null
 		 *
+		 * @see #prompt
 		 * @see feathers.core.ITextRenderer
 		 * @see feathers.core.FeathersControl#defaultTextRendererFactory
 		 * @see feathers.controls.text.BitmapFontTextRenderer
@@ -830,6 +835,7 @@ package feathers.controls
 		 *
 		 * @default null
 		 *
+		 * @see #prompt
 		 * @see #promptFactory
 		 * @see feathers.core.ITextRenderer
 		 * @see feathers.controls.text.BitmapFontTextRenderer
@@ -1479,7 +1485,7 @@ package feathers.controls
 		/**
 		 * @private
 		 */
-		protected var _pendingSelectionStartIndex:int = -1;
+		protected var _pendingSelectionBeginIndex:int = -1;
 
 		/**
 		 * @private
@@ -1568,6 +1574,38 @@ package feathers.controls
 		}
 
 		/**
+		 * @copy feathers.core.ITextEditor#selectionBeginIndex
+		 */
+		public function get selectionBeginIndex():int
+		{
+			if(this._pendingSelectionBeginIndex >= 0)
+			{
+				return this._pendingSelectionBeginIndex;
+			}
+			if(this.textEditor)
+			{
+				return this.textEditor.selectionBeginIndex;
+			}
+			return 0;
+		}
+
+		/**
+		 * @copy feathers.core.ITextEditor#selectionEndIndex
+		 */
+		public function get selectionEndIndex():int
+		{
+			if(this._pendingSelectionEndIndex >= 0)
+			{
+				return this._pendingSelectionEndIndex;
+			}
+			if(this.textEditor)
+			{
+				return this.textEditor.selectionEndIndex;
+			}
+			return 0;
+		}
+
+		/**
 		 * @private
 		 */
 		override public function set visible(value:Boolean):void
@@ -1581,6 +1619,23 @@ package feathers.controls
 				}
 			}
 			super.visible = value;
+		}
+
+		/**
+		 * @private
+		 */
+		override public function hitTest(localPoint:Point, forTouch:Boolean = false):DisplayObject
+		{
+			if(forTouch && (!this.visible || !this.touchable))
+			{
+				return null;
+			}
+			var clipRect:Rectangle = this.clipRect;
+			if(clipRect && !clipRect.containsPoint(localPoint))
+			{
+				return null;
+			}
+			return this._hitArea.containsPoint(localPoint) ? DisplayObject(this.textEditor) : null;
 		}
 
 		/**
@@ -1601,7 +1656,10 @@ package feathers.controls
 		 */
 		public function setFocus():void
 		{
-			if(this._textEditorHasFocus || !this.visible)
+			//if the text editor has focus, no need to set focus
+			//if this is invisible, it wouldn't make sense to set focus
+			//if there's a touch point ID, we'll be setting focus on our own
+			if(this._textEditorHasFocus || !this.visible || this._touchPointID >= 0)
 			{
 				return;
 			}
@@ -1635,15 +1693,15 @@ package feathers.controls
 		 * or the end index is <code>-1</code>, the text insertion position is
 		 * changed and nothing is selected.
 		 */
-		public function selectRange(startIndex:int, endIndex:int = -1):void
+		public function selectRange(beginIndex:int, endIndex:int = -1):void
 		{
 			if(endIndex < 0)
 			{
-				endIndex = startIndex;
+				endIndex = beginIndex;
 			}
-			if(startIndex < 0)
+			if(beginIndex < 0)
 			{
-				throw new RangeError("Expected start index >= 0. Received " + startIndex + ".");
+				throw new RangeError("Expected start index >= 0. Received " + beginIndex + ".");
 			}
 			if(endIndex > this._text.length)
 			{
@@ -1654,13 +1712,13 @@ package feathers.controls
 			//the selection
 			if(this.textEditor && (this._isValidating || !this.isInvalid()))
 			{
-				this._pendingSelectionStartIndex = -1;
+				this._pendingSelectionBeginIndex = -1;
 				this._pendingSelectionEndIndex = -1;
-				this.textEditor.selectRange(startIndex, endIndex);
+				this.textEditor.selectRange(beginIndex, endIndex);
 			}
 			else
 			{
-				this._pendingSelectionStartIndex = startIndex;
+				this._pendingSelectionBeginIndex = beginIndex;
 				this._pendingSelectionEndIndex = endIndex;
 				this.invalidate(INVALIDATION_FLAG_SELECTED);
 			}
@@ -1685,7 +1743,7 @@ package feathers.controls
 				this.createTextEditor();
 			}
 
-			if(promptFactoryInvalid)
+			if(promptFactoryInvalid || (this._prompt !== null && !this.promptTextRenderer))
 			{
 				this.createPrompt();
 			}
@@ -1708,14 +1766,17 @@ package feathers.controls
 				this._ignoreTextChanges = oldIgnoreTextChanges;
 			}
 
-			if(promptFactoryInvalid || dataInvalid || stylesInvalid)
+			if(this.promptTextRenderer)
 			{
-				this.promptTextRenderer.visible = this._prompt && this._text.length == 0;
-			}
+				if(promptFactoryInvalid || dataInvalid || stylesInvalid)
+				{
+					this.promptTextRenderer.visible = this._prompt && this._text.length == 0;
+				}
 
-			if(promptFactoryInvalid || stateInvalid)
-			{
-				this.promptTextRenderer.isEnabled = this._isEnabled;
+				if(promptFactoryInvalid || stateInvalid)
+				{
+					this.promptTextRenderer.isEnabled = this._isEnabled;
+				}
 			}
 
 			if(textEditorInvalid || stateInvalid)
@@ -1767,8 +1828,8 @@ package feathers.controls
 		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -1790,7 +1851,7 @@ package feathers.controls
 				typicalTextWidth = HELPER_POINT.x;
 				typicalTextHeight = HELPER_POINT.y;
 			}
-			if(this._prompt)
+			if(this._prompt !== null)
 			{
 				this.promptTextRenderer.setSize(NaN, NaN);
 				this.promptTextRenderer.measureText(HELPER_POINT);
@@ -1803,10 +1864,18 @@ package feathers.controls
 			if(needsWidth)
 			{
 				newWidth = Math.max(this._originalSkinWidth, typicalTextWidth + this._paddingLeft + this._paddingRight);
+				if(newWidth !== newWidth) //isNaN
+				{
+					newWidth = 0;
+				}
 			}
 			if(needsHeight)
 			{
 				newHeight = Math.max(this._originalSkinHeight, typicalTextHeight + this._paddingTop + this._paddingBottom);
+				if(newHeight !== newHeight) //isNaN
+				{
+					newHeight = 0;
+				}
 			}
 
 			var isMultiline:Boolean = this.textEditor is IMultilineTextEditor && IMultilineTextEditor(this.textEditor).multiline;
@@ -1861,6 +1930,11 @@ package feathers.controls
 				this.promptTextRenderer = null;
 			}
 
+			if(this._prompt === null)
+			{
+				return;
+			}
+
 			var factory:Function = this._promptFactory != null ? this._promptFactory : FeathersControl.defaultTextRendererFactory;
 			this.promptTextRenderer = ITextRenderer(factory());
 			this.addChild(DisplayObject(this.promptTextRenderer));
@@ -1879,11 +1953,11 @@ package feathers.controls
 					this.textEditor.setFocus();
 				}
 			}
-			if(this._pendingSelectionStartIndex >= 0)
+			if(this._pendingSelectionBeginIndex >= 0)
 			{
-				var startIndex:int = this._pendingSelectionStartIndex;
+				var startIndex:int = this._pendingSelectionBeginIndex;
 				var endIndex:int = this._pendingSelectionEndIndex;
-				this._pendingSelectionStartIndex = -1;
+				this._pendingSelectionBeginIndex = -1;
 				this._pendingSelectionEndIndex = -1;
 				if(endIndex >= 0)
 				{
@@ -1918,6 +1992,10 @@ package feathers.controls
 		 */
 		protected function refreshPromptProperties():void
 		{
+			if(!this.promptTextRenderer)
+			{
+				return;
+			}
 			this.promptTextRenderer.text = this._prompt;
 			var displayPrompt:DisplayObject = DisplayObject(this.promptTextRenderer);
 			for(var propertyName:String in this._promptProperties)
@@ -1955,8 +2033,8 @@ package feathers.controls
 				}
 			}
 			if(this.currentBackground &&
-				(this._originalSkinWidth != this._originalSkinWidth || //isNaN
-					this._originalSkinHeight != this._originalSkinHeight)) //isNaN
+				(this._originalSkinWidth !== this._originalSkinWidth || //isNaN
+					this._originalSkinHeight !== this._originalSkinHeight)) //isNaN
 			{
 				if(this.currentBackground is IValidating)
 				{
@@ -2026,15 +2104,24 @@ package feathers.controls
 			{
 				this.currentIcon.x = this._paddingLeft;
 				this.textEditor.x = this.currentIcon.x + this.currentIcon.width + this._gap;
-				this.promptTextRenderer.x = this.currentIcon.x + this.currentIcon.width + this._gap;
+				if(this.promptTextRenderer)
+				{
+					this.promptTextRenderer.x = this.currentIcon.x + this.currentIcon.width + this._gap;
+				}
 			}
 			else
 			{
 				this.textEditor.x = this._paddingLeft;
-				this.promptTextRenderer.x = this._paddingLeft;
+				if(this.promptTextRenderer)
+				{
+					this.promptTextRenderer.x = this._paddingLeft;
+				}
 			}
 			this.textEditor.width = this.actualWidth - this._paddingRight - this.textEditor.x;
-			this.promptTextRenderer.width = this.actualWidth - this._paddingRight - this.promptTextRenderer.x;
+			if(this.promptTextRenderer)
+			{
+				this.promptTextRenderer.width = this.actualWidth - this._paddingRight - this.promptTextRenderer.x;
+			}
 
 			var isMultiline:Boolean = this.textEditor is IMultilineTextEditor && IMultilineTextEditor(this.textEditor).multiline;
 			if(isMultiline || this._verticalAlign == VERTICAL_ALIGN_JUSTIFY)
@@ -2048,23 +2135,35 @@ package feathers.controls
 				this.textEditor.height = NaN;
 			}
 			this.textEditor.validate();
-			this.promptTextRenderer.validate();
+			if(this.promptTextRenderer)
+			{
+				this.promptTextRenderer.validate();
+			}
 
 			var biggerHeight:Number = this.textEditor.height;
 			var biggerBaseline:Number = this.textEditor.baseline;
-			if(this.promptTextRenderer.baseline > baseline)
+			if(this.promptTextRenderer)
 			{
-				biggerBaseline = this.promptTextRenderer.baseline;
-			}
-			if(this.promptTextRenderer.height > biggerHeight)
-			{
-				biggerHeight = this.promptTextRenderer.height;
+				var promptBaseline:Number = this.promptTextRenderer.baseline;
+				var promptHeight:Number = this.promptTextRenderer.height;
+				if(promptBaseline > biggerBaseline)
+				{
+					biggerBaseline = promptBaseline;
+				}
+				if(promptHeight > biggerHeight)
+				{
+					biggerHeight = promptHeight;
+				}
 			}
 
 			if(isMultiline)
 			{
-				this.promptTextRenderer.y = this._paddingTop + biggerBaseline - this.promptTextRenderer.baseline;
-				this.promptTextRenderer.height = this.actualHeight - this.promptTextRenderer.y - this._paddingBottom;
+				this.textEditor.y = this._paddingTop + biggerBaseline - this.textEditor.baseline;
+				if(this.promptTextRenderer)
+				{
+					this.promptTextRenderer.y = this._paddingTop + biggerBaseline - promptBaseline;
+					this.promptTextRenderer.height = this.actualHeight - this.promptTextRenderer.y - this._paddingBottom;
+				}
 				if(this.currentIcon)
 				{
 					this.currentIcon.y = this._paddingTop;
@@ -2077,8 +2176,11 @@ package feathers.controls
 					case VERTICAL_ALIGN_JUSTIFY:
 					{
 						this.textEditor.y = this._paddingTop + biggerBaseline - this.textEditor.baseline;
-						this.promptTextRenderer.y = this._paddingTop + biggerBaseline - this.promptTextRenderer.baseline;
-						this.promptTextRenderer.height = this.actualHeight - this.promptTextRenderer.y - this._paddingBottom;
+						if(this.promptTextRenderer)
+						{
+							this.promptTextRenderer.y = this._paddingTop + biggerBaseline - promptBaseline;
+							this.promptTextRenderer.height = this.actualHeight - this.promptTextRenderer.y - this._paddingBottom;
+						}
 						if(this.currentIcon)
 						{
 							this.currentIcon.y = this._paddingTop;
@@ -2088,7 +2190,10 @@ package feathers.controls
 					case VERTICAL_ALIGN_TOP:
 					{
 						this.textEditor.y = this._paddingTop + biggerBaseline - this.textEditor.baseline;
-						this.promptTextRenderer.y = this._paddingTop + biggerBaseline - this.promptTextRenderer.baseline;
+						if(this.promptTextRenderer)
+						{
+							this.promptTextRenderer.y = this._paddingTop + biggerBaseline - promptBaseline;
+						}
 						if(this.currentIcon)
 						{
 							this.currentIcon.y = this._paddingTop;
@@ -2098,7 +2203,10 @@ package feathers.controls
 					case VERTICAL_ALIGN_BOTTOM:
 					{
 						this.textEditor.y = this.actualHeight - this._paddingBottom - biggerHeight + biggerBaseline - this.textEditor.baseline;
-						this.promptTextRenderer.y = this.actualHeight - this._paddingBottom - biggerHeight + biggerBaseline - this.promptTextRenderer.baseline;
+						if(this.promptTextRenderer)
+						{
+							this.promptTextRenderer.y = this.actualHeight - this._paddingBottom - biggerHeight + biggerBaseline - promptBaseline;
+						}
 						if(this.currentIcon)
 						{
 							this.currentIcon.y = this.actualHeight - this._paddingBottom - this.currentIcon.height;
@@ -2108,7 +2216,10 @@ package feathers.controls
 					default: //middle
 					{
 						this.textEditor.y = biggerBaseline - this.textEditor.baseline + this._paddingTop + (this.actualHeight - this._paddingTop - this._paddingBottom - biggerHeight) / 2;
-						this.promptTextRenderer.y = biggerBaseline - this.promptTextRenderer.baseline + this._paddingTop + (this.actualHeight - this._paddingTop - this._paddingBottom - biggerHeight) / 2;
+						if(this.promptTextRenderer)
+						{
+							this.promptTextRenderer.y = biggerBaseline - promptBaseline + this._paddingTop + (this.actualHeight - this._paddingTop - this._paddingBottom - biggerHeight) / 2;
+						}
 						if(this.currentIcon)
 						{
 							this.currentIcon.y = this._paddingTop + (this.actualHeight - this._paddingTop - this._paddingBottom - this.currentIcon.height) / 2;
@@ -2129,7 +2240,7 @@ package feathers.controls
 			}
 			touch.getLocation(this.stage, HELPER_POINT);
 			var isInBounds:Boolean = this.contains(this.stage.hitTest(HELPER_POINT, true));
-			if(!this._textEditorHasFocus && isInBounds)
+			if(isInBounds && !this._textEditorHasFocus)
 			{
 				this.textEditor.globalToLocal(HELPER_POINT, HELPER_POINT);
 				this._isWaitingToSetFocus = false;
@@ -2271,7 +2382,6 @@ package feathers.controls
 		 */
 		protected function textEditor_focusInHandler(event:Event):void
 		{
-			this._touchPointID = -1;
 			if(!this.visible)
 			{
 				this.textEditor.clearFocus();

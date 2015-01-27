@@ -50,10 +50,10 @@ package boomiui.editor
 
 		private function initGlobalTextFormat():void
 		{
-			if (globalTextFormat == null)
-			{
-				globalTextFormat=Tools.copyTextFormat(AeonDesktopTheme.m_headerTitleTextFormat);
-			}
+//			if (globalTextFormat == null)
+//			{
+//				globalTextFormat=Tools.copyTextFormat(AeonDesktopTheme.m_headerTitleTextFormat);
+//			}
 		}
 
 		override public function get width():Number

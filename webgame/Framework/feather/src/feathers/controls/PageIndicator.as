@@ -153,7 +153,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * @private
@@ -211,7 +211,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return PageIndicator.styleProvider;
+			return PageIndicator.globalStyleProvider;
 		}
 
 		/**
@@ -671,7 +671,7 @@ package feathers.controls
 		 *     return new Image( texture );
 		 * };</listing>
 		 *
-		 * @see starling.display.DisplayObject
+		 * @see http://doc.starling-framework.org/core/starling/display/DisplayObject.html starling.display.DisplayObject
 		 * @see #selectedSymbolFactory
 		 */
 		public function get normalSymbolFactory():Function
@@ -713,7 +713,7 @@ package feathers.controls
 		 *     return new Image( texture );
 		 * };</listing>
 		 *
-		 * @see starling.display.DisplayObject
+		 * @see http://doc.starling-framework.org/core/starling/display/DisplayObject.html starling.display.DisplayObject
 		 * @see #normalSymbolFactory
 		 */
 		public function get selectedSymbolFactory():Function

@@ -496,9 +496,18 @@ package feathers.layout
 
 		/**
 		 * Determines if items will be set invisible if they are outside the
-		 * view port. Can improve performance, especially for non-virtual
-		 * layouts. If <code>true</code>, you will not be able to manually
+		 * view port. If <code>true</code>, you will not be able to manually
 		 * change the <code>visible</code> property of any items in the layout.
+		 *
+		 * <p><strong>DEPRECATION WARNING:</strong> This property is deprecated
+		 * starting with Feathers 2.0. It will be removed in a future version of
+		 * Feathers according to the standard
+		 * <a href="http://wiki.starling-framework.org/feathers/deprecation-policy">Feathers deprecation policy</a>.
+		 * Originally, the <code>manageVisibility</code> property could be used
+		 * to improve performance of non-virtual layouts by hiding items that
+		 * were outside the view port. However, other performance improvements
+		 * have made it so that setting <code>manageVisibility</code> can now
+		 * sometimes hurt performance instead of improving it.</p>
 		 *
 		 * @default false
 		 */
@@ -796,7 +805,7 @@ package feathers.layout
 
 			if(!this._useVirtualLayout || this._hasVariableItemDimensions || this._distributeWidths ||
 				this._verticalAlign != VERTICAL_ALIGN_JUSTIFY ||
-				explicitHeight != explicitHeight) //isNaN
+				explicitHeight !== explicitHeight) //isNaN
 			{
 				this.validateItems(items, explicitHeight - this._paddingTop - this._paddingBottom, explicitWidth);
 			}
@@ -811,11 +820,11 @@ package feathers.layout
 			{
 				distributedWidth = this.calculateDistributedWidth(items, explicitWidth, minWidth, maxWidth);
 			}
-			var hasDistributedWidth:Boolean = distributedWidth == distributedWidth; //!isNaN
+			var hasDistributedWidth:Boolean = distributedWidth === distributedWidth; //!isNaN
 
 			this._discoveredItemsCache.length = 0;
-			var hasFirstGap:Boolean = this._firstGap == this._firstGap; //!isNaN
-			var hasLastGap:Boolean = this._lastGap == this._lastGap; //!isNaN
+			var hasFirstGap:Boolean = this._firstGap === this._firstGap; //!isNaN
+			var hasLastGap:Boolean = this._lastGap === this._lastGap; //!isNaN
 			var maxItemHeight:Number = this._useVirtualLayout ? calculatedTypicalItemHeight : 0;
 			var positionX:Number = boundsX + this._paddingLeft;
 			var itemCount:int = items.length;
@@ -851,7 +860,7 @@ package feathers.layout
 				if(this._useVirtualLayout && !item)
 				{
 					if(!this._hasVariableItemDimensions ||
-						cachedWidth != cachedWidth) //isNaN
+						cachedWidth !== cachedWidth) //isNaN
 					{
 						positionX += calculatedTypicalItemWidth + gap;
 					}
@@ -918,7 +927,7 @@ package feathers.layout
 
 			var totalHeight:Number = maxItemHeight + this._paddingTop + this._paddingBottom;
 			var availableHeight:Number = explicitHeight;
-			if(availableHeight != availableHeight) //isNaN
+			if(availableHeight !== availableHeight) //isNaN
 			{
 				availableHeight = totalHeight;
 				if(availableHeight < minHeight)
@@ -932,7 +941,7 @@ package feathers.layout
 			}
 			var totalWidth:Number = positionX - this._gap + this._paddingRight - boundsX;
 			var availableWidth:Number = explicitWidth;
-			if(availableWidth != availableWidth) //isNaN
+			if(availableWidth !== availableWidth) //isNaN
 			{
 				availableWidth = totalWidth;
 				if(availableWidth < minWidth)
@@ -954,7 +963,7 @@ package feathers.layout
 				}
 				else if(this._horizontalAlign == HORIZONTAL_ALIGN_CENTER)
 				{
-					horizontalAlignOffsetX = (availableWidth - totalWidth) / 2;
+					horizontalAlignOffsetX = Math.round((availableWidth - totalWidth) / 2);
 				}
 				if(horizontalAlignOffsetX != 0)
 				{
@@ -991,7 +1000,7 @@ package feathers.layout
 						if(layoutData)
 						{
 							var percentHeight:Number = layoutData.percentHeight;
-							if(percentHeight == percentHeight) //!isNaN
+							if(percentHeight === percentHeight) //!isNaN
 							{
 								if(percentHeight < 0)
 								{
@@ -1032,7 +1041,7 @@ package feathers.layout
 						}
 						case VERTICAL_ALIGN_MIDDLE:
 						{
-							item.y = item.pivotY + boundsY + this._paddingTop + (availableHeight - this._paddingTop - this._paddingBottom - item.height) / 2;
+							item.y = item.pivotY + boundsY + this._paddingTop + Math.round((availableHeight - this._paddingTop - this._paddingBottom - item.height) / 2);
 							break;
 						}
 						default: //top
@@ -1075,8 +1084,8 @@ package feathers.layout
 
 			var explicitWidth:Number = viewPortBounds ? viewPortBounds.explicitWidth : NaN;
 			var explicitHeight:Number = viewPortBounds ? viewPortBounds.explicitHeight : NaN;
-			var needsWidth:Boolean = explicitWidth != explicitWidth; //isNaN
-			var needsHeight:Boolean = explicitHeight != explicitHeight; //isNaN
+			var needsWidth:Boolean = explicitWidth !== explicitWidth; //isNaN
+			var needsHeight:Boolean = explicitHeight !== explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				result.x = explicitWidth;
@@ -1092,8 +1101,8 @@ package feathers.layout
 			var calculatedTypicalItemWidth:Number = this._typicalItem ? this._typicalItem.width : 0;
 			var calculatedTypicalItemHeight:Number = this._typicalItem ? this._typicalItem.height : 0;
 
-			var hasFirstGap:Boolean = this._firstGap == this._firstGap; //!isNaN
-			var hasLastGap:Boolean = this._lastGap == this._lastGap; //!isNaN
+			var hasFirstGap:Boolean = this._firstGap === this._firstGap; //!isNaN
+			var hasLastGap:Boolean = this._lastGap === this._lastGap; //!isNaN
 			var positionX:Number;
 			if(this._distributeWidths)
 			{
@@ -1112,7 +1121,7 @@ package feathers.layout
 					for(var i:int = 0; i < itemCount; i++)
 					{
 						var cachedWidth:Number = this._widthCache[i];
-						if(cachedWidth != cachedWidth) //isNaN
+						if(cachedWidth !== cachedWidth) //isNaN
 						{
 							positionX += calculatedTypicalItemWidth + this._gap;
 						}
@@ -1232,8 +1241,8 @@ package feathers.layout
 			var calculatedTypicalItemWidth:Number = this._typicalItem ? this._typicalItem.width : 0;
 			var calculatedTypicalItemHeight:Number = this._typicalItem ? this._typicalItem.height : 0;
 
-			var hasFirstGap:Boolean = this._firstGap == this._firstGap; //!isNaN
-			var hasLastGap:Boolean = this._lastGap == this._lastGap; //!isNaN
+			var hasFirstGap:Boolean = this._firstGap === this._firstGap; //!isNaN
+			var hasLastGap:Boolean = this._lastGap === this._lastGap; //!isNaN
 			var resultLastIndex:int = 0;
 			var visibleTypicalItemCount:int = Math.ceil(width / (calculatedTypicalItemWidth + this._gap));
 			if(!this._hasVariableItemDimensions)
@@ -1302,7 +1311,7 @@ package feathers.layout
 					gap = this._lastGap;
 				}
 				var cachedWidth:Number = this._widthCache[i];
-				if(cachedWidth != cachedWidth) //isNaN
+				if(cachedWidth !== cachedWidth) //isNaN
 				{
 					var itemWidth:Number = calculatedTypicalItemWidth;
 				}
@@ -1381,8 +1390,8 @@ package feathers.layout
 				var calculatedTypicalItemHeight:Number = this._typicalItem ? this._typicalItem.height : 0;
 			}
 
-			var hasFirstGap:Boolean = this._firstGap == this._firstGap; //!isNaN
-			var hasLastGap:Boolean = this._lastGap == this._lastGap; //!isNaN
+			var hasFirstGap:Boolean = this._firstGap === this._firstGap; //!isNaN
+			var hasLastGap:Boolean = this._lastGap === this._lastGap; //!isNaN
 			var positionX:Number = x + this._paddingLeft;
 			var lastWidth:Number = 0;
 			var gap:Number = this._gap;
@@ -1437,7 +1446,7 @@ package feathers.layout
 				if(this._useVirtualLayout && !item)
 				{
 					if(!this._hasVariableItemDimensions ||
-						cachedWidth != cachedWidth) //isNaN
+						cachedWidth !== cachedWidth) //isNaN
 					{
 						lastWidth = calculatedTypicalItemWidth;
 					}
@@ -1453,7 +1462,7 @@ package feathers.layout
 					{
 						if(this._hasVariableItemDimensions)
 						{
-							if(cachedWidth != cachedWidth) //isNaN
+							if(itemWidth != cachedWidth)
 							{
 								this._widthCache[iNormalized] = itemWidth;
 								this.dispatchEventWith(Event.CHANGE);
@@ -1471,7 +1480,7 @@ package feathers.layout
 			positionX -= (lastWidth + gap);
 			if(this._scrollPositionHorizontalAlign == HORIZONTAL_ALIGN_CENTER)
 			{
-				positionX -= (width - lastWidth) / 2;
+				positionX -= Math.round((width - lastWidth) / 2);
 			}
 			else if(this._scrollPositionHorizontalAlign == HORIZONTAL_ALIGN_RIGHT)
 			{
@@ -1493,7 +1502,7 @@ package feathers.layout
 			//cause the other dimension to change, and that will invalidate the
 			//layout if it happens after validation, causing more invalidation
 			var mustSetJustifyHeight:Boolean = this._verticalAlign == VERTICAL_ALIGN_JUSTIFY &&
-				justifyHeight == justifyHeight; //!isNaN
+				justifyHeight === justifyHeight; //!isNaN
 
 			var itemCount:int = items.length;
 			for(var i:int = 0; i < itemCount; i++)
@@ -1532,7 +1541,7 @@ package feathers.layout
 				this._typicalItem.width = this._typicalItemWidth;
 			}
 			if(this._verticalAlign == VERTICAL_ALIGN_JUSTIFY &&
-				justifyHeight == justifyHeight) //!isNaN
+				justifyHeight === justifyHeight) //!isNaN
 			{
 				this._typicalItem.height = justifyHeight;
 			}
@@ -1552,7 +1561,7 @@ package feathers.layout
 		protected function calculateDistributedWidth(items:Vector.<DisplayObject>, explicitWidth:Number, minWidth:Number, maxWidth:Number):Number
 		{
 			var itemCount:int = items.length;
-			if(explicitWidth != explicitWidth) //isNaN
+			if(explicitWidth !== explicitWidth) //isNaN
 			{
 				var maxItemWidth:Number = 0;
 				for(var i:int = 0; i < itemCount; i++)
@@ -1582,11 +1591,11 @@ package feathers.layout
 				}
 			}
 			var availableSpace:Number = explicitWidth - this._paddingLeft - this._paddingRight - this._gap * (itemCount - 1);
-			if(itemCount > 1 && this._firstGap == this._firstGap) //!isNaN
+			if(itemCount > 1 && this._firstGap === this._firstGap) //!isNaN
 			{
 				availableSpace += this._gap - this._firstGap;
 			}
-			if(itemCount > 2 && this._lastGap == this._lastGap) //!isNaN
+			if(itemCount > 2 && this._lastGap === this._lastGap) //!isNaN
 			{
 				availableSpace += this._gap - this._lastGap;
 			}
@@ -1649,7 +1658,7 @@ package feathers.layout
 			{
 				totalPercentWidth = 100;
 			}
-			if(remainingWidth != remainingWidth) //isNaN
+			if(remainingWidth !== remainingWidth) //isNaN
 			{
 				remainingWidth = totalExplicitWidth + totalMinWidth;
 				if(remainingWidth < minWidth)

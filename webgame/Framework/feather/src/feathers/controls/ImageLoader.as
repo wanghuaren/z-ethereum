@@ -42,7 +42,8 @@ package feathers.controls
 	import starling.utils.SystemUtil;
 
 	/**
-	 * Dispatched when the source content finishes loading.
+	 * Dispatched when the source finishes loading, if the source is a URL. This
+	 * event is not dispatched when the source is a texture.
 	 *
 	 * <p>The properties of the event object have the following values:</p>
 	 * <table class="innertable">
@@ -128,6 +129,11 @@ package feathers.controls
 		/**
 		 * @private
 		 */
+		private static const CONTEXT_LOST_WARNING:String = "ImageLoader: Context lost while processing loaded image, retrying...";
+
+		/**
+		 * @private
+		 */
 		protected static const LOADER_CONTEXT:LoaderContext = new LoaderContext(true);
 		LOADER_CONTEXT.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
 
@@ -153,7 +159,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * Constructor.
@@ -225,7 +231,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return ImageLoader.styleProvider;
+			return ImageLoader.globalStyleProvider;
 		}
 
 		/**
@@ -281,7 +287,15 @@ package feathers.controls
 				this.image.visible = false;
 			}
 			this._lastURL = null;
-			this._isLoaded = false;
+			if(this._source is Texture)
+			{
+				this._isLoaded = true;
+			}
+			else
+			{
+
+				this._isLoaded = false;
+			}
 			this.invalidate(INVALIDATION_FLAG_DATA);
 		}
 
@@ -366,7 +380,8 @@ package feathers.controls
 		protected var _isLoaded:Boolean = false;
 
 		/**
-		 * Indicates if the source has fully loaded.
+		 * Indicates if the source has completed loading, if the source is a
+		 * URL. Always returns <code>true</code> when the source is a texture.
 		 *
 		 * <p>In the following example, we check if the image loader's source
 		 * has finished loading:</p>
@@ -433,8 +448,8 @@ package feathers.controls
 		 *
 		 * @default starling.textures.TextureSmoothing.BILINEAR
 		 *
-		 * @see starling.textures.TextureSmoothing
-		 * @see starling.display.Image#smoothing
+		 * @see http://doc.starling-framework.org/core/starling/textures/TextureSmoothing.html starling.textures.TextureSmoothing
+		 * @see http://doc.starling-framework.org/core/starling/display/Image.html#smoothing starling.display.Image.smoothing
 		 */
 		public function get smoothing():String
 		{
@@ -470,7 +485,7 @@ package feathers.controls
 		 *
 		 * @default 0xffffff
 		 *
-		 * @see starling.display.Image#color
+		 * @see http://doc.starling-framework.org/core/starling/display/Image.html#color starling.display.Image.color
 		 */
 		public function get color():uint
 		{
@@ -604,7 +619,7 @@ package feathers.controls
 		 */
 		public function get originalSourceWidth():Number
 		{
-			if(this._currentTextureWidth == this._currentTextureWidth) //!isNaN
+			if(this._currentTextureWidth === this._currentTextureWidth) //!isNaN
 			{
 				return this._currentTextureWidth;
 			}
@@ -619,7 +634,7 @@ package feathers.controls
 		 */
 		public function get originalSourceHeight():Number
 		{
-			if(this._currentTextureHeight == this._currentTextureHeight) //!isNaN
+			if(this._currentTextureHeight === this._currentTextureHeight) //!isNaN
 			{
 				return this._currentTextureHeight;
 			}
@@ -1037,8 +1052,8 @@ package feathers.controls
 		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -1047,7 +1062,7 @@ package feathers.controls
 			var newWidth:Number = this.explicitWidth;
 			if(needsWidth)
 			{
-				if(this._currentTextureWidth == this._currentTextureWidth) //!isNaN
+				if(this._currentTextureWidth === this._currentTextureWidth) //!isNaN
 				{
 					newWidth = this._currentTextureWidth * this._textureScale;
 					if(this._maintainAspectRatio && !needsHeight)
@@ -1066,7 +1081,7 @@ package feathers.controls
 			var newHeight:Number = this.explicitHeight;
 			if(needsHeight)
 			{
-				if(this._currentTextureHeight == this._currentTextureHeight) //!isNaN
+				if(this._currentTextureHeight === this._currentTextureHeight) //!isNaN
 				{
 					newHeight = this._currentTextureHeight * this._textureScale;
 					if(this._maintainAspectRatio && !needsWidth)
@@ -1095,7 +1110,6 @@ package feathers.controls
 				this._lastURL = null;
 				this._texture = Texture(this._source);
 				this.refreshCurrentTexture();
-				this._isLoaded = true;
 			}
 			else
 			{
@@ -1324,11 +1338,31 @@ package feathers.controls
 		/**
 		 * @private
 		 */
+		protected function verifyCurrentStarling():void
+		{
+			if(!this.stage || Starling.current.stage === this.stage)
+			{
+				return;
+			}
+			for each(var starling:Starling in Starling.all)
+			{
+				if(starling.stage === this.stage)
+				{
+					starling.makeCurrent();
+					break;
+				}
+			}
+		}
+
+		/**
+		 * @private
+		 */
 		protected function replaceBitmapDataTexture(bitmapData:BitmapData):void
 		{
 			if(Starling.handleLostContext && !Starling.current.contextValid)
 			{
-				trace("ImageLoader: Context lost while processing loaded image, retrying...");
+				//this trace duplicates the behavior of AssetManager
+				trace(CONTEXT_LOST_WARNING);
 				setTimeout(replaceBitmapDataTexture, 1, bitmapData);
 				return;
 			}
@@ -1338,6 +1372,7 @@ package feathers.controls
 				SystemUtil.executeWhenApplicationIsActive(replaceBitmapDataTexture, bitmapData);
 				return;
 			}
+			this.verifyCurrentStarling();
 			this._texture = Texture.fromBitmapData(bitmapData, false, false, 1, this._textureFormat);
 			if(Starling.handleLostContext)
 			{
@@ -1364,7 +1399,8 @@ package feathers.controls
 		{
 			if(Starling.handleLostContext && !Starling.current.contextValid)
 			{
-				trace("ImageLoader: Context lost while processing loaded image, retrying...");
+				//this trace duplicates the behavior of AssetManager
+				trace(CONTEXT_LOST_WARNING);
 				setTimeout(replaceRawTextureData, 1, rawData);
 				return;
 			}
@@ -1374,6 +1410,7 @@ package feathers.controls
 				SystemUtil.executeWhenApplicationIsActive(replaceRawTextureData, rawData);
 				return;
 			}
+			this.verifyCurrentStarling();
 			this._texture = Texture.fromAtfData(rawData);
 			if(Starling.handleLostContext)
 			{

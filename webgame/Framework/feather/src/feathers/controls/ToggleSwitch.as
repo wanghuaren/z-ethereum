@@ -28,6 +28,7 @@ package feathers.controls
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import starling.utils.SystemUtil;
 
 	/**
 	 * @copy feathers.core.IToggle#event:change
@@ -125,37 +126,37 @@ package feathers.controls
 		public static const TRACK_LAYOUT_MODE_ON_OFF:String = "onOff";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the off label.
+		 * The default value added to the <code>styleNameList</code> of the off label.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_OFF_LABEL:String = "feathers-toggle-switch-off-label";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the on label.
+		 * The default value added to the <code>styleNameList</code> of the on label.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_ON_LABEL:String = "feathers-toggle-switch-on-label";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the off track.
+		 * The default value added to the <code>styleNameList</code> of the off track.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_OFF_TRACK:String = "feathers-toggle-switch-off-track";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the on track.
+		 * The default value added to the <code>styleNameList</code> of the on track.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_ON_TRACK:String = "feathers-toggle-switch-on-track";
 
 		/**
-		 * The default value added to the <code>nameList</code> of the thumb.
+		 * The default value added to the <code>styleNameList</code> of the thumb.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		public static const DEFAULT_CHILD_NAME_THUMB:String = "feathers-toggle-switch-thumb";
 
@@ -166,7 +167,7 @@ package feathers.controls
 		 * @default null
 		 * @see feathers.core.FeathersControl#styleProvider
 		 */
-		public static var styleProvider:IStyleProvider;
+		public static var globalStyleProvider:IStyleProvider;
 
 		/**
 		 * @private
@@ -203,27 +204,27 @@ package feathers.controls
 		}
 
 		/**
-		 * The value added to the <code>nameList</code> of the off label. This
+		 * The value added to the <code>styleNameList</code> of the off label. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the on label name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_ON_LABEL</code>.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var onLabelName:String = DEFAULT_CHILD_NAME_ON_LABEL;
 
 		/**
-		 * The value added to the <code>nameList</code> of the on label. This
+		 * The value added to the <code>styleNameList</code> of the on label. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the off label name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_OFF_LABEL</code>.
 		 *
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var offLabelName:String = DEFAULT_CHILD_NAME_OFF_LABEL;
 
 		/**
-		 * The value added to the <code>nameList</code> of the on track. This
+		 * The value added to the <code>styleNameList</code> of the on track. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the on track name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_ON_TRACK</code>.
@@ -232,12 +233,12 @@ package feathers.controls
 		 * <code>customOnTrackName</code>.</p>
 		 *
 		 * @see #customOnTrackName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var onTrackName:String = DEFAULT_CHILD_NAME_ON_TRACK;
 
 		/**
-		 * The value added to the <code>nameList</code> of the off track. This
+		 * The value added to the <code>styleNameList</code> of the off track. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the off track name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_OFF_TRACK</code>.
@@ -246,12 +247,12 @@ package feathers.controls
 		 * <code>customOffTrackName</code>.</p>
 		 *
 		 * @see #customOffTrackName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var offTrackName:String = DEFAULT_CHILD_NAME_OFF_TRACK;
 
 		/**
-		 * The value added to the <code>nameList</code> of the thumb. This
+		 * The value added to the <code>styleNameList</code> of the thumb. This
 		 * variable is <code>protected</code> so that sub-classes can customize
 		 * the thumb name in their constructors instead of using the default
 		 * name defined by <code>DEFAULT_CHILD_NAME_THUMB</code>.
@@ -260,7 +261,7 @@ package feathers.controls
 		 * <code>customThumbName</code>.</p>
 		 *
 		 * @see #customThumbName
-		 * @see feathers.core.IFeathersControl#nameList
+		 * @see feathers.core.FeathersControl#styleNameList
 		 */
 		protected var thumbName:String = DEFAULT_CHILD_NAME_THUMB;
 
@@ -315,7 +316,7 @@ package feathers.controls
 		 */
 		override protected function get defaultStyleProvider():IStyleProvider
 		{
-			return ToggleSwitch.styleProvider;
+			return ToggleSwitch.globalStyleProvider;
 		}
 
 		/**
@@ -974,6 +975,8 @@ package feathers.controls
 		 * toggle.isSelected = true;</listing>
 		 *
 		 * @default false
+		 *
+		 * @see #setSelectionWithAnimation()
 		 */
 		public function get isSelected():Boolean
 		{
@@ -985,18 +988,14 @@ package feathers.controls
 		 */
 		public function set isSelected(value:Boolean):void
 		{
-			//normally, we'd check to see if selected actually changed or not
-			//but the animation is triggered by the draw cycle, so we always
-			//need to invalidate. notice that the event isn't dispatched
-			//unless the value changes.
-			var oldSelected:Boolean = this._isSelected;
-			this._isSelected = value;
-			this._isSelectionChangedByUser = false;
-			this.invalidate(INVALIDATION_FLAG_SELECTED);
-			if(this._isSelected != oldSelected)
+			this._animateSelectionChange = false;
+			if(this._isSelected == value)
 			{
-				this.dispatchEventWith(Event.CHANGE);
+				return;
 			}
+			this._isSelected = value;
+			this.invalidate(INVALIDATION_FLAG_SELECTED);
+			this.dispatchEventWith(Event.CHANGE);
 		}
 
 		/**
@@ -1086,7 +1085,7 @@ package feathers.controls
 		 *
 		 * @default starling.animation.Transitions.EASE_OUT
 		 *
-		 * @see starling.animation.Transitions
+		 * @see http://doc.starling-framework.org/core/starling/animation/Transitions.html starling.animation.Transitions
 		 */
 		public function get toggleEase():Object
 		{
@@ -1205,7 +1204,7 @@ package feathers.controls
 		/**
 		 * @private
 		 */
-		protected var _isSelectionChangedByUser:Boolean = false;
+		protected var _animateSelectionChange:Boolean = false;
 
 		/**
 		 * @private
@@ -1276,19 +1275,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customOnTrackInitializer, "my-custom-on-track");</listing>
-		 *
-		 * <p>In your theme, you can target this sub-component name to provide
-		 * different skins than the default style:</p>
-		 *
-		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customOnTrackInitializer, "my-custom-on-track");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-on-track", setCustomOnTrackStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_ON_TRACK
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #onTrackFactory
 		 * @see #onTrackProperties
 		 */
@@ -1453,13 +1445,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customOffTrackInitializer, "my-custom-off-track");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-off-track", setCustomOffTrackStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_OFF_TRACK
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #offTrackFactory
 		 * @see #offTrackProperties
 		 */
@@ -1622,13 +1613,12 @@ package feathers.controls
 		 * different skins than the default style:</p>
 		 *
 		 * <listing version="3.0">
-		 * setInitializerForClass( Button, customThumbInitializer, "my-custom-thumb");</listing>
+		 * getStyleProviderForClass( Button ).setFunctionForStyleName( "my-custom-thumb", setCustomThumbStyles );</listing>
 		 *
 		 * @default null
 		 *
 		 * @see #DEFAULT_CHILD_NAME_THUMB
-		 * @see feathers.core.FeathersControl#nameList
-		 * @see feathers.core.DisplayListWatcher
+		 * @see feathers.core.FeathersControl#styleNameList
 		 * @see #thumbFactory
 		 * @see #thumbProperties
 		 */
@@ -1725,6 +1715,22 @@ package feathers.controls
 		}
 
 		/**
+		 * Changes the <code>isSelected</code> property, but animates the thumb
+		 * to the new position, as if the user tapped the toggle switch.
+		 *
+		 * @see #isSelected
+		 */
+		public function setSelectionWithAnimation(isSelected:Boolean):void
+		{
+			if(this._isSelected == isSelected)
+			{
+				return;
+			}
+			this.isSelected = isSelected;
+			this._animateSelectionChange = true;
+		}
+
+		/**
 		 * @private
 		 */
 		override protected function draw():void
@@ -1760,7 +1766,7 @@ package feathers.controls
 				this.createLabels();
 			}
 
-			if(stylesInvalid)
+			if(textRendererInvalid || stylesInvalid || stateInvalid)
 			{
 				this.refreshOnLabelStyles();
 				this.refreshOffLabelStyles();
@@ -1830,8 +1836,8 @@ package feathers.controls
 		 */
 		protected function autoSizeIfNeeded():Boolean
 		{
-			if(this.onTrackSkinOriginalWidth != this.onTrackSkinOriginalWidth || //isNaN
-				this.onTrackSkinOriginalHeight != this.onTrackSkinOriginalHeight) //isNaN
+			if(this.onTrackSkinOriginalWidth !== this.onTrackSkinOriginalWidth || //isNaN
+				this.onTrackSkinOriginalHeight !== this.onTrackSkinOriginalHeight) //isNaN
 			{
 				this.onTrack.validate();
 				this.onTrackSkinOriginalWidth = this.onTrack.width;
@@ -1839,8 +1845,8 @@ package feathers.controls
 			}
 			if(this.offTrack)
 			{
-				if(this.offTrackSkinOriginalWidth != this.offTrackSkinOriginalWidth || //isNaN
-					this.offTrackSkinOriginalHeight != this.offTrackSkinOriginalHeight) //isNaN
+				if(this.offTrackSkinOriginalWidth !== this.offTrackSkinOriginalWidth || //isNaN
+					this.offTrackSkinOriginalHeight !== this.offTrackSkinOriginalHeight) //isNaN
 				{
 					this.offTrack.validate();
 					this.offTrackSkinOriginalWidth = this.offTrack.width;
@@ -1848,8 +1854,8 @@ package feathers.controls
 				}
 			}
 
-			var needsWidth:Boolean = this.explicitWidth != this.explicitWidth; //isNaN
-			var needsHeight:Boolean = this.explicitHeight != this.explicitHeight; //isNaN
+			var needsWidth:Boolean = this.explicitWidth !== this.explicitWidth; //isNaN
+			var needsHeight:Boolean = this.explicitHeight !== this.explicitHeight; //isNaN
 			if(!needsWidth && !needsHeight)
 			{
 				return false;
@@ -2117,7 +2123,7 @@ package feathers.controls
 				this._toggleTween = null;
 			}
 
-			if(this._isSelectionChangedByUser)
+			if(this._animateSelectionChange)
 			{
 				this._toggleTween = new Tween(this.thumb, this._toggleDuration, this._toggleEase);
 				this._toggleTween.animate("x", xPosition);
@@ -2129,7 +2135,7 @@ package feathers.controls
 			{
 				this.thumb.x = xPosition;
 			}
-			this._isSelectionChangedByUser = false;
+			this._animateSelectionChange = false;
 		}
 
 		/**
@@ -2349,8 +2355,7 @@ package feathers.controls
 			var isInBounds:Boolean = this.contains(this.stage.hitTest(HELPER_POINT, true));
 			if(isInBounds)
 			{
-				this.isSelected = !this._isSelected;
-				this._isSelectionChangedByUser = true;
+				this.setSelectionWithAnimation(!this._isSelected);
 			}
 		}
 
@@ -2383,13 +2388,16 @@ package feathers.controls
 				}
 				else if(touch.phase == TouchPhase.ENDED)
 				{
-					var inchesMoved:Number = Math.abs(HELPER_POINT.x - this._touchStartX) / DeviceCapabilities.dpi;
-					if(inchesMoved > MINIMUM_DRAG_DISTANCE)
+					var pixelsMoved:Number = Math.abs(HELPER_POINT.x - this._touchStartX);
+					var inchesMoved:Number = pixelsMoved / DeviceCapabilities.dpi;
+					if(inchesMoved > MINIMUM_DRAG_DISTANCE || (SystemUtil.isDesktop && pixelsMoved >= 1))
 					{
 						this._touchPointID = -1;
-						this.isSelected = this.thumb.x > (this._paddingLeft + trackScrollableWidth / 2);
-						this._isSelectionChangedByUser = true;
 						this._ignoreTapHandler = true;
+						this.setSelectionWithAnimation(this.thumb.x > (this._paddingLeft + trackScrollableWidth / 2));
+						//we still need to invalidate, even if there's no change
+						//because the thumb may be in the middle!
+						this.invalidate(INVALIDATION_FLAG_SELECTED);
 					}
 				}
 			}
@@ -2433,7 +2441,7 @@ package feathers.controls
 				return;
 			}
 			this._touchPointID = -1;
-			this.isSelected = !this._isSelected;
+			this.setSelectionWithAnimation(!this._isSelected);
 		}
 
 		/**
