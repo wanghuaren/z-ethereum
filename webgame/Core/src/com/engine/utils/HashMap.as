@@ -2,7 +2,7 @@
  Copyright aswing.org, see the LICENCE.txt.
 */
 
-package engine.utils
+package com.engine.utils
 {
 
 import flash.utils.Dictionary;

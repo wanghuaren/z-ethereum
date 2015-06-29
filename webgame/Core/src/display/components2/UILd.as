@@ -76,7 +76,7 @@ package display.components2
 				var bitMap:Bitmap=new Bitmap(map[value]);
 				value=bitMap;
 			}
-			if (value == "")
+			if (value == "" || _source == value)//资源相同时，不重复加载
 			{
 				return;
 			}

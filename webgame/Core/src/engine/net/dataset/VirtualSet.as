@@ -1,8 +1,9 @@
 package engine.net.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import engine.support.IPacket;
 	import engine.support.ISet;
-	import engine.utils.HashMap;
 	
 	import flash.events.EventDispatcher;
 

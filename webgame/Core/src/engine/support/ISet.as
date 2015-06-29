@@ -1,6 +1,6 @@
 package engine.support
 {
-	import engine.utils.HashMap;
+	import com.engine.utils.HashMap;
 	
 	public interface ISet
 	{

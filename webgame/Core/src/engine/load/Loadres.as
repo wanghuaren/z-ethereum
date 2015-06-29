@@ -409,9 +409,14 @@
 					loader.addEventListener(Event.COMPLETE, loadComplete);
 					loader.addEventListener(IOErrorEvent.IO_ERROR, loadIOERROR);
 					loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+					loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
 			}
 		}
-		
+		private function httpStatusHandler(e:HTTPStatusEvent):void{
+			if(e.status==404||e.status==0){
+				loadurl.push(getFileName(loadurl[n]));
+			}
+		}
 		public static function clean2():void
 		{
 			urlHash.dispose()
@@ -450,13 +455,14 @@
 			dispatchEvent(new DispatchEvent(DispatchEvent.EVENT_SECURITY_ERROR, ""));
 		}
 
-		private function loadIOERROR(e:IOErrorEvent):void
+		private function loadIOERROR(e:IOErrorEvent=null):void
 		{
 			var loader:URLLoader=e.target as URLLoader;
 			trace("read file failed：" + loadurl[n]);
 			loader.removeEventListener(IOErrorEvent.IO_ERROR, loadIOERROR);
 			loader.removeEventListener(ProgressEvent.PROGRESS, loadProgress);
 			loader.removeEventListener(Event.COMPLETE, loadComplete);
+			loader.removeEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
 //			dispatchEvent(new DispatchEvent(DispatchEvent.EVENT_LOAD_IO_ERROR, "read file failed：" + loadurl[n]));
 //			resSWF[getFileName(loadurl[n])]=nullApplication;
 			names=getFileName(loadurl[n]);
@@ -493,6 +499,7 @@
 			loader.removeEventListener(IOErrorEvent.IO_ERROR, loadIOERROR);
 			loader.removeEventListener(ProgressEvent.PROGRESS, loadProgress);
 			loader.removeEventListener(Event.COMPLETE, loadComplete);
+			loader.removeEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
 			var bytes:ByteArray=loader.data as ByteArray;
 			//---Warren----Other类去掉了?----------
 			names=getFileName(loadurl[n]);
@@ -593,11 +600,6 @@
 				else
 				{
 					ld.loadBytes(bytes);
-					bytes.position=0;
-					var str:String="";
-					while(bytes.bytesAvailable){
-						str+=bytes.readUnsignedByte().toString(16);
-					}
 				}
 				ld.contentLoaderInfo.addEventListener(Event.COMPLETE, Complete);
 				ld.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, IO_ERROR);
@@ -654,8 +656,10 @@
 
 				ld.contentLoaderInfo.removeEventListener(Event.COMPLETE, Complete);
 				ld.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, IO_ERROR);
+				ld.contentLoaderInfo.removeEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
 				ld.removeEventListener(Event.COMPLETE, Complete);
 				ld.removeEventListener(IOErrorEvent.IO_ERROR, IO_ERROR);
+				ld.removeEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
 				dispatchEvent(new DispatchEvent(DispatchEvent.EVENT_RES_PROGRESS, {name: names, load: resSWF[names]}));
 			}
 			else
