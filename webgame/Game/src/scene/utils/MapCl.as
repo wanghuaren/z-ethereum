@@ -2,6 +2,8 @@ package scene.utils
 {
 	import com.bellaxu.def.LayerDef;
 	import com.bellaxu.def.MapDef;
+	import com.bellaxu.mgr.TimeMgr;
+	import com.bellaxu.mgr.TimerMgr;
 	import com.bellaxu.res.ResMc;
 	import com.bellaxu.util.StageUtil;
 	import com.engine.core.tile.TileConstant;
@@ -47,6 +49,8 @@ package scene.utils
 		 */
 		static public const DIR_MAP1:Array=[new Point(0, 0), new Point(0, 1), new Point(-1, 1), new Point(-1, 0), new Point(-1, -1), new Point(0, -1), new Point(1, -1), new Point(1, 0), new Point(1, 1)];
 		static public const DIR_MAP2:Array=[new Point(0, 0), new Point(0, 2), new Point(-2, 2), new Point(-2, 0), new Point(-2, -2), new Point(0, -2), new Point(2, -2), new Point(2, 0), new Point(2, 2)];
+		
+		public static var TeleportForRelocate:Boolean = false;
 
 		static public function mapToGrid(pt:Point):void
 		{
@@ -471,6 +475,8 @@ package scene.utils
 			gridToMap(p);
 			mc.x=p.x;
 			mc.y=p.y;
+			if (isMe)
+				trace("KingPos-----------------------",mapx,mapy,mc.x,mc.y);
 		}
 
 		/**
@@ -598,7 +604,7 @@ package scene.utils
 			role.playOverAct=PlayOverAct;
 			role.midActionIndex=midActionIndex;
 			var m_king:King=Data.myKing.king as King;
-			if(m_king&&m_king.seList.length>0&&role.midActionHandler){
+			if(m_king&&m_king.seList&&m_king.seList.length>0&&role.midActionHandler!=null){
 				role.midActionHandler();
 			}
 			role.midActionHandler=midActionHandler;
@@ -639,8 +645,9 @@ package scene.utils
 		public static var DelAllOUT:uint=0;
 
 		//public static function playerCenterMap(player:Object,map:Object):void{
-		public static function playerCenterMap(player:King):void
+		public static function playerCenterMap(player:King):Boolean
 		{
+//			trace("playerCenterMap-----------",TimeMgr.passedTime);
 			if (null == player.parent)
 			{
 				var state:String=GameIni.currentState;
@@ -649,7 +656,7 @@ package scene.utils
 				{
 					SceneManager.instance.AddKing_Core(player);
 				}
-				return;
+				return false;
 			}
 			var screen_w:int=StageUtil.stageWidth;
 			var screen_h:int=StageUtil.stageHeight;
@@ -667,7 +674,7 @@ package scene.utils
 			//有可能地图数据未加载完成，但要求加载地图图片的协议已到，所以此时宽高都为0.因为此方法是一直刷新的，检测状态正确的时候赋值即可
 			if (MapData.MAP_RES_WIDTH == 0 || MapData.MAP_RES_HEIGHT == 0)
 			{
-				return;
+				return false;
 			}
 			else
 			{
@@ -688,8 +695,8 @@ package scene.utils
 //				king_y=(player.mapy);
 			king_x=(player.x);
 			king_y=(player.y);
-			map_x=Math.ceil(LayerDef.mapLayer.x);
-			map_y=Math.ceil(LayerDef.mapLayer.y);
+			map_x=LayerDef.mapLayer.x;
+			map_y=LayerDef.mapLayer.y;
 			//Mapx = -k_x (移动距离)
 			//中心点
 			var center_x:Number=(screen_w >> 1) - king_x;
@@ -713,14 +720,30 @@ package scene.utils
 			//
 			var cX:int=Math.round(center_x);
 			var cY:int=Math.round(center_y);
+			var isUpdate:Boolean = false;
 			if (LayerDef.mapLayer.x != cX)
 			{
-				LayerDef.mapLayer.x=Math.round(cX)
+				LayerDef.mapLayer.x=cX;
+				isUpdate = true;
 			}
 			if (LayerDef.mapLayer.y != cY)
 			{
-				LayerDef.mapLayer.y=Math.round(cY);
+				LayerDef.mapLayer.y=cY;
+				isUpdate = true;
 			}
+			if (isUpdate)
+			{
+				if (TeleportForRelocate)
+				{
+					TeleportForRelocate = false;
+					SceneManager.instance.reloadTile(true,true);
+				}
+				else
+				{
+					SceneManager.instance.reloadTile();
+				}
+			}
+			return isUpdate;
 		}
 //		//--------------------- 新增 ------------------------------------------
 		/**

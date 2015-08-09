@@ -74,7 +74,17 @@ package ui.base.jiaose
 			mc["mc_progress_hp"]["mc_zhe_zhao"].scaleX=Data.myKing.hp/Data.myKing.maxhp;
 			mc["mc_progress_mp"]["mc_zhe_zhao"].scaleX=Data.myKing.mp/Data.myKing.maxmp;
 			mc["mc_progress_exp"]["mc_zhe_zhao"].scaleX=Data.myKing.exp/nextExp;
-			mc["txt_zhanDouLi"].htmlText=Data.myKing.FightValue;
+			
+			//2014-11-24 战力值改成图片
+			mc["txt_zhanDouLi"].htmlText="";//Data.myKing.FightValue;
+			var fight:Sprite=JiaoSe.getInstance().setFightValueIcon(Data.myKing.FightValue,"js",22);
+			fight.name="mc_zl_js";
+			fight.x=mc["txt_zhanDouLi"].x+2;
+			fight.y=mc["txt_zhanDouLi"].y;
+			if(mc.getChildByName("mc_zl_js")!=null)
+				mc.removeChild(mc.getChildByName("mc_zl_js"));
+			mc.addChild(fight);
+			
 			
 			mc_basicAtt["txt_gongJiWai"].text=Data.myKing.Atk+"-"+Data.myKing.AtkMax;
 			mc_basicAtt["txt_gongJiNei"].text=Data.myKing.MAtk+"-"+Data.myKing.MAtkMax;

@@ -133,14 +133,10 @@ package scene.event
 			{
 				case ActionDefine.IDLE:
 					return DJ;
-				case ActionDefine.COLLIDE:
-					return CZ;
 				case ActionDefine.RUN:
 					return PB;
 				case ActionDefine.MOVE:
 					return ZL;
-				case ActionDefine.DIE:
-					return Dead;
 				case ActionDefine.ATTACK:
 					return GJ;
 				case ActionDefine.MAGIC:
@@ -149,6 +145,10 @@ package scene.event
 					return JiNeng_GJ;
 				case ActionDefine.MAGIC3:
 					return JiNeng_GJ;
+				case ActionDefine.COLLIDE:
+					return CZ;
+				case ActionDefine.DIE:
+					return Dead;
 			}
 			return DJ;			
 		}

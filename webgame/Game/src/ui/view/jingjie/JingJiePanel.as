@@ -1,5 +1,7 @@
 package ui.view.jingjie
 {
+	import com.xh.display.XHLoadIcon;
+	
 	import common.config.Att;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.XmlRes;
@@ -32,6 +34,8 @@ package ui.view.jingjie
 	import ui.frame.ItemManager;
 	import ui.frame.UIPanel;
 	import ui.frame.WindowName;
+	
+	import world.FileManager;
 	
 	/**
 	 * svn/侠客行/trunk/策划案2.0/X.星界修改案
@@ -121,6 +125,7 @@ package ui.view.jingjie
 				curPage = maxPage;
 			}
 			(mc as MovieClip).gotoAndStop(curPage);
+//				mc["mcLM"].source=FileManager.instance.httpPre("uiskin/newskin/game_index2/js"+(curPage<9?"0"+(curPage+1))+".swf");
 			refresh();
 		}
 		
@@ -490,7 +495,7 @@ package ui.view.jingjie
 
 			}
 			if(attValue==""){
-				attValue="您当前尚未开始修炼龙脉。修炼龙脉将会大幅提升您的各项属性。击杀BOSS可以获得修炼所需的龙脉点。龙脉功能将于80级开启。";
+				attValue="";
 			}
 			return attValue;
 

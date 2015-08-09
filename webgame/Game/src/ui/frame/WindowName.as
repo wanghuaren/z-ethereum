@@ -4,7 +4,6 @@ package ui.frame{
 	*该类由工具生成，切勿手动改动
 	*/
 	public final class WindowName{
-		public static const win_shi_fen_you_li:String="win_shi_fen_you_li";
 		public static const win_da_ti:String="win_da_ti";
 		public static const pop_cun_qian:String="pop_cun_qian";
 		public static const pop_cun_ru:String="pop_cun_ru";
@@ -101,6 +100,7 @@ package ui.frame{
 		public static const win_he_fu_huo_dong:String="win_he_fu_huo_dong";
 		public static const win_he_fu_zheng_ba:String="win_he_fu_zheng_ba";
 		public static const win_hu_song:String="win_hu_song";
+		public static const win_huo_qu_shen_wu:String="win_huo_qu_shen_wu";
 		public static const win_ji_fen_dui_huan:String="win_ji_fen_dui_huan";
 		public static const win_ji_fen_dui_huan_tu:String="win_ji_fen_dui_huan_tu";
 		public static const win_ji_neng:String="win_ji_neng";
@@ -111,6 +111,7 @@ package ui.frame{
 		public static const win_jie_hun_zhufu_ti_shi:String="win_jie_hun_zhufu_ti_shi";
 		public static const win_jue_se:String="win_jue_se";
 		public static const win_jue_se_main:String="win_jue_se_main";
+		public static const win_kai_fu_hao_li:String="win_kai_fu_hao_li";
 		public static const win_kai_fu_jia_nian_hua_new:String="win_kai_fu_jia_nian_hua_new";
 		public static const win_le_fan_tian:String="win_le_fan_tian";
 		public static const win_ling_qu_ying_xiong:String="win_ling_qu_ying_xiong";
@@ -126,6 +127,7 @@ package ui.frame{
 		public static const win_qi_ri_deng_lu:String="win_qi_ri_deng_lu";
 		public static const win_quan_guo_ya_yun:String="win_quan_guo_ya_yun";
 		public static const win_shen_bing:String="win_shen_bing";
+		public static const win_shi_fen_you_li:String="win_shi_fen_you_li";
 		public static const win_shou_chong_li_bao:String="win_shou_chong_li_bao";
 		public static const win_tian_gong_kai_wu:String="win_tian_gong_kai_wu";
 		public static const win_tou_zi:String="win_tou_zi";
@@ -346,6 +348,7 @@ package ui.frame{
 				case win_he_fu_huo_dong:
 				case win_he_fu_zheng_ba:
 				case win_hu_song:
+				case win_huo_qu_shen_wu:
 				case win_ji_fen_dui_huan:
 				case win_ji_fen_dui_huan_tu:
 				case win_ji_neng:
@@ -356,6 +359,7 @@ package ui.frame{
 				case win_jie_hun_zhufu_ti_shi:
 				case win_jue_se:
 				case win_jue_se_main:
+				case win_kai_fu_hao_li:
 				case win_kai_fu_jia_nian_hua_new:
 				case win_le_fan_tian:
 				case win_ling_qu_ying_xiong:
@@ -371,6 +375,7 @@ package ui.frame{
 				case win_qi_ri_deng_lu:
 				case win_quan_guo_ya_yun:
 				case win_shen_bing:
+				case win_shi_fen_you_li:
 				case win_shou_chong_li_bao:
 				case win_tian_gong_kai_wu:
 				case win_tou_zi:
@@ -387,7 +392,6 @@ package ui.frame{
 				case win_zhuang_bei_hui_shou:
 				case win_zhuangbei:
 				case win_zuo_qi:
-				case win_shi_fen_you_li:
 					ret="game_index2";
 					break;
 				case pop_que_ren:

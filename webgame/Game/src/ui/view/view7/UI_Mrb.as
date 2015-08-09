@@ -41,6 +41,7 @@ package ui.view.view7
 	import ui.view.view2.other.*;
 	import ui.view.view4.chengjiu.ChengjiuWin;
 	import ui.view.view4.chibang.ChiBang;
+	import ui.view.view4.yunying.ZhiZunVIP;
 	import ui.view.view4.yunying.ZhiZunVIPMain;
 	import ui.view.view5.jiazu.*;
 	import ui.view.zhenbaoge.*;
@@ -84,19 +85,12 @@ package ui.view.view7
 			super(DO, null, 1, false);
 			kuozhan_upBtn=DO["kuozhan_up"];
 			kuozhan_downBtn=DO["kuozhan_down"];
-			DO["caidan"].visible=false;
 		}
 
 		override public function mcHandler(target:Object):void
 		{
 			var target_name:String=target.name;
 			ColorAction.ResetMouseByBangPai();
-			if (target_name.indexOf("abtn") == 0)
-			{
-				var tk:int=int(target_name.replace("abtn", ""));
-				handlerClickVip(tk);
-				return;
-			}
 			switch (target_name)
 			{
 				case "btnMustShowPlayer":
@@ -143,9 +137,6 @@ package ui.view.view7
 					break;
 				case "btnSheJiao":
 					SheJiao.getInstance().open(false, false);
-					break;
-				case "VIP_CaiDanBtn":
-					instance.mc["caidan"].visible=!instance.mc["caidan"].visible;
 					break;
 				case "abtn1":
 
@@ -195,45 +186,6 @@ package ui.view.view7
 
 		}
 
-		private function handlerClickVip(tk:int):void
-		{
-			instance.mc["caidan"].visible=false;
-			if (tk == 5)
-			{
-				ZhiZunVIPMain.getInstance().open();
-				return;
-			}
-			if (Data.myKing.VipVip == 0)
-			{
-				var param:Array=[VipGuide.getInstance().chkVipGuideBigIcon()?580:880];
-				alert.ShowMsg(Lang.getLabel("10230_vipCandanLable", param), 4, Lang.getLabel("10230_vipCandanLableBtn"), _callbackBuyAndEatPill, null);
-			}
-			else
-			{
-				switch (tk)
-				{
-					case 1: //boss巢穴
-						GameAutoPath.chuan(30100128); //30100128
-						break;
-					case 2: //每日福利
-						var m_model:ZhiZunVIPModel=new ZhiZunVIPModel();
-						m_model.requestCSGameVipPrize();
-						break;
-					case 3: //随身商店
-						BeiBao.getInstance().yuanChengShangDian();
-						break;
-					case 4: //随身仓库
-						BeiBao.getInstance().yuanChengCangKu();
-						break;
-				}
-			}
-
-		}
-
-		private function _callbackBuyAndEatPill(obj:Object):void
-		{
-			ZhiZunVIPMain.getInstance().open();
-		}
 		private var kuozhanBo:Boolean=true;
 
 		private function setKuoZhanJiNeng(bo:Boolean):void

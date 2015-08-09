@@ -1,5 +1,7 @@
 ﻿package common.managers
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.GameIni;
 	import common.config.PubData;
 	import common.config.XmlConfig;
@@ -11,7 +13,6 @@
 	import common.utils.res.ResCtrl;
 	
 	import engine.event.DispatchEvent;
-	import engine.utils.HashMap;
 	
 	import flash.display.DisplayObject;
 	import flash.utils.getTimer;
@@ -475,7 +476,7 @@
 						break;
 					case 12:
 						//公用接口【成为VIP提示】
-						new GameAlert().ShowMsg(serverMsg.msg,2,"成为VIP",toVip);
+						new GameAlert().ShowMsg(serverMsg.msg,4,"成为VIP",toVip);
 						return false;	
 						break;
 					case 13:
@@ -520,7 +521,7 @@
 		 * 
 		 */		
 		private static function toVip(obj:Object=null):void{
-			ZhiZunVIPMain.getInstance().setType(1);
+			ZhiZunVIPMain.getInstance().setType(1,true);
 		}
 		/**
 		 *	玩家游戏金钱变化

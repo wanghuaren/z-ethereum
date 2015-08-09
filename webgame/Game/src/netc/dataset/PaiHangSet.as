@@ -1,12 +1,13 @@
 package netc.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.XmlRes;
 	
 	import engine.net.dataset.VirtualSet;
+	
 	import netc.packets2.PacketWCRankList2;
 	import netc.packets2.StructServerRank2;
-	
-	import engine.utils.HashMap;
 
 	/**
 	 *  排行数据

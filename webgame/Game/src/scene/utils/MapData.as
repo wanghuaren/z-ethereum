@@ -1,14 +1,12 @@
 package scene.utils 
 {
 	import com.bellaxu.def.LayerDef;
-	import com.bellaxu.def.LibDef;
-	import com.bellaxu.model.lib.Lib;
+	import com.engine.utils.HashMap;
 	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_MapResModel;
 	
 	import engine.event.DispatchEvent;
-	import engine.utils.HashMap;
 	
 	import flash.display.Sprite;
 	

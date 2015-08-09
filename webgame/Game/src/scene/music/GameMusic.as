@@ -2,16 +2,13 @@ package scene.music
 {
 	import com.bellaxu.data.GameData;
 	import com.bellaxu.debug.Debug;
-	import com.bellaxu.def.StateDef;
 	import com.bellaxu.def.TimeDef;
 	import com.bellaxu.mgr.TimerMgr;
+	import com.engine.utils.HashMap;
 	
 	import common.utils.clock.GameClock;
 	
-	import engine.utils.HashMap;
-	
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;

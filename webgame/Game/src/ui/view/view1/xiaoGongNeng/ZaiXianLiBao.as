@@ -196,6 +196,9 @@ package ui.view.view1.xiaoGongNeng
 				{
 					ControlButton.getInstance().btnGroup["arrZaiXian"]["guangxiao"].gotoAndPlay(1);
 					ControlButton.getInstance().btnGroup["arrZaiXian"]["guangxiao"].visible=true;
+					
+					//特效特殊处理
+//					ControlButton.getInstance().btnGroup["arrZaiXian"]["guangxiao"].stop();
 				}
 			}
 			else if (p.time < p.nexttime)
@@ -315,6 +318,9 @@ package ui.view.view1.xiaoGongNeng
 					label.text=Lang.getLabel("pub_lin_qu_jiang_li");
 					ControlButton.getInstance().btnGroup["arrZaiXian"]["guangxiao"].gotoAndPlay(1);
 					ControlButton.getInstance().btnGroup["arrZaiXian"]["guangxiao"].visible=true;
+					
+					//特效特殊处理
+//					ControlButton.getInstance().btnGroup["arrZaiXian"]["guangxiao"].stop();
 				}
 
 

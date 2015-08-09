@@ -1,30 +1,6 @@
 package common.utils
 {	
-	import common.config.GameIni;
-	import common.config.PubData;
-	import common.config.XmlConfig;
-	import common.managers.Lang;
-	
 	import display.components.MoreLessPage;
-	
-	import engine.event.DispatchEvent;
-	import engine.load.GamelibS;
-	
-	import flash.display.DisplayObject;
-	import flash.display.Shape;
-	import flash.display.Sprite;
-	import flash.events.MouseEvent;
-	import flash.filters.GlowFilter;
-	import flash.geom.Point;
-	import flash.text.TextField;
-	import flash.text.TextFormat;
-	import flash.utils.Dictionary;
-	import flash.utils.clearTimeout;
-	import flash.utils.setTimeout;
-	
-	import main.Main;
-	
-	import ui.base.mainStage.UI_index;
 
 	/**
 	 *  翻页控制

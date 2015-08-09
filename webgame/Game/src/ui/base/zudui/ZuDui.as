@@ -57,7 +57,7 @@ package ui.base.zudui
 		//总页数
 		private var totalPage:int;
 		//每页数据量
-		private static var pageNum:int=9;
+		private static var pageNum:int=10;
 		//第几个分页
 		private var cbtnPos:int=1;
 		//选中项的id

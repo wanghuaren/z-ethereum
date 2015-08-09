@@ -547,6 +547,12 @@ package model.guest
 				case 1066:  // 引导
 					m_handler.handle1066(eventStepID,object);
 					break;
+				case 1067:  //怒斩BOSS 引导
+					m_handler.handle1067(eventStepID,object);
+					break;
+				case 1068:  //神兵 引导
+					m_handler.handle1068(eventStepID,object);
+					break;
 				default:
 					break;
 			}

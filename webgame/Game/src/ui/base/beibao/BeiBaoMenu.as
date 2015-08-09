@@ -121,7 +121,7 @@ package ui.base.beibao
 		
 		public function initTip():void{
 			//悬浮容器父类
-			mc_parent=PubData.mainUI.cartoon;
+			mc_parent=PubData.StoryCartoon;
 			//悬浮
 			mc=GamelibS.getswflink("game_index","bag_menu") as MovieClip;
 			

@@ -3,6 +3,8 @@ package ui.base.jiaose
 
 	import common.managers.Lang;
 	
+	import scene.manager.SceneManager;
+	
 	import ui.frame.UIPanel;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
@@ -72,9 +74,12 @@ package ui.base.jiaose
 		}
 
 		override protected function init():void
-		{
+		{	
 			super.init();
 			super.blmBtn=5;
+			if(20220031==SceneManager.instance.currentMapId){
+				this.x=70;
+			}
 			if (date == null)
 				date=new Date();
 			if (type == 0)
@@ -82,12 +87,12 @@ package ui.base.jiaose
 			mc["m_role"].mouseEnabled=mc["m_role"].mouseChildren=false;
 			mc["m_role"].visible=false;
 
-			Lang.addTip(mc["cbtn1"], "jiaose_1", 60);
-			Lang.addTip(mc["cbtn2"], "jiaose_2", 60);
-			Lang.addTip(mc["cbtn3"], "jiaose_3", 60);
-			Lang.addTip(mc["cbtn4"], "jiaose_4", 60);
-			Lang.addTip(mc["cbtn5"], "jiaose_5", 60);
-
+//			Lang.addTip(mc["cbtn1"], "jiaose_1", 60);
+//			Lang.addTip(mc["cbtn2"], "jiaose_2", 60);
+//			Lang.addTip(mc["cbtn3"], "jiaose_3", 60);
+//			Lang.addTip(mc["cbtn4"], "jiaose_4", 60);
+//			Lang.addTip(mc["cbtn5"], "jiaose_5", 60);
+			mc["mc_tip"].visible=false;
 			mcHandler({name: "cbtn" + type});
 
 		}
@@ -164,10 +169,10 @@ package ui.base.jiaose
 					//坐骑
 					//panelReload=ZuoQiMain.getInstance;
 					//神兵
-					panelReload=Shenbing.getInstance;
+					//panelReload=Shenbing.getInstance;
 					break;
 				case "cbtn4":
-					//渡劫
+					//渡劫 转生
 					panelReload=SoarPanel.getInstance;
 					break;
 				case "cbtn5":

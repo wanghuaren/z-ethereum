@@ -31,12 +31,14 @@ package ui.base.huodong
 	import nets.packets.*;
 	
 	import scene.color.GameColor;
+	import scene.king.SkinByWin;
 	
 	import ui.base.mainStage.UI_index;
 	import ui.base.renwu.Renwu;
 	import ui.frame.ImageUtils;
 	import ui.frame.ItemManager;
 	import ui.frame.UIWindow;
+	import ui.frame.WindowName;
 	import ui.view.view1.fuben.FuBenDuiWu;
 	import ui.view.view1.fuben.area.HuoDongCommonEntry;
 	import ui.view.view2.NewMap.DiGongMap;
@@ -48,6 +50,7 @@ package ui.base.huodong
 	
 	import world.FileManager;
 	import world.WorldEvent;
+	import world.model.file.BeingFilePath;
 
 	/**
 	 *	活动【右上角】
@@ -82,7 +85,7 @@ package ui.base.huodong
 		{
 			blmBtn=12;
 			type=3;
-			super(getLink("win_huo_dong"), d);
+			super(getLink(WindowName.win_huo_dong), d);
 		}
 
 		public function setType(t:int=1, must:Boolean=false, defaultOAIndex:int=0):void
@@ -362,28 +365,52 @@ package ui.base.huodong
 				//								e.target.tipParam=[itemData.rolename,itemData.jobName,itemData.level,""];
 			}
 		}
-
+		private var npcSkin:SkinByWin=null;
 		public function itemSelectedOther(target:Object):void
 		{
 			var tp:int=(mc as MovieClip).currentFrame;
-			mc["txt_action_name"].htmlText=target.data.action_name;
+			mc["txt_action_name"].htmlText="<b>"+target.data.action_name+"</b>";
 			mc["txt_action_join"].htmlText=target.data.action_join;
 			if (null == target.data.action_join || undefined == target.data.action_join)
 			{
 				target.data.action_join="";
 			}
 			mc["txt_action_join"].htmlText=Renwu.setTextColor(target.data.action_join);
+			
+			
+			var action_para1:int=target.data.action_para1;
+			var npc:Pub_NpcResModel=XmlManager.localres.getNpcXml.getResPath(action_para1) as Pub_NpcResModel;
+			if(npc!=null&&(type==3 || type==4)){
+				
+				if(npcSkin==null){
+					npcSkin=new SkinByWin("F1");
+					npcSkin.mouseEnabled=npcSkin.mouseChildren=false;
+				}	
+				var path:BeingFilePath=FileManager.instance.getMainByHumanId(0,0,int(npc.res_id),0,0);
+				path.rightHand = FileManager.instance.getRightHand(Data.myKing.metier);
+				npcSkin.setSkin(path);
+				npcSkin.x=690;
+				npcSkin.y=320;
+				if(action_para1==30340175|| action_para1==30330313){
+					npcSkin.y=360;
+				}
+				mc.addChild(npcSkin);
+			}
 			//				mc["txt_limit"].htmlText =  target.data.limit_id;
-			for (var k:int=1; k <= 5; k++)
-			{
-				if (k <= target.data.action_star)
+			if(type==1 || type==2){
+				for (var k:int=1; k <= 5; k++)
 				{
-					mc["action_star" + k].visible=true;
+					if (k <= target.data.action_star)
+					{
+						mc["action_star" + k].visible=true;
+					}
+					else
+					{
+						mc["action_star" + k].visible=false;
+					}
 				}
-				else
-				{
-					mc["action_star" + k].visible=false;
-				}
+				if (mc["txt_action_desc"] != null)
+				mc["txt_action_desc"].htmlText=target.data.action_desc; //娲诲姩浠嬬粛
 			}
 			var limitList:Vector.<StructLimitInfo2>=Data.huoDong.getDayTaskAndDayHuoDongLimit();
 			var len:int;
@@ -405,7 +432,7 @@ package ui.base.huodong
 				}
 			}
 			//								mc["txt_action_prize"].htmlText=target.data.action_prize;
-			mc["txt_action_desc"].htmlText=target.data.action_desc; //活动介绍
+//			mc["txt_action_desc"].htmlText=target.data.action_desc; //活动介绍
 			this.renderRewards(target.data.show_prize);
 		}
 
@@ -502,6 +529,9 @@ package ui.base.huodong
 			{
 				itemSelected(target);
 				itemSelectedOther(target);
+			}else if(target.parent.name.indexOf("item") == 0){
+				itemSelected(target.parent);
+				itemSelectedOther(target.parent);
 			}
 			var client1:PacketCSGetActivityPrize;
 			switch (target_name)
@@ -608,6 +638,7 @@ package ui.base.huodong
 			mc["sp2"].visible=false;
 			_visibleTipComplateTask(false);
 			refreshTxt();
+			if(npcSkin!=null&&npcSkin.parent!=null)npcSkin.parent.removeChild(npcSkin);
 			switch (cbtnX)
 			{
 				case 1: //每日活动
@@ -783,6 +814,7 @@ package ui.base.huodong
 
 		private function txtActionJoinLink(e:TextEvent):void
 		{
+			super.winClose();
 			Renwu.textLinkListener_(e);
 		}
 
@@ -2267,6 +2299,7 @@ package ui.base.huodong
 			if (sprite.hasOwnProperty("back"))
 			{
 				sprite["back"].mouseEnabled=false;
+				sprite["back"].visible=index%2==0;
 			}
 			//
 			sprite["txt_action_date"].mouseEnabled=false;
@@ -2895,7 +2928,7 @@ package ui.base.huodong
 				sprite["bg"].mouseEnabled=false;
 			}
 			//
-			sprite["txt_action_name"].text=itemData["action_name"];
+			sprite["txt_action_name"].htmlText="<b>"+itemData["action_name"]+"</b>";
 			sprite["txt_action_name"].mouseEnabled=false;
 			sprite["txt_action_date"].text=itemData["action_date"];
 			sprite["txt_action_date"].mouseEnabled=false;
@@ -3033,6 +3066,7 @@ package ui.base.huodong
 			if (sprite.hasOwnProperty("back"))
 			{
 				sprite["back"].mouseEnabled=false;
+				sprite["back"].visible=index%2==0;
 			}
 			sprite["txt_action_date"].mouseEnabled=false;
 			sprite['txt_Condition'].mouseEnabled=false;

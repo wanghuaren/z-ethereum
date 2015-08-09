@@ -1,5 +1,6 @@
 package ui.view
 {
+	import com.bellaxu.def.FilterDef;
 	import com.bellaxu.def.LayerDef;
 	import com.greensock.TweenLite;
 	
@@ -440,7 +441,7 @@ package ui.view
 				txt.htmlText=msg2Arr.shift();
 				txt.width=txt.textWidth + 20;
 				txt.x=460;
-				txt.cacheAsBitmap=true;
+//				txt.cacheAsBitmap=true;
 			}
 			else
 			{
@@ -504,7 +505,7 @@ package ui.view
 				return;
 			}
 			tf.htmlText=msg;
-			tf.x=(UI_index.indexMC["message"]["CMessage3"].width - tf.width) / 2;
+			tf.x=int((UI_index.indexMC["message"]["CMessage3"].width - tf.width) >> 1);
 			tf.y=UI_index.indexMC["message"]["CMessage3"].y;
 			tf.width=tf.textWidth + 20;
 			tf.height=tf.textHeight + 20;
@@ -512,7 +513,7 @@ package ui.view
 			tf.cacheAsBitmap=true;
 			UI_index.indexMC["message"].addChild(tf);
 			UI_index.indexMC["message"].addChild(UI_index.indexMC["message"]["CMessage3"])
-			TweenLite.to(tf, 2.5, {alpha: 0, y: tf.y - tf.height, delay: 1, onComplete: removeText, onCompleteParams: [tf]});
+			TweenLite.to(tf, 2.5, {alpha: 0, y: int(tf.y - tf.height), delay: 1, onComplete: removeText, onCompleteParams: [tf]});
 		}
 		private static function removeText(tf:TextField):void
 		{
@@ -543,7 +544,7 @@ package ui.view
 			tfm.color=0xFFFB80;
 //			tfm.font="Microsoft YaHei";
 			tf.defaultTextFormat=tfm;
-			var gl:GlowFilter=new GlowFilter(0xF14400, 1, 3, 3, 2, BitmapFilterQuality.LOW, false, false);
+			var gl:GlowFilter=FilterDef.MSG3_FILTER;
 			tf.filters=[gl];
 			return tf;
 		}

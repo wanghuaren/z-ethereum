@@ -1,45 +1,25 @@
 package ui.base.bangpai
 {
-	import com.xh.display.XHLoadIcon;
-	
-	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.*;
-	import common.managers.Lang;
-	import common.utils.CtrlFactory;
-	import common.utils.StringUtils;
 	import common.utils.clock.GameClock;
 	
 	import display.components.MoreLessPage;
 	
 	import engine.event.DispatchEvent;
-	import engine.load.GamelibS;
-	import engine.support.IPacket;
-	import engine.utils.HashMap;
 	
-	import flash.display.DisplayObject;
-	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.text.TextField;
-	import flash.utils.setTimeout;
 	
 	import model.qq.YellowDiamond;
 	
 	import netc.Data;
-	import netc.DataKey;
 	import netc.dataset.*;
 	import netc.packets2.*;
 	
 	import nets.packets.*;
 	
-	import ui.frame.ItemManager;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
-	import ui.base.npc.NpcShop;
-	import ui.base.vip.VipGift;
 	
-	import world.FileManager;
 	import world.WorldEvent;
 
 	public class BangPaiList extends UIWindow

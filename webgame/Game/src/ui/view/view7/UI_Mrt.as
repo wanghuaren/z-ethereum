@@ -33,6 +33,7 @@ package ui.view.view7
 	import ui.base.mainStage.UI_index;
 	import ui.base.paihang.PaiHang;
 	import ui.base.renwu.Renwu;
+	import ui.base.vip.ChongZhi;
 	import ui.base.vip.DayChongZhi;
 	import ui.base.vip.DuiHuan;
 	import ui.base.vip.VipGuide;
@@ -68,8 +69,10 @@ package ui.view.view7
 	import ui.view.view4.qq.QQPayRaffleSelf;
 	import ui.view.view4.qq.QQYellowCenter;
 	import ui.view.view4.qq.YellowDiamondWindow;
+	import ui.view.view4.shenbing.Shenbing;
 	import ui.view.view4.smartimplement.SmartImplementWindow;
 	import ui.view.view4.yunying.HuoDongZhengHe;
+	import ui.view.view4.yunying.KaiFuHaoLi;
 	import ui.view.view4.yunying.XunBaoChouJiang;
 	import ui.view.view4.yunying.ZhiZunVIPMain;
 	import ui.view.view5.jiazu.JiaZuTopListDou;
@@ -174,6 +177,9 @@ package ui.view.view7
 					break;
 				case "arrFanLiRi":
 					QQAD.instance.open();
+					break;
+				case "arrShenbing":
+					Shenbing.getInstance().open();
 					break;
 				case "arrVipGuide":
 					VipGuide.getInstance().open();
@@ -438,11 +444,7 @@ package ui.view.view7
 					//WeiDuanDownload.getInstance().open();
 					break;
 				case "arrKaiFuLiBao":
-					//HuoDong.instance().setType(6, false);
-					HuoDongZhengHe.getInstance().setType(1);
-//					HuoDongFuLi.instance().setType(5, false,0);
-//					
-//					ControlButton.getInstance().setVisible("arrFanLi", true, false);
+					KaiFuHaoLi.getInstance().open();
 					break;
 				case "arrHongHuangLianYu":
 					HuoDongCommonEntry.HongHuangLianYu_ActionId=ControlButton.getInstance().getData("arrHongHuangLianYu");
@@ -504,7 +506,7 @@ package ui.view.view7
 					break;
 				case "arrLoginDayGift1":
 				case "arrLoginDayGift2":
-					DayChongZhi.getInstance().open();
+					HuoDongZhengHe.getInstance().open();
 					break;
 				case "arrQQYellowGift1":
 				case "arrQQYellowGift2":
@@ -621,6 +623,7 @@ package ui.view.view7
 //					}
 					break;
 				case "arrNuSha":
+					NewGuestModel.getInstance().handleNewGuestEvent(1067, 1, null);
 					NewGuestModel.getInstance().handleNewGuestEvent(1015, 0, null);
 					break;
 				case "arrDuiHuan":

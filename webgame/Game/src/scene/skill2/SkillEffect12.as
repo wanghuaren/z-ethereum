@@ -23,6 +23,7 @@ package scene.skill2
 	import scene.action.BuffActionEnum;
 	import scene.event.KingActionEnum;
 	import scene.king.IGameKing;
+	import scene.king.King;
 	import scene.king.SkinBySkill;
 	import scene.king.SkinParam;
 	import scene.king.TargetInfo;
@@ -1158,6 +1159,17 @@ package scene.skill2
 					if ("wudi" == this.path)
 					{
 						this.y = -50;
+						if ((k as King).onHorse())
+						{
+							if (k.roleZT == KingActionEnum.PB)
+							{
+								this.y = -35;
+							}
+							else
+							{
+								this.y = -40;
+							}
+						}
 					}
 
 					break;
@@ -1270,6 +1282,13 @@ package scene.skill2
 					if ("wudi" == this.path)
 					{
 						this.y = -50;
+						if ((k as King).onHorse())
+						{
+							if (k.roleZT == KingActionEnum.PB)
+							{
+								this.y = -45;
+							}
+						}
 					}
 					break;
 				case "F3":
@@ -1606,10 +1625,14 @@ package scene.skill2
 						{
 							this.y = -55;
 //							this.x = -2;
+//							if ((k as King).onHorse())
+//								this.y = -25;
 						}else
 						{
 							this.y = -50;
 //							this.x = 0;
+//							if ((k as King).onHorse())
+//								this.y = -20;
 						}
 					}
 					break;
@@ -1937,6 +1960,13 @@ package scene.skill2
 					if ("wudi" == this.path)
 					{
 						this.y = -50;
+						if ((k as King).onHorse())
+						{
+							if (k.roleZT == KingActionEnum.PB)
+							{
+								this.y = -45;
+							}
+						}
 					}
 					break;
 

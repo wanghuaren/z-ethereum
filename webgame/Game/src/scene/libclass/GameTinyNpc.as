@@ -5,16 +5,10 @@ package scene.libclass{
 	
 	import engine.load.GamelibS;
 	
-	import fl.containers.UILoader;
-	
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
-	import flash.filters.BitmapFilterQuality;
-	import flash.filters.GlowFilter;
 	import flash.text.TextField;
-	
-	import world.FileManager;
 
 
 	public class GameTinyNpc extends Sprite{

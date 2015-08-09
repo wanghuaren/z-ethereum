@@ -18,12 +18,12 @@ package ui.view.view2.other
 	import netc.Data;
 	import netc.packets2.StructBagCell2;
 	
-	import ui.frame.UIWindow;
-	import ui.frame.WindowName;
 	import ui.base.npc.NpcBuy;
 	import ui.base.npc.NpcShop;
 	import ui.base.vip.Vip;
 	import ui.base.vip.VipZuoJi;
+	import ui.frame.UIWindow;
+	import ui.frame.WindowName;
 	import ui.view.view4.yunying.ZhiZunVIP;
 	import ui.view.view4.yunying.ZhiZunVIPMain;
 
@@ -84,8 +84,14 @@ package ui.view.view2.other
 					(mc as MovieClip).gotoAndStop(4);
 					break;
 				case 12000001:
+				case 11311110:
+				case 11311111:	
+				case 13001004:	
 					//2014-10-29 礼包过期
 					(mc as MovieClip).gotoAndStop(5);
+					var tool:Pub_ToolsResModel=XmlManager.localres.ToolsXml.getResPath(itemId) as Pub_ToolsResModel;
+					if(tool!=null&&mc["txt_msg"]!=null)
+						mc["txt_msg"].htmlText="你的"+tool.tool_name+"已过期！";
 					break;
 				default:
 					(mc as MovieClip).gotoAndStop(1);

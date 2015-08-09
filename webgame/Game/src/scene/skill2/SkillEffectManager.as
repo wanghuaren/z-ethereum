@@ -4,13 +4,13 @@ package scene.skill2
 	import com.bellaxu.res.ResMc;
 	import com.bellaxu.res.ResTool;
 	import com.bellaxu.util.PathUtil;
+	import com.engine.utils.HashMap;
 	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_SkillResModel;
 	import common.managers.Lang;
 	
 	import engine.load.GamelibS;
-	import engine.utils.HashMap;
 	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;

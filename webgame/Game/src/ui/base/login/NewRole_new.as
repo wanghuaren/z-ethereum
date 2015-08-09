@@ -1,5 +1,10 @@
 package ui.base.login
 {
+	import com.lab.config.Global;
+	import com.lab.core.BasicObject;
+	import com.lab.events.CustomEvent;
+	import com.lab.events.SceneEvent;
+	
 	import common.config.GameIni;
 	import common.config.PubData;
 	import common.config.XmlConfig;
@@ -18,8 +23,6 @@ package ui.base.login
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
-	import flash.filters.BitmapFilterQuality;
-	import flash.filters.GlowFilter;
 	import flash.utils.setTimeout;
 	
 	import main.Game_main;
@@ -43,7 +46,6 @@ package ui.base.login
 	import scene.display.NowLoading;
 	import scene.manager.SceneManager;
 	
-	import ui.frame.ImageUtils;
 	import ui.frame.WindowModelClose;
 	import ui.view.view6.GameAlert;
 	import ui.view.view6.GameAlertNotTiShi;
@@ -559,6 +561,10 @@ package ui.base.login
 					secname7=XmlManager.localres.getPubKingnameXml.getResPath2(7) as Array;
 				}
 				var randType:int=3; //int(Math.random() * 3);
+				var rand:Number=Math.random();
+				if(rand<0.3)randType=2;
+				
+				
 				if (affirmSex < 0)
 					affirmSex=sex;
 				if (affirmSex == 1)
@@ -609,6 +615,7 @@ package ui.base.login
 
 			m_ui["mc_role_" + (m_sex == 2 ? 1 : 0)]["mcSelected"].visible=true;
 			CtrlFactory.getUIShow().setColor(m_ui["mc_role_" + (m_sex == 2 ? 1 : 0)], 1);
+			//发光
 //			var gl:GlowFilter=new GlowFilter(0xffa800, .75, 32, 32, 2, BitmapFilterQuality.LOW, false, false);
 //			if (m_sex == 1)
 //			{
@@ -667,12 +674,22 @@ package ui.base.login
 			//MYKING.UpdateKingData = obj;
 			SceneManager.instance.setCurrentMapId(vo.mapid, 0);
 			isCanIn=true;
+			
 			if (isGetePlayerData && isGetePlayerDataMore)
 			{
 				isCanIn=false;
 				PubData.mainUI.ShowIndexUI();
 				destorySecname();
 			}
+			//玩家信息更新，同步更新对应的地图信息
+//			var info:Object = {};
+//			info.mapId = vo.mapid;
+//			info.userId = vo.userid;
+//			info.mapx = vo.mapx;
+//			info.mapy = vo.mapy;
+			Global.userX = vo.mapx;
+			Global.userY = vo.mapy;
+			BasicObject.messager.dispatchEvent(new CustomEvent(SceneEvent.SCENE_INIT,vo.mapid));
 		}
 		private var isCanIn:Boolean=false;
 		private var isGetePlayerData:Boolean=false;

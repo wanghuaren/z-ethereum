@@ -219,7 +219,7 @@ package scene.load
 
 		public function mapmove():void
 		{
-			SceneManager.instance.reloadTile();
+//			SceneManager.instance.reloadTile();
 			return;
 			if (0 == MAPID)
 			{

@@ -11,10 +11,9 @@
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.text.TextField;
-	import flash.utils.Timer;
+	import flash.utils.getTimer;
 	
 	import netc.Data;
 	
@@ -140,7 +139,7 @@
 			
 			// 面板点击事件
 			super.windowMouseDown(target);
-			if (flash.utils.getTimer() - timeMark < GameIni.CLICKDELAY && target.name.indexOf("cbtn") == -1)
+			if (getTimer() - timeMark < GameIni.CLICKDELAY && target.name.indexOf("cbtn") == -1)
 			{
 				if(this.doubleClickEnabled == true)
 				mcDoubleClickHandler(target);
@@ -149,7 +148,7 @@
 			{
 				if (target.name != "GameMap_Drop" && target.name != "GameMap_Body" && target.name != "GameMap")
 					GameMusic.playWave(WaveURL.ui_click_button);
-				timeMark=flash.utils.getTimer();
+				timeMark=getTimer();
 				target == null || target.parent == null ? "" : mcHandler(target);
 			}
 			customFunc == null ? "" : customFunc(target);
@@ -320,7 +319,7 @@
 					if (tar.hasOwnProperty("bold"))
 					{
 						tar.bold=false;
-						tar.textVSpace=3;
+//						tar.textVSpace=3;
 					}
 				}
 			}
@@ -663,7 +662,7 @@
 		{
 			var sprite:Sprite=new Sprite();
 			sprite.name="mc_black";
-			sprite.graphics.beginFill(0x000);
+			sprite.graphics.beginFill(0x000,0.7);
 			sprite.graphics.drawRect(-this.x, -this.y, GameIni.MAP_SIZE_W, GameIni.MAP_SIZE_H);
 			sprite.graphics.endFill();
 			this.addChild(sprite);

@@ -102,28 +102,21 @@ package ui.view.view4.chibang
 				}
 			 }
 			idxSort = currWing.wing_sort;
-//			wingXML_Lib = XmlManager.localres.getWingXml.contentData;
-			mc["tf_shengjitiaojian"].htmlText = Lang.getLabel("900019_chibangjiefeng",[currWing.wing_max_lv]);//"升到"+currWing.wing_max_lv+"星可解封此翅膀"
+
+			
 			
 			_countAtt_curr();
 			_countAtt_nextJie();
 			if(currWing!=null)
 			{
 				mc["txt_zhanDouLi"].text = currWing.grade_value;
-				mc["mc_name"].visible=currWing.grade_value>0;
-				mc["mc_jie"].visible=currWing.grade_value>0;
-				mc["txt_not_open"].visible=currWing.grade_value==0;
-				
-				//mc["levle_chibang"].text = currWing.wing_name+"："+currWing.wing_desc;
 			}else{
 				mc["txt_zhanDouLi"].text ="0";
-				//mc["levle_chibang"].htmlText ="<font color='#"+FontColor.TOOL_NOT_ENOUGH+"'>"+Lang.getLabel("900018_chibangkaiqi")+"</font>";
 			}
 		
 			showChiBang();
 			setJianTou();
-		
-//			var _10_ji:int = (m_chibang_level-1)%10+1;
+
 			setzuanStar(currWing);
 			if(m_chibang_level+1>=ChibangModel.getInstance().wingXmlLen)
 			{
@@ -131,13 +124,7 @@ package ui.view.view4.chibang
 				///达到最大等级
 			}
 		}
-//		private function shengjifun():void
-//		{
-//			idxWing=nextWing=XmlManager.localres.getWingXml.getResPath(m_chibang_level) as Pub_WingResModel;
-//			currWing=XmlManager.localres.getWingXml.getResPath(m_chibang_level) as Pub_WingResModel;
-//			var needWp:Pub_ToolsResModel = XmlManager.localres.getToolsXml.getResPath(nextWing.need_tool)as Pub_ToolsResModel;
-//			idxSort = currWing.wing_sort;
-//		}
+
 		/**
 		 *显示 星星数量 
 		 */
@@ -237,8 +224,12 @@ package ui.view.view4.chibang
 			var sortMaxModel:Pub_WingResModel = ChibangModel.getInstance().getSortMaxModel(idxWing.wing_sort);
 			if(currWing.wing_lv<sortMaxModel.wing_lv){
 				mc["isjiefeng"].htmlText =Lang.getLabel("900017_chibangkaiqi");//未解封
+				mc["tf_shengjitiaojian"].htmlText = Lang.getLabel("900019_chibangjiefeng",[sortMaxModel.wing_sort,sortMaxModel.wing_max_lv]);//"升到"+currWing.wing_max_lv+"星可解封此翅膀"
+				
 			}else{
 				mc["isjiefeng"].htmlText = Lang.getLabel("900016_chibangkaiqi");//已解封
+				mc["tf_shengjitiaojian"].htmlText ="";
+				
 			}
 			var path:String=FileManager.instance.getChiBangById(idxWing.res_id);
 			mc["mcchibang"].source=path;
@@ -513,9 +504,9 @@ package ui.view.view4.chibang
 			}
 			if(winglvl==0){
 				if(isMe)
-					_str="您当前尚未升阶翅膀。升阶翅膀可以获得高额属性加成。翅膀功能30级开启。";
+					_str="";
 				else
-					_str="当前尚未升阶翅膀。升阶翅膀可以获得高额属性加成。翅膀功能30级开启。";
+					_str="";
 			}
 			return _str;
 		}

@@ -10,6 +10,7 @@ package scene.acts
 	public class ActRunSpeed extends ActRun
 	{
 		public var moveGrids:int;
+		public var isFighter:Boolean;
 		public function ActRunSpeed()
 		{
 			super();
@@ -26,7 +27,7 @@ package scene.acts
 //			king.nActionPlayTime = 100;
 //			king.move(nDestX,nDestY,true,dir);
 //			king.stopAction();
-			if (king is GameHuman)//怪物不做残影特效
+			if (isFighter && (king is GameHuman))//怪物不做残影特效
 			{
 				king.createEffectForSpeedRun(moveGrids);
 			}

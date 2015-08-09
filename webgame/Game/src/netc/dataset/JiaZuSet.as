@@ -1,9 +1,10 @@
 package netc.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.XmlManager;
 	
 	import engine.net.dataset.VirtualSet;
-	import engine.utils.HashMap;
 	
 	import netc.packets2.PacketSCGetGuildBossTime2;
 	import netc.packets2.PacketSCGuildSkillData2;

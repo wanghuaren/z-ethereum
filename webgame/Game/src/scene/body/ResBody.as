@@ -167,7 +167,7 @@ var pmrm:Pub_ModelResModel=XmlManager.localres.PubModelXml.getResPath(p.modeid) 
 
 				var X:int=MapCl.getFXtoInt(p.direct);
 
-				res.roleFX="F" + X.toString();
+				res.roleFX="F" + X;
 
 				//				
 				res.setKingSkin(bfp);

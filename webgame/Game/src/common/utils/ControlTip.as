@@ -1,5 +1,7 @@
 package common.utils
 {	
+	import com.bellaxu.def.FilterDef;
+	
 	import common.config.GameIni;
 	import common.config.PubData;
 	import common.config.XmlConfig;
@@ -224,9 +226,8 @@ package common.utils
 			tf.font="SimSun";
 //			tf.font="Microsoft YaHei";
 			
-			var gf:GlowFilter=new GlowFilter();
-			gf.blurX=2;gf.blurY=2;gf.strength=8;gf.color=0x000000;
-			txt.filters=[gf];
+//			var gf:GlowFilter=FilterDef.CONTROL_TIP_FILTER;
+//			txt.filters=[gf];
 			
 			mcTip.addChild(txt);
 

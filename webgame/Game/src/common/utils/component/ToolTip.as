@@ -303,13 +303,15 @@ package common.utils.component
 			{
 				target.addEventListener(MouseEvent.MOUSE_OVER, targetOverHandler);
 			}
-			try
-			{
-				target["funcOver"]=targetOverHandler;
-			}
-			catch (e:Error)
-			{
-							}
+			if (target.hasOwnProperty("funcOver"))
+				target["funcOver"] = targetOverHandler;
+//			try
+//			{
+//				target["funcOver"]=targetOverHandler;
+//			}
+//			catch (e:Error)
+//			{
+//							}
 			function targetMoveHandler(e:MouseEvent):void
 			{
 				mcTip.visible=true;

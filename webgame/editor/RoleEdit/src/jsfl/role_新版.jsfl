@@ -60,7 +60,7 @@ function trace(v){
 	fl.trace(v);
 }
 //==============================
-/*lib.addNewItem("movie clip","me");
+/*lib.addNewItem("ResMc clip","me");
 lib.selectItem("me");
 item=lib.getSelectedItems()[0];
 setLinkage(item,"me");
@@ -121,7 +121,7 @@ function addDirect(){
 				if(itemTimeline!=null) itemTimeline.removeFrames(n);
 				act=Number(itemInfo.@name.substring(1,fPoint));
 				direct=Number(itemInfo.@name.substring(fPoint+1,fPoint+2));
-				lib.addNewItem("movie clip","D"+act+"/F"+direct+"/D"+act+"F"+direct);
+				lib.addNewItem("ResMc clip","D"+act+"/F"+direct+"/D"+act+"F"+direct);
 				lib.selectItem("D"+act+"/F"+direct+"/D"+act+"F"+direct);
 				itemNew=lib.getSelectedItems()[0];
 				n=1;

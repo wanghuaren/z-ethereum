@@ -1,12 +1,15 @@
 ﻿package main
 {
 	import com.xh.config.Global;
+	
 	import common.config.GameIni;
 	import common.config.PubData;
 	import common.config.SelfConf;
 	import common.config.xmlres.Loadxml;
+	
 	import engine.event.DispatchEvent;
 	import engine.load.Loadres;
+	
 	import flash.display.*;
 	import flash.events.*;
 	import flash.geom.Point;
@@ -17,7 +20,9 @@
 	import flash.text.TextField;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
+	
 	import sample.Astar.throwWhenOutOfMemory;
+	
 	import ui.layout.GameLayout;
 
 	public class Loading extends MovieClip
@@ -80,14 +85,14 @@
 			{
 				var APP1:ApplicationDomain=this.loaderInfo.applicationDomain;
 				var linkmc1:Class=APP1.getDefinition("LBg") as Class;
-								LoadBg=new linkmc1();
+				LoadBg=new linkmc1();
 			}
 			//LoadBar
 			if (null == LoadBar)
 			{
 				var APP2:ApplicationDomain=this.loaderInfo.applicationDomain;
 				var linkmc2:Class=APP2.getDefinition("LBar") as Class;
-								LoadBar=new linkmc2();
+				LoadBar=new linkmc2();
 				LoadBar.visible=false;
 			}
 			else
@@ -184,7 +189,7 @@
 					if (null != this.LoadPic)
 					{
 						//
-						var upH:int=102;
+						var upH:int=202;
 						if (null != LoadPic.content)
 						{
 							//不完全贴图片底边，再往上一点
@@ -259,11 +264,12 @@
 
 		public function picComplete(e:Event):void
 		{
-					}
+			
+		}
 
 		public function picError(e:Event):void
 		{
-					}
+		}
 
 		private function loadloadinglangStart(loadhttp:String):void
 		{
@@ -525,14 +531,19 @@
 			//LoadBar["bar2"].gotoAndStop(_timerByBar2.currentCount*10);
 			//LoadBar["desc2"].text = "Now Loading..." + String(_timerByBar2.currentCount*10) + "%";
 		}
+		private var currFrame:int=1;
 
 		private function gameLoadTxtIOErrorEvent(e:DispatchEvent):void
 		{
 			//LoadBar["desc"].text="Error：GameLoad.Txt加载失败,请检查相关配置";
 			if (null != LoadBar)
 			{
-				LoadBar["desc"].text="Error:data/gameload.Txt " + langval["load_failed_please_check"];
+				LoadBar["desc"].text="正在加载资源,请稍候...... : )";
 			}
+			currFrame+=1;
+			LoadBar["bar"].gotoAndStop(int(currFrame / 100));
+			if (currFrame > 10000)
+				currFrame=1;
 			gameLoadTxtLoader.loadfile(loadhttp + "localres/gameload.txt?ver=" + Math.random());
 		}
 
@@ -608,7 +619,7 @@
 				m_gPoint.x=(mc.stage.stageWidth) >> 1;
 				m_gPoint.y=(mc.stage.stageHeight) >> 1;
 				m_lPoint=mc.parent.globalToLocal(m_gPoint);
-								mc.x=m_lPoint.x;
+				mc.x=m_lPoint.x;
 					//mc.y = m_lPoint.y;
 			}
 		}

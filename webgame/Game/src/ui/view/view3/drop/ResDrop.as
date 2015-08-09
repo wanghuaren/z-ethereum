@@ -8,14 +8,14 @@ package ui.view.view3.drop
 	import com.bellaxu.util.MathUtil;
 	import com.bellaxu.util.PathUtil;
 	import com.greensock.TweenMax;
-	
+
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_ToolsResModel;
 	import common.managers.Lang;
-	
+
 	import engine.event.DispatchEvent;
 	import engine.load.Gamelib;
-	
+
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
@@ -23,29 +23,29 @@ package ui.view.view3.drop
 	import flash.geom.Point;
 	import flash.utils.Dictionary;
 	import flash.utils.setTimeout;
-	
+
 	import netc.Data;
 	import netc.DataKey;
 	import netc.dataset.BeiBaoSet;
 	import netc.packets2.PacketSCDropEnterGrid2;
 	import netc.packets2.StructDropList2;
-	
+
 	import nets.packets.PacketCSPick;
 	import nets.packets.PacketSCDropEnterGrid;
 	import nets.packets.PacketSCDropItemLeaveGrid;
 	import nets.packets.PacketSCObjLeaveGrid;
 	import nets.packets.PacketSCPick;
-	
+
 	import scene.action.PathAction;
 	import scene.body.Body;
 	import scene.event.HumanEvent;
 	import scene.utils.MapCl;
-	
+
 	import ui.base.beibao.BeiBao;
 	import ui.base.mainStage.UI_index;
 	import ui.view.view1.shezhi.SysConfig;
 	import ui.view.view7.UI_Exclamation;
-	
+
 	import world.WorldPoint;
 	import world.cache.res.ResItem;
 	import world.cache.res.ResItemPool;
@@ -353,23 +353,37 @@ package ui.view.view3.drop
 
 		private function CPacketSCObjLeaveGrid(p:PacketSCObjLeaveGrid):void
 		{
-			var packageID:String=null;
-			for (packageID in dropDic)
+			if (dropDic[p.objid])
 			{
-				if (packageID == p.objid + "")
+				var itemList:Vector.<ResItem>=dropDic[p.objid];
+				var len:int=itemList.length;
+				while (--len > -1)
 				{
-					var itemList:Vector.<ResItem>=dropDic[packageID];
-					var len:int=itemList.length;
-					while (--len > -1)
-					{
-						itemList[len].destory();
-					}
-					//清除数据
-					itemList.length = 0;
-					dropDic[packageID] = null;
-					delete dropDic[packageID];
+					itemList[len].destory();
 				}
+				//清除数据
+				itemList.length=0;
+				dropDic[p.objid]=null;
+				delete dropDic[p.objid];
 			}
+
+//			var packageID:String=null;
+//			for (packageID in dropDic)
+//			{
+//				if (packageID == p.objid + "")
+//				{
+//					var itemList:Vector.<ResItem>=dropDic[packageID];
+//					var len:int=itemList.length;
+//					while (--len > -1)
+//					{
+//						itemList[len].destory();
+//					}
+//					//清除数据
+//					itemList.length = 0;
+//					dropDic[packageID] = null;
+//					delete dropDic[packageID];
+//				}
+//			}
 		}
 
 //		private function _needNewGuest1007(p:PacketSCDropEnterGrid2):Boolean
@@ -560,9 +574,18 @@ package ui.view.view3.drop
 //					}
 				}
 				//清除数据
-				itemList.length = 0;
-				dropDic[packageID] = null;
+				itemList.length=0;
+				dropDic[packageID]=null;
 				delete dropDic[packageID];
+			}
+			//=======有可能还是清除不干净,再清理一遍===
+			while (LayerDef.dropLayer.numChildren)
+			{
+				var m_drop:DisplayObject=LayerDef.dropLayer.removeChildAt(0);
+				if (m_drop is ResItem)
+				{
+					(m_drop as ResItem).destory();
+				}
 			}
 		}
 

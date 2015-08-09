@@ -9,6 +9,10 @@
 	import com.bellaxu.mgr.TargetMgr;
 	import com.bellaxu.res.ResTool;
 	import com.greensock.TweenLite;
+	import com.lab.core.BasicObject;
+	import com.lab.events.CustomEvent;
+	import com.lab.events.PlayerEvent;
+	import com.lab.events.SceneEvent;
 	
 	import common.config.PubData;
 	import common.config.xmlres.XmlManager;
@@ -139,7 +143,10 @@
 	 */
 	public class KingBody
 	{
-		public const SKIN_LOAD_DELAY:int=500;
+		public function get SKIN_LOAD_DELAY():int
+		{
+			return 500;
+		}
 		/**
 		 * npc临时列表，主要为性能和做任务考虑
 		 */
@@ -482,13 +489,13 @@
 			var value:int=e.getInfo;
 			k.setMapZoneType=value;
 			//更新地图特定区域显示
-			var zoneTypeName:String=value == 3 ? "安全区" : "<font color='#FF0000'>危险区</font>";
-			var zoneTips:String=value == 3 ? "安全区域，受到PK保护" : "危险区域，不受PK保护";
-			var mcPK:MovieClip=UI_index.indexMC_mrt["smallmap"]["mc_pkvalue_flag"];
-			//项目转换修改
-//			mcPK["areaTxt"].htmlText = zoneTypeName;
-			mcPK.tipParam=[zoneTips];
-			Lang.addTip(mcPK, "pub_param", 140);
+//			var zoneTypeName:String=value == 3 ? "安全区" : "<font color='#FF0000'>危险区</font>";
+//			var zoneTips:String=value == 3 ? "安全区域，受到PK保护" : "危险区域，不受PK保护";
+//			var mcPK:MovieClip=UI_index.indexMC_mrt["smallmap"]["mc_pkvalue_flag"];
+//			//项目转换修改
+////			mcPK["areaTxt"].htmlText = zoneTypeName;
+//			mcPK.tipParam=[zoneTips];
+//			Lang.addTip(mcPK, "pub_param", 140);
 			//把所有人的名字颜色刷一遍
 			GetAllHumanAndRefreshNameColor();
 		}
@@ -1119,37 +1126,20 @@
 			//p.skillid = 1;
 			var telTime1:Number=0.0;
 			var telTime2:Number=0.2; //0.25;
-			if ("1" == p.skillid.toString())
+			(k as King).idle();
+			if (k.isMe)
 			{
-				//服务器认为位置偏差过大，主动发的传送
-				//因此不用stop人物
-				telTime2=0.05;
-			}
-			else
-			{
-				(k as King).idle();
-			}
+				PathAction.syncMove(0,0,1,-2);
+				PathAction.isTeleport = true;
+			}			
 			//
-			if ("401006" == p.skillid.toString())
-			{
-				telTime1=0.25; //1.0;
-				TweenLite.to(k, telTime1, {x: p.posx, y: p.posy});
-			}
-			else if ("401063" == p.skillid.toString())
-			{
-				telTime1=0.25; //1.0;
-				//因为没有CFightInstant，在这里做一个攻击动作
-				var kae:String;
-				kae=KingActionEnum.GJ1;
-				k.setKingAction(kae, null, p.skillid, null);
-				TweenLite.to(k, telTime1, {});
-			}
-			else if (p.skillid == 401105) //野蛮冲撞
+			if (p.skillid == 401105) //野蛮冲撞
 			{
 				//根据移动总格子数量和当前移动的格子数量计算出需要移动的次数，默认为跑步(一次移动两格)
 				var key:int=p.seekid;
-				var flag:int=BitUtil.getOneToOne(key, 1, 1);
-				var totalGrids:int=BitUtil.getOneToOne(key, 2, 32);
+//				var flag:int=BitUtil.getOneToOne(key, 1, 1);
+//				var totalGrids:int=BitUtil.getOneToOne(key, 2, 32);
+				var totalGrids:int = Math.abs(key);
 				var moveGrids:int=MapCl.getDistanceGrids(p.posx, p.posy, k.mapx, k.mapy);
 				var waitTime:int=Math.ceil((totalGrids - moveGrids)) * k.speed * 0.5;
 				if (waitTime > 2000)
@@ -1169,14 +1159,17 @@
 						(k as King).postAction(action);
 					}
 				};
-				if (flag == 0)
+				if (key > 0)
 				{
+					action.isFighter = true;
 					(k as King).postAction(action);
 				}
 				else
 				{
 					speedRunTimeoutId=setTimeout(func, waitTime);
 				}
+				if (k.isMe)
+					PathAction.isTeleport = false;
 //				if (k.isMe==false)
 //				{
 //					speedRunTimeoutId = setTimeout(func,waitTime);//400延迟是为了保证攻击动作结束后再同步移动
@@ -1196,11 +1189,16 @@
 			else
 			{
 				//
-				TweenLite.to(k, telTime2, {delay: telTime1, onComplete: CObjTeleportComplete});
+//				TweenLite.to(k, telTime2, {delay: telTime1, onComplete: CObjTeleportComplete});
+				
 				function CObjTeleportComplete():void
 				{
 					//含setKingPosXY，可触发某些事件,如地图切片加载
 					k.setKingData(k.roleID, k.objid, k.getKingName, k.sex, k.metier, k.level, k.hp, k.maxHp, k.camp, k.campName, p.posx, p.posy, k.masterId, k.masterName, k.mapZoneType, k.grade, k.isMe);
+					PathAction.isTeleport = false;
+					BasicObject.messager.dispatchEvent(new CustomEvent(SceneEvent.SCENE_RELOCATE,k));
+					MapCl.TeleportForRelocate = true;
+//					SceneManager.instance.reloadTile(true,true);
 					//for me
 					//if(king.objid == DataCenter.myKing.objid)
 					if (p.seekid != 0)
@@ -1217,7 +1215,8 @@
 //					{
 //						Body.instance.sceneEvent.dispatchEvent(new DispatchEvent(HumanEvent.Teleport));
 //					}
-				}
+				};
+				CObjTeleportComplete();
 			}
 		}
 
@@ -1338,12 +1337,19 @@
 		public function CPlayerGetList(p:PacketSCPlayerEnterGrid2):void
 		{
 			var beinginfo:StructPlayerInfo2=p.playerinfo;
+			if (beinginfo.roleID == PubData.roleID)
+			{
+				Body.instance._sceneTrans.clear();
+			}
 			//
 			var k:IGameKing=this.GetKing(beinginfo);
 			//创建主角后显示传送点
 			//项目转换修改 if (beinginfo.roleID == GameData.roleId)
 			if (beinginfo.roleID == PubData.roleID)
 			{
+				//更新当前主角信息
+				BasicObject.messager.dispatchEvent(new CustomEvent(PlayerEvent.PLAYER_INFO_INIT,k));
+				
 				clearSpeedRunAction(); //清除野蛮冲撞动作
 				if (p.playerinfo.mapid != Data.myKing.mapid)
 					SceneManager.instance.showMapTip();
@@ -1359,12 +1365,13 @@
 					k.getSkill().selectSkillId=k.getSkill().basicSkillId;
 				}
 				//人物居中地图
-				k.CenterAndShowMap();
-				k.CenterAndShowMap2();
+//				k.CenterAndShowMap();
+//				k.CenterAndShowMap2();
 				if (GamePlugIns.getInstance().running)
 				{
 					k.getSkin().getHeadName().setAutoFight=true;
 				}
+//				
 				//传送点
 				var trans:PacketCSMapSeek=new PacketCSMapSeek();
 				trans.mapid=beinginfo.mapid;
@@ -1541,7 +1548,7 @@
 				//dir
 				GameKing.roleAngle=data.direct;
 				var X:int=MapCl.getFXtoInt(data.direct);
-				GameKing.roleFX="F" + X.toString();
+				GameKing.roleFX="F" + X;
 				//
 				GameKing.checkMouseEnable();
 				//				
@@ -1552,20 +1559,20 @@
 					Action.instance.sysConfig.setAlwaysHidePlayerAndPetBySingle(GameKing);
 				}
 				//
-				setTimeout(function(king:IGameKing):void
-				{
-					king.setVIP=data.vip;
-					king.setYellowVip(yellowArr[0], yellowArr[1], data.qqyellowvip);
+//				setTimeout(function(GameKing:IGameKing):void
+//				{
+				GameKing.setVIP=data.vip;
+				GameKing.setYellowVip(yellowArr[0], yellowArr[1], data.qqyellowvip);
 					//skin
-					king.setKingSkin(data.filePath);
+				GameKing.setKingSkin(data.filePath);
 					//                                                                                                                                                                                                                                                                                                                                                                                                                                   
-					if (PubData.roleID == data.roleID&&king.getSkin()!=null)
+					if (PubData.roleID == data.roleID&&GameKing.getSkin()!=null)
 					{
 						//=======whr==========
-						ResTool.registRoleList(king.getSkin().roleList);
+						ResTool.registRoleList(GameKing.getSkin().roleList);
 					}
-					Action.instance.sysConfig.alwaysHideChengHaoAndBySingle(king);
-				}, this.SKIN_LOAD_DELAY, GameKing);
+					Action.instance.sysConfig.alwaysHideChengHaoAndBySingle(GameKing);
+//				}, this.SKIN_LOAD_DELAY, GameKing);
 			}
 			else
 			{
@@ -1574,23 +1581,23 @@
 					//data.mapx, 
 					//data.mapy, 
 					-1, "", data.mapzonetype, -1, isMe_);
-				setTimeout(function(king:IGameKing):void
-				{
+//				setTimeout(function(GameKing:IGameKing):void
+//				{
 					//游泳时的数据覆盖
-					if (null != king && null != king.getSkin())
+					if (null != GameKing && null != GameKing.getSkin())
 					{
-						king.getSkin().setSkin(data.filePath);
+						GameKing.getSkin().setSkin(data.filePath);
 //						if (GameData.roleId == data.roleID)
 						if (PubData.roleID == data.roleID)
 						{
 							//=======whr==========
-							ResTool.registRoleList(king.getSkin().roleList);
+							ResTool.registRoleList(GameKing.getSkin().roleList);
 								//====================
 						}
 					}
 					//
-					Action.instance.sysConfig.alwaysHideChengHaoAndBySingle(king);
-				}, this.SKIN_LOAD_DELAY, GameKing);
+					Action.instance.sysConfig.alwaysHideChengHaoAndBySingle(GameKing);
+//				}, this.SKIN_LOAD_DELAY, GameKing);
 			}
 			//
 			this.DelDelayLeaveListByGrid(data.roleID);
@@ -1954,7 +1961,7 @@
 					{
 						setTimeout(function():void
 						{
-							if (null != k_)
+							if (null != k_&&k_.getSkin()!=null)
 							{
 								k_.getSkin().setSkin(bf);
 							}
@@ -2342,6 +2349,7 @@
 			}
 			//test
 			//data.playername = "我大斧";
+			(GameKing as King).isNpc = data.isnpc;
 			GameKing.setHpByinit(data.hp, data.maxhp);
 			GameKing.setMasterName(data.playerid, data.playername);
 			GameKing.setKingData(data.objid, data.objid, data.name, sex, metier, data.level, data.hp, data.maxhp, data.camp, data.camp, data.mapx, data.mapy, data.playerid, data.playername, data.mapzonetype, grade);
@@ -2356,16 +2364,14 @@
 			}
 			else
 			{
-				var s:DisplayObject=GameKing as DisplayObject;
-				s.alpha=0.0;
-				//GameKing.getSkin().alpha=0.0;
+//				var s:DisplayObject=GameKing as DisplayObject;
+//				s.alpha=0.5;
 				SceneManager.instance.AddKing_Core(GameKing);
-				//var s:Skin=GameKing.getSkin();
-				var tlFunc:Function=function():void
-				{
-					TweenLite.killTweensOf(s, true);
-				}
-				TweenLite.to(s, 1.25, {alpha: 1.0, onComplete: tlFunc});
+//				var tlFunc:Function=function():void
+//				{
+//					TweenLite.killTweensOf(s, true);
+//				}
+//				TweenLite.to(s, 1, {alpha: 1.0, onComplete: tlFunc});
 			}
 			//
 //			if (2 == data.isnpc)
@@ -2483,7 +2489,7 @@
 //				Action.instance.sysConfig.setAlwaysHidePlayerAndPetBySingle(GameKing);
 //			}
 			var X:int=MapCl.getFXtoInt(data.direct);
-			GameKing.roleFX="F" + X.toString(); //"2";
+			GameKing.roleFX="F" + X; //"2";
 			if (GameKing.getSkin().filePath == null)
 			{
 				setTimeout(function():void

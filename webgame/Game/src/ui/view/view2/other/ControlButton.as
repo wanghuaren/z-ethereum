@@ -1,7 +1,10 @@
 package ui.view.view2.other
 {
+	import com.bellaxu.mgr.TimerMgr;
+	import com.engine.utils.Hash;
+	import com.engine.utils.HashMap;
 	import com.greensock.TweenLite;
-
+	
 	import common.config.GameIni;
 	import common.config.PubData;
 	import common.config.xmlres.*;
@@ -11,29 +14,23 @@ package ui.view.view2.other
 	import common.utils.StringUtils;
 	import common.utils.bit.BitUtil;
 	import common.utils.clock.GameClock;
-
-	import engine.utils.Debug;
-	import engine.utils.HashMap;
-
+	
 	import flash.display.*;
-	import flash.text.TextField;
 	import flash.utils.*;
-
-	import main.Game_main;
-
+	
 	import model.gerenpaiwei.GRPW_Model;
 	import model.guest.NewGuestModel;
 	import model.qq.InviteFriend;
 	import model.qq.YellowDiamond;
-
+	
 	import netc.Data;
 	import netc.DataKey;
 	import netc.packets2.*;
-
+	
 	import nets.packets.*;
-
+	
 	import scene.manager.SceneManager;
-
+	
 	import ui.base.huodong.*;
 	import ui.base.mainStage.UI_index;
 	import ui.base.mainStage.UI_index0;
@@ -41,11 +38,13 @@ package ui.view.view2.other
 	import ui.base.vip.VipGift;
 	import ui.base.vip.VipGuide;
 	import ui.frame.WindowModelClose;
-	import ui.view.WinShiFen;
+	import ui.frame.WindowName;
+	import ui.view.newFunction.FunJudge;
 	import ui.view.view2.mrfl_qiandao.QianDao;
 	import ui.view.view3.qiridenglulibao.QiRiDengLuLiBaoWin;
 	import ui.view.view4.yunying.HuoDongZhengHe;
-
+	import ui.view.view4.yunying.KaiFuHaoLi;
+	
 	import world.WorldEvent;
 
 	/**
@@ -59,6 +58,11 @@ package ui.view.view2.other
 		 */
 		public static var closeArrItemids:Vector.<int>=new Vector.<int>();
 		private static var _btnCBArr:Vector.<String>;
+		/**
+		 * 大图标状态
+		 */
+		private static var IconStates:Hash=new Hash();
+		private var isSetIndexChanged:Boolean=true;
 
 		public static function get btnCBArr():Vector.<String>
 		{
@@ -95,7 +99,7 @@ package ui.view.view2.other
 		}
 		//坐标位置
 		//
-		public const arrPosition:Array=[[330, 0], [265, 0], [200, 0], [135, 0], [70, 0], [5, 0], [330, 68], [265, 68], [200, 68], [135, 68], [70, 68], [5, 68], [330, 128], [265, 128], [200, 128], [135, 128], [70, 128], [5, 128], [330, 196], [265, 196], [200, 196], [135, 196], [70, 196], [5, 196], [330, 264], [265, 264], [200, 264], [135, 264], [70, 264], [5, 264], [330, 332], [265, 332], [200, 332], [135, 332], [70, 332], [5, 332], [330, 400], [265, 400], [200, 400], [135, 400], [70, 400], [5, 400], [330, 468], [265, 468], [200, 468], [135, 468], [70, 468], [5, 468], [330, 536], [265, 536], [200, 536], [135, 536], [70, 536], [5, 536], [330, 604], [265, 604], [200, 604], [135, 604], [70, 604], [5, 604], [330, 672], [265, 672], [200, 672], [135, 672], [70, 672], [5, 672]];
+		public const arrPosition:Array=[[10, 73], [80, 73], [150, 73], [220, 73], [290, 73], [360, 73], [10, 0], [80, 0], [150, 0], [220, 0], [290, 0], [360, 0], [430, 0], [500, 0], [570, 0], [640, 0], [710, 0], [780, 0], [850, 0], [920, 0], [990, 0], [1060, 0], [1130, 0], [1200, 0], [1270, 0], [1340, 0], [1410, 0], [1480, 68]];
 		private var arrNameList:Array;
 
 		//出现顺序
@@ -249,7 +253,18 @@ package ui.view.view2.other
 				btnGroupActionId.put(d.name, 0);
 					//				
 			}
+//			isSetIndexChanged = true;
+			TimerMgr.getInstance().add(2, updateSetIndex);
 			setIndex();
+		}
+
+		private function updateSetIndex():void
+		{
+			if (isSetIndexChanged)
+			{
+				isSetIndexChanged=false;
+				setIndex();
+			}
 		}
 
 		public function ControlButton()
@@ -282,6 +297,7 @@ package ui.view.view2.other
 			{
 				return;
 			}
+
 			var list:Array=[];
 			var k:int=0;
 			var d:DisplayObject;
@@ -302,11 +318,24 @@ package ui.view.view2.other
 			}
 			list.sortOn("ind", Array.NUMERIC | Array.CASEINSENSITIVE);
 			//
+			var m_posIndex1:int=-1;
+			var m_posIndex2:int=5;
+			var m_currPos:int=0;
 			for (k=0; k < list.length; k++)
 			{
+				if (list[k].ind > 5)
+				{
+					m_posIndex2++;
+					m_currPos=m_posIndex2;
+				}
+				else
+				{
+					m_posIndex1++;
+					m_currPos=m_posIndex1;
+				}
 				d=list[k].d;
-				d.x=arrPosition[k][0];
-				d.y=arrPosition[k][1];
+				d.x=-arrPosition[m_currPos][0];
+				d.y=arrPosition[m_currPos][1];
 				if (d as DisplayObjectContainer)
 				{
 					(d as DisplayObjectContainer).tabChildren=false;
@@ -317,7 +346,8 @@ package ui.view.view2.other
 
 		private function getPre(d_name:String):int
 		{
-			var len:int=arrPosition.length;
+//			var len:int=arrPosition.length;
+			var len:int=arrName.length;
 			for (var j:int=0; j < len; j++)
 			{
 				if (arrName[j] == d_name)
@@ -375,7 +405,8 @@ package ui.view.view2.other
 				trace("setSeeCB:", btnName);
 			}
 			//
-			setIndex();
+			isSetIndexChanged=true;
+//			setIndex();
 		}
 
 		public function getSeeCB(btnName:String):Boolean
@@ -389,12 +420,31 @@ package ui.view.view2.other
 
 		public function setSee(btnName:String, see:Boolean, frame:int):void
 		{
+			if (this.btnGroupSee.containsKey(btnName) == false)
+			{
+				this.btnGroupSee.put(btnName, see);
+				this.setFrame(btnName, frame);
+			}
+			else
+			{
+				var isSee:Boolean=this.btnGroupSee.getValue(btnName);
+				if (isSee != see)
+				{
+					this.btnGroupSee.put(btnName, see);
+					this.setFrame(btnName, frame);
+				}
+				else
+				{
+					if (see)
+					{
+						this.setFrame(btnName, frame);
+					}
+					return;
+				}
+			}
 			//
-			this.btnGroupSee.put(btnName, see);
-			//
-			this.setFrame(btnName, frame);
-			//
-			setIndex();
+			isSetIndexChanged=true;
+//			setIndex();
 		}
 
 		/**
@@ -446,6 +496,19 @@ package ui.view.view2.other
 			{
 				setTimeout(setVisible, 6000, btnName, isVisible, isLight, visibleAction_id, num_tip);
 				return;
+			}
+			if (IconStates.has(btnName) == false)
+			{
+				IconStates.put(btnName, isVisible);
+			}
+			else
+			{
+				var isVisibleOld:Boolean=IconStates.take(btnName);
+				//如果之前按钮就是隐藏状态，就不需要再次执行隐藏指令
+				if (isVisibleOld == isVisible && isVisibleOld == false)
+					return;
+				if (isVisibleOld != isVisible)
+					IconStates.put(btnName, isVisible, true);
 			}
 			//强制屏蔽
 			var closeList:Vector.<int>=ControlButton.closeArrItemids;
@@ -514,6 +577,10 @@ package ui.view.view2.other
 						btnGroup[btnName]["guangxiao"].play();
 						btnGroup[btnName]["guangxiao"].visible=true;
 						btnGroup[btnName]["guangxiao"].alpha=1;
+
+
+							//特效特殊处理
+//						btnGroup[btnName]["guangxiao"].stop();
 					}
 					else
 					{
@@ -531,7 +598,8 @@ package ui.view.view2.other
 				}
 				setData(btnName, 0);
 			}
-			setIndex();
+			isSetIndexChanged=true;
+//			setIndex();
 		}
 
 		public function check(isNeedCheckLevel:Boolean=true, isNeedCheckMapId:Boolean=true):void
@@ -567,9 +635,10 @@ package ui.view.view2.other
 			checkOpenServerDay(UI_index.instance.hasLinQu);
 			LoginDayGiftChk();
 			checkFuLi();
-;
+			;
 			UI_index.instance.huoYueChk()
 			QiRiDengLuLiBaoWin.instance.isShowQiRiDaTuBi();
+			checkShenBing();
 		}
 
 		//七日登录
@@ -577,12 +646,26 @@ package ui.view.view2.other
 		{
 			if (QiRiDengLuLiBaoWin.instance.isHaveAward())
 			{
-				setVisible("arrQiRiDengLu",true,true);
+				setVisible("arrQiRiDengLu", true, true);
 			}
 			else
 			{
 				ControlButton.getInstance().btnGroup["arrQiRiDengLu"]["guangxiao"].stop();
 				ControlButton.getInstance().btnGroup["arrQiRiDengLu"]["guangxiao"].visible=false;
+			}
+		}
+
+		//神兵
+		private function checkShenBing():void
+		{
+			if (FunJudge.judgeByName(WindowName.win_shen_bing, false))
+			{
+				setVisible("arrShenbing", true, false);
+				NewGuestModel.getInstance().handleNewGuestEvent(1068,0,null);
+			}
+			else
+			{
+
 			}
 		}
 
@@ -593,6 +676,9 @@ package ui.view.view2.other
 			{
 				ControlButton.getInstance().btnGroup["arrHuoYue"]["guangxiao"].gotoAndPlay(1);
 				ControlButton.getInstance().btnGroup["arrHuoYue"]["guangxiao"].visible=true;
+
+					//
+//				ControlButton.getInstance().btnGroup["arrHuoYue"]["guangxiao"].stop();
 			}
 			else
 			{
@@ -700,7 +786,7 @@ package ui.view.view2.other
 			}
 			else
 			{
-				this.setVisible("arrShiFenYouLi", false,false);
+				this.setVisible("arrShiFenYouLi", false, false);
 			}
 		}
 
@@ -761,6 +847,9 @@ package ui.view.view2.other
 				{
 					ControlButton.getInstance().btnGroup["arrLeFanTian"]["guangxiao"].gotoAndPlay(1);
 					ControlButton.getInstance().btnGroup["arrLeFanTian"]["guangxiao"].visible=true;
+
+						//
+//					ControlButton.getInstance().btnGroup["arrLeFanTian"]["guangxiao"].stop();
 				}
 				else
 				{
@@ -840,8 +929,8 @@ package ui.view.view2.other
 
 		public function checkGoldTick():void
 		{
-			if(UI_index.indexMC["btnJinQuanDuiHuan"])
-			UI_index.indexMC["btnJinQuanDuiHuan"].visible=PubData.isShowGoldTick;
+			if (UI_index.indexMC["btnJinQuanDuiHuan"])
+				UI_index.indexMC["btnJinQuanDuiHuan"].visible=PubData.isShowGoldTick;
 		}
 
 		public function checkRaffle():void
@@ -874,7 +963,7 @@ package ui.view.view2.other
 			if (Data.myKing.level >= CBParam.ArrKaiFuLiBaoOn_Lvl)
 			{
 				setVisible("arrKaiFuLiBao", true);
-				if (HuoDongZhengHe.getInstance().isCanGetAward())
+				if (KaiFuHaoLi.getInstance().isCanGetAward())
 				{
 					ControlButton.getInstance().btnGroup["arrKaiFuLiBao"]["guangxiao"].gotoAndPlay(1);
 					ControlButton.getInstance().btnGroup["arrKaiFuLiBao"]["guangxiao"].visible=true;
@@ -1027,19 +1116,20 @@ package ui.view.view2.other
 			}
 		}
 
-		public function SCMapDoubleExpInfoGet(p:PacketSCMapDoubleExpInfoGetRet2):void
-		{
-			if (0 == p.data.rmbtime)
-			{
-			}
-			else
-			{
-			}
-		}
-		/**
-		 *	根据等级检测是否显示
-		 */
-		private var mapDoubleExpInfoGet:int=0;
+//		public function SCMapDoubleExpInfoGet(p:PacketSCMapDoubleExpInfoGetRet2):void
+//		{
+//			if (0 == p.data.rmbtime)
+//			{
+//			}
+//			else
+//			{
+//			}
+//		}
+//		/**
+//		 *	根据等级检测是否显示
+//		 */
+//		private var mapDoubleExpInfoGet:int=0;
+		private var isHuanjingIconPlay:Boolean=false;
 
 		private function checkLevel():void
 		{
@@ -1085,16 +1175,16 @@ package ui.view.view2.other
 			//
 			if (myLvl >= 25)
 			{
-				//
-				if (Math.abs(getTimer() - mapDoubleExpInfoGet) > 500)
-				{
-					var cs:PacketCSMapDoubleExpInfoGet=new PacketCSMapDoubleExpInfoGet();
-					DataKey.instance.send(cs);
-					mapDoubleExpInfoGet=getTimer();
-				}
+				//如果开启双倍，再请求数据 【废弃】
+//				if (Math.abs(getTimer() - mapDoubleExpInfoGet) > 500)
+//				{
+//					var cs:PacketCSMapDoubleExpInfoGet=new PacketCSMapDoubleExpInfoGet();
+//					DataKey.instance.send(cs);
+//					mapDoubleExpInfoGet=getTimer();
+//				}
 			}
 			//
-			if (myLvl >= 45 && myLvl < 61)
+			if (myLvl >= 50 && myLvl < 61)
 			{
 				UI_index.bossChaoxueButn.visible=true;
 			}
@@ -1103,19 +1193,26 @@ package ui.view.view2.other
 				UI_index.bossChaoxueButn.visible=false;
 			}
 			//
+			var isExist:Boolean=IconStates.has("arrNuSha");
 			if (myLvl >= 49)
 			{
-				setVisible("arrNuSha", true, false);
-				setVisible("mc_row", true, false);
+				var isVisibleOld:Boolean=isExist ? IconStates.take("arrNuSha") : false;
+				if (!isExist || isVisibleOld == false)
+				{
+					setVisible("arrNuSha", true);
+					//地宫boss
+					var _p:PacketCSGetDiGongBossState=new PacketCSGetDiGongBossState();
+					DataKey.instance.send(_p);
+				}
 				setBossYiDaoVisible(btnGroup["mc_row"].visible, "arrNuSha");
-				//地宫boss
-				var _p:PacketCSGetDiGongBossState=new PacketCSGetDiGongBossState();
-				DataKey.instance.send(_p);
 					//NewGuestModel.getInstance().handleNewGuestEvent(1004, 0, null);
 			}
 			else
 			{
-				setVisible("arrNuSha", false);
+				if (!isExist)
+				{
+					setVisible("arrNuSha", false);
+				}
 				setBossYiDaoVisible(false, "arrNuSha");
 			}
 			if (myLvl == 20)
@@ -1126,11 +1223,20 @@ package ui.view.view2.other
 			}
 			else if (myLvl == 25)
 			{
-				if (null != btnGroup["arrHuanJing"])
+
+				if (isHuanjingIconPlay == false)
 				{
-					btnGroup["arrHuanJing"]["guangxiao"].play();
-					btnGroup["arrHuanJing"]["arrHuanJing"].alpha=0;
-					TweenLite.to(btnGroup["arrHuanJing"]["arrHuanJing"], delay, {alpha: 1});
+					var dis:Sprite=btnGroup["arrHuanJing"];
+					if (dis != null)
+					{
+						isHuanjingIconPlay=true;
+						dis["guangxiao"].play();
+						dis["arrHuanJing"].alpha=0;
+						TweenLite.to(dis["arrHuanJing"], delay, {alpha: 1});
+
+							//
+//						dis["guangxiao"].stop();
+					}
 				}
 //				if(null != btnGroup["arrShuangBei"]){
 //				btnGroup["arrShuangBei"]["guangxiao"].play();
@@ -1150,6 +1256,9 @@ package ui.view.view2.other
 				{
 					ControlButton.getInstance().btnGroup["arrShouChong"]["guangxiao"].gotoAndPlay(1);
 					ControlButton.getInstance().btnGroup["arrShouChong"]["guangxiao"].visible=true;
+
+						//
+//					ControlButton.getInstance().btnGroup["arrShouChong"]["guangxiao"].stop();
 				}
 				else
 				{
@@ -1170,8 +1279,11 @@ package ui.view.view2.other
 		{
 //			setVisible("mc_row",_visible);
 			btnGroup["mc_row"].visible=_visible;
-			btnGroup["mc_row"].x=btnGroup[_name].x;
-			btnGroup["mc_row"].y=btnGroup[_name].y + 15;
+			if (_visible)
+			{
+				btnGroup["mc_row"].x=btnGroup[_name].x;
+				btnGroup["mc_row"].y=btnGroup[_name].y + 15;
+			}
 		}
 
 		/**
@@ -1183,23 +1295,14 @@ package ui.view.view2.other
 			{
 				return;
 			}
-			if (DayChongZhi.getInstance().needShowControlButton())
+			if (HuoDongZhengHe.getInstance().arrGetStatus[1] == 1 || HuoDongZhengHe.getInstance().arrGetStatus[2] == 1 || HuoDongZhengHe.getInstance().arrGetStatus[3] == 1)
 			{
-				ControlButton.getInstance().setVisible("arrLoginDayGift", true);
-				if (DayChongZhi.getInstance().isCanGetAward())
-				{
-					ControlButton.getInstance().btnGroup["arrLoginDayGift"]["guangxiao"].gotoAndPlay(1);
-					ControlButton.getInstance().btnGroup["arrLoginDayGift"]["guangxiao"].visible=true;
-				}
-				else
-				{
-					ControlButton.getInstance().btnGroup["arrLoginDayGift"]["guangxiao"].stop();
-					ControlButton.getInstance().btnGroup["arrLoginDayGift"]["guangxiao"].visible=false;
-				}
+				ControlButton.getInstance().setVisible("arrLoginDayGift", true, true);
+
 			}
 			else
 			{
-				ControlButton.getInstance().setVisible("arrLoginDayGift", false);
+				ControlButton.getInstance().setVisible("arrLoginDayGift", true, false);
 			}
 		}
 

@@ -1,5 +1,7 @@
 package ui.view.view4.chengjiu
 {
+	import com.engine.utils.HashMap;
+
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_ComposeResModel;
 	import common.config.xmlres.server.Pub_ToolsResModel;
@@ -9,7 +11,6 @@ package ui.view.view4.chengjiu
 
 	import engine.event.DispatchEvent;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
 
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -26,15 +27,11 @@ package ui.view.view4.chengjiu
 	import nets.packets.PacketCSToolCompose;
 	import nets.packets.PacketSCEquipLevelUp;
 	import nets.packets.PacketSCToolCompose;
-	import nets.packets.StructBagCell;
 
 	import ui.base.npc.NpcBuy;
 	import ui.base.npc.NpcShop;
-	import ui.frame.ImageUtils;
 	import ui.frame.ItemManager;
 	import ui.frame.UIPanel;
-
-	import world.FileManager;
 
 	public class Chengjiu_zhanpao extends UIPanel
 	{
@@ -140,6 +137,8 @@ package ui.view.view4.chengjiu
 		 */
 		private function shouIcon():void
 		{
+			if (mc["tf_cj_xuqiu"] == null)
+				return;
 			var getidx:int=pageIdx * 6;
 			var item_num:int=1;
 			var compose:Pub_ComposeResModel;
@@ -173,7 +172,8 @@ package ui.view.view4.chengjiu
 				item.itemid=compose.tool_id;
 				Data.beiBao.fillCahceData(item);
 				ItemManager.instance().setToolTipByData(mc["cj_zp_item_" + item_num], item, 1);
-				mc["cj_zp_item_" + item_num]["txt_num"].htmlText=ResCtrl.instance().getFontByColor(item.itemname, item.toolColor);
+				if (mc["cj_zp_item_" + item_num] != null && mc["cj_zp_item_" + item_num]["txt_num"] != null)
+					mc["cj_zp_item_" + item_num]["txt_num"].htmlText=ResCtrl.instance().getFontByColor(item.itemname, item.toolColor);
 
 				if (lightId == item.itemid)
 				{
@@ -209,8 +209,10 @@ package ui.view.view4.chengjiu
 				return;
 //			mc["cj_zp_uil"].source =FileManager.instance.getIconXById( tool.tool_icon);
 //			ImageUtils.replaceImage(mc,mc["cj_zp"],FileManager.instance.getIconXById( tool.tool_icon));
-
-			mc["tf_zp_name"].htmlText=tool.tool_name;
+			if (mc["tf_zp_name"] == null)
+				return;
+			if (tool && mc["tf_zp_name"])
+				mc["tf_zp_name"].htmlText=tool.tool_name;
 			mc["tf_curr_cjValue"].htmlText=String(Data.myKing.value3);
 
 			var to:Pub_ToolsResModel=XmlManager.localres.getToolsXml.getResPath(s.stuff_id1) as Pub_ToolsResModel;
@@ -259,12 +261,13 @@ package ui.view.view4.chengjiu
 		private function setTargetIconLight(lig:int, stru:StructBagCell2):void
 		{
 			setItemEffect(lig);
-			mc["tf_zp_name"].htmlText=stru.itemname;
-			ItemManager.instance().setToolTipByData(mc["cj_zp"], stru, 2);
+
 			var map:HashMap=null;
 			var str:String="";
 			if (stru != null)
 			{
+				mc["tf_zp_name"].htmlText=stru.itemname;
+				ItemManager.instance().setToolTipByData(mc["cj_zp"], stru, 2);
 				map=ResCtrl.instance().getAtt(stru.equip_att1, false);
 				str+=ResCtrl.instance().showEquipStrong(map, null, "FFF5D2", "");
 				map=ResCtrl.instance().getAtt(stru.arrItemattrs, false);

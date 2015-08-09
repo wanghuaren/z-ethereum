@@ -52,6 +52,7 @@ package ui.view.view4.yunying
 	import ui.frame.UIPanel;
 	import ui.frame.WindowModelClose;
 	import ui.frame.WindowName;
+	import ui.view.view6.GameAlert;
 	
 	import world.WorldEvent;
 
@@ -64,7 +65,10 @@ package ui.view.view4.yunying
 	 */	
 	public class ZhiZunVIP extends UIPanel
 	{
-		
+		/**
+		 * 开服前两天vip卡价格 580
+		 */		
+		public static const START_SERVER_VIP_COIN3:int=880;
 		
 		public static const ZHI_ZUN_VIP_FLY:int = 88000010;
 		private static var m_instance:ZhiZunVIP = null;
@@ -122,12 +126,7 @@ package ui.view.view4.yunying
 
 			m_model.addEventListener(ZhiZunVIPEvent.ZHI_ZUN_VIP_EVENT,_processEvent);
 			Data.myKing.addEventListener(MyCharacterSet.VIP_UPDATE,updateGiftRewardState1);
-			mc['btnBuyEffect_1'].mouseChildren = false;
-			mc['btnBuyEffect_1'].mouseEnabled = false;
-			mc['btnBuyEffect_2'].mouseChildren = false;
-			mc['btnBuyEffect_2'].mouseEnabled = false;
-			mc['btnBuyEffect_3'].mouseChildren = false;
-			mc['btnBuyEffect_3'].mouseEnabled = false;
+
 			if (mc["mc_effect"]!=null)
 				mc["mc_effect"].mouseEnabled = false;
 			var _typeVipConfig:Pub_Vip_TypeResModel = null;
@@ -144,10 +143,10 @@ package ui.view.view4.yunying
 			
 			Lang.addTip(mc['btn_3'], "pub_param",260);
 			mc['btn_3'].tipParam=[_typeVipConfig.vip_content];
-			(mc['tips_Text'] as TextField).mouseWheelEnabled = false;
-			mc["tips_Text"].htmlText = _typeVipConfig.vip_content;
-			mc['tips_Text'].height = mc['tips_Text'].textHeight + 10;    
-			mc['spCurrent'].source = mc['tips_Text']; 
+//			(mc['tips_Text'] as TextField).mouseWheelEnabled = false;
+//			mc["tips_Text"].htmlText = _typeVipConfig.vip_content;
+//			mc['tips_Text'].height = mc['tips_Text'].textHeight + 10;    
+//			mc['spCurrent'].source = mc['tips_Text']; 
 			
 			type=1;
 			ZhiZunVIPModel.getInstance().requestCSGameVipData();
@@ -200,27 +199,17 @@ package ui.view.view4.yunying
 						NewGuestModel.getInstance().handleNewGuestEvent(1064,3,ZhiZunVIPMain.getInstance().mc);
 					}
 					break;
-				case "btnBuy":  //至尊 购买//半年
+				case "btnBuy1":  //至尊 购买//半年
+				case "btnBuy2":
+				case "btnBuy3":	
+					type=int(target_name.replace("btnBuy",""));
 					var _vipconfig:Pub_Vip_TypeResModel = GameData.getVipTypeXml().getResPath(type) as Pub_Vip_TypeResModel;
 					var need_coin3:int=_vipconfig.need_coin3;
 					if(type==1){
-						need_coin3=VipGuide.getInstance().chkVipGuideBigIcon(false)?580:_vipconfig.need_coin3;
+						need_coin3=VipGuide.getInstance().chkVipGuideBigIcon(false)?START_SERVER_VIP_COIN3:_vipconfig.need_coin3;
 					}
 						alert.ShowMsg(Lang.getLabel('40090_ZhiZun_TeQuan_'+type,[need_coin3]),4,null,_vipBuy,type);
 					break;	
-				case "btn_1":     //白银 特权										
-					type = 1;
-					_repaint();
-					break;
-				case "btn_2":     //紫金 特权
-					type = 2;
-					_repaint();
-					break;
-				case "btn_3":     //至尊 特权
-					type = 3;
-					_repaint();
-					break;
-				
 				case "cbtn4":
 					type = 4;
 					if(null != mc["mc_card"])
@@ -363,7 +352,8 @@ package ui.view.view4.yunying
 					(mc as MovieClip).gotoAndStop(3);
 				var _vipconfig_4:Pub_Vip_TypeResModel = GameData.getVipTypeXml().getResPath(4) as Pub_Vip_TypeResModel;
 				gift_drop = _vipconfig_4.prize_first_buy;
-				mc['tf_level'].text = Lang.getLabel('pub_vip_0');
+//				mc['tf_level'].text = Lang.getLabel('pub_vip_0');
+				mc['tf_level'].gotoAndStop(1);
 				this.mc["tf_time"].text = StringUtils.getStringDayTime(cdTime*1000);
 				GameClock.instance.addEventListener(WorldEvent.CLOCK_SECOND,daoJiShiHandler);
 				if(mc["mc_first_gift"]!=null)
@@ -417,32 +407,6 @@ package ui.view.view4.yunying
 		
 		private function _repaint():void
 		{
-			switch(type)
-			{
-				case 1:
-					mc['btnBuyEffect_3'].visible = false;
-					mc['btnBuyEffect_2'].visible = false;
-					mc['btnBuyEffect_1'].visible = true;
-					break;
-				case 2:
-					mc['btnBuyEffect_3'].visible = false;
-					mc['btnBuyEffect_2'].visible = true;
-					mc['btnBuyEffect_1'].visible = false;
-					break;
-				case 3:
-					mc['btnBuyEffect_3'].visible = true;
-					mc['btnBuyEffect_2'].visible = false;
-					mc['btnBuyEffect_1'].visible = false;
-					break;
-				case 4://礼包到期
-					(mc as MovieClip).gotoAndStop(4);
-					mc['btnBuyEffect_3'].visible = false;
-					mc['btnBuyEffect_2'].visible = true;
-					mc['btnBuyEffect_1'].visible = false;
-					break;
-				default:
-					break;
-			}
 			var _typeVipConfig:Pub_Vip_TypeResModel = GameData.getVipTypeXml().getResPath(type==0?1:type) as Pub_Vip_TypeResModel;
 			var _PacketSCGameVipData:PacketSCGameVipData = m_model.getPacketSCGameVipData();
 			var sf:int = Data.myKing.SpecialFlag;
@@ -452,10 +416,12 @@ package ui.view.view4.yunying
 				if (state==0 ){//体验vip礼包未领取
 					(mc as MovieClip).gotoAndStop(1);
 					NewGuestModel.getInstance().handleNewGuestEvent(1064,1,mc);
+					mc["btnLingQuFuLi"]["mc_heart"].visible=Data.myKing.level>=40;
 				}else{
 					if (Data.myKing.TestVIP>0){
 						(mc as MovieClip).gotoAndStop(3);
-						mc['tf_level'].text = Lang.getLabel('pub_vip_0');
+//						mc['tf_level'].text = Lang.getLabel('pub_vip_0');
+						mc['tf_level'].gotoAndStop(1);
 						mc["btnLingQuFuLi"].visible = _PacketSCGameVipData.GiftState==0;
 					}else{
 						(mc as MovieClip).gotoAndStop(2);
@@ -472,31 +438,34 @@ package ui.view.view4.yunying
 			else
 			{
 				(mc as MovieClip).gotoAndStop(3);
-				mc['tf_level'].text = Lang.getLabel('pub_vip_'+_PacketSCGameVipData.VipType) ;
+//				mc['tf_level'].text = Lang.getLabel('pub_vip_'+_PacketSCGameVipData.VipType) ;
+				mc['tf_level'].gotoAndStop(_PacketSCGameVipData.VipType+1);
 				mc['tf_time'].text = _remaindTime(_PacketSCGameVipData.VipTypeEndDate,1);
 				mc["btnLingQuFuLi"].visible = _PacketSCGameVipData.GiftState==0;
 				if(Data.myKing.VipVip!=0 && 0 == m_GET_BUY_VIP_PRIZE){
 					this.renderGiftPrize( _typeVipConfig.prize_first_buy);
 					mc["mc_first_gift"].visible=true;
+					mc["mc_day_gift"].visible=false;
 				}else{
 					this.renderGiftPrize( _typeVipConfig.gift_drop);
 					mc["mc_first_gift"].visible=false;
+					mc["mc_day_gift"].visible=true;
 				}
 			}
 			
 			_typeVipConfig= GameData.getVipTypeXml().getResPath(1) as Pub_Vip_TypeResModel;
 			if(VipGuide.getInstance().chkVipGuideBigIcon(false)){
-				mc['tf_1'].text =580;
+				mc["btn_1"]['tf_1'].text =START_SERVER_VIP_COIN3;
 			}else{
-				mc['tf_1'].text = _typeVipConfig.need_coin3;
+				mc["btn_1"]['tf_1'].text = _typeVipConfig.need_coin3;
 			}
-			mc['tf_1_0'].text = Math.round(_typeVipConfig.need_coin3 * 2 );
+			//mc['tf_1_0'].text = Math.round(_typeVipConfig.need_coin3 * 2 );
 			_typeVipConfig= GameData.getVipTypeXml().getResPath(2) as Pub_Vip_TypeResModel;
-			mc['tf_2'].text = _typeVipConfig.need_coin3;
-			mc['tf_2_0'].text = Math.round(_typeVipConfig.need_coin3 * 2 );
+			mc["btn_2"]['tf_2'].text = _typeVipConfig.need_coin3;
+			//mc['tf_2_0'].text = Math.round(_typeVipConfig.need_coin3 * 2 );
 			_typeVipConfig= GameData.getVipTypeXml().getResPath(3) as Pub_Vip_TypeResModel;
-			mc['tf_3'].text = _typeVipConfig.need_coin3;
-			mc['tf_3_0'].text = Math.round(_typeVipConfig.need_coin3 * 2 );
+			mc["btn_3"]['tf_3'].text = _typeVipConfig.need_coin3;
+			//mc['tf_3_0'].text = Math.round(_typeVipConfig.need_coin3 * 2 );
 			
 			
 		
@@ -536,7 +505,7 @@ package ui.view.view4.yunying
 		}
 		
 		private function renderGiftPrize(dropId:int,prop:String="pic"):void{
-			var size:int = 5;
+			var size:int = 6;
 			var list:Vector.<Pub_DropResModel> = XmlManager.localres.getDropXml.getResPath2(dropId) as Vector.<Pub_DropResModel>;
 	
 			var mcItem:MovieClip;
@@ -560,7 +529,7 @@ package ui.view.view4.yunying
 					cell.num = drop.drop_num;
 					Data.beiBao.fillCahceData(cell);
 
-					ItemManager.instance().setToolTipByData(mcItem,cell);
+					ItemManager.instance().setToolTipByData(mcItem,cell,1);
 				}else{
 					ItemManager.instance().removeToolTip(mcItem);
 					ImageUtils.cleanImage(mcItem);

@@ -1,5 +1,7 @@
 ﻿package ui.base.jineng
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_SkillResModel;
 	import common.config.xmlres.server.Pub_ToolsResModel;
@@ -10,7 +12,6 @@
 	
 	import engine.event.DispatchEvent;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -413,7 +414,8 @@
 					else
 					{
 						uilMC=mc["content1"]["zd" + pos];
-						uilMC["uil"].unload();
+//						uilMC["uil"].unload();
+						ImageUtils.cleanImage(uilMC);
 						uilMC.data=null;
 						CtrlFactory.getUIShow().removeTip(uilMC);
 						this["sb" + pos].selected=false;

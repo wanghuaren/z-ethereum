@@ -1,10 +1,10 @@
 package netc.dataset
 {
-	import common.config.xmlres.XmlManager;
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.server.Pub_SkillResModel;
 	
 	import engine.net.dataset.VirtualSet;
-	import engine.utils.HashMap;
 	
 	import netc.Data;
 	import netc.DataKey;

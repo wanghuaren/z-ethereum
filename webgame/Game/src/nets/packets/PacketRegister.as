@@ -103,6 +103,7 @@ package nets.packets
     import netc.packets2.PacketSCActBankTakeAll2;
     import netc.packets2.PacketSCEquipResolve2;
     import netc.packets2.PacketSCSetFachionShow2;
+    import netc.packets2.PacketSCSetGodShow2;
     import netc.packets2.PacketSCBoothOpen2;
     import netc.packets2.PacketSCBoothClose2;
     import netc.packets2.PacketSCBoothLook2;
@@ -419,6 +420,8 @@ package nets.packets
     import netc.packets2.PacketSCGetStartPrize2;
     import netc.packets2.PacketSCGetStartPaymentState2;
     import netc.packets2.PacketSCGetStartPayment2;
+    import netc.packets2.PacketSCPaymentOncePay2;
+    import netc.packets2.PacketSCPaymentOnceGet2;
     import netc.packets2.PacketSCGetRmbShopList2;
     import netc.packets2.PacketWCSellRecord2;
     import netc.packets2.PacketSCBuyRmbItem2;
@@ -825,6 +828,7 @@ package nets.packets
             PacketFactory.Instance.RegisterPacketType(new PacketSCActBankTakeAll2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCEquipResolve2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCSetFachionShow2());
+            PacketFactory.Instance.RegisterPacketType(new PacketSCSetGodShow2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCBoothOpen2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCBoothClose2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCBoothLook2());
@@ -1141,6 +1145,8 @@ package nets.packets
             PacketFactory.Instance.RegisterPacketType(new PacketSCGetStartPrize2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCGetStartPaymentState2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCGetStartPayment2());
+            PacketFactory.Instance.RegisterPacketType(new PacketSCPaymentOncePay2());
+            PacketFactory.Instance.RegisterPacketType(new PacketSCPaymentOnceGet2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCGetRmbShopList2());
             PacketFactory.Instance.RegisterPacketType(new PacketWCSellRecord2());
             PacketFactory.Instance.RegisterPacketType(new PacketSCBuyRmbItem2());

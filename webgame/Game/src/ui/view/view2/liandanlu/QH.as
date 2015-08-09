@@ -207,7 +207,7 @@ package ui.view.view2.liandanlu
 			//成功几率
 			showOdd();
 			if(strongXml!=null&&curData.equip_strongLevel<used_max){
-				mc["txt_yin_liang"].htmlText=LianDanLu.instance().isEnoughCoin(strongXml.cost_coin1,1)+Lang.getLabel("pub_yin_liang");
+				mc["txt_yin_liang"].htmlText=LianDanLu.instance().isEnoughCoin(strongXml.cost_coin1,1);
 				mc["txt_yuan_bao"].htmlText=LianDanLu.instance().isEnoughCoin(strongXml.cost_coin3,3)+Lang.getLabel("pub_yuan_bao");
 				mc["txt_need_tool"].htmlText=LianDanLu.instance().showToolEnough(strongXml.need_tool,strongXml.num,true);
 			}else{

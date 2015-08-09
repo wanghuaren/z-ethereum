@@ -21,6 +21,7 @@ package ui.view.view7
 			//项目转换
 			UIMovieClip.currentObjName=null;
 			super(DO, null, 1, false);
+			this.mouseEnabled = false;
 		}
 		override public function mcHandler(target:Object):void
 		{

@@ -3,22 +3,16 @@ package ui.frame
 	import common.config.GameIni;
 	import common.config.PubData;
 	import common.utils.clock.GameClock;
-
 	import engine.event.DispatchEvent;
 	import engine.load.GamelibS;
 	import engine.load.Loadres;
-
 	import fl.managers.FocusManager;
-
 	import flash.display.MovieClip;
 	import flash.events.Event;
-
 	import scene.body.Body;
-
 	import ui.base.beibao.BeiBao;
 	import ui.view.view4.smartimplement.SmartImplementTopList;
 	import ui.view.view4.yunying.ZhiZunHotSale;
-
 	import world.FileManager;
 	import world.WorldEvent;
 
@@ -118,15 +112,11 @@ package ui.frame
 	public class UIWindowManager
 	{
 		private static var m_instance:UIWindowManager;
-
-
 		private var m_windowList:Array;
-
 		/**
 		 * 当前并存的窗口列表
 		 */
 		private var m_cTogetherList:Array;
-
 		/**
 		 * focus
 		 */
@@ -144,10 +134,8 @@ package ui.frame
 					}
 				}
 			}
-
 			return _focusManager;
 		}
-
 
 		public function UIWindowManager()
 		{
@@ -160,14 +148,8 @@ package ui.frame
 			{
 				m_instance=new UIWindowManager();
 			}
-
 			return m_instance;
-
-
-
 		}
-
-
 
 		/**
 		 * 注册窗口到窗口管理器中，方便管理。
@@ -180,10 +162,8 @@ package ui.frame
 			{
 				return;
 			}
-
 			var _id:int=wd.getID();
 			m_windowList[_id]=wd;
-
 			wd.addEventListener(Event.ADDED_TO_STAGE, _onAddToStageListener);
 			wd.addEventListener(Event.REMOVED_FROM_STAGE, _onRemovedFromStageListener);
 		}
@@ -199,10 +179,8 @@ package ui.frame
 			{
 				return;
 			}
-
 			wd.removeEventListener(Event.ADDED_TO_STAGE, _onAddToStageListener);
 			wd.removeEventListener(Event.REMOVED_FROM_STAGE, _onRemovedFromStageListener);
-
 			var _id:int=wd.getID();
 			m_windowList[_id]=null;
 			delete m_windowList[_id];
@@ -215,9 +193,7 @@ package ui.frame
 			{
 				return;
 			}
-
 			var _id:int=_wd.getID();
-
 			_handleAdd(_id);
 		}
 
@@ -228,9 +204,7 @@ package ui.frame
 			{
 				return;
 			}
-
 			var _id:int=_wd.getID();
-
 			_handleRemove(_id);
 		}
 
@@ -243,7 +217,6 @@ package ui.frame
 		{
 			var _wd:UIWindow=null;
 			var _wd2:UIWindow=null; //相关窗口
-
 			var _w0:UIWindow=null;
 			var _w1:UIWindow=null;
 			var _w2:UIWindow=null;
@@ -253,8 +226,6 @@ package ui.frame
 			var _w6:UIWindow=null;
 			var _w7:UIWindow=null;
 			var _w8:UIWindow=null;
-
-
 			switch (id)
 			{
 				case 1000: // 角色窗体    -----  除包裹．好友．聊天面板外互斥其他窗体
@@ -268,7 +239,6 @@ package ui.frame
 							}
 						}
 					}
-
 //					if(BeiBao.getInstance().isOpen)
 //					{
 //						BeiBao.getInstance().moveToTop();	
@@ -278,7 +248,6 @@ package ui.frame
 //						UIMovieClip.currentObjName=null;
 //						BeiBao.getInstance().open();
 //					}
-
 					_w0=(m_windowList[1000] as UIWindow);
 					_w1=(m_windowList[1047] as UIWindow);
 					if (BeiBao.getInstance().isOpen)
@@ -288,18 +257,11 @@ package ui.frame
 					}
 					else
 					{
-						together([_w0, _w1]);
+//						together([_w0, _w1]);
 					}
-
-
-
 					break;
 				case 1001: //包裹窗体         1001
-
 					//并存窗体(角色、商店、仓库与包裹)
-
-
-
 					//与包裹窗体并排并存
 					_wd=(m_windowList[1000] as UIWindow);
 					_wd2=(m_windowList[1001] as UIWindow);
@@ -340,15 +302,12 @@ package ui.frame
 					{
 						together([_wd8, _wd2]);
 					}
-
 //					_w0 = (m_windowList[1001] as UIWindow);
 //					_w1 = (m_windowList[1001] as UIWindow);
 //					if(_w0 && _w1 && _w0.isOpen && _w1.isOpen)
 //					{
 //						together([_w0, _w1]);
 //					}
-
-
 					break;
 				case 1002: //技能窗体         1002
 					for each (_wd in m_windowList)
@@ -373,7 +332,6 @@ package ui.frame
 							}
 						}
 					}
-
 //					if(BeiBao.getInstance().isOpen)
 //					{
 //						BeiBao.getInstance().moveToTop();	
@@ -383,12 +341,10 @@ package ui.frame
 //						UIMovieClip.currentObjName=null;
 //						BeiBao.getInstance().open();
 //					}
-
 					//与包裹窗体并排并存
 //					_wd = (m_windowList[1003] as UIWindow);
 //					_wd2 = (m_windowList[1001] as UIWindow);
 //					together([_wd,_wd2]);
-
 					break;
 				case 1004: //星魂窗体         1004
 					for each (_wd in m_windowList)
@@ -487,12 +443,9 @@ package ui.frame
 							}
 						}
 					}
-
-
 					_wd=(m_windowList[1015] as UIWindow);
 					_wd2=(m_windowList[1012] as UIWindow);
 					together([_wd, _wd2]);
-
 					break;
 				case 1013: //阵营窗体         1013
 					for each (_wd in m_windowList)
@@ -589,7 +542,6 @@ package ui.frame
 //							}
 //						}
 //					}
-
 					if (BeiBao.getInstance().isOpen)
 					{
 						BeiBao.getInstance().moveToTop();
@@ -599,7 +551,6 @@ package ui.frame
 						UIMovieClip.currentObjName=null;
 						BeiBao.getInstance().open();
 					}
-
 //					if (ZhiZunHotSale.getInstance().isOpen)
 //					{
 //						ZhiZunHotSale.getInstance().moveToTop();
@@ -609,13 +560,11 @@ package ui.frame
 //						ZhiZunHotSale.getInstance().open();
 //						
 //					}
-
 					//与包裹窗体并排并存
 					_w0=(m_windowList[1019] as UIWindow);
 					_wd=(m_windowList[1001] as UIWindow);
 					_wd2=(m_windowList[1064] as UIWindow);
 					together([_w0, _wd, _wd2]);
-
 					break;
 				case 1020: // 仓库窗体         1020
 					for each (_wd in m_windowList)
@@ -628,7 +577,6 @@ package ui.frame
 							}
 						}
 					}
-
 					if (BeiBao.getInstance().isOpen)
 					{
 						BeiBao.getInstance().moveToTop();
@@ -638,16 +586,11 @@ package ui.frame
 						UIMovieClip.currentObjName=null;
 						BeiBao.getInstance().open();
 					}
-
-
-
 					//与包裹窗体并排并存
 					_wd=(m_windowList[1020] as UIWindow);
 					_wd2=(m_windowList[1001] as UIWindow);
 					_w3=(m_windowList[1064] as UIWindow); //至尊特权
-
 					together([_wd, _wd2, _w3]);
-
 					break;
 				case 1021: //挂机
 					for each (_wd in m_windowList)
@@ -732,7 +675,6 @@ package ui.frame
 							}
 						}
 					}
-
 //					if (MoWenZhuangBeiWindow.getInstance().isOpen)
 //					{
 //						MoWenZhuangBeiWindow.getInstance().moveToTop();
@@ -742,7 +684,6 @@ package ui.frame
 //						UIMovieClip.currentObjName=null;
 //						MoWenZhuangBeiWindow.getInstance().open();
 //					}
-
 //					if(MoWenHotSale.getInstance().isOpen)
 //					{
 //						MoWenHotSale.getInstance().moveToTop();
@@ -752,7 +693,6 @@ package ui.frame
 //						UIMovieClip.currentObjName=null;
 //						MoWenHotSale.getInstance().open();
 //					}
-
 //					if(MoWenCailiaoDesc.instance().isOpen)
 //					{
 //						MoWenCailiaoDesc.instance().moveToTop();	
@@ -762,7 +702,6 @@ package ui.frame
 //						UIMovieClip.currentObjName=null;
 //						MoWenCailiaoDesc.instance().open();
 //					}
-
 					//与包裹窗体并排并存
 //					_w0 = (m_windowList[1052] as UIWindow);
 //					_wd = (m_windowList[1033] as UIWindow);
@@ -823,9 +762,6 @@ package ui.frame
 							}
 						}
 					}
-
-
-
 					break;
 				case 1039:
 					for each (_wd in m_windowList)
@@ -838,12 +774,10 @@ package ui.frame
 							}
 						}
 					}
-
 					if (!SmartImplementTopList.getInstance().isOpen)
 					{
 						SmartImplementTopList.getInstance().open(true);
 					}
-
 					_w0=(m_windowList[1046] as UIWindow);
 					_w1=(m_windowList[1039] as UIWindow);
 					together([_w0, _w1]);
@@ -909,7 +843,6 @@ package ui.frame
 				case 1047:
 					_w0=(m_windowList[1000] as UIWindow);
 					_w1=(m_windowList[1047] as UIWindow);
-
 					if (BeiBao.getInstance().isOpen)
 					{
 						_w2=(m_windowList[1001] as UIWindow);
@@ -919,8 +852,6 @@ package ui.frame
 					{
 						together([_w0, _w1]);
 					}
-
-
 					break;
 				case 1048:
 					_wd=(m_windowList[1038] as UIWindow);
@@ -931,43 +862,36 @@ package ui.frame
 					_w0=(m_windowList[1049] as UIWindow);
 					_w1=(m_windowList[1050] as UIWindow);
 					together([_w0, _w1]);
-
 					break;
 				case 1051:
 					_w0=(m_windowList[1051] as UIWindow);
 					_w1=(m_windowList[1012] as UIWindow);
-
 					together([_w0, _w1]);
 					break;
 				case 1054:
 					_w0=(m_windowList[1054] as UIWindow);
 					_w1=(m_windowList[1055] as UIWindow);
-
 					together([_w0, _w1]);
 					break;
 				case 1056:
 					_w0=(m_windowList[1057] as UIWindow);
 					_w1=(m_windowList[1056] as UIWindow);
-
 					together([_w0, _w1]);
 					break;
 				case 1059:
 					_w0=(m_windowList[1058] as UIWindow);
 					_w1=(m_windowList[1059] as UIWindow);
-
 					together([_w0, _w1]);
 					break;
 				case 1060:
 					_w0=(m_windowList[1071] as UIWindow);
 					_w1=(m_windowList[1060] as UIWindow);
 					_w2=(m_windowList[1001] as UIWindow);
-
 //					_w3 = (m_windowList[1020] as UIWindow);
 //					if(null != _w3 && _w3.isOpen)
 //					{
 //						_w3.winClose();
 //					}
-
 					together([_w0, _w1, _w2]);
 					break;
 				case 1062:
@@ -975,14 +899,9 @@ package ui.frame
 					_w1=(m_windowList[1061] as UIWindow);
 					_w2=(m_windowList[1065] as UIWindow);
 					together([_w0, _w1, _w2]);
-
 					break;
-
 				case 1064:
-
-
-
-					_w0=null;//(m_windowList[1001] as UIWindow); //背包
+					_w0=null; //(m_windowList[1001] as UIWindow); //背包
 					_w1=(m_windowList[1065] as UIWindow); //VIP界面
 					_w2=(m_windowList[1066] as UIWindow); //充值
 					_w3=(m_windowList[1064] as UIWindow); //至尊特权
@@ -991,7 +910,6 @@ package ui.frame
 					_w6=(m_windowList[1079] as UIWindow); //装备分解
 					_w7=(m_windowList[1020] as UIWindow); //仓库
 					_w8=(m_windowList[1080] as UIWindow); //仓库
-
 					if (null != _w0 && _w0.isOpen && null != _w4 && _w4.isOpen)
 					{
 						together([_w4, _w0, _w3]);
@@ -1024,15 +942,12 @@ package ui.frame
 					{
 						together([_w5, _w3]);
 					}
-
-
 					break;
 				case 1065:
 					_w0=(m_windowList[1062] as UIWindow);
 					_w1=(m_windowList[1061] as UIWindow);
 					_w2=(m_windowList[1065] as UIWindow);
 					together([_w0, _w1, _w2]);
-
 					break;
 				case 1066:
 					//_w0=(m_windowList[1062] as UIWindow);
@@ -1055,26 +970,22 @@ package ui.frame
 					_w0=(m_windowList[1071] as UIWindow);
 					_w1=(m_windowList[1060] as UIWindow);
 					_w2=(m_windowList[1001] as UIWindow);
-
 					//					_w3 = (m_windowList[1020] as UIWindow);
 					//					if(null != _w3 && _w3.isOpen)
 					//					{
 					//						_w3.winClose();
 					//					}
-
 					together([_w0, _w1, _w2]);
 				case 1073:
 					_w0=(m_windowList[1000] as UIWindow);
 					_w1=(m_windowList[1076] as UIWindow);
 					_w2=(m_windowList[1073] as UIWindow);
 					_w3=(m_windowList[1075] as UIWindow);
-
 					_wd=m_windowList[1076];
 					if (null != _wd)
 					{
 						_wd.winClose();
 					}
-
 					together([_w0, _w3, _w2]);
 					break;
 				case 1074:
@@ -1100,13 +1011,11 @@ package ui.frame
 					}
 					together([_w0, _w1]);
 					break;
-
 				case 1078:
 					_w0=(m_windowList[1077] as UIWindow);
 					_w1=(m_windowList[1078] as UIWindow);
 					together([_w0, _w1]);
 					break;
-
 				case 1079:
 					_w0=(m_windowList[1079] as UIWindow);
 					_w1=(m_windowList[1001] as UIWindow);
@@ -1132,7 +1041,6 @@ package ui.frame
 				case 1087:
 					_w1=(m_windowList[1087] as UIWindow);
 					_w2=(m_windowList[1001] as UIWindow);
-
 					together([_w1, _w2]);
 					break;
 				case 1091:
@@ -1143,9 +1051,6 @@ package ui.frame
 				default:
 					break;
 			}
-
-
-
 		}
 
 		/**
@@ -1157,9 +1062,6 @@ package ui.frame
 		{
 			var _wd:UIWindow=null;
 			var _wd2:UIWindow=null; //相关窗口
-
-
-
 			switch (id)
 			{
 				case 1000: // 角色窗体
@@ -1182,7 +1084,6 @@ package ui.frame
 					{
 						_wd.winClose();
 					}
-
 					_wd=m_windowList[1053];
 					if (null != _wd)
 					{
@@ -1195,19 +1096,16 @@ package ui.frame
 					{
 						_wd.winClose();
 					}
-
 					_wd=m_windowList[1035];
 					if (null != _wd)
 					{
 						_wd.winClose();
 					}
-
 					_wd=m_windowList[1052];
 					if (null != _wd)
 					{
 						_wd.winClose();
 					}
-
 					break;
 				case 1012:
 					_wd=m_windowList[1015];
@@ -1309,57 +1207,39 @@ package ui.frame
 					}
 					break;
 				case 1079:
-
 				default:
 					break;
 			}
-
-
 			//当前并排的窗口是否发生了变化
 			var _isChangeCurrentTogether:Boolean=false;
 			//当前关闭的窗口
 			var _wdCurrentClose:UIWindow;
 			var _wdAtTogetherList:UIWindow;
-
 			_wdCurrentClose=m_windowList[id];
-
-
-
 			if (null == _wdCurrentClose || _wdCurrentClose.getID() <= 0 || null == m_cTogetherList || m_cTogetherList.length <= 0)
 			{
 				return;
 			}
-
-
 			var _length:int=m_cTogetherList.length;
 			for (var i:int=0; i < _length; ++i)
 			{
 				_wdAtTogetherList=m_cTogetherList[i] as UIWindow;
-
 				if (null == _wdAtTogetherList)
 				{
 					continue;
 				}
-
 				if (_wdAtTogetherList.getID() == _wdCurrentClose.getID() || (!_wdAtTogetherList.isOpen))
 				{
 					m_cTogetherList[i]=null;
 					delete m_cTogetherList[i];
-
 					_isChangeCurrentTogether=true;
 				}
-
 			}
-
 			if (_isChangeCurrentTogether)
 			{
 				together(m_cTogetherList);
 			}
-
 		}
-
-
-
 
 		/**
 		 * 同时并排打开窗口
@@ -1373,15 +1253,12 @@ package ui.frame
 			{
 				return;
 			}
-
 			var _startY:int=0;
 			var _tempStartY:int=0;
-
 			var _stageW:int;
 			var _stageH:int;
 			var _gap:int=-4; //窗口之间的间隙
 			var _totalW:int=0; //总宽度
-
 			var _wd:UIWindow=null;
 			for (var i:int=0; i < list.length; ++i)
 			{
@@ -1392,15 +1269,12 @@ package ui.frame
 					{
 						continue;
 					}
-
 					if (_stageW <= 0 && _stageH <= 0)
 					{
 						_stageW=_wd.stage.stageWidth;
 						_stageH=_wd.stage.stageHeight;
 					}
-
 					_totalW+=_wd.getRealWidth() + _gap;
-
 					_tempStartY=(_stageH - _wd.getRealHeight()) >> 1;
 					//_tempStartY = (_stageH - _wd.height) >> 1;
 					if (_startY <= 0 || _tempStartY < _startY)
@@ -1409,12 +1283,8 @@ package ui.frame
 					}
 				}
 			}
-
 			_totalW=_totalW - _gap;
-
 			var _startX:int=(_stageW - _totalW) >> 1;
-
-
 			for (var n:int=0; n < list.length; ++n)
 			{
 				_wd=list[n];
@@ -1424,23 +1294,17 @@ package ui.frame
 					{
 						continue;
 					}
-
 					if (_startY <= 0)
 					{
 						_startY=(_stageH - _wd.getRealHeight()) >> 1;
 							//_startY=(_stageH - _wd.height) >> 1;
 					}
-
 					_wd.moveTo(_startX, _startY);
-
 					_startX+=_wd.getRealWidth() + _gap;
 						//_startX+=_wd.width + _gap;
 				}
 			}
-
 		}
-
-
 		/************界面窗体加载中，请稍候 @andy 2012-05-16****************************/
 		/**
 		 *	窗体名字，统一管理，以后请大家写在这里
@@ -1453,9 +1317,7 @@ package ui.frame
 
 		public function preLoad(mcName:String):void
 		{
-
 //			var load:Object=Body.instance.sortLoadUI(WindowName.getFlaName(mcName));
-
 		}
 		private var _ldUi:Loadres;
 
@@ -1544,7 +1406,6 @@ package ui.frame
 				{
 					waitingOpenFunc2();
 				}
-
 			}
 		}
 
@@ -1563,15 +1424,7 @@ package ui.frame
 			}
 			else
 			{
-
 			}
 		}
-
-
-
 	}
-
 }
-
-
-

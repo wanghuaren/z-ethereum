@@ -5,6 +5,7 @@ package common.utils.clock
 	
 	public class ClockFuncModel implements IClock
 	{
+		public var type:String;
 		private var _type:String;
 		
 		private var _fFunc:Function;		
@@ -13,7 +14,7 @@ package common.utils.clock
 		
 		public function ClockFuncModel(yoursType:String,yoursFunc:Function)
 		{
-			_type = yoursType;
+			type = _type = yoursType;
 			
 			if(null == yoursFunc)
 			{

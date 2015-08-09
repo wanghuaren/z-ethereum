@@ -410,8 +410,8 @@ package ui.view.view2.NewMap
 		{
 			if (type == 1)
 			{
-				beiW=MapData.MAPW / 609;
-				beiH=MapData.MAPH / 367;
+				beiW=MapData.MAPW / 600;
+				beiH=MapData.MAPH / 361;
 				mc["mc_now"]["txt_pos"].text="0,0";
 				mc["mc_now"]["txt_mapName"].text=SceneManager.instance.currentMapName;
 				if (curMapId != SceneManager.instance.currentMapId)

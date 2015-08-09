@@ -27,6 +27,7 @@ package ui.view.wulinbaodian
 	import ui.view.view2.liandanlu.LianDanLu;
 	import ui.view.view2.motianwanjie.MoTianWanJie;
 	import ui.view.view4.chengjiu.ChengjiuWin;
+	import ui.view.view4.shenbing.Shenbing;
 	
 	import world.FileManager;
 	
@@ -169,7 +170,8 @@ package ui.view.wulinbaodian
 				if(sprite["data"]["action_para1"]==2){
 					LianDanLu.instance().setType(1, true);
 				}else if(sprite["data"]["action_para1"]==42){
-					JiaoSeMain.getInstance().setType(2);
+					//JiaoSeMain.getInstance().setType(2);
+					Shenbing.getInstance().open();
 				}else if(sprite["data"]["action_para1"]==43){
 					ChengjiuWin.getInstance().setType(2);
 				}else{

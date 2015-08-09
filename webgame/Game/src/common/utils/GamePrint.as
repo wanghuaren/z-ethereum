@@ -85,7 +85,7 @@ package common.utils {
 			panel.addEventListener(MouseEvent.MOUSE_OVER,MOUSE_OVER_Handler);
 			panel.addEventListener(MouseEvent.MOUSE_OUT,MOUSE_OUT_Handler);
 			
-			GameClock.instance.addEventListener(WorldEvent.CLOCK__SECOND400,timerHandle);
+			GameClock.instance.addEventListener(WorldEvent.CLOCK_HALF_OF_SECOND,timerHandle);
 		}
 	
 		private function timerHandle(we:WorldEvent):void{
@@ -188,7 +188,7 @@ package common.utils {
 				MOUSE_OUT_Handler();
 				return;
 			}
-			
+			msg="<font color='#'>"+msg+"</font>";
 			var txt : TextField = null;
 			//---------------------------------------------------
 			if(TextArr.length >= MaxNum)REMOVE_TEXT_HAND(null);

@@ -2,17 +2,17 @@ package scene.human
 {
 	import com.bellaxu.def.MusicDef;
 	import com.bellaxu.mgr.MusicMgr;
-
+	
 	import common.utils.clock.GameClock;
-
+	
 	import engine.event.DispatchEvent;
-
+	
 	import flash.geom.Point;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
-
+	
 	import netc.Data;
-
+	
 	import scene.action.Action;
 	import scene.action.PathAction;
 	import scene.body.Body;
@@ -26,10 +26,10 @@ package scene.human
 	import scene.manager.SceneManager;
 	import scene.utils.MapCl;
 	import scene.utils.MapData;
-
+	
 	import ui.base.mainStage.UI_index;
 	import ui.view.view2.NewMap.GameNowMap;
-
+	
 	import world.WorldEvent;
 
 	public class GameHuman extends King
@@ -72,28 +72,8 @@ package scene.human
 				return;
 			if (this.isMe)
 			{
-
-				//if(countadd % 12 != 0)
-				//{		
 				CenterAndShowMap();
-				SceneManager.instance.reloadTile(true);
-
-//				setTimeout(CenterAndShowMap, 1500);
-//				
-//				//
-//				setTimeout(SceneManager.instance.reloadTile, 1500);
-//				setTimeout(SceneManager.instance.reloadTile, 3000);
-//				
-//				//
-//				setTimeout(CenterAndShowMap, 3000);				
-//				setTimeout(CenterAndShowMap, 4500);
-//				setTimeout(SceneManager.instance.reloadTile, 4500);
-//				
-//				//
-//				setTimeout(CenterAndShowMap, 6000);	
-					//}
-
-
+//				SceneManager.instance.reloadTile(true);
 			}
 		}
 
@@ -106,69 +86,11 @@ package scene.human
 		{
 			if (!this._undisposed_)
 				return;
-			if (this.isMe)
+			if ((countadd % 20) == 0)
 			{
-
-				MapCl.playerCenterMap(this);
-
-
-				if (countadd % 12 == 0)
-				{
-					//UI_index.indexMC["mrt"]["smallmap"]["MapPosText"].text = 
-					//设置当前主角所在的地图坐标点
-					if (UI_index.hasInstance())
-					{
-						UI_index.indexMC_mrt_smallmap["MapPosText"].text=this.mapx + "," + this.mapy;
-					}
-				}
-
-				if (countadd % 15 == 0)
-				{
-					SetMyKingPos();
-				}
-
-				//现挪到Stage_frameServerHandler
-				//% 4 和 %5 都可以
-				/*if((countadd % 5) == 0)
-				{
-				SceneManager.instance.Depth_Core();
-				}*/
-
-				//24似乎太慢
-				//18也慢了，在调整网页大小时易出黑边,现调为12
-				//现调为10
-				if (countadd % 10 == 0)
-				{
-					SceneManager.instance.reloadTile();
-				}
-
-				//% 4 和 %6 都可以
-				if ((countadd % 4) == 0)
-				{
-					this.setKingSkinAlpha();
-				}
-
-					//移至enterMove中
-					//				if ((countadd % 24) == 0)
-					//				{
-					//					Data.idleTime.syncByClearIdleXiuLian();
-					//					Data.idleTime.syncByClearIdleNewGuest();
-					//
-					//				}
-
-
-
+				SetMyKingPos();
+				this.setKingSkinAlpha();
 			}
-			else
-			{
-				if ((countadd % 20) == 0)
-				{
-					SetMyKingPos();
-					this.setKingSkinAlpha();
-				}
-
-			}
-
 			(countadd > 9999) ? countadd=0 : countadd++;
 		}
 
@@ -184,7 +106,7 @@ package scene.human
 
 		}
 
-		private function SetMyKingPos():void
+		public function SetMyKingPos():void
 		{
 			GameNowMap.SetKingPos(this);
 			GameSceneGprs.SetKingPos(this);
@@ -371,12 +293,14 @@ package scene.human
 
 		override public function get attackPlayTime():int
 		{
-			return 450;
+			return 500;
+//			return 450;
 		}
 
 		override public function get magicPlayTime():int
 		{
-			return 630; //0.1呗的加速
+			return 700;
+//			return 630; //0.1呗的加速
 		}
 
 		override public function get movePlayTimeRate():Number
@@ -390,12 +314,37 @@ package scene.human
 				return;
 			this.hitArea=this.getSkin().getRole().hitArea;
 		}
+		
+		private var need_Speed:Boolean = false;
 
 		override public function get speed():int
 		{
 			//广播的其他玩家，考虑到服务器延迟120ms，则移动速度要加快一半60ms,
-//			return $speed - 0 / moveActionCount;
-			return $speed
+//			return $speed - 100 / moveActionCount;
+			if (this.m_nLastAction == ActionDefine.MOVE || this.m_nLastAction == ActionDefine.RUN)
+			{
+				if (need_Speed)
+				{
+					need_Speed = false;
+					return $speed - 100;
+				}
+			}
+			need_Speed = true;
+			return $speed;
+		}
+		
+		override public function setKingPosXY(mapx:Number, mapy:Number):void
+		{
+			this.mapx=mapx;
+			this.mapy=mapy;
+			this.m_nDestX=mapx;
+			this.m_nDestY=mapy;
+			if (isMe)
+			{
+				Data.myKing.mapx=mapx;
+				Data.myKing.mapy=mapy;
+			}
+			MapCl.setPoint(this, this.mapx, this.mapy, this.isMe);
 		}
 	}
 }

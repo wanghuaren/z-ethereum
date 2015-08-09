@@ -170,7 +170,7 @@ package ui.base.huodong
 				if(bag.num>1)
 					child["txt_name"].htmlText=ResCtrl.instance().getFontByColor(bag.itemname+" ×"+bag.num,bag.toolColor);
 				else
-					child["txt_name"].htmlText=bag.itemname;
+					child["txt_name"].htmlText=ResCtrl.instance().getFontByColor(bag.itemname,bag.toolColor);
 				//领取按钮
 				child["btnLingQu"].visible=true;
 				CtrlFactory.getUIShow().setBtnEnabled(child["btnLingQu"],true);

@@ -1,13 +1,10 @@
 package world.graph
 {
-	import engine.utils.Hash;
-
+	import com.engine.utils.Hash;
+	
 	import flash.display.Sprite;
 	import flash.events.Event;
-
-	import netc.Data;
-
-	import scene.king.Skin;
+	
 	import scene.manager.DepthPri;
 
 	/**
@@ -21,8 +18,8 @@ package world.graph
 
 		private var _name2:String;
 
-		private var _mapx:Number;
-		private var _mapy:Number;
+		protected var _mapx:Number;
+		protected var _mapy:Number;
 
 		private var _svr_stop_mapx:Number;
 		private var _svr_stop_mapy:Number;

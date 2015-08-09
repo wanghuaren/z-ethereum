@@ -1,27 +1,14 @@
 package netc.dataset
 {
-	import common.config.xmlres.XmlRes;
+	import com.engine.utils.HashMap;
 	
 	import common.utils.clock.GameClock;
 	
-	import engine.event.DispatchEvent;
-	
-	import flash.events.EventDispatcher;
-	
-	import common.config.GameIni;
-	
-	import netc.Data;
-	import netc.DataKey;
-	import engine.support.ISet;
 	import engine.net.dataset.VirtualSet;
+	
 	import netc.packets2.PacketGCRoleLogin2;
 	import netc.packets2.PacketWCServerTimeSync2;
 	
-	import engine.support.IPacket;
-	
-	import engine.utils.HashMap;
-	
-	import world.FileManager;
 	import world.WorldEvent;
 	
 	public class DateSet extends VirtualSet

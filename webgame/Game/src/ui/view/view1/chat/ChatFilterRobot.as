@@ -1,35 +1,14 @@
 package ui.view.view1.chat
 {
 
+	import com.engine.utils.HashMap;
+	
 	import common.config.GameIni;
-	import common.config.PubData;
-	import common.config.xmlres.XmlRes;
 	import common.managers.Lang;
-	import common.utils.CtrlFactory;
-	import common.utils.StringUtils;
-	import common.utils.bit.BitUtil;
-	import common.utils.clock.GameClock;
-	import common.utils.component.ButtonGroup;
 	
-	import engine.event.DispatchEvent;
-	import engine.utils.HashMap;
-	
-	import flash.display.DisplayObject;
-	import flash.display.MovieClip;
-	import flash.display.Sprite;
-	
-	import netc.Data;
-	
-	import nets.packets.PacketCSGetSayEnable;
-	import nets.packets.PacketCSSayEnable;
-	import nets.packets.PacketSCGetSayEnable;
-	
-	import ui.frame.UIWindow;
-	import ui.base.mainStage.UI_index;
-	import ui.frame.WindowName;
 	import ui.base.shejiao.haoyou.GameChatFriend;
-	
-	import world.WorldEvent;
+	import ui.frame.UIWindow;
+	import ui.frame.WindowName;
 
 	/**聊天禁言 机器人
 	 *@author andy

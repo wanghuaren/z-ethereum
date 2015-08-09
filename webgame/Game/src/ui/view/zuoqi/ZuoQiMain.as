@@ -111,10 +111,6 @@ package ui.view.zuoqi
 			mc["isjiefeng"].htmlText="";
 			mc["txt_jiefeng_desc"].htmlText="";
 
-			mc['mc_name'].visible=false;
-			mc['mc_jie'].visible=false;
-		
-
 			//mc['mc_shiZhuang'].visible=false;
 			mc['txt_att'].text="";
 			mc['txt_att_next'].text="";
@@ -184,7 +180,7 @@ package ui.view.zuoqi
 						this.select_jie--;
 					}
 					sendCSHorseSetCurrSkin(select_jie+1);
-					this.refresh();
+					this.refresh(false);
 					break;
 								
 				case "btnNext":
@@ -193,7 +189,7 @@ package ui.view.zuoqi
 						this.select_jie++;
 					}
 					sendCSHorseSetCurrSkin(select_jie+1);
-					this.refresh();
+					this.refresh(false);
 					
 					break;
 				case "btnShenXin":
@@ -366,23 +362,21 @@ package ui.view.zuoqi
 			}
 		}
 	
-		private function refresh():void
+		private function refresh(isUpdateSkin:Boolean=true):void
 		{
 			var s:int;
 			if (curData!=null)
 			{
-				mc['txt_not_open'].htmlText='';
-				mc['mc_name'].visible=true;
-				mc['mc_jie'].visible=true;
-				
-
 				var strong_lvl:int=curData.strong_level;
 				var tt:int=Math.ceil(strong_lvl / 10);
 				mc['mc_name'].gotoAndStop(tt);
 				mc['mc_jie'].gotoAndStop(tt);
-				if (strong_lvl % 10 == 0)
+				if (isUpdateSkin)
 				{
-					sendCSHorseSetCurrSkin(tt);
+					if (strong_lvl % 10 == 0)
+					{
+//						sendCSHorseSetCurrSkin(tt);
+					}
 				}
 
 				var start_:int=((strong_lvl-1) % 10+1);
@@ -505,13 +499,13 @@ package ui.view.zuoqi
 				}
 				//坐骑时尚
 				this.showFachionId(itemData.fachion_id);
-				var strong_lvl:int=curData.strong_level;
-				if(strong_lvl>0&&strong_lvl>=(select_jie+1)*10){
+				var strong_lvl:int=itemData.strong_level;
+				if((strong_lvl>0&&strong_lvl>=(select_jie+1)*10)||select_jie==0){
 					mc["isjiefeng"].htmlText=Lang.getLabel("900016_chibangkaiqi");
 					mc["txt_jiefeng_desc"].htmlText="";
 				}else{
 					mc["isjiefeng"].htmlText=Lang.getLabel("900017_chibangkaiqi");
-					mc["txt_jiefeng_desc"].htmlText="升到10星可解封此形象";
+					mc["txt_jiefeng_desc"].htmlText="升到"+(select_jie+1)+"阶10星可解封此形象";
 				}
 			}
 		}
@@ -598,14 +592,14 @@ package ui.view.zuoqi
 		 * 
 		 */		
 		public function getCurAtt(horseList:Vector.<StructHorseList2>):String{
-			if(horseList==null||horseList.length==0)return "您尚未装备坐骑。进阶坐骑可以大幅提升坐骑属性。坐骑功能35级开启。";
+			if(horseList==null||horseList.length==0)return "";
 			var itemData:StructHorseList2=horseList[0];
 			
 			var ret:String="";
 			ret=getAttByLevel(itemData.horseid, itemData.curStrong);
 			
 			if(itemData.curStrong==0||ret==""){
-				ret="您尚未进阶坐骑。进阶坐骑可以大幅提升坐骑属性。坐骑功能35级开启。";
+				ret="";
 			}
 			return ret;
 		}

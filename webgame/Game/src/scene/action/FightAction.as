@@ -1,7 +1,6 @@
 package scene.action
 {
 	import com.bellaxu.data.GameData;
-	import com.bellaxu.def.LibDef;
 	import com.bellaxu.def.MusicDef;
 	import com.bellaxu.def.StateDef;
 	import com.bellaxu.mgr.FrameMgr;
@@ -9,8 +8,8 @@ package scene.action
 	import com.bellaxu.mgr.MusicMgr;
 	import com.bellaxu.mgr.TargetMgr;
 	import com.bellaxu.mgr.TimeMgr;
-	import com.bellaxu.model.lib.Lib;
 	import com.bellaxu.res.ResMc;
+	import com.engine.utils.HashMap;
 	
 	import common.config.PubData;
 	import common.config.xmlres.XmlManager;
@@ -24,11 +23,8 @@ package scene.action
 	import common.utils.graph.Circle2D;
 	
 	import engine.event.DispatchEvent;
-	import engine.utils.HashMap;
 	
 	import flash.geom.Point;
-	import flash.net.navigateToURL;
-	import flash.utils.getTimer;
 	import flash.utils.setTimeout;
 	
 	import netc.Data;
@@ -41,7 +37,6 @@ package scene.action
 	import scene.action.hangup.GamePlugIns;
 	import scene.acts.ActFightDemage;
 	import scene.acts.ActFightTarget;
-	import scene.acts.ActIdle;
 	import scene.body.Body;
 	import scene.event.KingActionEnum;
 	import scene.human.GameHuman;
@@ -71,7 +66,6 @@ package scene.action
 	import ui.view.view7.UI_AutoFightHead;
 	import ui.view.view7.UI_AutoRoadHead;
 	import ui.view.view7.UI_MenuHead;
-	import ui.view.zuoqi.ZuoQiMain;
 	
 	import world.FileManager;
 	import world.IWorld;
@@ -89,6 +83,7 @@ package scene.action
 	public class FightAction
 	{
 		private static const SOUL_SKILL_LIST:Array=[null, 401110, 401210, 401310, 401410, 401510, 401610];
+		public static const USE_RANDOM_ATTACK:Boolean = false;
 		//----------------- 新增 -------------------------------
 		//当前锁定的目标
 		public static var Locked_Target:IGameKing=null;
@@ -837,14 +832,18 @@ package scene.action
 			}
 			if (srcKingA && srcKingA.s1 > 0)
 			{
-				var bf:BeingFilePath=FileManager.instance.getMainByHumanId(srcKingA.s0, 0, srcKingA.s2, srcKingA.s3, srcKingA.sex);
-				srcKingA.getSkin().setSkin(bf);
 //项目修改				if (p.srcid == GameData.roleId)
-				if (p.targetx!=0&&p.srcid == PubData.roleID)
+				if (p.srcid == PubData.roleID)
 				{
-					var c:PacketCSRideOff=new PacketCSRideOff();
-					DataKey.instance.send(c);
-					SkillTrackReal.instance.dicAttackSucessObj[p.targetid]=p;
+					//自动技能坐骑施法状态不下马，无动作
+					if (p.skill != 401209 && p.skill != 401305 && p.skill != 401310)
+					{
+						var bf:BeingFilePath=FileManager.instance.getMainByHumanId(srcKingA.s0, 0, srcKingA.s2, srcKingA.s3, srcKingA.sex);
+						srcKingA.getSkin().setSkin(bf);
+						var c:PacketCSRideOff=new PacketCSRideOff();
+						DataKey.instance.send(c);
+						SkillTrackReal.instance.dicAttackSucessObj[p.targetid]=p;
+					}
 				}
 			}
 			var key:String=p.srcid.toString() + "," + p.targetid.toString() + "," + p.logiccount.toString();
@@ -1020,7 +1019,7 @@ package scene.action
 				var act:ActFightTarget=new ActFightTarget();
 				act.target=p;
 				targetKing.postAction(act);
-				targetKing.postAction(new ActIdle());
+//				targetKing.postAction(new ActIdle());
 				return;
 			}
 			else
@@ -1156,6 +1155,11 @@ package scene.action
 			}
 			var k:IGameKing=Data.myKing.king;
 			if (null == k)
+			{
+				return;
+			}
+			//死亡状态下不能释放技能
+			if (k.hp == 0)
 			{
 				return;
 			}
@@ -1532,6 +1536,7 @@ package scene.action
 		 */
 		public function ClickEnemy(enemyKing:IGameKing, skillID:int=-1):Array
 		{
+//			MyCharacterSet.isAutoAttackTarget=false;
 			if (null == enemyKing)
 			{
 				return [enemyKing, false];
@@ -1988,12 +1993,23 @@ package scene.action
 //			if (0 != mode.select_type && 2 != mode.select_type)
 			if (m_mode != null && m_mode.target_flag != 3)
 			{
-//				var pA:Point=new Point(srcKingA.x, srcKingA.y);
-//				var pB:Point=new Point(enemy.x, enemy.y);
-//				MapCl.mapToGrid(pA);
-//				MapCl.mapToGrid(pB);
-				var pA:Point=new Point(srcKingA.mapx, srcKingA.mapy);
-				var pB:Point=new Point(enemy.mapx, enemy.mapy);
+				var pA:Point;
+				var pB:Point;
+				if (enemy is GameHuman)
+				{
+					pA = new Point(srcKingA.x, srcKingA.y);
+					pB = new Point(enemy.x, enemy.y);
+					MapCl.mapToGrid(pA);
+					MapCl.mapToGrid(pB);
+				}
+				else
+				{
+					pA = new Point(srcKingA.mapx, srcKingA.mapy);
+					pB = new Point(enemy.mapx, enemy.mapy);
+				}
+				
+//				var pA:Point=new Point(srcKingA.mapx, srcKingA.mapy);
+//				var pB:Point=new Point(enemy.mapx, enemy.mapy);
 				var targetP:Point=pB.clone();
 				//暂时屏蔽 2014.4.23
 //				if (srcKingA.fightInfo.CFight_Tag_9_Lock)
@@ -2018,6 +2034,14 @@ package scene.action
 							srcKingA.getSkill().selectSkillId=use_skill;
 						}
 					}
+					else if (distance == 1)//当能释放烈火时，强制优先释放烈火
+					{
+						if ((srcKingA as King).hasBuff(28))
+						{
+							use_skill = 401106;
+							srcKingA.getSkill().selectSkillId=use_skill;
+						}
+					}
 				}
 				var pNext:Point;
 				var maxRange:int=m_mode.max_range;
@@ -2029,18 +2053,16 @@ package scene.action
 					maxRange=2;
 					if (distance > maxRange) //距离
 					{
-						step=1;
-						if (distance >= maxRange + 2)
+
+						step = 2;
+						pNext=MapCl.searchStepPoint(pA, pB, AlchemyManager.instance.isWalkable, step);
+						if (pNext==null)
 						{
-							step=2;
-						}
-						if (distance <= maxRange + 2) //需要找到移动的有效目标格子
-						{
-							pNext=getNearestPointForMove(pA, pB, maxRange);
-						}
-						else
-						{
-							pNext=MapCl.searchStepPoint(pA, pB, AlchemyManager.instance.isWalkable, step);
+							pNext=getPointForMove(pB, 1);
+							if (pNext)
+							{
+								pNext=pB;
+							}
 						}
 					}
 					else if (distance == 0)
@@ -2169,16 +2191,9 @@ package scene.action
 		public function Talk(srcKingA:IGameKing, enemy:IGameKing):Array
 		{
 			var result:Array=this.CanTalk(srcKingA, enemy);
-			var po:WorldPoint
+			var po:WorldPoint;
 			//
 			srcKingA.setTalkInfo(FightSource.Attack, enemy.objid, WorldPoint.getInstance().getItem(enemy.x, enemy.y, enemy.mapx, enemy.mapy));
-			if ("canTalkButFar" == result[1])
-			{
-				//
-				var moveToPoint:Point=result[2] as Point;
-				po=WorldPoint.getInstance().getItem(enemy.x, enemy.y, moveToPoint.x, moveToPoint.y);
-				PathAction.moveTo(po);
-			}
 			if (result[0])
 			{
 				UIActMap.instance.EventNpc(enemy);
@@ -2189,6 +2204,14 @@ package scene.action
 				var fx_:String=MapCl.getABWASD(enemy, srcKingA);
 				var angel_:int=MapCl.getAngle(enemy, srcKingA);
 				Data.myKing.king.roleFX=fx_;
+			}
+			else if ("canTalkButFar" == result[1])
+			{
+				//
+				var moveToPoint:Point=result[2] as Point;
+				po=WorldPoint.getInstance().getItem(enemy.x, enemy.y, moveToPoint.x, moveToPoint.y);
+				UIAction.transId = enemy.objid;
+				PathAction.moveTo(po);
 			}
 			return result;
 		}
@@ -2319,8 +2342,16 @@ package scene.action
 				{
 					if (null != enemy)
 					{
-						p_targetx=enemy.mapx;
-						p_targety=enemy.mapy;
+						if (enemy is GameHuman)
+						{
+							p_targetx = MapCl.mapXToGrid(enemy.x);
+							p_targety = MapCl.mapYToGrid(enemy.y);
+						}
+						else
+						{
+							p_targetx=enemy.mapx;
+							p_targety=enemy.mapy;
+						}
 					}
 				}
 				if (m_mode.target_flag != 9) //如果不是目标格子，则取消当前目标
@@ -2343,8 +2374,16 @@ package scene.action
 			//
 			if (null != enemy)
 			{
-				p_targetx=enemy.mapx;
-				p_targety=enemy.mapy;
+				if (enemy is GameHuman)
+				{
+					p_targetx = MapCl.mapXToGrid(enemy.x);
+					p_targety = MapCl.mapYToGrid(enemy.y);
+				}
+				else
+				{
+					p_targetx=enemy.mapx;
+					p_targety=enemy.mapy;
+				}
 			}
 //			if (0 == mode.select_type)
 //			{
@@ -2353,8 +2392,16 @@ package scene.action
 //			}
 			if (1 == m_mode.select_type)
 			{
-				p_targetx=enemy_mapx;
-				p_targety=enemy_mapy;
+				if (enemy is GameHuman)
+				{
+					p_targetx = MapCl.mapXToGrid(enemy.x);
+					p_targety = MapCl.mapYToGrid(enemy.y);
+				}
+				else
+				{
+					p_targetx=enemy.mapx;
+					p_targety=enemy.mapy;
+				}
 			}
 			else if (m_mode.skill_id == 401105)
 			{
@@ -2381,11 +2428,49 @@ package scene.action
 					p_targety=po.mapy;
 				}
 			}
+			
+//			if (p_skill == 401103)
+//			{
+//				if (enemy != null && enemy is GameHuman)
+//				{
+//					var canAttack:Boolean;
+//					if (USE_RANDOM_ATTACK)
+//					{
+//						canAttack = Math.random() > 0.5;
+//					}
+//					else
+//					{
+//						var destX:int = (enemy as King).lastMapX;
+//						var destY:int = (enemy as King).lastMapY;
+//						var curX:int = MapCl.mapXToGrid(enemy.x);
+//						var curY:int = MapCl.mapYToGrid(enemy.y);
+//						if (curX == destX && curY == destY)
+//						{
+//							canAttack = true;
+//						}
+//						else
+//						{
+//							canAttack = Math.random() >= 0.6;
+//						}
+//					}
+//					if (!canAttack)
+//					{
+//						p_targetx = MapCl.mapXToGrid(enemy.x);
+//						p_targety = MapCl.mapYToGrid(enemy.y);
+//						p_targetid = 0;
+//					}
+//				}
+//			}
+			
+			
 			//根据格子矫正目标坐标
 //			p_targetx = MapCl.getMapPosByGrid(p_targetx,GameIni.GRID_WIDTH);
 //			p_targety = MapCl.getMapPosByGrid(p_targety,GameIni.GRID_HEIGHT);
 			//---------------- end ---------------
 			FA2_SEND(srcKingA, p_skill, p_targetid, p_direct, p_targetx, p_targety);
+//			if(enemy as GameHuman){
+//				MyCharacterSet.isAutoAttackTarget=true;
+//			}
 			//
 //			FA3_END(srcKingA);
 		}
@@ -2436,6 +2521,14 @@ package scene.action
 					DataKey.instance.send(p);
 					return;
 				}
+				else if ((Data.myKing.king as King).s1!=0)//坐骑释放自动技能，无需动作
+				{
+						if (skill_ == 401209 || skill_ == 401305 || skill_ == 401310)
+						{
+							DataKey.instance.send(p);
+							return;
+						}
+				}
 			}
 			(Data.myKing.king as GameLocalHuman).stopAction();
 			(Data.myKing.king as GameLocalHuman).currentAttackAction=p;
@@ -2446,6 +2539,8 @@ package scene.action
 		 */
 		public function playSelfSkillEffect(p:PacketCSFight2):void
 		{
+//			if(p.srcKing.roleID==Data.myKing.roleID)
+//				trace("B");
 			var srcKingA:IGameKing=p.srcKing;
 			if (srcKingA == null || srcKingA.fightInfo == null)
 				return;
@@ -2553,6 +2648,8 @@ package scene.action
 			{
 				attackId=Data.myKing.attackLockObjID;
 			}
+			if(targetKingB)
+				attackId=p.targetid;
 			if (attackId <= 0)
 			{
 				if (SceneManager.instance.hasAppeared(Data.myKing.counterattackObjID))
@@ -2649,10 +2746,11 @@ package scene.action
 			if (p.srcKing.fightInfo)
 				p.srcKing.fightInfo.CSFightLock=true;
 //			(p.srcKing as King).seList.length = 0;
+			playSkill(p.skill, p.skillPlayTime);
 			playSelfSkillEffect(p);
 			p.direct=p.srcKing.roleAngle;
 			DataKey.instance.send(p);
-			playSkill(p.skill, p.skillPlayTime);
+			
 //			if (p.skill == 401103)
 //			var targetFX:String = MapCl.getWASD(p.direct);
 //			FA3_END(p.srcKing);
@@ -2827,6 +2925,9 @@ package scene.action
 			if (result[0])
 			{
 				skillID=srcKingA.getSkill().selectSkillId;
+				if(UI_index.indexMC_mrb["skill_icon"].visible){
+					skillID=401100;
+				}
 				var isSameCamp:Boolean=chkSameCamp(srcKingA, enemy);
 				if (isSameCamp) //同一阵营，则客户端虚拟攻击
 				{
@@ -2941,6 +3042,7 @@ package scene.action
 			}
 			UIActMap.playerID=0;
 			UIActMap.playerName="";
+			isHeadMenuShow = false;
 		}
 
 		public function HideNpcStatus():void
@@ -2973,6 +3075,8 @@ package scene.action
 //			}
 		}
 
+		private var isHeadMenuShow:Boolean = true;
+		
 		public function MoveHeadMenu():void
 		{
 			if (UIActMap.playerID > 0)
@@ -3048,10 +3152,12 @@ package scene.action
 				{
 					UI_index.indexMC_menuHead.y=23;
 				}
+				isHeadMenuShow = true;
 			}
 			else
 			{
-				this.HideHeadMenu();
+				if (isHeadMenuShow)
+					this.HideHeadMenu();
 			}
 		}
 
@@ -3480,11 +3586,20 @@ package scene.action
 		/**
 		 * 是否为技能攻击，针对特殊怪物处理
 		 */
-		public static function isMagic(m:Pub_SkillResModel):Boolean
+		public static function isMagic(m:Pub_SkillResModel,isMonster:Boolean=false):Boolean
 		{
-			if (m.skill_action == 1 && m.skill_action_id == 4) //
+			if (m.skill_action == 1) //
 			{
-				return true;
+				if (isMonster)
+				{
+					if (m.skill_action_id == 3 || m.skill_action_id == 4)
+						return true;
+				}
+				else
+				{
+					if (m.skill_action_id == 4)
+						return true;
+				}
 			}
 			return false;
 		}

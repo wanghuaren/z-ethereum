@@ -1,15 +1,21 @@
 package ui.view.view1.fuben
 {
+	import com.engine.utils.HashMap;
+	
 	import common.managers.Lang;
-	import engine.utils.HashMap;
+	
 	import model.fuben.FuBenModel;
+	
 	import netc.Data;
 	import netc.DataKey;
 	import netc.packets2.*;
+	
 	import nets.packets.*;
+	
 	import scene.manager.SceneManager;
 	import scene.music.GameMusic;
 	import scene.music.WaveURL;
+	
 	import ui.base.mainStage.UI_index;
 	import ui.frame.UIWindow;
 	import ui.view.fubenui.TianMenZhenControlBar;

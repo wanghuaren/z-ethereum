@@ -55,22 +55,7 @@ package model.guest
 			
 		}
 		
-		public function removeTips():void
-		{
-			if(null == m_new_guest_simple)
-			{
-				//m_new_guest_simple = gamelib.getswf("new_guest_simple_ui") as MovieClip;
-				m_new_guest_simple = GamelibS.getswflink("game_utils","new_guest_simple_ui") as MovieClip;
-			}
-			
-			if(m_new_guest_simple && m_new_guest_simple.parent)
-			{
-				m_new_guest_simple.parent.removeChild(m_new_guest_simple);
-				m_new_guest_simple.x = 0;
-				m_new_guest_simple.y = 0;
-			}
-			
-		}
+		
 		
 		
 		public function handle2001(eventStepID:int,object:Object):void
@@ -953,6 +938,52 @@ package model.guest
 					break;
 			}
 		}
+		//怒斩BOSS 
+		public function handle1067(eventStepID:int,object:Object):void
+		{
+			switch(eventStepID)
+			{
+				case 0:
+					_getSimpleTipByLang(object["arrNuSha"],0,1);
+					break;
+				case 1:
+					//关闭
+					NewGuestModel.getInstance().handleNewGuestEvent(1067,-1,null);
+					break;
+				default:
+					break;
+			}
+		}
+		//神兵 
+		public function handle1068(eventStepID:int,object:Object):void
+		{
+			switch(eventStepID)
+			{
+				case 0:
+					_getSimpleTipByLang(ControlButton.getInstance().btnGroup["arrShenbing"]["arrShenbing"],0,1);
+					break;
+				case 1:
+					_getSimpleTipByLang(object["duanzao"],0,1);
+					break;
+				case 2:
+					_getSimpleTipByLang(object["duanzao"],0,2);
+					break;
+				case 3:
+					_getSimpleTipByLang(object["duanzao"],0,2);
+					break;
+				case 4:
+					_getSimpleTipByLang(object["btnClose"],0,2);
+					break;
+				case 5:
+					//关闭
+					NewGuestModel.getInstance().handleNewGuestEvent(1068,-1,null);
+					break;
+				default:
+					break;
+			}
+		}
+		
+		
 		/**
 		 * 给坑爹的策划做一个，更加坑爹的文本框居中处理  
 		 * @param tf                要显示的文本框
@@ -1007,6 +1038,8 @@ package model.guest
 //			
 //			_handleSimpleTF( (m_new_guest_simple["tf"] as TextField ), tf , 12);
 			m_new_guest_simple.gotoAndStop(dirct);
+			var content:MovieClip = m_new_guest_simple.getChildAt(0) as MovieClip;
+			content.play();
 			switch(dirct)
 			{
 				case 1:
@@ -1031,6 +1064,25 @@ package model.guest
 					break;
 			}
 			mc.parent.addChild(m_new_guest_simple);
+		}
+		
+		public function removeTips():void
+		{
+			if(null == m_new_guest_simple)
+			{
+				//m_new_guest_simple = gamelib.getswf("new_guest_simple_ui") as MovieClip;
+				m_new_guest_simple = GamelibS.getswflink("game_utils","new_guest_simple_ui") as MovieClip;
+			}
+			
+			if(m_new_guest_simple && m_new_guest_simple.parent)
+			{
+				m_new_guest_simple.parent.removeChild(m_new_guest_simple);
+				m_new_guest_simple.x = 0;
+				m_new_guest_simple.y = 0;
+				var content:MovieClip = m_new_guest_simple.getChildAt(0) as MovieClip;
+				content.stop();
+			}
+			
 		}
 		/**
 		 *	 显示箭头

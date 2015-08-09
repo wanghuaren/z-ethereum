@@ -1,5 +1,7 @@
 package netc.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.XmlRes;
 	import common.config.xmlres.server.Pub_ToolsResModel;
@@ -8,7 +10,6 @@ package netc.dataset
 	import engine.event.DispatchEvent;
 	import engine.net.dataset.VirtualSet;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
 	
 	import model.jingjie.JingjieModel;
 	
@@ -261,8 +262,8 @@ package netc.dataset
 					break;
 			}
 			
-			//
-			if(isShort&&ret!="")ret=ret.substr(0,10)+"...";
+			//不再加点点点
+//			if(isShort&&ret!="")ret=ret.substr(0,10)+"...";
 			
 			return ret;
 		}

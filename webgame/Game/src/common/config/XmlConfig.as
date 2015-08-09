@@ -43,7 +43,6 @@ package common.config
 		 */
 		public static function get swfXmlLibFullName():String
 		{
-			return "lib.swf";
 			if ("" == current_game_servers)
 			{
 				current_game_servers=GameIni.GAMESERVERS;
@@ -1665,6 +1664,11 @@ package common.config
 		{
 				return getXMLInstanceByName('Pub_Invest_Repay');
 				
+		}
+		
+		public static function get PubMapSpawnClientXML():String
+		{
+			return getXMLInstanceByName("Pub_Map_Spawn_Client");
 		}
 	}
 }

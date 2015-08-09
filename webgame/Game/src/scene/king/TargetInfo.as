@@ -62,19 +62,19 @@ package scene.king
 			}
 			return _instance;
 		}
-		public var vectorPoolItems:Vector.<TargetInfo>=new Vector.<TargetInfo>();
+		public static var vectorPoolItems:Vector.<TargetInfo>=new Vector.<TargetInfo>();
 
 		public function getItem(srcid_:int, src_sex_:int, src_mapx_:int, src_mapy_:int, src_width_:int, src_height_:int, src_originX_:int, src_originY_:int, targetid_:int, target_mapx_:int, target_mapy_:int, target_width_:int, target_height_:int, target_originX_:Number, target_originY_:Number, logiccount_:int):TargetInfo
 		{
 			var reTargetInfo:TargetInfo;
-			if (TargetInfo.getInstance().vectorPoolItems.length<1)
+			if (vectorPoolItems.length<1)
 			{
 				for (var i:int=0; i < 200; i++)
 				{
-					TargetInfo.getInstance().vectorPoolItems.push(new TargetInfo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+					vectorPoolItems.push(new TargetInfo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 				}
 			}
-			reTargetInfo=TargetInfo.getInstance().vectorPoolItems.pop();
+			reTargetInfo=vectorPoolItems.pop();
 			if (reTargetInfo == null)
 			{
 				reTargetInfo=new TargetInfo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

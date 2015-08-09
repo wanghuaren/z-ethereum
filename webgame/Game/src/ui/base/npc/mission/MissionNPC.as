@@ -76,6 +76,7 @@
 	import ui.view.view2.other.BuyExpTime;
 	import ui.view.view2.other.CBParam;
 	import ui.view.view2.other.PKTiShi;
+	import ui.view.view2.other.TuLongDao;
 	import ui.view.view2.other.XuanShang;
 	import ui.view.view2.other.ZhaoMuHero;
 	import ui.view.view2.shengonglu.ShenGongLu;
@@ -817,6 +818,14 @@
 					case 80:
 						//坐骑 2014－10－28
 						ZuoQiMain.getInstance().open();
+						break;
+					case 81:
+						//屠龙刀 2014－11－14
+						TuLongDao.instance.open(true);
+						break;
+					case 82:
+						//神兵 2014－11－21
+						Shenbing.getInstance().open(true);
 						break;
 					case 1001:
 						FuBen.serieSort=dia.param2;

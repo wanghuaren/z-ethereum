@@ -9,11 +9,8 @@ package ui.view.view4.pkmatch
 	
 	import engine.event.DispatchEvent;
 	import engine.load.GamelibS;
-	import engine.utils.HashMap;
 	
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.events.Event;
 	
 	import model.pkmatch.PKMatchEvent;
 	import model.pkmatch.PKMatchModel;
@@ -23,10 +20,8 @@ package ui.view.view4.pkmatch
 	
 	import nets.packets.PacketWCGetPlayerPkList;
 	
-	import ui.base.shejiao.zhenying.ZhenYing;
 	import ui.frame.ImageUtils;
 	import ui.frame.UIWindow;
-	import ui.frame.WindowName;
 	import ui.view.view5.saloon.SaloonTopList;
 	
 	import world.FileManager;

@@ -8,11 +8,8 @@ package ui.base.login
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.filters.BitmapFilterQuality;
-	import flash.filters.GlowFilter;
 	
 	import netc.packets2.StructDCRoleList2;
 	
@@ -126,8 +123,8 @@ package ui.base.login
 				m_panel['RoleItem_' + i].visible=true;
 
 				m_panel['RoleItem_' + i]['tf_name'].text=_role.king_name;
-				m_panel['RoleItem_' + i]['tf_level'].text="Lv:" + _role.king_level;
-				m_panel['RoleItem_' + i]['tf_metier'].text=Lang.getLabel("pub_job" + _role.king_metier);
+				m_panel['RoleItem_' + i]['tf_level'].text=Lang.getLabel("pub_job" + _role.king_metier);
+				m_panel['RoleItem_' + i]['tf_metier'].text=_role.king_level+"级";
 
 				m_panel['RoleItem_' + i]['btnJiaoSe']['uil'].source=FileManager.instance.getWindowSkinUrl(_role.s0, _role.s1, _role.s2, _role.s3, _role.king_sex, _role.king_metier, _role.userid);
 				

@@ -227,15 +227,15 @@ package ui.view.view2.other
 					retsetStartChiYao5();
 				}
 			}
-			//重铸 每次登陆如果玩家15分钟之内不点击，则提示
-			if (chongZhuStart)
-			{
-				chongZhuCnt++;
-				if (chongZhuCnt >= 900)
-				{
-					showChongZhu();
-				}
-			}
+			//重铸 每次登陆如果玩家15分钟之内不点击，则提示 [屏蔽2014/11/18]
+//			if (chongZhuStart)
+//			{
+//				chongZhuCnt++;
+//				if (chongZhuCnt >= 900)
+//				{
+//					showChongZhu();
+//				}
+//			}
 			if (teQuanStart)
 			{
 				teQuanCnt++;

@@ -1,26 +1,18 @@
 package ui.base.jineng
 {
-	import common.config.PubData;
-	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.*;
 	import common.managers.Lang;
-	import common.utils.CtrlFactory;
 	import common.utils.StringUtils;
 	import common.utils.clock.GameClock;
 	import common.utils.component.ToolTip;
 	import common.utils.drag.MainDrag;
 	
 	import engine.event.DispatchEvent;
-	import engine.utils.HashMap;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.text.TextField;
-	import flash.utils.setTimeout;
 	
 	import netc.Data;
 	import netc.dataset.*;
@@ -28,13 +20,10 @@ package ui.base.jineng
 	
 	import nets.packets.*;
 	
-	import ui.base.jineng.Jineng;
 	import ui.frame.ImageUtils;
-	import ui.frame.ItemManager;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
 	
-	import world.FileManager;
 	import world.WorldEvent;
 
 	public class JiNengMain extends UIWindow

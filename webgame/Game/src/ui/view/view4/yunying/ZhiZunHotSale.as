@@ -1,6 +1,7 @@
 package ui.view.view4.yunying
 {
 	
+	import common.config.GameIni;
 	import common.config.xmlres.GameData;
 	import common.config.xmlres.server.Pub_Vip_TypeResModel;
 	import common.managers.Lang;
@@ -9,9 +10,9 @@ package ui.view.view4.yunying
 	
 	import model.yunying.ZhiZunVIPModel;
 	
+	import ui.base.vip.VipGuide;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
-	import ui.base.vip.VipGuide;
 	
 	/**
 	 * 至尊VIP热卖
@@ -47,8 +48,7 @@ package ui.view.view4.yunying
 		override protected function init():void
 		{
 			super.init();
-			
-			
+
 			
 			var _vipconfig_1:Pub_Vip_TypeResModel = GameData.getVipTypeXml().getResPath(1) as Pub_Vip_TypeResModel;
 			Lang.addTip(mc['item_1'], "pub_param",260); 
@@ -64,7 +64,7 @@ package ui.view.view4.yunying
 			
 			//mc['item_1']['tf_1'].text = _vipconfig_1.need_coin3;
 			if(VipGuide.getInstance().chkVipGuideBigIcon()){
-				mc['item_1']['tf_1'].text =580;
+				mc['item_1']['tf_1'].text =ZhiZunVIP.START_SERVER_VIP_COIN3;
 			}else{
 				mc['item_1']['tf_1'].text = _vipconfig_1.need_coin3;
 			}
@@ -105,7 +105,7 @@ package ui.view.view4.yunying
 					alert.ShowMsg(Lang.getLabel('40090_ZhiZun_TeQuan_2',[_vipconfig_2.need_coin3]),4,null,_vipBuy,2);
 					break;
 				case "btnOpen_1":    //购买白银
-					alert.ShowMsg(Lang.getLabel('40090_ZhiZun_TeQuan_1',[VipGuide.getInstance().chkVipGuideBigIcon()?580:_vipconfig_1.need_coin3]),4,null,_vipBuy,1);
+					alert.ShowMsg(Lang.getLabel('40090_ZhiZun_TeQuan_1',[VipGuide.getInstance().chkVipGuideBigIcon()?ZhiZunVIP.START_SERVER_VIP_COIN3:_vipconfig_1.need_coin3]),4,null,_vipBuy,1);
 					break;
 				default:
 					break;

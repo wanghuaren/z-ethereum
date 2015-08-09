@@ -77,16 +77,23 @@
 				return;
 			}
 			var loaddata:String=null;
-			if (loadurl.indexOf(".amd") > 0 || loadurl.indexOf(".AMD") > 0)
+			try
 			{
-				loaddata=EncryptTXML.instance.DeCode(xmlLoader.data, _XOR);
+				if (loadurl.indexOf(".amd") > 0 || loadurl.indexOf(".AMD") > 0)
+				{
+					loaddata=EncryptTXML.instance.DeCode(xmlLoader.data, _XOR);
+				}
+				else
+				{
+					loaddata=EncryptTXML.instance.DeCode(xmlLoader.data);
+				}
+				removeEvent();
+				dispatchEvent(new DispatchEvent(DispatchEvent.EVENT_LOAD_COMPLETE, loaddata));
 			}
-			else
+			catch (error:Error)
 			{
-				loaddata=EncryptTXML.instance.DeCode(xmlLoader.data);
+				loadErr();
 			}
-			removeEvent();
-			dispatchEvent(new DispatchEvent(DispatchEvent.EVENT_LOAD_COMPLETE, loaddata));
 		}
 
 		private function removeEvent():void

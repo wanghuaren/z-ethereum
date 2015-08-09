@@ -63,6 +63,7 @@
 	import model.qq.YellowDiamond;
 	import model.rebate.ConsumeRebateModel;
 	import model.yunying.XunBaoModel;
+	import model.yunying.ZhiZunVIPModel;
 
 	import netc.Data;
 	import netc.DataKey;
@@ -110,6 +111,7 @@
 	import ui.base.vip.ChongZhi;
 	import ui.base.vip.FreeVip;
 	import ui.base.vip.Vip;
+	import ui.base.vip.VipGuide;
 	import ui.base.vip.VipPet;
 	import ui.base.zudui.ZuDui;
 	import ui.frame.UIActMap;
@@ -148,6 +150,7 @@
 	import ui.view.view3.bossChaoXue.BossChaoXueWin;
 	import ui.view.view3.drop.ResDrop;
 	import ui.view.view4.*;
+	import ui.view.view4.chengjiu.ChengjiuWin;
 	import ui.view.view4.qq.QQEveryDayRaffle;
 	import ui.view.view4.qq.QQGoldTick;
 	import ui.view.view4.qq.YellowDiamondShenLiWindow;
@@ -346,8 +349,8 @@
 			mc_hotKeyPos.x=mc["mrb"]["mc_hotKey"].x;
 			mc_hotKeyPos.y=mc["mrb"]["mc_hotKey"].y;
 
-			mc["mrb"]["soulBottle"].mouseChildren=false;
-			mc["mrb"]["soulBottle_blue"].mouseChildren=false;
+//			mc["mrb"]["soulBottle"].mouseChildren=false;
+//			mc["mrb"]["soulBottle_blue"].mouseChildren=false;
 //
 			Lang.addTip(mc["mrb"]["soulBottle_left"], "ui_index_SHP", 160);
 			Lang.addTip(mc["mrb"]["soulBottle_blue_right"], "ui_index_SMP", 160);
@@ -375,8 +378,7 @@
 				mc["btn_show_task"].visible=false;
 			}
 			//中上
-//			Lang.addTip(mc["MCPet"]["pexp"], CtrlFactory.getTipMC().petExp);
-//			Lang.addTip(mc["MCPet"]["php"], CtrlFactory.getTipMC().petHp);
+			mc["flyLevelup"].visible=false;
 			//右上【小地图】
 			Lang.addTip(mc["mrt"]["smallmap"]["btnEffort"], "ui_index_btnEffort", ControlTip.INDEX_TIP_WIDTH);
 			Lang.addTip(mc["mrt"]["smallmap"]["btnCLine"], "", ControlTip.INDEX_TIP_WIDTH);
@@ -434,6 +436,7 @@
 			Lang.addTip(mc["mrb"]["mc_index_menu"]["btnHaoYou"], "ui_index_btnHaoYou", ControlTip.INDEX_TIP_WIDTH);
 			Lang.addTip(mc["mrb"]["mc_index_menu"]["btnZuDui"], "ui_index_btnZuDui", ControlTip.INDEX_TIP_WIDTH);
 			Lang.addTip(mc["mrb"]["mc_index_menu"]["btnJiaZu"], "ui_index_btnJiaZu", ControlTip.INDEX_TIP_WIDTH);
+			Lang.addTip(mc["mrb"]["mc_index_menu"]["btnChengJiu"], "ui_index_btnChengJu", ControlTip.INDEX_TIP_WIDTH);
 			Lang.addTip(mc["mrb"]["mc_index_menu"]["btnShenQi"], "ui_index_btnShenQi", ControlTip.INDEX_TIP_WIDTH);
 			Lang.addTip(mc["mrb"]["mc_index_menu"]["btnShenYi"], "ui_index_btnShenYi", ControlTip.INDEX_TIP_WIDTH);
 //			Lang.addTip(mc["mrb"]["btnLianDanLu"], "ui_index_btnLianDanLu", 100);
@@ -473,6 +476,7 @@
 			pkPoint.x=mc["btnCharacter"]["pk0"].x;
 			pkPoint.y=mc["btnCharacter"]["pk0"].y;
 
+			mc["caidan"].visible=false;
 			mc["mc_FanLiRi"].visible=false;
 			mc["mc_DaFangSong"].visible=false;
 			mc["mc_ChongZhiFanLiRi"].visible=false;
@@ -486,6 +490,10 @@
 			mc["mrb"]["skill_icon"].mouseChildren=mc["mrb"]["skill_icon"].mouseEnadled=false;
 			//---------------------------------------------------------------------------------------------------------
 			// 初始化聊天功能			// 初始化事件
+			var ui_mrb:UI_Mrb=new UI_Mrb(mc["mrb"]);
+			UI_Mrb.setInstance(ui_mrb);
+			UI_Mrb.instance.open(true, false);
+			mc["mrb"].tabChildren=false;
 			PubData.chat=new MainChat(mc["chat"]);
 			PubData.chat.open(true, false);
 			chat=mc["chat"];
@@ -495,10 +503,7 @@
 			UI_BtnCharacter.setInstance(ui_btnChar);
 			UI_BtnCharacter.instance.open(true, false);
 			mc["btnCharacter"].tabChildren=false;
-			var ui_mrb:UI_Mrb=new UI_Mrb(mc["mrb"]);
-			UI_Mrb.setInstance(ui_mrb);
-			UI_Mrb.instance.open(true, false);
-			mc["mrb"].tabChildren=false;
+
 			var ui_mrt:UI_Mrt=new UI_Mrt(mc["mrt"]);
 			UI_Mrt.setInstance(ui_mrt);
 			UI_Mrt.instance.open(true, false);
@@ -651,9 +656,11 @@
 			Data.myKing.dispatchEvent(new DispatchEvent(MyCharacterSet.SOUL_UPDATE, soul));
 			var pk:int=Data.myKing.PkMode;
 			Data.myKing.dispatchEvent(new DispatchEvent(MyCharacterSet.PK_MODE_UPD, pk));
-			var prof:int=Data.myKing.metier;
-			MovieClip(mc["btnCharacter"]["mcProf"]).gotoAndStop(prof);
-			MovieClip(mc["btnCharacter"]["mcProf"]).mouseChildren=MovieClip(mc["btnCharacter"]["mcProf"]).mouseEnabled=false;
+//			var prof:int=Data.myKing.metier;
+			//清除此元件
+			mc["btnCharacter"].removeChild(mc["btnCharacter"]["mcProf"]);
+//			MovieClip(mc["btnCharacter"]["mcProf"]).gotoAndStop(prof);
+//			MovieClip(mc["btnCharacter"]["mcProf"]).mouseChildren=MovieClip(mc["btnCharacter"]["mcProf"]).mouseEnabled=false;
 			//
 			for (var k:int=0; k < 7; k++)
 			{
@@ -807,6 +814,21 @@
 		{
 			visibleBtnXXBD(true);
 			visibleBtnYellowDiamond(true);
+
+			if (Lang.getLabelArr("Level_up_fly").indexOf(Data.myKing.level + "") >= 0)
+			{
+				var m_mc:MovieClip=mc["flyLevelup"];
+				m_mc.x=stage.stageWidth * 3 / 5;
+				m_mc.y=mc["mrb"].y - 240;
+				m_mc.visible=true;
+				m_mc.gotoAndPlay(1);
+				m_mc["f"]["tf_0"].text=Data.myKing.level + "";
+				setTimeout(function():void
+				{
+					m_mc.visible=false;
+				}, 5000);
+
+			}
 		}
 
 		public function visibleBtnYellowDiamond(b:Boolean):void
@@ -859,15 +881,14 @@
 				return;
 			}
 			//
-			var mc_buttonArr_dpo:DisplayObject=GamelibS.getswflink("datubiao", "mc_buttonArr");
-			//test
-			//mc_buttonArr_dpo = null;
-			if (null == mc_buttonArr_dpo)
+			var mc_buttonArr:MovieClip=GamelibS.getswflink("datubiao", "mc_buttonArr") as MovieClip;
+			trace("A");
+			if (null == mc_buttonArr)
 			{
 				setTimeout(initMcButtonArr, 6000);
 				return;
 			}
-			var mc_buttonArr:MovieClip=mc_buttonArr_dpo as MovieClip;
+			trace("B");
 			mc_buttonArr.x=mc["mrt"]["buttonArr"].x;
 			mc_buttonArr.y=mc["mrt"]["buttonArr"].y;
 			mc_buttonArr["mc_row"].visible=false;
@@ -878,9 +899,9 @@
 			UI_index.indexMC_mrt_buttonArr.tabChildren=false;
 			ControlButton.getInstance().init();
 		}
-		private var arrayMainMC:Array=["btnLong", "chat", "duiwu", "btnCharacter", "message", "mrt", "mc_mai_zuan", "btnQQ_YD_ShenLi", "btnChoujiang", "btn_show_task"];
-		private var arrayHoldMC:Array=["mc_hotKey", "mc_hide_statusbar", "ji_neng_di1", "ji_neng_di2", "ji_neng_di3", "ji_neng_di4", "ji_neng_di5", "ji_neng_di6", "ji_neng_di7"];
-		private var isShowMainMC:Boolean=true;
+		private var arrayMainMC:Array=["btnLong", "caidan", "VIP_CaiDanBtn", "chat", "duiwu", "btnCharacter", "message", "mrt", "btnQQ_YD_ShenLi", "btnChoujiang", "btn_show_task"];
+		private var arrayHoldMC:Array=["mc_hotKey", "mc_hide_statusbar", "skill_icon", "ji_neng_di1", "ji_neng_di2", "ji_neng_di3", "ji_neng_di4", "ji_neng_di5", "ji_neng_di6", "ji_neng_di7"];
+		public var isShowMainMC:Boolean=true;
 		private var posMainMcArr:Array=[];
 
 		/**
@@ -912,7 +933,7 @@
 				for (var m_i:int=0; m_i < m_len; m_i++)
 				{
 					mnk_mc=mc["mrb"].getChildAt(m_i);
-					if (mnk_mc.name != "btnMustShowPlayer" && mnk_mc.name != "mc_row")
+					if (mnk_mc.name != "btnMustShowPlayer" && mnk_mc.name != "mc_row" && mnk_mc.name != "skill_icon")
 						mnk_mc.visible=true;
 					if (mnk_mc.name == "mc_bag_not_enough")
 					{
@@ -929,12 +950,14 @@
 				for (var n_i:int=0; n_i < m_len; n_i++)
 				{
 					mnk_mc=mc["mrb"].getChildAt(n_i);
-					mnk_mc.visible=false;
+					if (mnk_mc.name != "skill_icon")
+						mnk_mc.visible=false;
 				}
 				for each (var k_str:String in arrayHoldMC)
 				{
 					mnk_mc=mc["mrb"][k_str];
-					mnk_mc.visible=true;
+					if (mnk_mc.name != "skill_icon")
+						mnk_mc.visible=true;
 				}
 			}
 			refreshMC_HotKey(!isShowMainMC);
@@ -947,7 +970,7 @@
 			var m_mc:Sprite=mc["mrb"]["mc_hotKey"];
 			if (isChange)
 			{
-				m_mc.x=213;
+				m_mc.x=205;
 				m_mc.y=-50;
 				for (var i:int=7; i < 13; i++)
 				{
@@ -1005,7 +1028,6 @@
 			UI_index.indexMC_mrt=mc["mrt"];
 			UI_index.bossChaoxueButn=mc["mrt"]["bossChaoXueBtn"]
 			UI_index.bossChaoxueButn.visible=false;
-			this.initMcButtonArr();
 //			setTimeout(initMcButtonArr,3000);
 			UI_index.indexMC_mrt["missionMain"]["normalTask"]["msg_youxia"].alpha=0;
 			UI_index.indexMC_mrt["missionMain"]["normalTask"]["msg_youxia"].x=2000;
@@ -1022,6 +1044,7 @@
 			{
 				UI_index.indexMC_mrb_jindu.parent.removeChild(UI_index.indexMC_mrb_jindu);
 			}
+			this.initMcButtonArr();
 			//NPC对话打开对话框
 			DataKey.instance.register(PacketSCNpcSysDialog.id, MissionNPC.instance().NpcSysDialog);
 			if (null != UI_index.indexMC_duiwu.parent)
@@ -1076,14 +1099,27 @@
 //			UI_index.indexMC_fight["txt_fightAdd"].text="";
 			//------------------------------
 			//101相当于0%
-			UI_index.indexMC["mrb"]["soulBottle"].setProgress(1);
-			UI_index.indexMC["mrb"]["soulBottle_blue"].setProgress(1);
+//			UI_index.indexMC["mrb"]["soulBottle"].setProgress(1);
+
+			UI_index.indexMC["mrb"]["rbarMask"].height=1;
+			UI_index.indexMC["mrb"]["rbar"].y=-100 - 30;
+
+
+//			UI_index.indexMC["mrb"]["soulBottle_blue"].setProgress(1);
+			UI_index.indexMC["mrb"]["bbarMask"].height=1;
+			UI_index.indexMC["mrb"]["bbar"].y=-100 - 30;
+
 			UI_index.indexMC["mrb"]["mc_hide_statusbar"]["blue_bar"].setProgress(1);
 			UI_index.indexMC["mrb"]["mc_hide_statusbar"]["hp_bar"].setProgress(1);
-			mc["mrb"]["soulBottle"].buttonMode=true;
+//			mc["mrb"]["soulBottle"].buttonMode=true;
 			mc["mrt"]["missionHide2"].visible=false;
 			UI_index.indexMC_character["mc_vip"].visible=false;
 			mc["mrb"]["mc_row"].visible=false;
+
+			//特殊处理箭头指引
+			mc["mrb"]["mc_row"].stop();
+			//end
+
 			//重要
 			GameSceneMain.instance.Init(mc);
 //			AsToJs.RightClick();
@@ -1108,7 +1144,7 @@
 			this.uiRegister(PacketSCClientDataGetRet.id, clientDataReturn);
 			DataKey.instance.send(new PacketCSClientDataGet());
 
-			mc.cacheAsBitmap=true;
+//			mc.cacheAsBitmap=true;
 		}
 
 		public function clientDataReturn(e:PacketSCClientDataGetRet):void
@@ -1814,10 +1850,7 @@
 					UI_index.indexMC_mrb["mc_row"].visible=false;
 					break;
 				case KeyEvent.KEY_Y:
-					if (UI_Mrt.hasInstace())
-					{
-						UI_Mrt.instance.mcHandler({name: "btnHidePlayer"});
-					}
+					ChengjiuWin.getInstance().open();
 					break;
 				case KeyEvent.KEY_H:
 					if (pk_idx > 5)
@@ -2000,8 +2033,19 @@
 			{
 				UI_index.indexMC_mrt["smallmap"]["mc_pingbi_config"].visible=false;
 			}
+			if (target_name.indexOf("abtn") == 0)
+			{
+				var tk:int=int(target_name.replace("abtn", ""));
+				handlerClickVip(tk);
+				return;
+			}
 			switch (target_name)
 			{
+				case "VIP_CaiDanBtn":
+					//mc["chat"].parent.parent==mc["caidan"].parent.parent.parent
+					mc["caidan"].parent.parent.parent.addChild(mc["caidan"].parent.parent);
+					mc["caidan"].visible=!mc["caidan"].visible;
+					break;
 				case "bossChaoXueBtn":
 					BossChaoXueWin.instance.open();
 					break;
@@ -2402,6 +2446,46 @@
 					break;
 			}
 			playerAction(target, UI_index.indexMC_menuHead["playerID"], UIActMap.playerName);
+		}
+
+		private function handlerClickVip(tk:int):void
+		{
+			instance.mc["caidan"].visible=false;
+			if (tk == 5)
+			{
+				ZhiZunVIPMain.getInstance().open();
+				return;
+			}
+			if (Data.myKing.VipVip == 0)
+			{
+				var param:Array=[VipGuide.getInstance().chkVipGuideBigIcon() ? ZhiZunVIP.START_SERVER_VIP_COIN3 : 880];
+				alert.ShowMsg(Lang.getLabel("10230_vipCandanLable", param), 4, Lang.getLabel("10230_vipCandanLableBtn"), _callbackBuyAndEatPill, null);
+			}
+			else
+			{
+				switch (tk)
+				{
+					case 1: //boss巢穴
+						GameAutoPath.chuan(30100128); //30100128
+						break;
+					case 2: //每日福利
+						var m_model:ZhiZunVIPModel=new ZhiZunVIPModel();
+						m_model.requestCSGameVipPrize();
+						break;
+					case 3: //随身商店
+						BeiBao.getInstance().yuanChengShangDian();
+						break;
+					case 4: //随身仓库
+						BeiBao.getInstance().yuanChengCangKu();
+						break;
+				}
+			}
+
+		}
+
+		private function _callbackBuyAndEatPill(obj:Object):void
+		{
+			ZhiZunVIPMain.getInstance().open();
 		}
 
 		/**
@@ -3990,7 +4074,7 @@
 			if (Data.myKing.king != null)
 			{
 				Data.myKing.king.visible=false;
-				Data.myKing.king.CenterAndShowMap();
+//				Data.myKing.king.CenterAndShowMap();
 				Data.myKing.king.CenterAndShowMap2();
 				WinWeaterEffectByFlyHuman.getInstance().open(true);
 			}
@@ -4361,7 +4445,7 @@
 
 		/**
 	 * 开启自动挂机提示
-					  */
+							  */
 		public function autoGuaJiTip(isPlay:Boolean=true):void
 		{
 			var guaJiTip:MovieClip=indexMC_mrb["mc_guaJiTip"];
@@ -4393,6 +4477,7 @@
 				mc_shenWu["mc_shenWu_icon"].mouseChildren=false;
 				mc_shenWu["mc_shenWu_icon"].buttonMode=true;
 				mc_shenWu["mc_shenWu_tip"].visible=false;
+				mc_shenWu["mc_shenWu_tip"].gotoAndStop(Data.myKing.metier == 3 ? 1 : Data.myKing.metier == 4 ? 2 : 3);
 				mc_shenWu["mc_shenWu_icon"].addEventListener(MouseEvent.ROLL_OVER, function overShenWu(me:MouseEvent):void
 				{
 					mc_shenWu["mc_shenWu_tip"].visible=true;

@@ -10,6 +10,7 @@ package scene.skill2
 	import common.config.xmlres.server.Pub_SkillResModel;
 	
 	import flash.display.DisplayObject;
+	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;

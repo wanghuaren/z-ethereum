@@ -146,7 +146,18 @@ package ui.base.beibao
 			//mc["mc_icon_desc"].visible=iconShow;
 			mc["btnBaiTan"].visible=iconShow;
 
-			mc["mc_vip"].visible=(Data.myKing.VipVip > 0 || Data.myKing.TestVIP > 0);
+			//mc["mc_vip"].visible=(Data.myKing.VipVip > 0 || Data.myKing.TestVIP > 0);
+			//因为界面设计原因，特此复杂处理 1.vip右边 2.vip1左边
+			if(Data.myKing.Pay == 0 && Data.myKing.TestVIP > 0){
+				mc["mc_vip"].visible=false;
+				mc["mc_vip1"].visible=true;
+			}else if(Data.myKing.VipVip > 0 || (Data.myKing.Pay > 0 && Data.myKing.TestVIP > 0)){
+				mc["mc_vip"].visible=true;
+				mc["mc_vip1"].visible=false;
+			}else{
+				mc["mc_vip"].visible=false;
+				mc["mc_vip1"].visible=false;
+			}
 
 			coinUpdate();
 
@@ -167,7 +178,7 @@ package ui.base.beibao
 				mc["mc_pay_small"].visible=false;
 			}else{
 				mc["mc_pay_small"].visible=true;
-				WinFirstPay.instance.fillContent(mc["mc_pay_small"]);
+				WinFirstPay.instance.fillContent(mc["mc_pay_small"],0);
 			}
 		}
 		/**
@@ -688,8 +699,8 @@ package ui.base.beibao
 							ItemManager.instance().removeToolTip(target as MovieClip);
 	//						fenJieZhuangBeiMap.push(bagCell2);
 							ZhuangbeiFenjie.instance().addSeclctArr(bagCell2);
-							if(target!=null&&target["txt_strong_level"]!=null)
-							target["txt_strong_level"].text="";
+							if(target!=null&&target["txt_star"]!=null)
+							target["txt_star"].text="";
 						}
 					}
 					else

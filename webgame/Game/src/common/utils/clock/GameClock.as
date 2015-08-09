@@ -44,12 +44,12 @@ package common.utils.clock
 
 		//模式1--------------------------------------------------------------
 
-		private var _fList:Vector.<IClock>=new Vector.<IClock>();
+		private var _fList:Vector.<ClockFuncModel>=new Vector.<ClockFuncModel>();
 
 		/**
 		 * 待删除列表
 		 */
-		private var _delList:Vector.<IClock>=new Vector.<IClock>();
+		private var _delList:Vector.<ClockFuncModel>=new Vector.<ClockFuncModel>();
 
 		/**
 		 * type,listener,useCapture,priority,useWeakReference
@@ -84,7 +84,7 @@ package common.utils.clock
 
 			for (var i:int=0; i < len; i++)
 			{
-				if (type == _fList[i].GetType() && listener == _fList[i].GetFunc() && false == _fList[i].GetDeleteTag())
+				if (type == _fList[i].type && listener == _fList[i].GetFunc() && false == _fList[i].GetDeleteTag())
 				{
 					return true;
 				} //end if
@@ -97,11 +97,11 @@ package common.utils.clock
 		private function removeInProcess(type:String, pFunc:Function):void
 		{
 			var len:int=_fList.length;
-			var iFunc:Vector.<IClock>;
+			var iFunc:Vector.<ClockFuncModel>;
 
 			for (var i:int=0; i < len; i++)
 			{
-				if (type == _fList[i].GetType() && pFunc == _fList[i].GetFunc() && true == _fList[i].GetDeleteTag())
+				if (type == _fList[i].type && pFunc == _fList[i].GetFunc() && true == _fList[i].GetDeleteTag())
 				{
 					//delete
 					iFunc=_fList.splice(i, 1);
@@ -131,11 +131,11 @@ package common.utils.clock
 		{
 
 			var len:int=_fList.length;
-			var iFunc:IClock;
+			var iFunc:ClockFuncModel;
 
 			for (var i:int=0; i < len; i++)
 			{
-				if (type == _fList[i].GetType() && listener == _fList[i].GetFunc() && false == _fList[i].GetDeleteTag())
+				if (type == _fList[i].type && listener == _fList[i].GetFunc() && false == _fList[i].GetDeleteTag())
 				{
 					//save
 					iFunc=_fList[i];
@@ -167,7 +167,7 @@ package common.utils.clock
 				var j:int;
 				var len:int;
 				var f:Function;
-				var iFunc:IClock;
+				var iFunc:ClockFuncModel;
 				var p:WorldEvent;
 
 				//------------------- remove begin ----------------------
@@ -180,7 +180,7 @@ package common.utils.clock
 					{
 						iFunc=this._delList.shift();
 
-						this.removeInProcess(iFunc.GetType(), iFunc.GetFunc());
+						this.removeInProcess(iFunc.type, iFunc.GetFunc());
 					}
 				}
 				//TODO this._delList still keep alive with the IClock instance,you can set it NUll
@@ -190,7 +190,7 @@ package common.utils.clock
 				len=_fList.length;
 				for (j=0; j < len; j++)
 				{
-					if (type == _fList[j].GetType() && null != _fList[j].GetFunc() && false == _fList[j].GetDeleteTag())
+					if (type == _fList[j].type && null != _fList[j].GetFunc() && false == _fList[j].GetDeleteTag())
 					{
 						f=_fList[j].GetFunc();
 

@@ -896,6 +896,7 @@
 			var index:int=KingNameParam.GongNengHeadIndex;
 			if (null == this.headPartList[index])
 			{
+//				(TxtName["Kname"].textWidth-headPartList[index].width)/2
 				this.headPartList[index]=WorldFactory.createKingGongNengHead();
 				this.headPartList[index].x=KingNameParam.GongNengHeadPoint.x;
 				this.headPartList[index].y=KingNameParam.GongNengHeadPoint.y;

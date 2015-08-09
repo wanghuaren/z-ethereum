@@ -1,17 +1,15 @@
 package ui.view.view3
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.PubData;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_DropResModel;
 	import common.config.xmlres.server.Pub_Equip_ResolveResModel;
-	import common.config.xmlres.server.Pub_ToolsResModel;
 	import common.managers.Lang;
-	import common.utils.CtrlFactory;
 	import common.utils.StringUtils;
 	import common.utils.clock.GameClock;
 	import common.utils.res.ResCtrl;
-	
-	import engine.utils.HashMap;
 	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -19,25 +17,19 @@ package ui.view.view3
 	import model.guest.NewGuestModel;
 	
 	import netc.Data;
-	import netc.MsgPrint;
-	import netc.dataset.BeiBaoSet;
 	import netc.packets2.StructBagCell2;
 	import netc.packets2.StructEvilGrain2;
 	
 	import nets.packets.PacketCSEquipResolve;
 	import nets.packets.PacketSCEquipResolve;
-	import nets.packets.StructBagCell;
 	
 	import ui.base.beibao.BeiBao;
-	import ui.base.beibao.BeiBaoMenu;
 	import ui.frame.ItemManager;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
 	import ui.view.view2.liandanlu.LianDanLu;
-	import ui.view.view6.GameAlert;
 	import ui.view.view6.GameAlertNotTiShi;
 	
-	import world.FileManager;
 	import world.WorldEvent;
 
 	public class ZhuangbeiFenjie extends UIWindow
@@ -208,9 +200,9 @@ package ui.view.view3
 						if (seclectArr.length >= FEIJIE_NUM)
 						{
 							seclectArr=seclectArr;
-							return;
+							break;
 						}
-						if (isTakeIn(keFenjieArr[k]))
+						if (isTakeInAll(keFenjieArr[k]))
 						{
 							seclectArr.push(keFenjieArr[k]);
 							BeiBao.getInstance().removeItemContain(keFenjieArr[k]);
@@ -436,8 +428,27 @@ package ui.view.view3
 				return false;
 			if ((ZhuangbeiFenjie.instance().type == 1 && bagCell2.soar_lv == 0) || (ZhuangbeiFenjie.instance().type == 2 && bagCell2.soar_lv > 0 && bagCell2.soar_lv < 5))
 			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		/**
+		 * 一键放入 
+		 * @param bagCell2
+		 * @return 
+		 * 
+		 */		
+		public function isTakeInAll(bagCell2:StructBagCell2):Boolean
+		{
+			if (bagCell2 == null)
+				return false;
+			if ((ZhuangbeiFenjie.instance().type == 1 && bagCell2.soar_lv == 0) || (ZhuangbeiFenjie.instance().type == 2 && bagCell2.soar_lv > 0 && bagCell2.soar_lv < 5))
+			{
 				if(Data.myKing.level<60){
-					if(bagCell2.level<=45&&bagCell2.toolColor<=2){
+					if(bagCell2.level<60&&bagCell2.toolColor<=3){
 						return true;
 					}else{
 						return false;

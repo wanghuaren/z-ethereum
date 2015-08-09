@@ -46,6 +46,7 @@ package ui.base.jiaose
 	import ui.view.view1.buff.GameBuff;
 	import ui.view.view2.liandanlu.LianDanLu;
 	import ui.view.view4.chibang.ChiBang;
+	import ui.view.view4.shenbing.Shenbing;
 	import ui.view.view4.soar.SoarPanel;
 	import ui.view.zuoqi.ZuoQiMain;
 	
@@ -142,7 +143,7 @@ package ui.base.jiaose
 			}
 
 			show();
-			btnTip();
+//			btnTip();
 			
 			var currWing:Pub_WingResModel=XmlManager.localres.getWingXml.getResPath(Data.myKing.winglvl) as Pub_WingResModel;
 			mc["btnFly"].gotoAndStop(currWing.wing_sort);
@@ -463,17 +464,118 @@ package ui.base.jiaose
 		/**
 		 *	鼠标悬浮
 		 */
+		private var mc_tip:MovieClip=null;
 		private function overHandle(me:MouseEvent):void
 		{
 			var target:Object=me.target;
 			var name:String=target.name;
+			if(mc_tip==null){
+				mc_tip=JiaoSeMain.getInstance().mc["mc_tip"];
+				mc_tip.mouseEnabled=mc_tip.mouseChildren=false;
+			}
 			switch (me.type)
 			{
 				case MouseEvent.MOUSE_OVER:
-					if (name.indexOf("cbtn") >= 0)
-					{
-						//						target["bg"].gotoAndStop(2);
-
+					if (name=="btnVip" ||name=="btnMa" ||name=="btnLong" ||name=="btnZhuan" ||name=="btnJie" ||
+						name=="btnFly" ||name=="btnBing"
+					){
+						
+						mc_tip.visible=true;
+						mc_tip.x=target.x+20;
+						mc_tip.y=target.y+20;
+						var tip_content:String="";
+						var level:int=0;
+						mc_tip["txt_att_title"].text="";
+						mc_tip["txt_att"].text="";
+						var isHaveAtt:Boolean=true;
+						if(name=="btnVip"){
+							mc_tip.gotoAndStop(1);
+							if(Data.myKing.Vip==0){
+								mc_tip["txt_level"].text="当前不是至尊会员";
+								isHaveAtt=false;
+							}else{
+								mc_tip["txt_level"].text="至尊会员"+Data.myKing.Vip+"级";
+								mc_tip["txt_att_title"].text="至尊会员为角色加成属性";
+								tip_content=GameBuff.getInstance().checkVipBuff(Data.myKing.Vip);
+								mc_tip["txt_att"].htmlText=tip_content.substr(tip_content.indexOf("<br/>")+5,tip_content.length);
+							}
+						}else if(name=="btnMa"){
+							mc_tip.gotoAndStop(2);
+							tip_content=ZuoQiMain.getInstance().getCurAtt(Data.zuoQi.getHorseList().arrItemhorselist)
+							if(tip_content==""){
+								mc_tip["txt_level"].text="当前未强化坐骑";
+								isHaveAtt=false;
+							}else{
+								level=Data.zuoQi.getHorseList().arrItemhorselist[0].curStrong;
+								mc_tip["txt_level"].text="坐骑"+Math.ceil(level/10)+"阶"+(level%10==0?10:level%10)+"星";
+								mc_tip["txt_att_title"].text="坐骑为角色加成属性";
+								mc_tip["txt_att"].htmlText=tip_content;
+							}
+						}else if(name=="btnLong"){
+							mc_tip.gotoAndStop(3);
+							tip_content=JingJiePanel.instance().getCurAtt(Data.myKing.dragPoint);
+							if(tip_content==""){
+								mc_tip["txt_level"].text="当前未修炼龙脉";
+								isHaveAtt=false;
+							}else{
+								level=Data.myKing.dragPoint;
+								mc_tip["txt_level"].text="龙脉"+Math.ceil(level/10)+"等"+(level%10==0?10:level%10)+"阶";
+								mc_tip["txt_att_title"].text="龙脉为角色加成属性";
+								mc_tip["txt_att"].htmlText=tip_content;
+							}
+						}else if(name=="btnZhuan"){
+							mc_tip.gotoAndStop(4);
+							tip_content=SoarPanel.getInstance().getCurAtt(Data.myKing.soarlvl);
+							if(tip_content==""){
+								mc_tip["txt_level"].text="当前未转生";
+								isHaveAtt=false;
+							}else{
+								level=Data.myKing.soarlvl;
+								mc_tip["txt_level"].text="转生"+Math.ceil(level/10)+"转"+(level%10==0?10:level%10)+"阶";
+								mc_tip["txt_att_title"].text="转生为角色加成属性";
+								mc_tip["txt_att"].htmlText=tip_content;
+							}
+						}else if(name=="btnJie"){
+							mc_tip.gotoAndStop(5);
+							tip_content=GameBuff.getInstance().checkJieHunBuff();
+							if(tip_content==""){
+								mc_tip["txt_level"].text="当前未结婚";
+								isHaveAtt=false;
+							}else{
+								mc_tip["txt_level"].text="已结婚";
+								mc_tip["txt_att_title"].text="结婚为角色加成属性";
+								mc_tip["txt_att"].htmlText=tip_content.substr(tip_content.indexOf("<br/>")+5,tip_content.length);
+							}
+						}else if(name=="btnBing"){
+							mc_tip.gotoAndStop(6);
+							tip_content=Shenbing.getInstance().getCurAtt(Data.myKing.godlvl);
+							if(tip_content==""){
+								mc_tip["txt_level"].text="当前未锻造神兵";
+								isHaveAtt=false;
+							}else{
+								level=Data.myKing.godlvl;
+								mc_tip["txt_level"].text="神兵"+Math.ceil(level/10)+"阶"+(level%10==0?10:level%10)+"星";
+								mc_tip["txt_att_title"].text="神兵为角色加成属性";
+								mc_tip["txt_att"].htmlText=tip_content;
+							}
+						}else if(name=="btnFly"){
+							mc_tip.gotoAndStop(7);
+							tip_content=ChiBang.getInstance().getCurAtt(Data.myKing.winglvl);
+							if(tip_content==""){
+								mc_tip["txt_level"].text="当前未升阶翅膀";
+								isHaveAtt=false;
+							}else{
+								level=Data.myKing.winglvl;
+								mc_tip["txt_level"].text="翅膀"+Math.ceil(level/10)+"阶"+(level%10==0?10:level%10)+"星";
+								mc_tip["txt_att_title"].text="翅膀为角色加成属性";
+								mc_tip["txt_att"].htmlText=tip_content;
+							}
+							mc_tip.x=target.x-20;
+							mc_tip.y=target.y+50;
+						}else{
+						
+						}
+						mc_tip["mc_bg"].height= isHaveAtt?317:155;
 					}
 					else
 					{
@@ -481,9 +583,10 @@ package ui.base.jiaose
 					}
 					break;
 				case MouseEvent.MOUSE_OUT:
-					if (name.indexOf("cbtn") >= 0 && name != "cbtn" + type)
-					{
-						//						target["bg"].gotoAndStop(1);
+					if (name=="btnVip" ||name=="btnMa" ||name=="btnLong" ||name=="btnZhuan" ||name=="btnJie" ||
+						name=="btnFly" ||name=="btnBing"
+					){
+						mc_tip.visible=false;
 					}
 					else
 					{
@@ -648,6 +751,26 @@ package ui.base.jiaose
 				}
 			}
 			arrRoleEquipStatus=now;
+		}
+		
+		/**
+		 * 战力值转换成图片 2014－11－24 
+		 * @param fightValue
+		 * 
+		 */		
+		public function setFightValueIcon(fightValue:int,where:String="js",cellWidth:int=20):Sprite{
+			var ret:Sprite=new Sprite();
+			var chars:String=fightValue.toString();
+			var char:String="";
+			var font:MovieClip;
+			for(var m:int=0;m<chars.length;m++){
+				font= where=="js"?ItemManager.instance().getZLJS(m) as MovieClip:ItemManager.instance().getZLSB(m) as MovieClip;
+				char=chars.charAt(m);
+				font.gotoAndStop(int(char)+1);
+				font.x=m*cellWidth;
+				ret.addChild(font);
+			}
+			return ret;
 		}
 
 	}

@@ -1,15 +1,12 @@
 package netc.dataset
 {
-	import flash.events.EventDispatcher;
+	import com.engine.utils.HashMap;
 	
-	import engine.support.ISet;
-	import engine.net.dataset.VirtualSet;	
-	import engine.support.IPacket;
+	import engine.net.dataset.VirtualSet;
 	
 	import netc.packets2.*;
-	import nets.packets.*;
 	
-	import engine.utils.HashMap;
+	import nets.packets.*;
 	
 	public class FuBenSet extends VirtualSet
 	{

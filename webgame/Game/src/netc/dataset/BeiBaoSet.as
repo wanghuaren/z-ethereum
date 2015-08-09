@@ -1,5 +1,7 @@
 package netc.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.XmlRes;
 	import common.config.xmlres.lib.TablesLib;
@@ -11,7 +13,6 @@ package netc.dataset
 	import engine.event.DispatchEvent;
 	import engine.net.dataset.VirtualSet;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
 	
 	import netc.Data;
 	import netc.DataKey;
@@ -21,7 +22,6 @@ package netc.dataset
 	
 	import ui.base.beibao.BeiBao;
 	import ui.base.jineng.Jineng;
-	import ui.base.mainStage.UI_index;
 	import ui.frame.RightDownTip;
 	import ui.frame.RightDownTipManager;
 	import ui.frame.RightDownTipZB;

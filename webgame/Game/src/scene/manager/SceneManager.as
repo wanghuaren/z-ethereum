@@ -3,18 +3,18 @@
 	import com.bellaxu.data.GameData;
 	import com.bellaxu.def.DepthDef;
 	import com.bellaxu.def.LayerDef;
-	import com.bellaxu.def.LibDef;
 	import com.bellaxu.def.MusicDef;
+	import com.bellaxu.def.StateDef;
 	import com.bellaxu.display.MapLoading;
 	import com.bellaxu.map.MapBlockContainer;
 	import com.bellaxu.mgr.MusicMgr;
 	import com.bellaxu.mgr.TimeMgr;
 	import com.bellaxu.mgr.TimerMgr;
-	import com.bellaxu.model.lib.Lib;
-	import com.bellaxu.struct.Hash;
 	import com.bellaxu.util.MathUtil;
 	import com.bellaxu.util.StageUtil;
+	import com.engine.utils.Hash;
 	import com.greensock.TweenLite;
+	import com.lab.config.Global;
 	
 	import common.config.GameIni;
 	import common.config.xmlres.XmlManager;
@@ -49,9 +49,9 @@
 	import scene.utils.MapData;
 	
 	import ui.base.mainStage.UI_index;
-	import ui.frame.Image;
 	import ui.frame.ImageUtils;
 	import ui.view.UIMessage;
+	import ui.view.view2.other.TuLongDao;
 	
 	import world.FileManager;
 	import world.IWorld;
@@ -76,7 +76,10 @@
 		public function addKing(king:King):void
 		{
 			if (m_kingList.indexOf(king) != -1)
+			{
+//				throw new Error("重复添加King!!"+king.objid);
 				return;
+			}
 			m_kingList.push(king);
 		}
 
@@ -100,16 +103,16 @@
 		{
 			TimeMgr.update();
 			var king:King;
+			var myKing:King = Data.myKing.king as King;
+			if (myKing)
+			{
+				myKing.update();
+			}
 			for (var i:int=m_kingList.length - 1; i >= 0; --i)
 			{
 				king=m_kingList[i];
-				if (king == Data.myKing.king)
+				if (king == myKing)
 					continue;
-				king.update();
-			}
-			king=Data.myKing.king as King;
-			if (king)
-			{
 				king.update();
 			}
 			//攻击延迟死亡
@@ -118,6 +121,8 @@
 				SkillTrackReal.instance.update();
 				m_lastUpdateTime=TimeMgr.cacheTime;
 			}
+//			if (MapBlockContainer.hasInstance())
+//				MapBlockContainer.getInstance().update();
 		}
 
 		public static const USE_ALCHEMY:int=1;
@@ -556,10 +561,13 @@
 					{
 						continue;
 					}
-
 					if (k as IGameKing)
 					{
+					
 						Body.instance.sceneEvent.dispatchEvent(new DispatchEvent(HumanEvent.RemoveThis, (k as IGameKing).objid));
+						{
+							(k as King).removeAll();
+						}
 					}
 
 				}
@@ -612,7 +620,14 @@
 				LayerDef.bodyLayer.removeChild(d);
 				if (tar)
 				{
-					tar.dispose();
+					if (tar is King)
+					{
+						(tar as King).removeAll();
+					}
+					else
+					{
+						tar.dispose();
+					}
 				}
 			}
 		}
@@ -903,6 +918,11 @@
 		public function setCurrentMapId(value:int, tag:int):void
 		{
 			//地图id一样，不用重复设
+			if (tag != 0)
+			{
+				trace("地图ID异常！！！！！！");
+				return;
+			}
 			if (-1 != _currentMapId && _currentMapId == value)
 			{
 				return;
@@ -911,7 +931,7 @@
 			_oldMapId2=_oldMapId;
 			_oldMapId=_currentMapId;
 			_currentMapId=value;
-
+			Global.mapId = XmlManager.localres.getPubMapXml.getResPath(value)["res_id"];;
 			//地图id不可为0，服务器发生错误
 			if (0 == value)
 				DataKey.instance.socket.DispatEventSocketMsg(Lang.getServerMsg(tag).msg);
@@ -1015,8 +1035,10 @@
 		{
 			MapBlockContainer.getInstance().init();
 			MapInLoading=false;
-			reloadTile(true);
+			
+			reloadTile(true,true);
 			MapLoading.getInstance().hide();
+			GameData.state = StateDef.IN_SCENE;
 			//进场景后延时8秒播放音乐， 避免影响主加载
 			if (_firstBuildMap)
 			{
@@ -1027,6 +1049,9 @@
 			{
 				playMusic();
 			}
+			
+			if(20220031==this.currentMapId)
+				TuLongDao.instance.loadBigEffect();
 		}
 
 		private var _firstBuildMap:Boolean=true;
@@ -1036,10 +1061,11 @@
 			MusicMgr.playMusic(MusicDef.getMusicPath(MapData.getThisMapMusicUrl));
 		}
 
-		public function reloadTile(drawNow:Boolean=false):void
+		public function reloadTile(drawNow:Boolean=false,relocate:Boolean = false):void
 		{
 			if (MapInLoading)
 				return;
+			
 			//项目转换修改
 //			if(GameData.state != StateDef.IN_SCENE)
 //				return;
@@ -1047,7 +1073,8 @@
 			{
 				return;
 			}
-			if (null == Data.myKing.king)
+			var myKing:King = Data.myKing.king as King;
+			if (null == myKing)
 			{
 				return;
 			}
@@ -1055,7 +1082,10 @@
 			{
 				return;
 			}
-
+			if (relocate)
+			{
+				MapBlockContainer.getInstance().resize();
+			}
 			var absX:int;
 			var absY:int;
 			absX=-LayerDef.mapLayer.x;
@@ -1064,16 +1094,29 @@
 			var mapy:int=Data.myKing.king.y;
 //			mapx = MapCl.gridXToMap(mapx);
 //			mapy = MapCl.gridYToMap(mapy);
-			absX=mapx - m_halfWidth;
-			absY=mapy - m_halfHeight
-			MapBlockContainer.getInstance().reloadTile(absX, absY, 1, drawNow);
+			if (MapBlockContainer.LoadPolicy == 0 || !relocate)
+			{
+//				absX=mapx - m_halfWidth;
+//				absY=mapy - m_halfHeight;
+				MapBlockContainer.getInstance().reloadTile(absX, absY, 1, drawNow, relocate);
+			}
+			else
+			{
+//				absX=mapx - m_halfWidth;
+//				absY=mapy - m_halfHeight;
+//				MapBlockContainer.getInstance().reloadTile(absX, absY, 1, drawNow, relocate);
+				MapBlockContainer.getInstance().reloadTile(mapx, mapy, 1, drawNow, relocate);
+			}
 		}
 
 		public function resize():void
 		{
 			resetCamera(StageUtil.stageWidth, StageUtil.stageHeight);
 			if (MapBlockContainer.hasInstance())
-				this.reloadTile();
+			{
+//				MapBlockContainer.getInstance().resize();
+				this.reloadTile(true,true);
+			}
 		}
 
 		private var m_cameraWidth:int;
@@ -1089,10 +1132,12 @@
 			this.m_halfHeight=this.m_cameraHeight >> 1;
 		}
 
-		public function getCameraRect(playerX:int, playerY:int):Vector.<Point>
+		public function getCameraRect(playerX:int, playerY:int):Array
 		{
 			var left:int=playerX - this.m_halfWidth;
 			var right:int=playerX + this.m_halfWidth;
+			var sceneWidth:int=MapData.MAP_RES_WIDTH;
+			var sceneHeight:int=MapData.MAP_RES_HEIGHT;
 			if (playerX <= this.m_halfWidth)
 			{
 				left=0;
@@ -1100,8 +1145,6 @@
 			}
 			else
 			{
-				var sceneWidth:int=MapData.MAP_RES_WIDTH;
-				var sceneHeight:int=MapData.MAP_RES_HEIGHT;
 				if (right >= MapData.MAP_RES_WIDTH)
 				{
 					left=sceneWidth - this.m_cameraWidth;
@@ -1123,7 +1166,17 @@
 					bottom=sceneHeight;
 				}
 			}
-			return MapCl.getHelixGroup(MapCl.mapXToTile(playerX), MapCl.mapYToTile(playerY), MapCl.mapXToTile(left), MapCl.mapXToTile(right) + 1, MapCl.mapYToTile(top), MapCl.mapYToTile(bottom) + 1);
+//			return [playerX,playerY,left,right,top,bottom];
+			return [MapCl.mapXToTile(playerX), MapCl.mapYToTile(playerY), MapCl.mapXToTile(left), MapCl.mapXToTile(right), MapCl.mapYToTile(top), MapCl.mapYToTile(bottom)];
+		}
+		
+		public function getCameraRectGridPoints(playerX:int,playerY:int,left:int,right:int,top:int,bottom:int):Vector.<Point>
+		{
+			if (left > 1)
+				left -= 1;
+			if (top > 1)
+				top -= 1;
+			return MapCl.getHelixGroup(playerX,playerY,left,right + 1,top,bottom + 1);
 		}
 
 		//--------  策划提供需要自动挂机地图   由策划提供-------------------------------------------------------
@@ -1148,14 +1201,14 @@
 				return true;
 			return false
 		}
-		private var arrCopy:Array=[20220137];
+		private var arrCopy:Array=[20220137,20220031];
 
 		/**
 		 * 判断玩家当前是否在副本地图=0
 		 */
 		public function isAtGameTranscript():Boolean
 		{
-			if ((_currentMapId >= 20220018 && _currentMapId <= 20220029) || arrCopy.indexOf(_currentMapId) >= 0)
+			if ((_currentMapId >= 20220017 && _currentMapId <= 20220029) || arrCopy.indexOf(_currentMapId) >= 0)
 			{
 				return true;
 			}
@@ -1170,7 +1223,7 @@
 			if (_currentMapId ==20220018 || _currentMapId == 20210004 || _currentMapId ==20210010 || 
 				_currentMapId ==20220137 ||  _currentMapId ==20220019 ||  _currentMapId ==20220020 || 
 				_currentMapId ==20220022 ||  _currentMapId ==20220024 ||  _currentMapId ==20220025 || 
-				_currentMapId ==20220026 ||  _currentMapId ==20220027
+				_currentMapId ==20220026 ||  _currentMapId ==20220027 ||  _currentMapId ==20220017
 			)
 			{
 				return true;

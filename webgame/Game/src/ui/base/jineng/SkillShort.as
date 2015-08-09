@@ -1,22 +1,19 @@
 package ui.base.jineng
 {
-	import com.greensock.TweenLite;
-
+	import com.engine.utils.HashMap;
+	
 	import common.config.PubData;
 	import common.config.xmlres.XmlManager;
 	import common.managers.Lang;
 	import common.utils.CtrlFactory;
 	import common.utils.StringUtils;
 	import common.utils.drag.MainDrag;
-
-	import display.components2.UILd;
-
+	
 	import engine.event.DispatchEvent;
 	import engine.event.KeyEvent;
 	import engine.load.GamelibS;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
-
+	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -28,7 +25,7 @@ package ui.base.jineng
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
 	import flash.utils.setTimeout;
-
+	
 	import netc.Data;
 	import netc.DataKey;
 	import netc.dataset.BeiBaoSet;
@@ -39,19 +36,17 @@ package ui.base.jineng
 	import netc.packets2.StructCooldown2;
 	import netc.packets2.StructShortKey2;
 	import netc.packets2.StructSkillItem2;
-
+	
 	import nets.packets.PacketCSCooldownList;
 	import nets.packets.PacketSCCooldown;
 	import nets.packets.PacketSCCooldownList;
 	import nets.packets.StructBagCell;
 	import nets.packets.StructSkillItem;
-
+	
 	import scene.action.Action;
 	import scene.action.hangup.GamePlugIns;
-	import scene.king.King;
-	import scene.manager.SceneManager;
 	import scene.skill2.SkillEffectManager;
-
+	
 	import ui.base.beibao.BeiBao;
 	import ui.base.jiaose.JiaoSe;
 	import ui.base.mainStage.UI_index;
@@ -120,8 +115,7 @@ package ui.base.jineng
 		{
 			if (null == _t)
 			{
-//				_t=new Timer(100);
-				_t=new Timer(80);
+				_t=new Timer(100);
 			}
 			return _t;
 		}
@@ -401,7 +395,8 @@ package ui.base.jineng
 						IconKey.remove(pos);
 						vec[i].isNew=false;
 						uilMC=mc["mrb"]["mc_hotKey"]["itjinengBox" + pos]["item_hotKey" + pos];
-						uilMC["uil"].unload();
+//						uilMC["uil"].unload();
+						ImageUtils.cleanImage(uilMC);
 						uilMC.data=null;
 						uilMC["txt_num"].text="";
 						//uilMC["mcBiShaEffect"].gotoAndStop(1);
@@ -635,7 +630,7 @@ package ui.base.jineng
 							uilMC=UI_index.indexMC_character['mc_fuhuo_ring'];
 							if (skillArr[i].id == FUHUO_RING_COOLDOWN_ID)
 							{
-								uilMC["shijian"].htmlText="<b>" + getskillcolltime2(skillArr[i].needtime - skillArr[i].elapsed).toString() + "</b>";
+								uilMC["shijian"].htmlText="<b>" + getskillcolltime2(skillArr[i].needtime - skillArr[i].elapsed) + "</b>";
 								uilMC.visible=true;
 							}
 						}

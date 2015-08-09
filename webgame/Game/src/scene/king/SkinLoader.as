@@ -39,7 +39,7 @@ package scene.king
 				this.onLoadedXml(xmlUrl);
 				return;
 			}
-			ResTool.load(xmlUrl, onLoadedXml, loadProgress, null, new ApplicationDomain(), king_isMe ? ResPriorityDef.SHIGH : ResPriorityDef.NORMAL);
+			ResTool.load(xmlUrl, onLoadedXml, loadProgress, null, ApplicationDomain.currentDomain, king_isMe ? ResPriorityDef.SHIGH : ResPriorityDef.NORMAL);
 		}
 		
 		private function onLoadedXml(url:String):void
@@ -64,5 +64,21 @@ package scene.king
 				return;
 			this.dispatchEvent(new WorldEvent(WorldEvent.PROGRESS_HAND, {layer: this.layer, data: [int(bytesLoaded * 100 / bytesTotal), 100]}));
 		}
+		
+		override public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false):void
+		{
+			super.removeEventListener(type,listener,useCapture);
+			if(!xmlUrl)
+				return;
+			if (type == WorldEvent.PROGRESS_HAND)
+			{
+				ResTool.clearNotify(xmlUrl, loadProgress);
+			}
+			else if (type == WorldEvent.COMPLETE_HAND)
+			{
+				ResTool.clearNotify(xmlUrl, onLoadedXml);
+			}
+		}
+		
 	}
 }

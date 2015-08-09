@@ -1047,7 +1047,7 @@
 					break;
 
 			}
-			return "#4a9afe";
+			return "#"+FontColor.COLOR_TASK_DEFAULT;
 		}
 
 		//获取任务状态
@@ -1128,9 +1128,24 @@
 			renwuEvent.instance.dispatchEvent(new DispatchEvent(renwuEvent.TASKCHANGE));
 			var vec:Vector.<NpcInfo>=Body.instance.sceneKing.npcList;
 			var vecLen:int=vec.length;
+			var lastIgk:IGameKing;
+			var igk:IGameKing;
 			for (var j:int=0; j < vecLen; j++)
 			{
-				npcTaskStatus(SceneManager.instance.GetKing_Core(vec[j].objid));
+				igk = SceneManager.instance.GetKing_Core(vec[j].objid);
+				npcTaskStatus(igk);
+//				if (lastIgk!=null)
+//				{
+//					if (lastIgk.mapx == igk.mapx && lastIgk.mapy == igk.mapy)
+//					{
+//						throw new Error("allTaskStatus:1:Error--mapx>>mapy");
+//					}
+//					else if (Math.abs(lastIgk.x - igk.x) < 30 && Math.abs(lastIgk.y - igk.y) < 30)
+//					{
+//						throw new Error("allTaskStatus:2:Error--x>>y");
+//					}
+//				}
+				lastIgk = igk;
 			}
 		}
 

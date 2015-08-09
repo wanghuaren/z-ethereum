@@ -1,9 +1,11 @@
+
 package scene.action.hangup
 {
 	import com.bellaxu.def.EquipTypeDef;
 	import com.bellaxu.def.LayerDef;
-	import com.bellaxu.struct.Hash;
 	import com.bellaxu.util.MathUtil;
+	import com.engine.utils.Hash;
+	import com.engine.utils.HashMap;
 
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_SkillResModel;
@@ -13,13 +15,12 @@ package scene.action.hangup
 
 	import engine.event.DispatchEvent;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
 
 	import flash.events.TimerEvent;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
-	import flash.utils.setTimeout;
 
 	import netc.Data;
 	import netc.DataKey;
@@ -48,9 +49,9 @@ package scene.action.hangup
 	import scene.event.KingActionEnum;
 	import scene.human.GameHuman;
 	import scene.king.IGameKing;
+	import scene.manager.AlchemyManager;
 	import scene.manager.SceneManager;
 	import scene.utils.MapCl;
-	import scene.utils.MyWay;
 
 	import ui.base.jineng.SkillShort;
 	import ui.base.mainStage.UI_index;
@@ -85,10 +86,10 @@ package scene.action.hangup
 加内力：
 10901001	太阳水
 10901101	强效太阳水
-				 *
-			11800180	回城卷轴
-		 * */
-		//加红药列表
+*
+11800180	回城卷轴
+* */
+	//加红药列表
 		private var m_Medicine_HP:Array=[10901001, 10901101];
 		//加兰药列表
 		private var m_Medicine_MP:Array=[10901001, 10901101];
@@ -962,6 +963,8 @@ package scene.action.hangup
 			this.m_targetList=_tList;
 			m_workPoint.x=k.mapx;
 			m_workPoint.y=k.mapy;
+			oraginPoint.x=k.mapx;
+			oraginPoint.y=k.mapy;
 			m_running=true;
 			m_chiyaoTipTimes=0;
 			m_protectTipTimes=0;
@@ -978,6 +981,7 @@ package scene.action.hangup
 				//_tipHasYao(_autoMP_ID);
 			}
 		}
+		private var oraginPoint:Point=new Point();
 
 		/**
 		 * 停止挂机
@@ -1691,6 +1695,10 @@ package scene.action.hangup
 			if (m_targetID == 0)
 				return [];
 			var _currentTarget:IGameKing=SceneManager.instance.GetKing_Core(m_targetID);
+			if (_currentTarget == null)
+			{
+				return [];
+			}
 			var m_p1:Point=new Point(_currentTarget.mapx, _currentTarget.mapy);
 			var m_p2:Point=new Point();
 			var len:int=LayerDef.bodyLayer.numChildren;
@@ -1821,7 +1829,7 @@ package scene.action.hangup
 				//TODO ： 是否在只有在某系副本中才有效 ？？  这个需要跟策划进一步沟通
 				//并且没有可拾取的物品
 				var _p:PacketCSMonsterPos;
-				if (SceneManager.instance.isAtGameTranscript() && !m_HangupHelper.isTooMuchMonsterPos()&&_getOneDrop()==null)
+				if (SceneManager.instance.isAtGameTranscript() && !m_HangupHelper.isTooMuchMonsterPos() && _getOneDrop() == null)
 				{
 					isFindMonster=true;
 					_p=new PacketCSMonsterPos();
@@ -1996,6 +2004,35 @@ package scene.action.hangup
 			if (Data.myKing.objid == m_cTargetID)
 			{
 				m_cTargetID=0;
+			}
+			if (m_cTargetID == 0 && !m_HangupHelper.isTooMuchPlugInsPos() && !SceneManager.instance.isAtGameTranscript())
+			{
+				//在原地转转 找怪
+				if (oraginPoint.x != __k.mapx && oraginPoint.y != __k.mapy)
+				{
+					_onSelectTargetFromServer(oraginPoint.x, oraginPoint.y);
+				}
+				else
+				{
+					var m_disGrid:int=MapCl.mapXToGrid(fightDistance);
+					var m_rect:Rectangle=new Rectangle(oraginPoint.x - m_disGrid / 2, oraginPoint.y - m_disGrid / 2, m_disGrid, m_disGrid);
+					var m_toP:Point=new Point();
+					while (true)
+					{
+						var m_x:int=int(m_disGrid * Math.random());
+						var m_y:int=int(m_disGrid * Math.random());
+						if ((m_x > m_disGrid * 2 / 3 || m_x < m_disGrid / 3) && (m_y > m_disGrid * 2 / 3 || m_y > m_disGrid / 3))
+						{
+							m_toP.x=m_rect.x + m_x;
+							m_toP.y=m_rect.y + m_y;
+							if (m_rect.containsPoint(m_toP) && AlchemyManager.instance.canMoveTo(int(m_toP.x), int(m_toP.y)))
+							{
+								_onSelectTargetFromServer(m_toP.x, m_toP.y);
+								break;
+							}
+						}
+					}
+				}
 			}
 			return m_cTargetID;
 		}

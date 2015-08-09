@@ -1,11 +1,8 @@
 package netc.dataset
 {
-	import engine.net.dataset.VirtualSet;
-	import engine.support.IPacket;
-	import engine.support.ISet;
-	import engine.utils.HashMap;
+	import com.engine.utils.HashMap;
 	
-	import flash.events.EventDispatcher;
+	import engine.net.dataset.VirtualSet;
 	
 	import netc.packets2.*;
 	

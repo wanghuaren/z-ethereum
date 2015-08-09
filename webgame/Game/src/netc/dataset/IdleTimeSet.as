@@ -1,9 +1,10 @@
 package netc.dataset
 { 
+	import com.engine.utils.HashMap;
+	
 	import common.utils.clock.GameClock;
 	
 	import engine.net.dataset.VirtualSet;
-	import engine.utils.HashMap;
 	
 	import netc.Data;
 	

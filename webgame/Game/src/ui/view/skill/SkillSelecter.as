@@ -3,35 +3,23 @@
  */
 package ui.view.skill
 {
-	import common.config.GameIni;
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.XmlManager;
 	import common.utils.CtrlFactory;
 	
-	import engine.event.DispatchEvent;
 	import engine.load.GamelibS;
-	import engine.utils.HashMap;
 	
-	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import flash.events.MouseEvent;
 	
 	import netc.Data;
-	import netc.dataset.SkillShortSet;
 	import netc.packets2.StructBagCell2;
-	import netc.packets2.StructShortKey2;
 	import netc.packets2.StructSkillItem2;
 	
-	import scene.skill2.SkillEffectManager;
-	import scene.utils.MapData;
-	
-	import ui.base.jineng.Jineng;
 	import ui.base.jineng.SkillShort;
-	import ui.base.mainStage.UI_index;
 	import ui.frame.ImageUtils;
 	import ui.frame.UIWindow;
-	
-	import world.FileManager;
 
 	/**
 	 * @author liuaobo

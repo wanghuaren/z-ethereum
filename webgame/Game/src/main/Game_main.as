@@ -4,6 +4,7 @@
 	import com.bellaxu.def.LayerDef;
 	import com.bellaxu.def.MapDef;
 	import com.bellaxu.def.RenderGroupDef;
+	import com.bellaxu.display.RightMenu;
 	import com.bellaxu.map.MapBlockContainer;
 	import com.bellaxu.mgr.FrameMgr;
 	import com.bellaxu.mgr.LayerMgr;
@@ -11,6 +12,9 @@
 	import com.bellaxu.util.StageUtil;
 	import com.greensock.plugins.Physics2DPlugin;
 	import com.greensock.plugins.TweenPlugin;
+	import com.lab.core.BasicObject;
+	import com.lab.events.AppEvent;
+	import com.lab.events.CustomEvent;
 	import com.xh.config.Global;
 	import com.xh.display.XHButton;
 	import com.xh.display.XHLoadIcon;
@@ -31,7 +35,6 @@
 	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import flash.display.Stage;
 	import flash.display.StageAlign;
 	import flash.display.StageQuality;
 	import flash.display.StageScaleMode;
@@ -40,9 +43,6 @@
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.geom.Point;
-	import flash.net.URLLoader;
-	import flash.net.URLLoaderDataFormat;
-	import flash.net.URLRequest;
 	import flash.system.Capabilities;
 	import flash.system.Security;
 	import flash.system.System;
@@ -59,6 +59,8 @@
 	import scene.action.Action;
 	import scene.action.BodyAction;
 	import scene.action.FightAction;
+	import scene.king.ActionDefine;
+	import scene.king.King;
 	import scene.king.SkinManage;
 	import scene.manager.ResourceManager;
 	import scene.manager.SceneManager;
@@ -305,7 +307,7 @@
 					if (null != this.LoadPic)
 					{
 						//
-						var upH:int=102;
+						var upH:int=202;
 						if (null != LoadPic.content)
 						{
 							//不完全贴图片底边，再往上一点
@@ -363,7 +365,7 @@
 			}
 		}
 
-		private var timerFrame:Timer=new Timer(1);
+		private var timerFrame:Timer=new Timer(0);
 		public function Map_frameHandler(e:TimerEvent):void
 		{
 			DataKey.instance.process();
@@ -378,8 +380,20 @@
 
 //			DataKey.instance.process();
 			/////////////////////
-			ResTool.render();
 			SceneManager.instance.update();
+			var curSta:String=GameIni.currentState;
+			var myKing:King;
+			var isIdle:Boolean = false;
+			if (WorldState.ground == curSta)
+			{
+				myKing = Data.myKing.king as King;
+				if (null != myKing)
+				{
+					myKing.CenterAndShowMap();
+//					isIdle = myKing.nAction == ActionDefine.IDLE; 
+				}
+			}
+			ResTool.render();
 //			CursorMgr.init();
 //			FightAction.tick();
 			////////////////////
@@ -398,12 +412,12 @@
 				m_prev_200=t;
 				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK__SECOND200);
 			}
-			//400毫秒事件
-			if (t - m_prev_400 >= 400)
-			{
-				m_prev_400=t;
-				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK__SECOND400);
-			}
+			//400毫秒事件 [废弃]
+//			if (t - m_prev_400 >= 400)
+//			{
+//				m_prev_400=t;
+//				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK__SECOND400);
+//			}
 			//半秒事件
 			if (t - m_half_prev >= 500)
 			{
@@ -416,55 +430,47 @@
 				m_prev=t;
 				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_SECOND);
 			}
-			//2秒事件
-			if (t - m_two_prev2000 >= 2000)
-			{
-				m_two_prev2000=t;
-				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_TWO_SECOND);
-			}
-			//5秒事件
-			if (t - m_prev_5000 >= 5000)
-			{
-				m_prev_5000=t;
-				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_FIVE_SECOND);
-			}
-			//10秒事件
-			if (t - m_prev_10000 >= 10000)
-			{
-				m_prev_10000=t;
-				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_TEN_SECOND);
-			}
-			//30秒事件
-			if (t - m_prev_30000 >= 30000)
-			{
-				m_prev_30000=t;
-				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_THIRTY_SECOND);
-			}
-			if (this.m_isSlowFrameRate && this.m_isDeactivate)
-			{
-				for (var i:int=0; i <= m_SlowFrameRate; ++i)
-				{
-					this.Stage_frameServerHandler(i);
-				}
-				return;
-			}
+			//2秒事件[废弃]
+//			if (t - m_two_prev2000 >= 2000)
+//			{
+//				m_two_prev2000=t;
+//				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_TWO_SECOND);
+//			}
+			//5秒事件[废弃]
+//			if (t - m_prev_5000 >= 5000)
+//			{
+//				m_prev_5000=t;
+//				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_FIVE_SECOND);
+//			}
+			
+			//30秒事件[废弃]
+//			if (t - m_prev_30000 >= 30000)
+//			{
+//				m_prev_30000=t;
+//				GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_THIRTY_SECOND);
+//			}
+//			if (this.m_isSlowFrameRate && this.m_isDeactivate)
+//			{
+//				for (var i:int=0; i <= m_SlowFrameRate; ++i)
+//				{
+//					this.Stage_frameServerHandler(i);
+//				}
+//				return;
+//			}
 			//本人战斗控制
 			var bon:int;
-			var curSta:String=GameIni.currentState;
+			
 			if (WorldState.ground == curSta)
 			{
+				var isMyRun:Boolean=false;
 				//
 				if (PowerManage.isRunStart)
 				{
 					PowerManage.frameHandler(e);
 				}
-				var isMyRun:Boolean=false
-				if (null != Data.myKing.king)
-				{
-					Data.myKing.king.CenterAndShowMap();
-				}
 				var doDepth:Boolean=false;
-				if (FrameMgr.isBad)
+				var isBad:Boolean = FrameMgr.isBad;
+				if (isBad)
 				{
 					if (0 == (countadd % 21))
 						doDepth=true;
@@ -474,11 +480,11 @@
 					if (0 == (countadd % 15))
 						doDepth=true;
 				}
-				if (doDepth)
+				if (doDepth || isIdle)
 				{
 					SceneManager.instance.Depth_Core(LayerDef.bodyLayer);
 				}
-				if (FrameMgr.isBad)
+				if (isBad)
 				{
 					//跟跑步一样,40 * 1.3 = 52
 					Data.myKing.AutoDoSth(countadd, 60);
@@ -530,6 +536,13 @@
 //						//GamePlugIns.getInstance().chiYao();
 //					}
 //				}
+			
+				//10秒事件
+				if (t - m_prev_10000 >= 10000)
+				{
+					m_prev_10000=t;
+					GameClock.instance.dispatchEvent__(WorldEvent.CLOCK_TEN_SECOND);
+				}
 			}
 			//
 			if (UIMessage.run)
@@ -631,13 +644,11 @@
 		}
 
 		// fux_map
-		public function Stage_resizeHandler(event:Event=null,m_stage:Stage=null):void
+		public function Stage_resizeHandler(event:Event=null):void
 		{
-			if(m_stage==null)
-				m_stage=Main.instance().stage;
 			// get
-			var w:int=m_stage.stageWidth;
-			var h:int=m_stage.stageHeight;
+			var w:int=this.stage.stageWidth;
+			var h:int=this.stage.stageHeight;
 			if (200 >= w && 200 >= h)
 				return;
 
@@ -647,6 +658,8 @@
 			GameIni.MAP_SIZE_W=w;
 			GameIni.MAP_SIZE_H=h;
 			//----newcodes
+			BasicObject.messager.dispatchEvent(new CustomEvent(AppEvent.APP_RESIZE));
+			
 			SceneManager.instance.resize();
 			//----end
 			resize_UI_index(w, h);
@@ -675,6 +688,8 @@
 				case WorldState.init:
 					break;
 			}
+			if(UI_MessagePanel3.instance!=null)
+			UI_MessagePanel3.instance.resize();
 		}
 
 		private function mouseRightKeyHandler(e:MouseEvent):void
@@ -688,13 +703,12 @@
 		public function addtoStageHandler1(e:Event=null):void
 		{
 			PubData.version=Number(Capabilities.version.split(" ")[1].split(",")[0]) + Number(Capabilities.version.split(" ")[1].split(",")[1]) * 0.1;
-			
 			StageUtil.stage=this.stage;
-			LayerMgr.init();
+			LayerMgr.init(this.stage);
 			FrameMgr.regist(this.stage);
 			FrameMgr.addFunction(Stage_frameHandler, RenderGroupDef.NO_DELAY);
-			FPSUtils.setup(this.stage);
-			ResTool.init(stage);
+//			FPSUtils.setup(this.stage);
+			ResTool.init(this.stage);
 //			if (PubData.canRightKey&&MouseEvent.RIGHT_CLICK!=null){
 //				this.stage.addEventListener(MouseEvent.RIGHT_CLICK, mouseRightKeyHandler);
 //			}
@@ -718,20 +732,22 @@
 			Main.instance().addEventListener(Main.MAIN_LOADED, mainLoadComplete);
 			//主应用执行初始化操作
 			Main.instance().mainInit();
+			RightMenu.regist(Main.instance());
 		}
-		public function libLoadedCall(m_stage:Stage=null):void
+
+		public function libLoadedCall():void
 		{
 			// 强制触发一次，设一下GameIni的MAP_SIZE值
-			Stage_resizeHandler(null,m_stage);
+			Stage_resizeHandler();
 //			PowerManage.PreTimer=getTimer();
 			//
 //			this.stage.addEventListener(Event.ENTER_FRAME, this.Stage_frameHandler);
 			timerFrame.addEventListener(TimerEvent.TIMER, Map_frameHandler);
 			timerFrame.start();
-			m_stage.addEventListener(Event.DEACTIVATE, _deactivateListener);
-			m_stage.addEventListener(Event.ACTIVATE, _activateListener);
-			m_stage.addEventListener(Event.RESIZE, this.Stage_resizeHandler);
-			addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			this.stage.addEventListener(Event.DEACTIVATE, _deactivateListener);
+			this.stage.addEventListener(Event.ACTIVATE, _activateListener);
+			this.stage.addEventListener(Event.RESIZE, this.Stage_resizeHandler);
+			this.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 //			DataKey.instance.register(PacketSCUnAuto.id, serviceEnterFrameHandler)
 		}
 
@@ -756,6 +772,10 @@
 			{
 				return;
 			}
+			
+			
+			
+			
 			GameTip.UpdateList();
 			UI_index.indexMC["mc_FanLiRi"].x=(w - UI_index.indexMC["mc_FanLiRi"].width) / 2;
 			UI_index.indexMC_mrb.y=h;
@@ -799,33 +819,32 @@
 			//- UI_index.indexMC_taskAccept.textWidth / 2
 			UI_index.indexMC_taskAccept.x=w / 2 - UI_index.indexMC_taskAccept.textWidth / 2;
 			UI_index.indexMC_taskAccept.y=h - 45 - 40 - 100; //- 180;
-			//废弃
-//				UI_index.instance.mc["scalePanel"]["backBoard"].width=w;
-			var mrbWidth:int=UI_index.instance.mc["mrb"].width;
-			var buttonMenuWidth:int=UI_index.instance.mc["mrb"]["mc_index_menu"].width;
-			var mrbX:int=int(w - (mrbWidth - buttonMenuWidth) >> 1);
-			var actualX:int=0;
-			if (mrbX + mrbWidth > w)
-			{ //显示不全，则从右边界往左偏移
-				actualX=w - mrbWidth;
+
+			//MRB元件位置变化造成长度会变,所以要用固定值
+			var mrbWidth:int=UI_index.indexMC_mrb["mc_hide_statusbar"].visible?730:901;//UI_index.instance.mc["mrb"].width;
+			var chatWidth:int=UI_index.instance.mc["chat"].width;
+			var VIPWidth:int=UI_index.instance.mc["VIP_CaiDanBtn"].width;
+			var mrbHalf:int=(w - mrbWidth) >> 1;
+			
+			var mrbX:int=0;
+			//聊天框是否需要改变位置
+			var chatNeedChange:Boolean=false;
+			if(mrbHalf-chatWidth-VIPWidth>0){
+				mrbX=mrbHalf;
+			}else if(w-chatWidth-VIPWidth-mrbWidth>0){
+				mrbX=chatWidth+VIPWidth;
+			}else{
+				mrbX=mrbHalf;
+				chatNeedChange=true;
 			}
-			else
-			{
-				actualX=mrbX;
-			}
-			if (actualX < 0)
-				actualX=0;
-//				UI_index.instance.mc["scalePanel"].x=
-			UI_index.instance.mc["mrb"].x=actualX;
-//				if (w>UI_index.instance.mc["mrb"].width){
-//					if (w-mrbX
-//					mrbX = w-UI_index.instance.mc["mrb"].width+270;
-//				}else{
-//					mrbX = 270;
-//				}
-//				UI_index.instance.mc["scalePanel"].x=UI_index.instance.mc["mrb"].x=w>UI_index.instance.mc["mrb"].width?w-UI_index.instance.mc["mrb"].width+270:270;
-//				if ((int(w / 2) - int(UI_index.instance.mc["mrb"].width / 2) + 20 - UI_index.instance.mc["chat"].width) > 0)
-			if (UI_index.instance.mc["mrb"].x - 20 - UI_index.instance.mc["chat"].x - UI_index.instance.mc["chat"].width > 0)
+
+			UI_index.instance.mc["mrb"].x=mrbX;
+			UI_index.instance.mc["VIP_CaiDanBtn"].x=mrbX-UI_index.instance.mc["VIP_CaiDanBtn"].width;
+			UI_index.instance.mc["caidan"].x=UI_index.instance.mc["VIP_CaiDanBtn"].x+(UI_index.instance.mc["VIP_CaiDanBtn"].width-UI_index.instance.mc["caidan"].width)/2;
+			UI_index.instance.mc["VIP_CaiDanBtn"].y=h-UI_index.instance.mc["VIP_CaiDanBtn"].height-10;
+			UI_index.instance.mc["caidan"].y=UI_index.instance.mc["VIP_CaiDanBtn"].y-UI_index.instance.mc["caidan"].height;
+
+			if (chatNeedChange==false)
 			{
 //					UI_index.instance.mc["chat"].y=h - 193;
 				UI_index.instance.mc["chat"].y=h - 224;
@@ -1123,7 +1142,7 @@
 		{
 			if (Data.myKing.king != null)
 			{
-				Data.myKing.king.CenterAndShowMap();
+//				Data.myKing.king.CenterAndShowMap();
 				Data.myKing.king.CenterAndShowMap2();
 			}
 		}

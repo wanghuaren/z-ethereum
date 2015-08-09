@@ -1,5 +1,6 @@
 ﻿package main
 {
+	import com.bellaxu.def.LayerDef;
 	import com.xh.config.Global;
 	
 	import common.config.GameIni;
@@ -61,7 +62,7 @@
 
 		public var cartoon:Sprite=new Sprite();
 
-		public var LoadTopUI:Sprite=new Sprite();
+//		public var LoadTopUI:Sprite=new Sprite();
 
 		//----------------------------- Layer  end -----------------------------------------------------
 
@@ -131,7 +132,7 @@
 
 //			GameIni.wangzhi=String(GameIni.GAMEDATAXML.WangZhi[0].@link);
 //
-//			// 安全配置文件请求地址
+//			// 安全配置文件请求地址AR
 //			GameIni.HTTP_IP0=GameIni.GAMEDATAXML.LoadServer[0].@loadhttp;
 			if (xml.hasOwnProperty("Refpage"))
 				GameIni.canRefreshPage=int(xml.Refpage[0].@f5);
@@ -212,14 +213,17 @@
 
 			//登陆使用
 			this.addChild(this.Layer0);
+			this.Layer0.mouseEnabled = false;
 
 			//窗体层
 			PubData.AlertUI=this.AlertUI;
 			this.addChild(AlertUI);
+			AlertUI.mouseEnabled = false;
 
 			//Alert窗口层
 			PubData.AlertUI2=this.AlertUI2;
 			this.addChild(AlertUI2);
+			AlertUI2.mouseEnabled = false;
 
 			//文字层
 			//文字层不需要鼠标事件
@@ -233,7 +237,7 @@
 			this.addChild(LoadUI);
 
 			//剧情动画层
-			PubData.StoryCartoon=this.cartoon;
+			PubData.StoryCartoon=cartoon;
 			this.addChild(cartoon);
 
 
@@ -391,7 +395,6 @@
 
 		private function gameLoadTxtComplete(e:DispatchEvent):void
 		{
-
 			e.target.removeEventListener(DispatchEvent.EVENT_LOAD_COMPLETE, gameLoadTxtComplete);
 
 			var xml:XML=new XML(e.getInfo);
@@ -529,7 +532,8 @@
 			descStr=descStr + " " + e.getInfo + "%";
 
 			WorldDispatcher.instance.dispatchEvent(new WorldEvent(WorldDispatcher.TXT_INFO, descStr));
-			
+
+
 			WorldDispatcher.instance.dispatchEvent(new WorldEvent(WorldDispatcher.BAR_PERCENT, e.getInfo));
 		}
 
@@ -702,7 +706,7 @@
 
 			this.dispatchEvent(new DispatchEvent(Main.LOCAL_RES_LOADED));
 			
-			Game_main.instance.libLoadedCall(stage);
+			Game_main.instance.libLoadedCall();
 			//---whr-------
 			ShowLoginUI();
 		}

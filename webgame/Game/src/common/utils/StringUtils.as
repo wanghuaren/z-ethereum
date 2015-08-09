@@ -570,6 +570,40 @@ package common.utils
 			//_ret.setUTCHours(0,0,0,0);
 						return _ret;
 		}
+		
+		/**
+		 * 现在是否是开服前X天 
+		 * @param indexDay 第X天
+		 * @return 
+		 * 
+		 */		
+		public static function checkStartDay(indexDay:int):Boolean
+		{
+			//开服时间
+			var _starServerTime:String=GameIni.starServerTime();
+			var _starServerTimeDate:Date=StringUtils.changeStringTimeToDate(_starServerTime);
+			
+			//开服之后X天时间
+			var _XDay:Date=StringUtils.addDay(_starServerTimeDate,indexDay);
+			
+			//计算是否在领取奖励的时间之内
+			var _today:Date=Data.date.nowDate;
+			var _todayTime:Number=_today.getTime();
+			
+			var _ret:Boolean=false;
+			
+			//开服时间到活动结束时间
+			if (_todayTime >= _starServerTimeDate.getTime() && _todayTime < _XDay.getTime())
+			{
+				_ret=true;
+			}
+			else
+			{
+				_ret=false;
+			}
+			
+			return _ret;
+		}	
 
 		/**
 		 * 将一个数字处理成“万”。  如果该数值大于等于10000 的时候处理，如果小于 直接返回；

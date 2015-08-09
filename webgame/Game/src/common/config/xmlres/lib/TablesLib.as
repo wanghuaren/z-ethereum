@@ -4,9 +4,9 @@ package common.config.xmlres.lib
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.*;
 	import common.managers.Lang;
-
+	
 	import flash.utils.Dictionary;
-
+	
 	import netc.Data;
 	import netc.packets2.StructBagCell2;
 
@@ -214,7 +214,7 @@ package common.config.xmlres.lib
 
 		public function getResPath_ByRandom(hint_sort:int=1):Pub_HintResModel
 		{
-			var len:int=contentData.contentXml.length();
+			var len:int=contentData.contentXml.length;
 			var ran:int=Math.floor(Math.random() * len);
 			var index:int=0;
 			for each (var resid:IResModel in contentData.contentXml)
@@ -574,6 +574,32 @@ package common.config.xmlres.lib
 				resArray.push(resModel);
 			}
 			return resArray;
+		}
+		
+		private var _mapSurfaceListDic:Dictionary;
+		
+		/**
+		 * 地图地表部件数据
+		 */
+		public function getMapSurfaceListById(mapId:int):Vector.<Pub_Map_Spawn_ClientResModel>
+		{
+			if (_mapSurfaceListDic == null)
+				_mapSurfaceListDic = new Dictionary();
+			var list:Vector.<Pub_Map_Spawn_ClientResModel> = _mapSurfaceListDic[mapId];
+			if (list == null)
+			{
+				list = new Vector.<Pub_Map_Spawn_ClientResModel>();
+				_mapSurfaceListDic[mapId] = list;
+				var rm:Pub_Map_Spawn_ClientResModel;
+				for each (rm in contentData.contentXml)
+				{
+					if (rm.map_id == mapId)
+					{
+						list.push(rm);
+					}
+				}
+			}
+			return list;
 		}
 	}
 }

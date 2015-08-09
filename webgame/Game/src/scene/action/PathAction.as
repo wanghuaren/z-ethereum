@@ -61,6 +61,7 @@
 		 */
 		public static var MoveWithClientCmd:Boolean=false;
 		public static var isCanPutIn:Boolean=false;
+		public static var isTeleport:Boolean = false;
 
 		public function PathAction()
 		{
@@ -81,6 +82,19 @@
 			pack.way_point.point_y=destY;
 			pack.mapid=MapData.MAPID;
 			DataKey.instance.send(pack);
+//			trace("sendMove----------",destX,destY,"dir:",dir);
+		}
+		
+		static public function syncMove(destX:int,destY:int, dir:int, step:int):void
+		{
+			var p:PacketCSNewPlayerMove = new PacketCSNewPlayerMove();
+			p.dir = dir;
+			p.step = step;
+			p.way_point.point_x=destX
+			p.way_point.point_y=destY;
+			p.mapid=MapData.MAPID;
+			DataKey.instance.send(p);
+//			trace("syncMove=========",destX,destY,"dir:",dir,"step:",step);
 		}
 
 		public function CPlayerMove(p:PacketSCObjNewMove):void
@@ -117,9 +131,10 @@
 			var k:IGameKing=Data.myKing.king;
 			if (k != null)
 			{
-				if (k is King)
-					(k as King).idle();
 				k.setKingData(k.roleID, k.objid, k.getKingName, k.sex, k.metier, k.level, k.hp, k.maxHp, k.camp, k.campName, p.cur_point.point_x, p.cur_point.point_y, k.masterId, k.masterName, k.mapZoneType, k.grade, k.isMe);
+				//与服务器通信，通知服务器可以移动
+				syncMove(0,0,1,-3);
+				(k as GameLocalHuman).verifyPos();
 				Body.instance.sceneEvent.dispatchEvent(new DispatchEvent(HumanEvent.Arrived));
 //				moveTo(po);
 				Debug.warn("服务端校验坐标  client: " + k.mapx + ", " + k.mapy + "  server: " + po.mapx + ", " + po.mapy);
@@ -128,6 +143,8 @@
 
 		static public function moveTo(po:WorldPoint, depth:int=15000):Boolean
 		{
+			if (isTeleport)
+				return false;
 			var path:Array=[];
 			var sPt:Point=(Data.myKing.king as GameLocalHuman).getCurPos();
 			var m_to:Point=new Point(po.mapx, po.mapy);
@@ -179,6 +196,8 @@
 			for (var i:int=0; i < nSize; ++i)
 			{
 				pt=path[i];
+				if (AlchemyManager.instance.canMoveTo(pt.x,pt.y)==false)
+					trace("寻路路径点有异常！！！！！",pt.x,pt.y);
 				if (lastPt)
 				{
 					dir=MapCl.getDirEx(lastPt.x, lastPt.y, pt.x, pt.y);

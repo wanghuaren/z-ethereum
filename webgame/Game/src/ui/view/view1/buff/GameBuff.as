@@ -67,7 +67,7 @@
 			//myBuff.x = 103;
 			//myBuff.y = 79;
 			myBuff.x=92;
-			myBuff.y=107;
+			myBuff.y=110;
 
 			UI_index.indexMC_character.addChildAt(myBuff, 0);
 

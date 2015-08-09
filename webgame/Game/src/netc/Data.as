@@ -1,10 +1,9 @@
 package netc
 {
+	import com.engine.utils.HashMap;
+	
 	import engine.support.IPacket;
 	import engine.support.ISet;
-	import engine.utils.HashMap;
-	
-	import flash.utils.Dictionary;
 	
 	import netc.dataset.*;
 	import netc.packets2.*;
@@ -218,6 +217,8 @@ package netc
 		public static function get myKing():MyCharacterSet
 		{
 			//listSet;
+			if (_myKingSet != null)
+				return _myKingSet;
 			chklistSet();
 			return _myKingSet;
 			//return listSet[_myKingIndex] as MyCharacterSet;

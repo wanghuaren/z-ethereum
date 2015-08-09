@@ -1,5 +1,7 @@
 ﻿package common.utils.res
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.Att;
 	import common.config.AttModel;
 	import common.config.PubData;
@@ -12,17 +14,12 @@
 	
 	import engine.load.Gamelib;
 	import engine.load.GamelibS;
-	import engine.utils.HashMap;
 	
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
-	
-	import model.jingjie.JingjieModel;
 	
 	import netc.Data;
 	import netc.dataset.*;
@@ -1588,7 +1585,7 @@
 			}
 			else
 			{
-				str+=showEquipStrong(map, null, "f76e00", TIP_SPACE);
+				str+=showEquipStrong(map, null, "f76e00", TIP_SPACE,true);
 			}
 			att["txt_att1"].htmlText=str;
 			att["txt_att1"].height=att["txt_att1"].textHeight + 12;
@@ -1776,7 +1773,7 @@
 			att3.y=att2.y + att2.height;
 			//5.描述信息
 			//desc["txt_title"].htmlText=Lang.getLabel("10132_resctrl");
-			desc["txt_desc"].htmlText=bag.desc;
+			desc["txt_desc"].htmlText=bag.desc+ Data.beiBao.getExpiredDate(bag.exist_time);
 			showPrice(desc["txt_price"], bag);
 			if (bag.pos > 0)
 			{
@@ -2115,7 +2112,7 @@
 		 *   @param mapStrong 强化属性
 		 *   @param space     间隔
 		 */
-		public function showEquipStrong(map:HashMap, mapNext:HashMap, fontColor:String="fed293", space:String=""):String
+		public function showEquipStrong(map:HashMap, mapNext:HashMap, fontColor:String="fed293", space:String="",isMaxLevel:Boolean=false):String
 		{
 			var ret:String="";
 			var next:AttModel=null;
@@ -2136,6 +2133,10 @@
 					{
 						next=mapNext.get(attModel.attId) as AttModel;
 						ret+=getAttShow(next, false, true, fontColor, space);
+					}
+					//2014-11-06 顶级强化
+					if(isMaxLevel){
+						ret+="  <font color='#ff9600'>顶级强化</font>";
 					}
 					ret+="<br/>";
 				}
@@ -2158,6 +2159,26 @@
 					if (arr[k].split("</font>")[1].length < maxLen)
 					{
 						arr[k]=arr[k].toString().replace(Lang.getLabel("10128_resctrl"), addSpace(maxLen - arr[k].split("</font>")[1].length) + Lang.getLabel("10128_resctrl"));
+					}
+				}
+				ret=arr.join("<br/>");
+			}
+			
+			//对齐处理,比较复杂 强化下一级
+			if (map != null && isMaxLevel)
+			{
+				var arr:Array=ret.split("<br/>");
+				var maxLen:int=0;
+				for (var k:int=0; k < arr.length - 1; k++)
+				{
+					if (arr[k].split("</font>")[1].length > maxLen)
+						maxLen=arr[k].split("</font>")[1].length;
+				}
+				for (k=0; k < arr.length - 1; k++)
+				{
+					if (arr[k].split("</font>")[1].length < maxLen)
+					{
+						arr[k]=arr[k].toString().replace("顶级强化", addSpace(maxLen - arr[k].split("</font>")[1].length) + "顶级强化");
 					}
 				}
 				ret=arr.join("<br/>");

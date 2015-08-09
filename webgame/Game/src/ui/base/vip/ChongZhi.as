@@ -44,6 +44,7 @@ package ui.base.vip
 	import ui.view.view2.other.ControlButton;
 	import ui.view.view4.qq.QQYellowCenterPay;
 	import ui.view.view4.yunying.HuoDongZhengHe;
+	import ui.view.view4.yunying.KaiFuHaoLi;
 	import ui.view.view4.yunying.ZhiZunHotSale;
 	import ui.view.view4.yunying.ZhiZunVIP;
 	import ui.view.view4.yunying.ZhiZunVIPMain;
@@ -72,7 +73,7 @@ package ui.base.vip
 			super(getLink(WindowName.win_chong_zhi));
 		}
 		override public function get width():Number{
-			return 540;
+			return 610;
 		}
 		override protected function init():void
 		{
@@ -155,13 +156,13 @@ package ui.base.vip
 					HuoDongZhengHe.getInstance().setType(4);
 					break;
 				case "btnDayChongZhi":
-					DayChongZhi.getInstance().open();
+					HuoDongZhengHe.getInstance().setType(2);
 					break;
 				case "btnZhiZunVIP":
 					ZhiZunVIPMain.getInstance().open();
 					break;
 				case "btnHuoDongZhengHe":
-					HuoDongZhengHe.getInstance().open();
+					KaiFuHaoLi.getInstance().open();
 					break;
 				default:
 					break;

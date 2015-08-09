@@ -183,7 +183,7 @@ package ui.view.view4.soar
 			var dejie:int = _lev;
 			
 				var de:int = Math.ceil(_lev/10);
-				if(de>6){
+				if(de>7){
 					de = de-6;
 					dejie=61;
 				}else{
@@ -192,12 +192,12 @@ package ui.view.view4.soar
 				
 			for(var i = 1;i<7;i++)
 			{
-				if(i<=de){
+				if(i<=de-1){
 					StringUtils.setEnable(mc["zhuansheng"+i]);
 				}else{
 					StringUtils.setUnEnable(mc["zhuansheng"+i]);
 				}
-				var _currConfig:Pub_SoarResModel=XmlManager.localres.soarXml.getResPath(dejie) as Pub_SoarResModel;
+				var _currConfig:Pub_SoarResModel=XmlManager.localres.soarXml.getResPath(dejie+10) as Pub_SoarResModel;
 				
 				
 				if(_currConfig ==null) {
@@ -443,12 +443,7 @@ package ui.view.view4.soar
 		private function _countAtt_next(level:int):void
 		{
 			var _arrValues:Array=_countAtt(level);
-			var _currConfig:Pub_SoarResModel=XmlManager.localres.soarXml.getResPath(level) as Pub_SoarResModel;
-			if(_currConfig!=null){
-				mc['tf_level2'].text=_currConfig.soar_name;
-			}else{
-				mc['tf_level2'].text="最高阶段";
-			}
+			
 			var n:int=1;
 			var _str:String=null;
 			var _showName:Boolean=false;
@@ -494,6 +489,16 @@ package ui.view.view4.soar
 				}
 				mc['tf_nextZ_' + n].text=_str;
 				++n;
+			}
+			var _currConfig:Pub_SoarResModel=XmlManager.localres.soarXml.getResPath(level) as Pub_SoarResModel;
+			if(_currConfig!=null){
+				mc['tf_level2'].text=_currConfig.soar_name;
+			}else{
+				mc['tf_level2'].text="";
+				for(var k:int=1;k<7;k++){
+					mc["tf_nextName_"+k].text="最高转生";
+				}
+				
 			}
 		}
 		/**
@@ -631,7 +636,7 @@ package ui.view.view4.soar
 				++n;
 			}
 			if(_str==""){
-				_str="您当前尚未开始转生。转生后不仅会提升人物属性，更可以装备转生装备，不仅更炫更帅，还拥有超高属性。转生功能将于80级开启。";
+				_str="";
 			}
 			return _str;
 		}

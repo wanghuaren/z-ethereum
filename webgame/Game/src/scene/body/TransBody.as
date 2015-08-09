@@ -2,28 +2,26 @@ package scene.body
 {
 	import com.bellaxu.data.GameData;
 	import com.bellaxu.def.DepthDef;
-	import com.bellaxu.def.LibDef;
-	import com.bellaxu.model.lib.Lib;
-
+	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_Map_SeekResModel;
-
+	
 	import flash.utils.setTimeout;
-
+	
 	import netc.Data;
 	import netc.DataKey;
 	import netc.packets2.PacketSCMapSeek2;
 	import netc.packets2.StructMapSeek2;
-
+	
 	import nets.packets.PacketSCMapSeek;
-
+	
 	import scene.king.IGameKing;
 	import scene.manager.SceneManager;
-
+	import scene.utils.MapData;
+	
 	import world.WorldFactory;
 	import world.model.file.BeingFilePath;
 	import world.type.BeingType;
-	import world.type.ItemType;
 	import world.type.WorldType;
 
 	public class TransBody
@@ -34,10 +32,27 @@ package scene.body
 
 		}
 		private var transData:Vector.<StructMapSeek2>;
+		private var px:int;
+		private var py:int;
 
+		public function clear():void
+		{
+			transData = null;
+			px = py = 0;
+		}
+		
 		public function CTransGetList(p:PacketSCMapSeek2):void
 		{
 			transData=p.arrItemlist;
+			if (transData.length > 0)
+			{
+				var mapId:int = transData[0].map_id;
+				if (mapId == MapData.MAPID)
+				{
+					canAddTrans(px,py);
+				}
+			}
+			
 //			var i:int;
 //			var len:int=p.arrItemlist.length;
 //
@@ -50,7 +65,16 @@ package scene.body
 
 		public function canAddTrans(px:int, py:int):void
 		{
-			if(transData==null) return;
+			if(transData==null) {
+				this.px = px;
+				this.py = py;
+				return;
+			}
+			else
+			{
+				this.px = 0;
+				this.py = 0;
+			}
 			for (var i:int=0; i < transData.length; i++)
 			{
 				if (Math.abs(transData[i].map_x - px) < 10 && Math.abs(transData[i].map_y - py) < 10)

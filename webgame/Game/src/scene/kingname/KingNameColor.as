@@ -20,7 +20,7 @@ package scene.kingname
 		public static const PK_RED_PLAYER:String = "#c00000";
 		public static const NO_SAME_GUILD_PLAYER:String = "#ff0000";
 		
-		public static const NPC:String = "#ff942b";
+		public static const NPC:String = "#49ff00";
 		public static const PET:String = "#fffaaf";//"#1bff03";
 		//假人颜色
 		public static const SAME_CAMP_PLAYER:String = "#ff0000";//"#1bff03";

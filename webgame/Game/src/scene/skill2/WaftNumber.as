@@ -149,27 +149,27 @@ package scene.skill2
 			}
 
 			//
-			var currentMapId:int=SceneManager.instance.currentMapId;
-
-			var noShowMap:Array=Lang.getLabelArr("WaftNumber_No_Show_Map");
-
-			if (null != noShowMap)
-			{
-				for (var j:int=0; j < noShowMap.length; j++)
-				{
-					if (currentMapId == noShowMap[j])
-					{
-						if (_type.indexOf(WaftNumType.HP_SUB) == 0 || _type.indexOf(WaftNumType.ATTACK_MISS) == 0)// ||
-							//_type.indexOf(WaftNumType.HP_ADD) == 0 ||
-							//_type.indexOf(WaftNumType.MP_ADD) == 0)
-						{
-							this.visible=false;
-						}
-						break;
-					}
-				}
-
-			}
+//			var currentMapId:int=SceneManager.instance.currentMapId;
+//
+//			var noShowMap:Array=Lang.getLabelArr("WaftNumber_No_Show_Map");
+//
+//			if (null != noShowMap)
+//			{
+//				for (var j:int=0; j < noShowMap.length; j++)
+//				{
+//					if (currentMapId == noShowMap[j])
+//					{
+//						if (_type.indexOf(WaftNumType.HP_SUB) == 0 || _type.indexOf(WaftNumType.ATTACK_MISS) == 0)// ||
+//							//_type.indexOf(WaftNumType.HP_ADD) == 0 ||
+//							//_type.indexOf(WaftNumType.MP_ADD) == 0)
+//						{
+//							this.visible=false;
+//						}
+//						break;
+//					}
+//				}
+//
+//			}
 
 
 

@@ -1,24 +1,25 @@
 package netc
 {
-	import common.config.PubData;
-	import common.managers.Lang;
-	import common.utils.Hash;
+	import com.engine.utils.Hash;
+	
 	import common.utils.clock.GameClock;
+	
 	import engine.net.func.FuncModel;
 	import engine.support.IFunc;
 	import engine.support.IPacket;
+	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
-	import netc.packets2.PacketCSPlayerCurPos2;
+	
 	import netc.packets2.PacketSCVersion2;
+	
 	import nets.packets.*;
-	import scene.manager.SceneManager;
-	import ui.base.mainStage.UI_index;
-	import ui.view.view6.GameAlert;
+	
 	import ui.base.login.Login;
+	
 	import world.WorldEvent;
 
 	//[Event(name="cServerList", type="net.DataKeyEvent")]
@@ -48,8 +49,8 @@ package netc
 		private var _sayMapCount:int;
 		//----------------------------------------------------------
 		public static const playerEnterGridMaxCount:int=1;
-		public static const monsterEnterGridMaxCount:int=2;
-		public static const objLeaveGridMaxCount:int=2;
+		public static const monsterEnterGridMaxCount:int=1;
+		public static const objLeaveGridMaxCount:int=1;
 		public static const sayMapMaxCount:int=2;
 
 		//----------------------------------------------------------

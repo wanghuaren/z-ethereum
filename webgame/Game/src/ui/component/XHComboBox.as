@@ -1,14 +1,14 @@
 package ui.component
 {
+	import com.engine.utils.HashMap;
+	
 	import engine.load.GamelibS;
-	import engine.utils.HashMap;
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
-	import flash.text.TextField;
 
 	/**
 	 * 下拉菜单组件

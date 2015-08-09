@@ -1,19 +1,20 @@
 package ui.view.view5.jiazu
 {
-	import flash.display.Sprite;
-
+	import com.engine.utils.HashMap;
+	
+	import common.utils.CtrlFactory;
+	
 	import engine.load.GamelibS;
-
+	
+	import flash.display.Sprite;
+	
 	import model.jiazu.JiaZuEvent;
 	import model.jiazu.JiaZuModel;
-
+	
 	import netc.packets2.PacketWCGuildInfo2;
 	import netc.packets2.StructGuildInfo2;
 	import netc.packets2.StructGuildRequire2;
-
-	import common.utils.CtrlFactory;
-	import engine.utils.HashMap;
-
+	
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
 

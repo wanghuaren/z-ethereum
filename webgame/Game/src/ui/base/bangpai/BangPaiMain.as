@@ -2196,6 +2196,7 @@
 				return;
 			}
 			menu.visible=true;
+			var arrMustShow:Array=['h_liaotian',"h_zudui",'h_jiejiao','h_chakan',"h_clipboard"];
 			//我是族长
 			if (4 == _kingJob)
 			{
@@ -2203,45 +2204,22 @@
 				if (4 == _targetJob)
 				{
 					//私聊 结交 查看
-					menu['h_liaotian'].visible=true;
-					menu['h_jiejiao'].visible=true;
-					menu['h_chakan'].visible=true;
-					menu['h_zhuanrang'].visible=false;
-					menu['h_tijiang'].visible=false;
-					menu['h_tichu'].visible=false;
-					menu['mc_bg'].height=MENU_BG_HEIGHT - 10; // - 60;
+					showMemberMenu(arrMustShow,['h_zhuanrang','h_tijiang','h_tichu']);
 				}
 				//Ta是副族长
 				else if (3 == _targetJob)
 				{
-					menu['h_liaotian'].visible=true;
-					menu['h_jiejiao'].visible=true;
-					menu['h_chakan'].visible=true;
-					menu['h_zhuanrang'].visible=true;
-					menu['h_tijiang'].visible=true;
-					menu['h_tichu'].visible=true;
-					menu['mc_bg'].height=MENU_BG_HEIGHT + 80;
-					menu['h_zhuanrang'].y=156;
-					menu['h_tijiang'].y=186;
-					menu['h_tichu'].y=216;
 					//menu['h_tijiang'].label="降为族员";
 					menu['h_tijiang'].label=Lang.getLabel("500047_JiaZu");
+					showMemberMenu(arrMustShow.concat(['h_zhuanrang','h_tijiang','h_tichu']),[]);
 				}
 				//Ta是族员
 				else if (2 == _targetJob)
 				{
-					menu['h_liaotian'].visible=true;
-					menu['h_jiejiao'].visible=true;
-					menu['h_chakan'].visible=true;
-					menu['h_zhuanrang'].visible=true;
-					menu['h_tijiang'].visible=true;
-					menu['h_tichu'].visible=true;
-					menu['mc_bg'].height=MENU_BG_HEIGHT + 80;
-					menu['h_zhuanrang'].y=156;
-					menu['h_tijiang'].y=186;
-					menu['h_tichu'].y=216;
 					//menu['h_tijiang'].label="升副族长";
 					menu['h_tijiang'].label=Lang.getLabel("500048_JiaZu");
+					
+					showMemberMenu(arrMustShow.concat(['h_zhuanrang','h_tijiang','h_tichu']),[]);
 				}
 				//Ta是申请者
 				else
@@ -2256,24 +2234,12 @@
 				//Ta是族长
 				if (4 == _targetJob)
 				{
-					menu['h_liaotian'].visible=true;
-					menu['h_jiejiao'].visible=true;
-					menu['h_chakan'].visible=true;
-					menu['h_zhuanrang'].visible=false;
-					menu['h_tijiang'].visible=false;
-					menu['h_tichu'].visible=false;
-					menu['mc_bg'].height=MENU_BG_HEIGHT - 10; // - 60;
+					showMemberMenu(arrMustShow,['h_zhuanrang','h_tijiang','h_tichu']);
 				}
 				//Ta是副族长
 				else if (3 == _targetJob)
 				{
-					menu['h_liaotian'].visible=true;
-					menu['h_jiejiao'].visible=true;
-					menu['h_chakan'].visible=true;
-					menu['h_zhuanrang'].visible=false;
-					menu['h_tijiang'].visible=false;
-					menu['h_tichu'].visible=false;
-					menu['mc_bg'].height=MENU_BG_HEIGHT - 10;
+					showMemberMenu(arrMustShow,['h_zhuanrang','h_tijiang','h_tichu']);
 				}
 				//Ta是族员
 				else if (2 == _targetJob)
@@ -2286,6 +2252,8 @@
 					menu['h_tichu'].visible=true;
 					menu['mc_bg'].height=MENU_BG_HEIGHT + 25; // - 40;
 					menu['h_tichu'].y=156;
+					
+					showMemberMenu(arrMustShow.concat(['h_tichu']),['h_zhuanrang','h_tijiang']);
 				}
 				//Ta是申请者
 				else
@@ -2300,35 +2268,17 @@
 				//Ta是族长
 				if (4 == _targetJob)
 				{
-					menu['h_liaotian'].visible=true;
-					menu['h_jiejiao'].visible=true;
-					menu['h_chakan'].visible=true;
-					menu['h_zhuanrang'].visible=false;
-					menu['h_tijiang'].visible=false;
-					menu['h_tichu'].visible=false;
-					menu['mc_bg'].height=MENU_BG_HEIGHT - 10; // - 60;
+					showMemberMenu(arrMustShow,['h_zhuanrang','h_tijiang','h_tichu']);
 				}
 				//Ta是副族长
 				else if (3 == _targetJob)
 				{
-					menu['h_liaotian'].visible=true;
-					menu['h_jiejiao'].visible=true;
-					menu['h_chakan'].visible=true;
-					menu['h_zhuanrang'].visible=false;
-					menu['h_tijiang'].visible=false;
-					menu['h_tichu'].visible=false;
-					menu['mc_bg'].height=MENU_BG_HEIGHT - 10;
+					showMemberMenu(arrMustShow,['h_zhuanrang','h_tijiang','h_tichu']);
 				}
 				//Ta是族员
 				else if (2 == _targetJob)
 				{
-					menu['h_liaotian'].visible=true;
-					menu['h_jiejiao'].visible=true;
-					menu['h_chakan'].visible=true;
-					menu['h_zhuanrang'].visible=false;
-					menu['h_tijiang'].visible=false;
-					menu['h_tichu'].visible=false;
-					menu['mc_bg'].height=MENU_BG_HEIGHT - 10; // - 60;
+					showMemberMenu(arrMustShow,['h_zhuanrang','h_tijiang','h_tichu']);
 				}
 				//Ta是申请者
 				else
@@ -2361,6 +2311,29 @@
 			}
 			menu.x=at.x;
 			menu.y=at.y;
+		}
+		
+		/**
+		 *  
+		 * @param arr1  显示按钮
+		 * @param arr2  不显示按钮
+		 * 
+		 */		
+		private function showMemberMenu(arr1:Array,arr2:Array):void{
+			if(arr1==null || arr2==null)return;
+			var padding_top:int=9;
+			var menu_height:int=20;
+			var k:int=0;
+			for each(var menuName:String in arr1){
+				m_Member_Menu[menuName].visible=true;
+				m_Member_Menu[menuName].y=padding_top+k*menu_height;
+				k++;
+			}
+			m_Member_Menu['mc_bg'].height=padding_top*2+k*menu_height;
+			for each(var menuName:String in arr2){
+				m_Member_Menu[menuName].visible=false;
+				m_Member_Menu[menuName].y=0;
+			}
 		}
 
 		public function get m_Member_Menu():MovieClip

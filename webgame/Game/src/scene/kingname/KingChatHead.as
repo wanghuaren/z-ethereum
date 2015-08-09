@@ -2,6 +2,7 @@ package scene.kingname
 {
 	import __AS3__.vec.Vector;
 	
+	import com.bellaxu.def.FilterDef;
 	import com.bellaxu.def.LibDef;
 	import com.bellaxu.model.lib.Lib;
 	import com.bellaxu.res.ResTool;
@@ -413,7 +414,7 @@ itemName="[" + XmlManager.localres.getToolsXml.getResPath(arr_[0])["tool_name"] 
 				//_v_TE.y = 14;//28;//12;
 
 				//_v_TE.filters = new Array(new GlowFilter(0,1,2,2,4,1,false,false));
-				_v_TE.filters=new Array(new GlowFilter(16777215, 1, 2, 2, 4, 1, false, false));
+				_v_TE.filters=new Array(FilterDef.CHAT_HEAD_FILTER);
 			}
 
 			return _v_TE;

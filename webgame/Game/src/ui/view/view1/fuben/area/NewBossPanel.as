@@ -2,6 +2,7 @@ package ui.view.view1.fuben.area
 {
 	import com.bellaxu.map.MapLoader;
 	
+	import common.config.GameIni;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.*;
 	import common.managers.Lang;
@@ -75,6 +76,7 @@ package ui.view.view1.fuben.area
 			}
 			if((_isShow==false&&mc!=null)||_guai==null){
 				mc.visible =isShow=_isShow;
+				//mc.x=mc.stage.stageWidth / 2 - UI_index.indexMC["bossHp"].width / 2;
 				bloodBarFull();
 				guai = null;
 				GameClock.instance.removeEventListener(WorldEvent.CLOCK_SECOND,_onClockSecond);
@@ -126,6 +128,7 @@ package ui.view.view1.fuben.area
 				guai = null;
 				return;
 			}
+			UI_index.indexMC["bossHp"].x=(UI_index.indexMC.stage.stageWidth- UI_index.indexMC["bossHp"].width) / 2;
 			if(_guai.hp<=0){
 				mc.visible = false;
 				bloodBarFull();
@@ -174,7 +177,7 @@ package ui.view.view1.fuben.area
 			
 			
 		}
-		
+
 		private function clcikHander(e:MouseEvent):void
 		{
 			var cost:int;

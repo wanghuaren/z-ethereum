@@ -78,9 +78,10 @@ package ui.view.view8
 				Lang.showResult(_p);
 				
 			}else{
-				DayChongZhi.getInstance()._reqeustCSPaymentDay();
+				HuoDongZhengHe.getInstance().CSPaymentOncePay();
+				HuoDongZhengHe.getInstance().CSPaymentDay();
 				//开服豪礼
-				HuoDongZhengHe.getInstance().getData();
+				HuoDongZhengHe.getInstance().CSGetStartPaymentState();
 			}
 			
 			this.winClose();

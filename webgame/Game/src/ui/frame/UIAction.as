@@ -281,7 +281,8 @@ package ui.frame
 					if (npc != null)
 						caiJiID=transId;
 				}
-				Data.myKing.king.getSkin().getHeadName().setAutoPath=false;
+				if (Data.myKing.king!=null)
+					Data.myKing.king.getSkin().getHeadName().setAutoPath=false;
 				if (npc != null && npc.name2.indexOf(BeingType.TRANS) >= 0)
 				{
 					//传送门执行语句
@@ -315,7 +316,8 @@ package ui.frame
 				}
 				else if (npc != null && npc.name2.indexOf(ItemType.PICK) >= 0)
 				{
-					Data.myKing.king.getSkin().getHeadName().setAutoPath=true;
+					if (Data.myKing.king!=null)
+						Data.myKing.king.getSkin().getHeadName().setAutoPath=true;
 				}
 				else
 				{
@@ -337,7 +339,8 @@ package ui.frame
 			}
 			else
 			{
-				Data.myKing.king.getSkin().getHeadName().setAutoPath=false;
+				if (Data.myKing.king!=null)
+					Data.myKing.king.getSkin().getHeadName().setAutoPath=false;
 			}
 		}
 

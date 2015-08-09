@@ -39,6 +39,10 @@ package ui.view.pay
 			}
 			return _instance;
 		}
+		
+		override public function get width():Number{
+			return 700;
+		}
 
 		public function getFirstPayBack(p:PacketSCGetFirstPayPrize):void
 		{
@@ -51,6 +55,9 @@ package ui.view.pay
 			
 			DataKey.instance.register(PacketSCGetFirstPayPrize.id, getFirstPayBack);
 			fillContent(mc);
+			
+			ItemManager.instance().setToolTip(mc["mcTip0"], mc["pitem0"].data.itemid);
+			ItemManager.instance().setToolTip(mc["mcTip5"], mc["pitem1"].data.itemid);
 		}
 		/**
 		 * 职业:1,3,4,6 对应的掉落ID编号
@@ -88,7 +95,7 @@ package ui.view.pay
 			super.open(must, type);
 		}
 
-		public function fillContent(mc:DisplayObject):void
+		public function fillContent(mc:DisplayObject,iconSize:int=1):void
 		{
 			metierRes[1]=60102376;
 			metierRes[3]=60102377;
@@ -103,7 +110,7 @@ package ui.view.pay
 					if (m_dropList.length > i)
 					{
 						mc["pitem" + i].visible=true;
-						ItemManager.instance().setToolTip(mc["pitem" + i], m_dropList[i].drop_item_id, 0, 1,m_dropList[i].drop_num);
+						ItemManager.instance().setToolTip(mc["pitem" + i], m_dropList[i].drop_item_id, 0, iconSize,m_dropList[i].drop_num);
 					}
 					else
 					{

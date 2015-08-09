@@ -1,20 +1,15 @@
 package netc.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import engine.event.DispatchEvent;
 	import engine.net.dataset.VirtualSet;
-	import engine.utils.HashMap;
-	
-	import flash.events.EventDispatcher;
 	
 	import netc.packets2.PacketSCShortKeyItem2;
 	import netc.packets2.PacketSCShortKeyList2;
-	import netc.packets2.PacketSCTaskDesc2;
 	import netc.packets2.StructShortKey2;
 	
 	import nets.packets.PacketSCShortKeyList;
-	
-	import ui.view.view1.guaji.GamePlugInsWindow;
-	import ui.base.jineng.SkillShort;
 
 	public class SkillShortSet extends VirtualSet
 	{

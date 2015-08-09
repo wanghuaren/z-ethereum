@@ -117,6 +117,14 @@ package ui.view.view1.fuben.area
 		private function handleActionJoin():void{
 			switch(GroupId)
 			{
+				case CBParam.QuanGuoYaYun_ACTION_GROUP://国运
+				{
+					var value:PacketCSOpenActTimeWaring = new PacketCSOpenActTimeWaring();
+					value.act_id = m.action_id;
+					value.seek_id = m.action_para1;
+					uiSend(value); 
+					break;
+				}
 				case CBParam.PKKing_ACTION_GROUP://PK之王
 				{
 					FuBenModel.getInstance().requestEnterPKKing();

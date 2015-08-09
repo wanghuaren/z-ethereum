@@ -1,5 +1,7 @@
 ﻿package ui.frame
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.Att;
 	import common.config.EventACT;
 	import common.config.GameIni;
@@ -16,7 +18,6 @@
 	import engine.event.DispatchEvent;
 	import engine.load.GamelibS;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -92,14 +93,12 @@
 	import ui.view.view2.other.FeiChuan;
 	import ui.view.view2.other.NewPlayerGift;
 	import ui.view.view2.other.QuickInfo;
+	import ui.view.view2.other.TuLongDao;
 	import ui.view.view2.other.UpTarget;
 	import ui.view.view2.trade.Trade;
-	import ui.view.view4.chengjiu.ChengjiuWin;
 	import ui.view.view4.yunying.HuoDongZhengHe;
-	import ui.view.view4.yunying.HuoDongZhengHe_3;
 	import ui.view.view6.GameAlert;
 	import ui.view.view7.UI_Mrt;
-	import ui.view.zuoqi.ZuoQiMain;
 	
 	import world.FileManager;
 	import world.WorldEvent;
@@ -335,6 +334,10 @@
 			#Respond:SCActivityUpdate*/
 			var huoDong_linqu:PacketCSGetActivityPrizeList=new PacketCSGetActivityPrizeList();
 			uiSend(huoDong_linqu);
+			//开服豪礼
+			HuoDongZhengHe.getInstance().CSGetStartPaymentState();
+			HuoDongZhengHe.getInstance().CSPaymentOncePay();
+			HuoDongZhengHe.getInstance().CSPaymentDay();
 			//
 			autoHMPValue();
 			_autoPetHMPValue();
@@ -364,8 +367,7 @@
 			indexCharacter();
 			WuPinShiYongTiShi.instance().startTime();
 			Lang.startInit();
-			//开服豪礼
-			HuoDongZhengHe.getInstance().getData();
+			
 			uiRegister(PacketSCGetStartPaymentState.id, SCGetStartPaymentState);
 			//由于兑换装备数据比骄大，提前初始化 2013-08-23 andy [此处初始化注释，放在游戏中执行，进游戏之前因为家在数据会导致卡屏很长时间]
 			//XmlManager.localres.getPubShopNormalXml.getResPath2(NpcShop.DUI_HUAN_SHOP_ID,1);
@@ -380,7 +382,11 @@
 			mc["mrb"]["soulBottle_left"].tipParam=[Data.myKing.hp, Data.myKing.maxhp];
 			//mc["mrb"]["hp_zhi"].htmlText=Data.myKing.hp+"/"+ Data.myKing.maxhp;
 			var percent:int=int(Data.myKing.hp * 100 / Data.myKing.maxhp);
-			mc["mrb"]["soulBottle"].setProgress(percent);
+//			mc["mrb"]["soulBottle"].setProgress(percent);
+			
+			UI_index.indexMC["mrb"]["rbarMask"].height = percent;
+			UI_index.indexMC["mrb"]["rbar"].y = -percent - 30;
+			
 			UI_index.indexMC["mrb"]["mc_hide_statusbar"]["hp_zhi"].htmlText=Data.myKing.hp + "/" + Data.myKing.maxhp;
 			UI_index.indexMC["mrb"]["mc_hide_statusbar"]["hp_bar"].setProgress(percent);
 			if (percent >= 100)
@@ -428,11 +434,13 @@
 			//},250);
 			function MP_UPDATE(e:DispatchEvent=null):void
 			{
-//				mc["btnCharacter"]["SMP"].tipParam=[Data.myKing.mp, Data.myKing.maxmp];
 				mc["mrb"]["soulBottle_blue_right"].tipParam=[Data.myKing.mp, Data.myKing.maxmp];
-				//mc["mrb"]["mp_zhi"].htmlText=Data.myKing.mp+"/"+ Data.myKing.maxmp;
 				var percent:int=int(Data.myKing.mp * 100 / Data.myKing.maxmp);
-				mc["mrb"]["soulBottle_blue"].setProgress(percent);
+//				mc["mrb"]["soulBottle_blue"].setProgress(percent);
+				
+				UI_index.indexMC["mrb"]["bbarMask"].height = percent;
+				UI_index.indexMC["mrb"]["bbar"].y = -percent - 30;
+				
 				UI_index.indexMC["mrb"]["mc_hide_statusbar"]["blue_bar"].setProgress(percent);
 				UI_index.indexMC["mrb"]["mc_hide_statusbar"]["mp_zhi"].htmlText=Data.myKing.mp + "/" + Data.myKing.maxmp;
 //				CtrlFactory.getUIShow().fillBar([mc["btnCharacter"]["SMP"]["zhedang"]], [Data.myKing.mp, Data.myKing.maxmp]);
@@ -648,6 +656,7 @@
 			}
 			//右下角【个人信息获得显示：经验，金钱，道具，声望】
 			sysAddEvent(Data.myKing, MyCharacterSet.COIN_UPDATE, COIN_UPDATE);
+			sysAddEvent(Data.myKing, MyCharacterSet.COIN6_UPDATE, COIN6_UPDATE);
 			sysAddEvent(Data.myKing, MyCharacterSet.EXP_ADD, EXP_ADD);
 			sysAddEvent(Data.myKing, MyCharacterSet.EXP_ADD3, EXP_ADD3);
 			//sysAddEvent(Data.myKing, MyCharacterSet.RENOWN_ADD, RENOWN_ADD);
@@ -673,6 +682,11 @@
 						GameMusic.playWave(WaveURL.ui_yinliang_shiqu);
 				}
 				Lang.showCoinChange(e);
+			}
+			function COIN6_UPDATE(e:DispatchEvent=null):void
+			{
+				if(e.getInfo!=null&&e.getInfo.hasOwnProperty("count")&&e.getInfo.count>0)
+					GameTip.addTipButton(null, 6, "qiandao", {type: 12});
 			}
 			function EXP_ADD(e:DispatchEvent=null):void
 			{
@@ -1102,8 +1116,12 @@
 				GameTip.addTipButton(null, 6, "", {type: 6, param: null});
 			}
 			TouZi.getInstance().showTouZi();
-			if(Data.myKing.level==45&&Data.myKing.VipVip==0&&BitUtil.getBitByPos(Data.myKing.SpecialFlag,8)==0){
+			if(Data.myKing.level==46&&Data.myKing.VipVip==0&&BitUtil.getBitByPos(Data.myKing.SpecialFlag,8)==0){
 				NewGuestModel.getInstance().handleNewGuestEvent(1064,0,null);
+			}
+			
+			if(Data.myKing.level==51&&ControlButton.getInstance().btnGroup!=null&&ControlButton.getInstance().btnGroup["arrNuSha"]!=null){
+				NewGuestModel.getInstance().handleNewGuestEvent(1067,0,ControlButton.getInstance().btnGroup);
 			}
 			
 		}
@@ -1842,7 +1860,7 @@
 		
 		public function SCGetStartPaymentState(p:PacketSCGetStartPaymentState2):void
 		{
-			HuoDongZhengHe_3.p=p;
+			HuoDongZhengHe.getInstance().data3=p;
 		}
 
 		/**

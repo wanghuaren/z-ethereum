@@ -255,7 +255,9 @@ package ui.base.huodong
 			if (sprite.hasOwnProperty("back"))
 			{
 				sprite["back"].mouseEnabled=false;
+				sprite["back"].visible=index%2==0;
 			}
+			
 
 			sprite["txt_killer"].mouseEnabled=false;
 			sprite['txt_limit'].mouseEnabled=false;

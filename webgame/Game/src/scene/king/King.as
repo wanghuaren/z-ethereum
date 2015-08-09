@@ -13,31 +13,31 @@ package scene.king
 	import com.engine.core.tile.square.Square;
 	import com.engine.core.tile.square.SquareGroup;
 	import com.engine.core.tile.square.SquarePt;
-
+	
 	import common.config.PubData;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_NpcResModel;
 	import common.config.xmlres.server.Pub_SkillResModel;
 	import common.managers.Lang;
 	import common.utils.bit.BitUtil;
-
+	
 	import effect.GhostEffect;
-
+	
 	import engine.event.DispatchEvent;
-
+	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.utils.getTimer;
 	import flash.utils.setTimeout;
-
+	
 	import netc.Data;
 	import netc.MsgPrint;
 	import netc.dataset.GuildInfo;
 	import netc.packets2.PacketSCFightDamage2;
 	import netc.packets2.PacketSCFightTarget2;
-
+	
 	import scene.ActBase;
 	import scene.action.Action;
 	import scene.action.FightAction;
@@ -61,7 +61,7 @@ package scene.king
 	import scene.utils.MapData;
 	import scene.utils.MyWay;
 	import scene.utils.PowerManage;
-
+	
 	import world.FileManager;
 	import world.IWorld;
 	import world.WorldFactory;
@@ -106,6 +106,7 @@ package scene.king
 		protected var m_nCurrGhostEffect:GhostEffect;
 		protected var m_nCurrSprintEffect:SkillEffect1; //冲刺特效
 		protected var m_nMagicAttckCompleted:Boolean=false;
+		protected var m_nDirect:int;
 
 		public function King():void
 		{
@@ -164,6 +165,16 @@ package scene.king
 			m_nLastAction=m_nAction;
 			m_nAction=value;
 		}
+		
+		public function get nDirect():int
+		{
+			return m_nDirect;
+		}
+		
+		public function set nDirect(value:int):void
+		{
+			this.m_nDirect = value;
+		}
 
 		public function get nActionPlayTime():int
 		{
@@ -175,6 +186,8 @@ package scene.king
 		 */
 		public function set nActionPlayTime(value:int):void
 		{
+			if (m_nActionPlayTime==value)
+				return;
 			m_nActionPlayTime=value;
 			var skin:Skin=getSkin();
 			if (skin)
@@ -305,6 +318,8 @@ package scene.king
 			m_nAction=ActionDefine.IDLE;
 			nActionPlayTime=IDLE_TIME;
 			setKingAction(KingActionEnum.DJ);
+			nResumeTime=TimeMgr.cacheTime;
+			m_actionQueue.length = 0;
 			if (this.isMe)
 			{
 				MusicMgr.stopRun();
@@ -439,6 +454,7 @@ package scene.king
 			}
 			if (m_nLastAction == ActionDefine.ATTACK && TimeMgr.cacheTime > m_nAttackResetTime)
 			{
+//				nAction=ActionDefine.IDLE;
 				needToIdle=true;
 			}
 			if (m_nAction == ActionDefine.IDLE && parent)
@@ -483,6 +499,7 @@ package scene.king
 			{
 				if (TimeMgr.cacheTime > m_nAttackResetTime)
 				{
+					m_nLastAction = ActionDefine.IDLE;
 					setKingAction(KingActionEnum.getAction(nAction));
 				}
 			}
@@ -523,6 +540,7 @@ package scene.king
 				else
 				{
 					setKingAction(KingActionEnum.getAction(nAction));
+					nAction = ActionDefine.IDLE;
 					nActionPlayTime=IDLE_TIME;
 				}
 			}
@@ -630,7 +648,7 @@ package scene.king
 
 		public function createEffectForSpeedRun(moveGrids:int):void
 		{
-			var playEffectTime:int=moveGrids * moveTick * 0.5;
+			var playEffectTime:int=moveGrids * moveTick * 0.5 - 200;
 			FightAction.playSkill(401105, playEffectTime - 300);
 			if (m_nCurrGhostEffect == null)
 			{
@@ -2114,7 +2132,11 @@ package scene.king
 		{
 			return $NpcType;
 		}
-
+		
+		/**
+		 * 模型类型
+		 */
+		public var isNpc:int;
 
 		// ---------------------------------------------//可视状态
 		public function set setVisible(bo:Boolean):void
@@ -3228,11 +3250,11 @@ package scene.king
 			//
 			//if (this.isMe)
 //项目修改			if (this.objid == GameData.roleId)
-			if (this.objid == PubData.roleID)
-			{
-				this.CenterAndShowMap();
-				this.CenterAndShowMap2();
-			}
+//			if (this.objid == PubData.roleID)
+//			{
+//				this.CenterAndShowMap();
+//				this.CenterAndShowMap2();
+//			}
 
 			//-------------------------------------------------------------------
 		}
@@ -3413,6 +3435,8 @@ package scene.king
 
 		public function setKingAction(zt:String, fx:String=null, skill:int=-1, targetInfo:TargetInfo=null, needShowAction:Boolean=false):void
 		{
+//			if(this.roleID==Data.myKing.roleID)
+//				trace("A");
 			if (m_nZt == zt && fx == m_nFx && isKingActionComplete() == false)
 				return;
 			if (MapCl.isBianShen(s2)) //变身状态下，没有走路动作，以跑步替换
@@ -3658,7 +3682,7 @@ package scene.king
 					{
 						//项目转换	var psm:Pub_SkillResModel = Lib.getObj(LibDef.PUB_SKILL, skill.toString());
 						var psm:Pub_SkillResModel=XmlManager.localres.getSkillXml.getResPath(skill) as Pub_SkillResModel;
-						if (FightAction.isMagic(psm))
+						if (FightAction.isMagic(psm,true))
 						{
 							isMagic=true;
 						}
@@ -4097,18 +4121,41 @@ package scene.king
 
 		public function setKingPosXY(mapx:Number, mapy:Number):void
 		{
-			this.mapx=mapx;
-			this.mapy=mapy;
-			this.m_nDestX=mapx;
-			this.m_nDestY=mapy;
-			if (isMe)
+			if (isNpc != 7 && isNpc != 6 && isNpc != 0)
 			{
-				Data.myKing.mapx=mapx;
-				Data.myKing.mapy=mapy;
+				this.m_nDestX = this.mapx = MapCl.mapXToGrid(mapx);
+				this.m_nDestY = this.mapy = MapCl.mapYToGrid(mapy);
+				this.x = mapx;
+				this.y = mapy;
 			}
-			MapCl.setPoint(this, this.mapx, this.mapy, this.isMe);
+			else
+			{
+				this.m_nDestX = this.mapx = mapx;
+				this.m_nDestY = this.mapy = mapy;
+				MapCl.setPoint(this, this.mapx, this.mapy, this.isMe);
+			}
 		}
+		
+		public var lastMapX:int;
+		public var lastMapY:int;
 
+		override public function set mapx(value:Number):void
+		{
+			if (_mapx != value)
+			{
+				lastMapX = _mapx;
+				_mapx = value;
+			}
+		}
+		
+		override public function set mapy(value:Number):void
+		{
+			if (_mapy != value)
+			{
+				lastMapY = _mapy;
+				_mapy = value;
+			}
+		}
 
 		public function setLastServerMoveStop(stop_mapx:int, stop_mapy:int):void
 		{
@@ -4513,7 +4560,6 @@ package scene.king
 					MyWay.heroIsMoving=false
 				}
 				(this as IGameKing).setKingMoveStop(true);
-
 			}
 		}
 
@@ -4638,7 +4684,10 @@ package scene.king
 				if (1 == SceneManager.delKing_Core_Mode)
 				{
 					//nothing
-
+					while (this.numChildren > 0)
+					{
+						this.removeChildAt(0);
+					}
 				}
 			}
 			dispose();
@@ -4648,11 +4697,6 @@ package scene.king
 		override public function dispose():void
 		{
 			//自身，不清除吧
-			if (isMe)
-			{
-				return;
-			}
-			
 			while (numChildren)
 			{
 				removeChildAt(numChildren - 1)
@@ -4692,7 +4736,7 @@ package scene.king
 			this._roleZT=null;
 			this.hitArea = null;
 
-
+			lastMapX = lastMapY = 0;
 		}
 
 		/**
@@ -4795,7 +4839,7 @@ package scene.king
 
 		public function onHorse():Boolean
 		{
-			if (null != this.getSkin() && null != this.getSkin().filePath && this.getSkin().filePath.s1 != 0)
+			if (s1 != 0)
 			{
 				return true;
 			}

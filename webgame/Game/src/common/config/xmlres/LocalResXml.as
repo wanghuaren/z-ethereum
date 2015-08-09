@@ -917,5 +917,13 @@ package common.config.xmlres
 		{
 			return getTableData(XmlConfig.PUBINVESTREPAYXML);
 		}
+		
+		/**
+		 * 地图部件
+		 */
+		public function get pubMapSpawnClientXml():TablesLib
+		{
+			return getTableData(XmlConfig.PubMapSpawnClientXML);
+		}
 	}
 }

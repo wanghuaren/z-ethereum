@@ -1,6 +1,7 @@
 package model.pkmatch
 {
-	import engine.utils.HashMap;
+	import com.engine.utils.HashMap;
+	
 	import common.utils.Queue;
 	
 	/**

@@ -24,10 +24,11 @@ package main
 	import netc.MsgEvent;
 	import netc.MsgPrint;
 	
+	import ui.base.beibao.BeiBao;
 	import ui.frame.UIWindow;
 	import ui.view.view1.chat.MainChat;
-	import ui.base.beibao.BeiBao;
 	import ui.view.view4.gm.GmWin;
+	import ui.view.view8.YBExtractWindow;
 
 	/**
 	 *@author wanghuaren
@@ -454,6 +455,18 @@ package main
 			{
 				// 0
 				GmWin.instance().open();
+			}
+			else if (k1 && (e.keyCode ==  220))
+			{
+				// \
+				if (!YBExtractWindow.getInstance().isOpen)
+				{
+					YBExtractWindow.getInstance().open();
+				}
+				else
+				{
+					YBExtractWindow.getInstance().winClose();
+				}
 			}
 		}
 

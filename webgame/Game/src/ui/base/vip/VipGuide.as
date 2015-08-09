@@ -93,7 +93,8 @@ package ui.base.vip
 		 */
 		public function chkVipGuideBigIcon(needCheckVipVip:Boolean=true):Boolean
 		{
-			//return true;
+			//2014－11－04 策划要求屏蔽
+			return false;
 			if(PubData.mergeServerDay>0)return false;
 			//开服时间
 			var _starServerTime:String=GameIni.starServerTime();

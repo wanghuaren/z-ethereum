@@ -51,7 +51,7 @@ package ui.view.view2.liandanlu
 	public class HCTuPu extends UIWindow{
 		//当前选中数据
 		private var arrTuPu:Array=null;
-		private static const PAGE_SIZE:int=4;
+		private static const PAGE_SIZE:int=6;
 		//
 		private var curLevel:int=0;
 		private static var _instance:HCTuPu;
@@ -81,7 +81,7 @@ package ui.view.view2.liandanlu
 			Data.myKing.addEventListener(MyCharacterSet.COIN_UPDATE,bagAddHandler);
 			arrTuPu=XmlManager.localres.getPubComposeXml.getResPath3(type) as Array;
 			
-			mc["txt_sortName"].text=Lang.getLabel("10021_hctupu",[curLevel]);
+//			mc["txt_sortName"].text=Lang.getLabel("10021_hctupu",[curLevel]);
 			showTuPu();
 			
 		}	
@@ -135,7 +135,8 @@ package ui.view.view2.liandanlu
 		 *	显示列表
 		 */
 		private function showTuPu():void{
-			curPage=1;		
+			curPage=1;	
+			showPage(1);return;
 			var len:int=arrTuPu.length;
 			var maxPage:int=Math.ceil(len/PAGE_SIZE);
 			if(maxPage==0)maxPage=1;
@@ -181,12 +182,23 @@ package ui.view.view2.liandanlu
 					child["makeid"]=compose.make_id;
 					LianDanLu.instance().showConfig(compose.make_id,false,child,1,false);
 					
-					child["txt_need"].htmlText=LianDanLu.instance().showToolEnough(compose.stuff_id1,compose.stuff_num1,true)+" + "+LianDanLu.instance().showCoin1Enough(compose.coin1);
+					//是否条件达到
+					var isHeCheng:String="";
+					var count:int=Data.beiBao.getBeiBaoCountById(compose.stuff_id1,true);
+					if(count>=compose.stuff_num1 && Data.myKing.coin1>=compose.coin1){
+						//条件达到
+						isHeCheng="(可合成)";
+					}else{
+						
+					}
+					child["txt_need"].htmlText=LianDanLu.instance().showToolEnough(compose.stuff_id1,compose.stuff_num1,true)+" + "+LianDanLu.instance().showCoin1Enough(compose.coin1)+isHeCheng;
 					item=new StructBagCell2();
 					item.itemid=compose.stuff_id1;
 					Data.beiBao.fillCahceData(item);
 					child["mc_font_equip_tip"].data=item;
 					CtrlFactory.getUIShow().addTip(child["mc_font_equip_tip"]);
+					
+					
 				}else{
 					child.visible=false;
 				}

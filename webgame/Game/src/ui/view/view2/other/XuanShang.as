@@ -196,6 +196,10 @@ package ui.view.view2.other
 				mc["mc_jiangli"].gotoAndStop(1);
 				mc["mc_jiangli"]["txt_task_level"].text=XmlRes.getChinaNumber(curTask.star);
 				mc["mc_jiangli"]["mc_row"].visible=curTask.star<7;
+				
+				// 指引箭头特殊处理
+				mc["mc_jiangli"]["mc_row"].stop();
+				
 				CtrlFactory.getUIShow().setBtnEnabled(mc["mc_jiangli"]["btnRefresh"],true);
 				if(first){
 					first=false;

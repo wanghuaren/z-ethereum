@@ -1,7 +1,8 @@
 package ui.base.huodong
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.GameIni;
-	import common.config.PubData;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.lib.TablesLib;
 	import common.config.xmlres.server.Pub_DropResModel;
@@ -17,7 +18,6 @@ package ui.base.huodong
 	import engine.event.DispatchEvent;
 	import engine.load.GamelibS;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -30,7 +30,6 @@ package ui.base.huodong
 	import netc.DataKey;
 	import netc.packets2.StructBagCell2;
 	
-	import nets.packets.PacketCSGetGift;
 	import nets.packets.PacketCSLevelQQGift;
 	import nets.packets.PacketCSLevelQQGiftToRmb;
 	import nets.packets.PacketCSRankAwardRequire;
@@ -42,7 +41,6 @@ package ui.base.huodong
 	import nets.packets.PacketSCRankTopAward;
 	
 	import ui.base.paihang.PaiHang;
-	import ui.base.vip.DuiHuan;
 	import ui.base.vip.Vip;
 	import ui.base.vip.VipGift;
 	import ui.frame.ImageUtils;

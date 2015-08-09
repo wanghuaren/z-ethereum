@@ -443,7 +443,7 @@ package ui.view.view4.yunying
 			tip.name="tip_tool";
 			tip.addChild(sprite);
 			tip.addEventListener(MouseEvent.MOUSE_OUT, outMcHandler);
-			PubData.mainUI.cartoon.addChild(tip);
+			PubData.StoryCartoon.addChild(tip);
 			tip.x=this.x + mouseX - 6;
 			tip.y=this.y + mouseY - sprite.height + 10;
 			tip.mouseChildren=false;
@@ -583,7 +583,7 @@ package ui.view.view4.yunying
 			tip.name="tip_tool";
 			tip.addChild(sprite);
 			tip.addEventListener(MouseEvent.MOUSE_OUT, outMcHandler);
-			PubData.mainUI.cartoon.addChild(tip);
+			PubData.StoryCartoon.addChild(tip);
 			tip.x=this.x + mouseX - 6;
 			tip.y=this.y + mouseY - sprite.height + 10;
 			tip.mouseChildren=false;

@@ -2,19 +2,19 @@
 {
 	import com.bellaxu.mgr.TargetMgr;
 	import com.bellaxu.res.ResMc;
-	
+
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_ModelResModel;
-	
+
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.utils.getTimer;
 	import flash.utils.setTimeout;
-	
+
 	import netc.Data;
-	
+
 	import scene.action.Action;
 	import scene.action.PkModeEnum;
 	import scene.event.KingActionEnum;
@@ -23,7 +23,7 @@
 	import scene.kingname.KingNameColor;
 	import scene.skill2.ISkillEffect;
 	import scene.utils.MapCl;
-	
+
 	import world.FileManager;
 	import world.WorldEvent;
 	import world.WorldFactory;
@@ -34,7 +34,7 @@
 	public class Skin extends Sprite
 	{
 		//点击区域
-		private var m_nHitSprite:Sprite = new Sprite();
+		private var m_nHitSprite:Sprite=new Sprite();
 		public static const SKIN_NUM:int=4;
 
 		/**
@@ -75,10 +75,10 @@
 			init();
 		}
 
-		public function init():void
+		private function init():void
 		{
 			this.removeAll();
-			m_nHitSprite.mouseEnabled = false;
+			m_nHitSprite.mouseEnabled=false;
 			filePath=null;
 			oldFilePath=null;
 			_changedList=null;
@@ -139,7 +139,7 @@
 				this.y=SkinParam.HUMAN_SKIN_DOWN;
 			//TODO 为何加这么多Sprite ？？？
 			this.addChild(m_nHitSprite);
-			m_nHitSprite.visible = false;
+			m_nHitSprite.visible=false;
 			this.addChild(foot);
 			//this.addChild(effectDown);
 			this.addChild(rect);
@@ -147,19 +147,19 @@
 			this.addChild(effectUp);
 			//effectDown.y=0;
 			effectUp.y=0;
-			
+
 			var _KingHeadName:KingHeadName=getHeadName();
 			this.addChild(_KingHeadName);
 			_KingHeadName.mouseChildren=false;
 			_KingHeadName.mouseEnabled=false;
-			
-			rect.y = 0;
-			rect.x = 0;
-			if (nowking.name2.indexOf(BeingType.SKILL)!=-1)
+
+			rect.y=0;
+			rect.x=0;
+			if (nowking.name2.indexOf(BeingType.SKILL) != -1)
 			{
-				rect.y = 60;
+				rect.y=60;
 			}
-			
+
 			this.mouseEnabled=this.mouseChildren=false;
 		}
 
@@ -197,10 +197,10 @@
 				if (true == changedList[0] || true == changedList[1] || true == changedList[2] || true == changedList[3])
 					oldFilePath=old;
 			}
-			if (filePath.s2 == 30120042)//皇城霸主
+			if (filePath.s2 == 30120042) //皇城霸主
 			{
-				rect.x = 30;
-				rect.y = 20;
+				rect.x=30;
+				rect.y=20;
 			}
 			//如果全没变化
 			if (false == changedList[0] && false == changedList[1] && false == changedList[2] && false == changedList[3])
@@ -262,12 +262,12 @@
 							(this.skinLoaderList[i] as SkinLoader).loading(king_name2, king_isMe, king_isMePet, this.filePath["xml_path" + i.toString()]);
 						}
 					}
-				} 
+				}
 				//强制刷新
 				skinLoaderComplete();
 			}
 		}
-		
+
 		public function DestroryLoadSkin():void
 		{
 			StopLoadSkin();
@@ -293,14 +293,14 @@
 		{
 			if (roleList[layer] != null)
 			{
-				var rm:ResMc = roleList[layer] as ResMc;
-				trace("Skin::removeSkin---------",layer,rm.mcName);
-//				rm.close();
-				if (rm.parent != null)
-					rm.parent.removeChild(rm);
+				var rm:ResMc=roleList[layer] as ResMc;
+				trace("Skin::removeSkin---------", layer, rm.mcName);
+				rm.close(false);
+//				if (rm.parent != null)
+//					rm.parent.removeChild(rm);
 			}
 			roleList[layer]=null;
-			
+
 		}
 
 		public function skinLoaderProgress(e:WorldEvent):void
@@ -435,7 +435,7 @@
 			}
 			else if (k.name2.indexOf(ItemType.PICK) >= 0)
 			{
-			//项目转换	var pmrm:Pub_ModelResModel = Lib.getObj(LibDef.PUB_MODEL, k.dbID.toString());
+				//项目转换	var pmrm:Pub_ModelResModel = Lib.getObj(LibDef.PUB_MODEL, k.dbID.toString());
 				var pmrm:Pub_ModelResModel=XmlManager.localres.PubModelXml.getResPath(k.dbID) as Pub_ModelResModel;
 				var pmrm_color:int;
 				if (null == pmrm)
@@ -520,32 +520,38 @@
 				movie.mattrix(roleList[0], 0);
 				movie.mattrix(roleList[1], 1);
 				movie.mattrix(roleList[3], 3);
-				setType(this.king.name2, movie,king);
-				if (roleList[1]!=null)
+				setType(this.king.name2, movie, king);
+				if (roleList[1] != null)
 				{
-					if (king.roleZT == KingActionEnum.PB)
+					if (roleList[1].mcName.indexOf("Main_31000110") >= 0)
 					{
-						king.roleZT = KingActionEnum.ZOJ_PB;
+						king.roleZT=KingActionEnum.DJ;
+					}
+					else if (king.roleZT == KingActionEnum.PB)
+					{
+						king.roleZT=KingActionEnum.ZOJ_PB;
 					}
 					else if (king.roleZT == KingActionEnum.DJ)
 					{
-						king.roleZT = KingActionEnum.ZOJ_DJ;
+						king.roleZT=KingActionEnum.ZOJ_DJ;
 					}
-				}else{
+				}
+				else
+				{
 					if (king.roleZT == KingActionEnum.ZOJ_PB)
 					{
-						king.roleZT = KingActionEnum.PB;
+						king.roleZT=KingActionEnum.PB;
 					}
 					else if (king.roleZT == KingActionEnum.ZOJ_DJ)
 					{
-						king.roleZT = KingActionEnum.DJ;
+						king.roleZT=KingActionEnum.DJ;
 					}
 				}
 				MapCl.setFangXiang(movie, king.roleZT, king._roleFX, king);
 			}
 		}
 
-		private function setType(mKingName:String, mMovie:ResMc,_mine:King=null):void
+		private function setType(mKingName:String, mMovie:ResMc, _mine:King=null):void
 		{
 			if (mKingName.indexOf(BeingType.HUMAN) >= 0)
 			{
@@ -565,11 +571,15 @@
 			{
 				mMovie.isPick=true;
 			}
+			else if (mKingName.indexOf(BeingType.TRANS) >= 0)
+			{
+				mMovie.isTrans=true;
+			}
 			else
 			{
 				mMovie.isOther=true;
 			}
-			if(_mine!=null&&Data.myKing.king!=null&&Data.myKing!=null&&_mine.masterId==Data.myKing.king.roleID)
+			if (_mine != null && Data.myKing.king != null && Data.myKing != null && _mine.masterId == Data.myKing.king.roleID)
 				mMovie.isMine=true;
 		}
 
@@ -649,7 +659,7 @@
 				else
 					getHeadName().x=0;
 //				if (0 == getHeadName().y || loadByHeadHeight == getHeadName().y)
-					getHeadName().y=(movie.height + headDistance) * -1;
+				getHeadName().y=(movie.height + headDistance) * -1;
 			}
 			else if (this.king.name2.indexOf(ItemType.PICK) >= 0)
 			{
@@ -657,7 +667,7 @@
 					getHeadName().x=0;
 				else
 					getHeadName().x=0;
-				
+
 				if (0 == getHeadName().y || loadByHeadHeight == getHeadName().y)
 					getHeadName().y=(movie.height + headDistance) * -1;
 				movie.isOther=true;
@@ -775,8 +785,9 @@
 			if (!onlyHeadNameColor)
 				updQuan();
 		}
-private var hitMCX:int=0;
-		public function setAction(ZT:String, FX:String, PlayCount:int, PlayOverAct:Function, Frame:int=0,midActionIndex:int = -1,midActionHandler:Function = null):void
+		private var hitMCX:int=0;
+
+		public function setAction(ZT:String, FX:String, PlayCount:int, PlayOverAct:Function, Frame:int=0, midActionIndex:int=-1, midActionHandler:Function=null):void
 		{
 			if (null != FX)
 				_roleFX=FX;
@@ -801,10 +812,10 @@ private var hitMCX:int=0;
 					case KingActionEnum.PB:
 					case KingActionEnum.ZL:
 						ZT=KingActionEnum.ZOJ_PB;
-						
+
 						m_nHitSprite.scaleX=3;
-						m_nHitSprite.x=hitMCX-m_nHitSprite.width*0.3;
-						
+						m_nHitSprite.x=hitMCX - m_nHitSprite.width * 0.3;
+
 						break;
 					case KingActionEnum.GJ:
 					case KingActionEnum.GJ1:
@@ -818,23 +829,27 @@ private var hitMCX:int=0;
 						ZT=KingActionEnum.ZOJ_Dead;
 						break;
 				}
+				if (roleList[1]!=null&&roleList[1].mcName.indexOf("Main_31000110") >= 0)
+				{
+					ZT=KingActionEnum.DJ;
+				}
 			}
 			//只用设主显示的方向
 //			trace(ZT+","+FX)
-			MapCl.setFangXiang(this.getRole(), ZT, FX, Gameking, PlayCount, PlayOverAct, Frame,midActionIndex,midActionHandler);
+			MapCl.setFangXiang(this.getRole(), ZT, FX, Gameking, PlayCount, PlayOverAct, Frame, midActionIndex, midActionHandler);
 			UpdOtherPos();
 		}
-		
-		private var _canShow:Boolean = true;
+
+		private var _canShow:Boolean=true;
 
 
-		public function visibleAll(see:Boolean = true):void
+		public function visibleAll(see:Boolean=true):void
 		{
-			_canShow = !see;
-			this.rect.visible = _canShow;
-			this.effectUp.visible = _canShow;
+			_canShow=!see;
+			this.rect.visible=_canShow;
+			this.effectUp.visible=_canShow;
 		}
-		
+
 		public function get canShow():Boolean
 		{
 			return _canShow;
@@ -952,6 +967,7 @@ private var hitMCX:int=0;
 //				//--------------------------------
 //			}
 		}
+
 		//------------------------ get 区  begin ---------------------------------------------------------------------------
 
 		public function get roleList():Array
@@ -1032,34 +1048,34 @@ private var hitMCX:int=0;
 			}
 			return _rect;
 		}
-		
+
 		private function renderHitSprite():void
 		{
-			var role:ResMc = getRole();
-			if(!role || !role.curBitmap)
+			var role:ResMc=getRole();
+			if (!role || !role.curBitmap)
 				return;
-			var x:int =role.curBitmap.x;
-			var y:int = role.curBitmap.y;
-			var width:int = role.width;
-			var height:int = role.height;
-			if (y==0)
+			var x:int=role.curBitmap.x;
+			var y:int=role.curBitmap.y;
+			var width:int=role.width;
+			var height:int=role.height;
+			if (y == 0)
 			{
-				y  = -height;
+				y=-height;
 			}
 //			if (m_nHitSprite.width == width && m_nHitSprite.height == height)
 //			{
 //				return;
 //			}
-			if(!m_nHitSprite)
+			if (!m_nHitSprite)
 				return;
-			var g:Graphics = m_nHitSprite.graphics;
-			m_nHitSprite.x = -width>>1;
-			m_nHitSprite.y = y;
+			var g:Graphics=m_nHitSprite.graphics;
+			m_nHitSprite.x=-width >> 1;
+			m_nHitSprite.y=y;
 			g.clear();
 			g.beginFill(0);
-			g.drawRect(0,0,width,height);
+			g.drawRect(0, 0, width, height);
 			g.endFill();
-			role.hitArea = m_nHitSprite;
+			role.hitArea=m_nHitSprite;
 			hitMCX=m_nHitSprite.x;
 		}
 		//------------------------ get 区  end ---------------------------------------------------------------------------

@@ -1,5 +1,7 @@
 package ui.base.npc
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_Shop_NormalResModel;
 	import common.config.xmlres.server.Pub_Shop_PageResModel;
@@ -11,7 +13,6 @@ package ui.base.npc
 	import display.components.MoreLessPage;
 	
 	import engine.event.DispatchEvent;
-	import engine.utils.HashMap;
 	
 	import flash.display.MovieClip;
 	import flash.text.TextField;
@@ -20,11 +21,11 @@ package ui.base.npc
 	import netc.dataset.BeiBaoSet;
 	import netc.packets2.StructBagCell2;
 	
+	import ui.base.jineng.Jineng;
+	import ui.base.paihang.PaiHang;
 	import ui.frame.ItemManager;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
-	import ui.base.jineng.Jineng;
-	import ui.base.paihang.PaiHang;
 	
 	/**
 	 *	npc商店

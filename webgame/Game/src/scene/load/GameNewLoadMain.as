@@ -12,9 +12,16 @@
 	import com.bellaxu.res.ResMcMgr;
 	import com.bellaxu.res.ResTool;
 	import com.bellaxu.util.StageUtil;
+	import com.lab.config.Global;
+	import com.lab.core.BasicObject;
+	import com.lab.events.CustomEvent;
+	import com.lab.events.SceneEvent;
 	
 	import common.utils.AsToJs;
 	
+	import engine.load.GamelibS;
+	
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
@@ -74,9 +81,9 @@
 		private function CPlayerMapChange(p:PacketSCMapSend2):void
 		{
 			mapSendP=p;
-
 			FirstInGame=false;
-
+			Global.userX = p.mapx;
+			Global.userY = p.mapy;
 //			if (null != Data.myKing.king)
 //			{
 //				(Data.myKing.king as King).setKingPosXY(p.mapx,p.mapy);
@@ -96,7 +103,10 @@
 			switch (Data.myKing.mapid)
 			{
 				case 20220032:
-					FubenTips.show(360, "有一种感情叫兄弟", "有一处圣地叫沙城", "还记得那热血激情吗");
+					FubenTips.show(360,GamelibS.getswflink("game_index","MapTips20220032") as Sprite);
+					break;
+				case 20220041:
+					FubenTips.show(360,GamelibS.getswflink("game_index","MapTips20220041") as Sprite);
 					break;
 				case 20220040:
 					SysConfig.getInstance().setMonsterBoolBar(true);
@@ -180,9 +190,11 @@
 			MapBlockContainer.getInstance().clear();
 			ResTool.clearWhenChangeMap();
 			Body.instance.sceneKing.DelAll();
-			ResMcMgr.timeGc();
+//			ResMcMgr.timeGc();
 			//2012-07-23 andy 切换地图停止播放声音
 			MusicMgr.changeMap();
+			
+			
 		}
 
 		public function ChangeAndSetMapData(map_id:int):void
@@ -190,7 +202,10 @@
 			if (lastMapId == map_id) //同一张地图不在重复地图资源配置加载
 				return;
 			lastMapId=map_id;
+			//场景初始化
+			BasicObject.messager.dispatchEvent(new CustomEvent(SceneEvent.SCENE_INIT,map_id));
 			SceneManager.MapInLoading=true;
+			
 			MapLoader.ReadData(ReadDataRecv, map_id);
 		}
 

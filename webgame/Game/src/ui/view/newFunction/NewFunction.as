@@ -1,5 +1,7 @@
 package ui.view.newFunction
 {
+	import com.bellaxu.mgr.TimerMgr;
+	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_Interface_ClewResModel;
 	import common.utils.clock.GameClock;
@@ -68,12 +70,14 @@ package ui.view.newFunction
 			mc["txt_desc"].text=item.para1;
 //			mc["uil"].source=FileManager.instance.getFunIconById(item.res_id);
 			ImageUtils.replaceImage(mc,mc["uil"],FileManager.instance.getFunIconById(item.res_id));
-			GameClock.instance.addEventListener(WorldEvent.CLOCK_FIVE_SECOND, timerHandler);
+//			GameClock.instance.addEventListener(WorldEvent.CLOCK_FIVE_SECOND, timerHandler);
+			TimerMgr.getInstance().add(300000,timerHandler);
 		}
 
-		private function timerHandler(te:TextEvent):void
+		private function timerHandler(te:TextEvent=null):void
 		{
-			GameClock.instance.removeEventListener(WorldEvent.CLOCK_SECOND, timerHandler);
+//			GameClock.instance.removeEventListener(WorldEvent.CLOCK_SECOND, timerHandler);
+			TimerMgr.getInstance().remove(timerHandler);
 			super.winClose();
 		}
 

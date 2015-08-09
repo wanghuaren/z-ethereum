@@ -1,5 +1,7 @@
 package netc.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.PubData;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_ExpResModel;
@@ -11,7 +13,6 @@ package netc.dataset
 	import engine.event.DispatchEvent;
 	import engine.net.dataset.VirtualSet;
 	import engine.support.IPacket;
-	import engine.utils.HashMap;
 	
 	import flash.utils.clearTimeout;
 	import flash.utils.getTimer;
@@ -30,7 +31,6 @@ package netc.dataset
 	import scene.action.Action;
 	import scene.action.FightAction;
 	import scene.action.hangup.GamePlugIns;
-	import scene.human.GameHuman;
 	import scene.king.ActionDefine;
 	import scene.king.IGameKing;
 	import scene.king.King;
@@ -124,6 +124,7 @@ package netc.dataset
 			}
 			if (attackId > 0 && !FightAction.isSkillPlaying() && false == this.king.fightInfo.turning)
 			{
+//				if (this.king.getSkill().basicAttackEnabled == false || isAutoAttackTarget)
 				if (this.king.getSkill().basicAttackEnabled == false)
 				{
 					//如果玩家不是用普通技能攻击，则取消连续攻击
@@ -158,6 +159,7 @@ package netc.dataset
 				}
 			}
 		}
+//		public static var isAutoAttackTarget:Boolean=false;
 
 		/**
 		 * 延迟清除反击锁定ID
@@ -1543,6 +1545,7 @@ package netc.dataset
 		public static const EXP_UPDATE:String="EXP_UPD";
 		public static const EXP2_UPDATE:String="EXP_UPD";
 		public static const COIN_UPDATE:String="COIN_UPD";
+		public static const COIN6_UPDATE:String="COIN6_UPD";
 		public static const COIN4_UPDATE:String="COIN4_UPD";
 		public static const LEVEL_UPDATE:String="LEVEL_UPD";
 		public static const ICON_UPDATE:String="ICON_UPD";
@@ -1859,7 +1862,8 @@ package netc.dataset
 
 			if (-1 != p.coin6)
 			{
-//				param.push({type: "coin6", count: (p.coin6 - coin6)});
+				//				param.push({type: "coin6", count: (p.coin6 - coin6)});
+				this.dispatchEvent(new DispatchEvent(COIN6_UPDATE, {count:p.coin6 - coin6}));
 				coin6=p.coin6;
 			}
 			if (-1 != p.Value6)
@@ -2348,7 +2352,7 @@ package netc.dataset
 				//PSF_GET_BUY_VIP_PRIZE = 26, //是否领取过VIP奖励
 				ZhiZunVIP.setHAS_BUY_VIP(FIRST_BUY_TOPVIP);
 				ZhiZunVIP.setGET_BUY_VIP_PRIZE(BitUtil.getOneToOne(p.SpecialFlag, 26, 26));
-				
+
 				if (BitUtil.getOneToOne(p.SpecialFlag, 31, 31) == 1)
 				{
 					ControlButton.isFirstPay=false;

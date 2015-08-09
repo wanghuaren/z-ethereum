@@ -371,11 +371,12 @@ package ui.base.paihang
 				case 12:
 				case 18:	
 					mc["m_role"].visible=true;
+					mc["txt_mingZi"].text=curData.name;
 					var skin:Sprite=FileManager.instance.getWindowSkinUrl(curPlayer.s0, curPlayer.s1, curPlayer.s2, curPlayer.s3, curPlayer.sex, curPlayer.metier, curPlayer.roleid);
 					while (mc["m_role"].numChildren > 0)
 						mc["m_role"].removeChildAt(0);
 					mc["m_role"].addChild(skin);
-
+					
 					//显示装备
 					clearEquipItem();
 					var arr:Vector.<StructRankEquipInfo2>=p.arrItemequipInfo;

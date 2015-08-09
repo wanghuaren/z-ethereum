@@ -1,10 +1,11 @@
 package ui.frame
 {
+	import com.engine.utils.HashMap;
+	
 	import common.utils.CtrlFactory;
 	import common.utils.res.ResCtrl;
 	
 	import engine.load.GamelibS;
-	import engine.utils.HashMap;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -1259,7 +1260,65 @@ package ui.frame
 				return sp;
 			}
 		}
-
+		
+		/**
+		 *	战力神兵
+		 */
+		private var _mapitem_zl_sb:HashMap;
+		public function get mapitem_zl_sb():HashMap
+		{
+			if (null == _mapitem_zl_sb)
+			{
+				_mapitem_zl_sb=new HashMap();
+			}
+			
+			return _mapitem_zl_sb;
+			
+		}
+		public function getZLSB(id:int):Sprite
+		{
+			if (mapitem_zl_sb.containsKey(id))
+			{
+				return mapitem_zl_sb.get(id);
+			}
+			else
+			{
+				var c:Class=GamelibS.getswflinkClass("game_index", "item_zl_sb");
+				var sp:Sprite=new c() as Sprite;
+				mapitem_zl_sb.put(id, sp);
+				return sp;
+			}
+		}
+		/**
+		 *	战力角色
+		 */
+		private var _mapitem_zl_js:HashMap;
+		public function get mapitem_zl_js():HashMap
+		{
+			if (null == _mapitem_zl_js)
+			{
+				_mapitem_zl_js=new HashMap();
+			}
+			
+			return _mapitem_zl_js;
+			
+		}
+		public function getZLJS(id:int):Sprite
+		{
+			if (mapitem_zl_js.containsKey(id))
+			{
+				return mapitem_zl_js.get(id);
+			}
+			else
+			{
+				var c:Class=GamelibS.getswflinkClass("game_index", "item_zl_js");
+				var sp:Sprite=new c() as Sprite;
+				mapitem_zl_js.put(id, sp);
+				return sp;
+			}
+		}
+		
+		
 		/**
 		 *
 		 */
@@ -1482,10 +1541,10 @@ package ui.frame
 					if (v1.hasOwnProperty("data") && v1.data != null && v1.data.hasOwnProperty("toolColor"))
 					{
 						mc_color.gotoAndStop(v1.data.toolColor);
-//						var mc_effect:MovieClip=mc_color.getChildByName("mc_effect") as MovieClip;
-//						if(mc_effect!=null){
-//							mc_effect.visible=(v1.data.effect==1||v1.data.toolColor>=5);
-//						}	
+						var mc_effect:MovieClip=mc_color.getChildByName("mc_effect") as MovieClip;
+						if(mc_effect!=null){
+							mc_effect.visible=(v1.data.effect==1);
+						}	
 					}
 				}
 			}
@@ -1643,6 +1702,10 @@ package ui.frame
 			ImageUtils.cleanImage(mc);
 			if (mc["txt_num"] != null)
 				mc["txt_num"].text="";
+			if (mc["txt_star"]!=null)
+			{
+				mc["txt_star"].text="";				
+			}
 			CtrlFactory.getUIShow().removeTip(mc);
 			ItemManager.instance().setEquipFace(mc, false);
 		}

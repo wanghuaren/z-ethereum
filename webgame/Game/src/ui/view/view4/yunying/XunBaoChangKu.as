@@ -1,32 +1,17 @@
 package ui.view.view4.yunying
 {
 	import common.config.PubData;
-	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.*;
 	import common.managers.Lang;
 	import common.utils.CtrlFactory;
 	import common.utils.StringUtils;
-	import common.utils.clock.GameClock;
 	import common.utils.drag.MainDrag;
 	
 	import engine.event.DispatchEvent;
-	import engine.load.GamelibS;
-	import engine.support.IPacket;
-	import engine.utils.HashMap;
-	
-	import flash.display.DisplayObject;
-	import flash.display.MovieClip;
-	import flash.display.Sprite;
-	import flash.events.FocusEvent;
-	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.text.TextField;
-	import flash.utils.setTimeout;
 	
 	import model.yunying.XunBaoModel;
 	
 	import netc.Data;
-	import netc.DataKey;
 	import netc.dataset.*;
 	import netc.packets2.*;
 	
@@ -34,15 +19,10 @@ package ui.view.view4.yunying
 	
 	import ui.base.beibao.BeiBao;
 	import ui.base.beibao.Store;
-	import ui.base.npc.NpcShop;
-	import ui.base.vip.VipGift;
 	import ui.frame.ImageUtils;
 	import ui.frame.ItemManager;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
-	
-	import world.FileManager;
-	import world.WorldEvent;
 	
 	
 	/**
@@ -91,7 +71,7 @@ package ui.view.view4.yunying
 		private function dragUpHandler(e:DispatchEvent):void
 		{
 			var start:Object=MainDrag.currTarget;
-			var startData:StructBagCell2=start.data;
+			var startData:StructBagCell2=start.data as StructBagCell2;
 			var end:Object=e.getInfo;
 			
 			if (start != null && start.parent == mc)
@@ -306,6 +286,7 @@ package ui.view.view4.yunying
 					
 					mc[_picName]['txt_num'].text = StringUtils.changeToTenThousand(_Cell.num);
 //					mc[_picName]['uil'].source=_Cell.icon;  
+					mc[_picName]["lengque"].visible=false;
 					ImageUtils.replaceImage(mc[_picName],mc[_picName]["uil"],_Cell.icon);
 					mc[_picName]["data"]=_Cell;
 					CtrlFactory.getUIShow().addTip(mc[_picName]);      

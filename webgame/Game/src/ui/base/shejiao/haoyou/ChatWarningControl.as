@@ -1,18 +1,15 @@
 package ui.base.shejiao.haoyou
 {
+	import com.engine.utils.HashMap;
 	import com.greensock.TweenLite;
 	
-	import common.config.GameIni;
 	import common.managers.Lang;
 	
-	import engine.event.DispatchEvent;
 	import engine.load.GamelibS;
-	import engine.utils.HashMap;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	import flash.utils.setTimeout;
 	
 	import netc.Data;
 	import netc.DataKey;
@@ -22,8 +19,6 @@ package ui.base.shejiao.haoyou
 	import nets.packets.PacketCSSayRoleInfo;
 	
 	import ui.base.mainStage.UI_index;
-	
-	import world.FileManager;
 
 	/**
 	 *	好友信息提醒控制【私聊】

@@ -1,9 +1,10 @@
 package netc.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import common.utils.bit.BitUtil;
 	
 	import engine.net.dataset.VirtualSet;
-	import engine.utils.HashMap;
 	
 	import netc.packets2.PacketSCInstanceRank2;
 	import netc.packets2.StructInstanceRankPlayerInfo2;

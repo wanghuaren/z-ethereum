@@ -1,13 +1,11 @@
 package scene.skill2
 {
+	import com.engine.utils.HashMap;
+	
 	import common.utils.clock.GameClock;
 	
-	import engine.utils.HashMap;
-	
 	import netc.Data;
-	import netc.packets2.PacketSCPetData2;
 	
-	import scene.action.Action;
 	import scene.king.IGameKing;
 	import scene.manager.SceneManager;
 	

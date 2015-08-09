@@ -1,7 +1,7 @@
 package ui.view.zhenbaoge
 {
 	import com.bellaxu.res.ResMc;
-	
+
 	import common.config.PubData;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.XmlRes;
@@ -10,42 +10,42 @@ package ui.view.zhenbaoge
 	import common.managers.Lang;
 	import common.utils.AsToJs;
 	import common.utils.CtrlFactory;
-	
+
 	import display.components.MoreLess;
 	import display.components.MoreLessPage;
-	
+
 	import engine.event.DispatchEvent;
-	
+
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	import flash.utils.Dictionary;
-	
+
 	import main.ProgramTest;
-	
+
 	import netc.Data;
 	import netc.dataset.MyCharacterSet;
 	import netc.packets2.StructBagCell2;
 	import netc.packets2.StructTreasureGoodsInfo2;
-	
+
 	import nets.packets.PacketCSTreasureShopBuy;
 	import nets.packets.PacketCSTreasureShopQuery;
 	import nets.packets.PacketCSTreasureShopTryOn;
 	import nets.packets.PacketSCTreasureShopBuy;
 	import nets.packets.PacketSCTreasureShopQuery;
 	import nets.packets.PacketSCTreasureShopTryOn;
-	
+
 	import scene.king.SkinByWin;
 	import scene.music.GameMusic;
 	import scene.music.WaveURL;
-	
+
 	import ui.base.vip.ChongZhi;
 	import ui.frame.ImageUtils;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
 	import ui.view.view8.YBExtractWindow;
-	
+
 	import world.FileManager;
 	import world.model.file.BeingFilePath;
 
@@ -70,7 +70,7 @@ package ui.view.zhenbaoge
 		private var currentScanPageNum:int=1;
 		private var totalScanPageNum:int=1;
 		//方向
-		private var fangXiang:int = 1;
+		private var fangXiang:int=1;
 		private var skinShiZhuang:SkinByWin;
 
 		public function ZhenBaoGeWin()
@@ -96,6 +96,7 @@ package ui.view.zhenbaoge
 		{
 			return 594;
 		}
+
 		override public function get height():Number
 		{
 			return 567;
@@ -154,13 +155,14 @@ package ui.view.zhenbaoge
 				this.currentItemDataSource=target.parent.data1;
 //				this.showItemBuyPanel();
 				this.currentBuyCount=target.parent["ui_count"].value;
-			
+
 				//2014-07-29
-				if(this.type==6){
+				if (this.type == 6)
+				{
 					AsToJs.callJS("payment", this.currentItemDataSource.ibs);
 					return;
 				}
-				
+
 				this.buyItem();
 				return;
 			}
@@ -246,30 +248,30 @@ package ui.view.zhenbaoge
 				case "yuLanBtn":
 					var showid:int=target.parent["showid"];
 					var sex:int=target.parent["sex"];
-					tryOn(showid,sex);                                   //时装预览
+					tryOn(showid, sex); //时装预览
 					break;
 				case "rightBtn":
 					var showid1:int=target.parent["showid"];
 					fangXiang--;
-					if(fangXiang < 1)
+					if (fangXiang < 1)
 					{
-						fangXiang = 8;
+						fangXiang=8;
 					}
-					if(skinShiZhuang.getRole())   //切换方向
+					if (skinShiZhuang.getRole()) //切换方向
 					{
-						skinShiZhuang.getRole().gotoAndPlay("D1F" + fangXiang.toString());
+						skinShiZhuang.setAction("F"+fangXiang);
 					}
 					break;
 				case "leftBtn":
 					var showid2:int=target.parent["showid"];
 					fangXiang++;
-					if(fangXiang > 8)
+					if (fangXiang > 8)
 					{
-						fangXiang = 1;
+						fangXiang=1;
 					}
-					if(skinShiZhuang.getRole())      //切换方向
+					if (skinShiZhuang.getRole()) //切换方向
 					{
-						skinShiZhuang.getRole().gotoAndPlay("D1F" + fangXiang.toString());
+						skinShiZhuang.setAction("F"+fangXiang);
 					}
 					break;
 				default:
@@ -381,8 +383,8 @@ package ui.view.zhenbaoge
 				mcGrid=this.mc["item_" + i];
 				(mcGrid["ui_count"] as MoreLess).showCount(1);
 
-				
-				
+
+
 				if (info == null)
 				{
 					mcGrid.visible=false;
@@ -392,13 +394,13 @@ package ui.view.zhenbaoge
 				else
 				{
 					//预览按钮是否显示
-					if(info.isshow == 1)
+					if (info.isshow == 1)
 					{
-						mcGrid["yuLanBtn"].visible = true;
+						mcGrid["yuLanBtn"].visible=true;
 					}
 					else
 					{
-						mcGrid["yuLanBtn"].visible = false;
+						mcGrid["yuLanBtn"].visible=false;
 					}
 					mcGrid.visible=true;
 					cell=new StructBagCell2();
@@ -471,15 +473,14 @@ package ui.view.zhenbaoge
 		/**
 		 * 试穿
 		 */
-		private function tryOn(showid:int,sex:int):void//str:String = "F1", bool:Boolean = true):void   //
+		private function tryOn(showid:int, sex:int):void //str:String = "F1", bool:Boolean = true):void   //
 		{
-			if(this.mc["mcTryOnPanel"].visible == false)
+			if (this.mc["mcTryOnPanel"].visible == false)
 			{
 				this.mc["mcTryOnPanel"].visible=true;
 				this.mc["mcTryOnPanel"]["petC"].visible=true;
-				skinShiZhuang = new SkinByWin("F1");
-				var path:BeingFilePath=FileManager.instance.getMainByHumanId(Data.myKing.king.s0, 0, showid, Data.myKing.king.s3, 
-					sex);
+				skinShiZhuang=new SkinByWin("F1");
+				var path:BeingFilePath=FileManager.instance.getMainByHumanId(Data.myKing.king.s0, 0, showid, Data.myKing.king.s3, sex);
 				path.rightHand = FileManager.instance.getRightHand(Data.myKing.metier);
 				skinShiZhuang.setSkin(path);
 				while (this.mc["mcTryOnPanel"]["petC"].numChildren > 0)
@@ -492,7 +493,7 @@ package ui.view.zhenbaoge
 			{
 //				if(bool)
 //				{
-					this.mc["mcTryOnPanel"].visible=false;
+				this.mc["mcTryOnPanel"].visible=false;
 //				}
 			}
 //			this.mc["mcTryOnPanel"]["petC"].visible=true;
@@ -507,30 +508,30 @@ package ui.view.zhenbaoge
 //			(Data.myKing.king.s0 as MovieClip).gotoAndPlay("D2F2");
 //			this.mc["mcTryOnPanel"]["petC"].addChild(Data.myKing.king.);
 //			var skin:Sprite=FileManager.instance.getWindowSkinUrl(Data.myKing.s0, Data.myKing.s1, showid, Data.myKing.s3, Data.myKing.sex, Data.myKing.metier, Data.myKing.roleID, 0);
-			/*if (this.mc["mcTryOnPanel"].visible == false)
-			{
-				this.mc["mcTryOnPanel"].visible=true;
-			}
-			this.mc["btnPrev"].visible=this.mc["btnNext"].visible=this.totalScanPageNum > 1;
-			if (this.totalScanPageNum > 1)
-			{
-				this.mc["btnPrev"].gotoAndStop(2);
-				this.mc["btnNext"].gotoAndStop(1);
-			}
-			if (this.iconLoadFromLocal)
-			{
-				character.visible=false;
-				this.mc["petC"].visible=true;
+		/*if (this.mc["mcTryOnPanel"].visible == false)
+		{
+			this.mc["mcTryOnPanel"].visible=true;
+		}
+		this.mc["btnPrev"].visible=this.mc["btnNext"].visible=this.totalScanPageNum > 1;
+		if (this.totalScanPageNum > 1)
+		{
+			this.mc["btnPrev"].gotoAndStop(2);
+			this.mc["btnNext"].gotoAndStop(1);
+		}
+		if (this.iconLoadFromLocal)
+		{
+			character.visible=false;
+			this.mc["petC"].visible=true;
 //				this.mc["petC"].source=FileManager.instance.getPetSkinById(this.tryOnItemId);
-				ImageUtils.replaceImage(mc,mc["petC"],FileManager.instance.getPetSkinById(this.tryOnItemId));
-				return;
-			}
-			this.mc["petC"].visible=false;
-			var list:Vector.<int>=new Vector.<int>();
-			list.push(this.tryOnItemId);
-			var p:PacketCSTreasureShopTryOn=new PacketCSTreasureShopTryOn();
-			p.arrItemitemids=list;
-			this.uiSend(p);*/
+			ImageUtils.replaceImage(mc,mc["petC"],FileManager.instance.getPetSkinById(this.tryOnItemId));
+			return;
+		}
+		this.mc["petC"].visible=false;
+		var list:Vector.<int>=new Vector.<int>();
+		list.push(this.tryOnItemId);
+		var p:PacketCSTreasureShopTryOn=new PacketCSTreasureShopTryOn();
+		p.arrItemitemids=list;
+		this.uiSend(p);*/
 		}
 
 		/**
@@ -616,7 +617,7 @@ package ui.view.zhenbaoge
 					if (btnTab.visible == true)
 					{
 						btnTab.x=startX;
-						startX+=btnTab.width +2;
+						startX+=btnTab.width + 2;
 					}
 					tabCount++;
 				}
@@ -641,35 +642,35 @@ package ui.view.zhenbaoge
 //			this.mc["btnPrev"].visible=this.mc["btnNext"].visible=false;
 			this.currentScanPageNum=this.totalScanPageNum=1;
 		}
-		
+
 		private function getFangXiangStr(num:int):String
 		{
 			var str:String;
-			switch(num)
+			switch (num)
 			{
 				case 1:
-					str = "F1";
+					str="F1";
 					break;
 				case 2:
-					str = "F2";
+					str="F2";
 					break;
 				case 3:
-					str = "F3";
+					str="F3";
 					break;
 				case 4:
-					str = "F4";
+					str="F4";
 					break;
 				case 5:
-					str = "F5";
+					str="F5";
 					break;
 				case 6:
-					str = "F6";
+					str="F6";
 					break;
 				case 7:
-					str = "F7";
+					str="F7";
 					break;
 				case 8:
-					str = "F8";
+					str="F8";
 					break;
 			}
 			return str;

@@ -1,16 +1,13 @@
 package netc.dataset
 {
-	import engine.net.dataset.VirtualSet;
-	import engine.utils.HashMap;
+	import com.engine.utils.HashMap;
 	
-	import model.guest.NewGuestModel;
+	import engine.net.dataset.VirtualSet;
 	
 	import netc.DataKey;
 	import netc.packets2.*;
 	
 	import nets.packets.*;
-	
-	import ui.view.zuoqi.ZuoQiMain;
 	
 	
 

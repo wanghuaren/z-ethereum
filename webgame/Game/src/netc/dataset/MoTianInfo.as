@@ -1,6 +1,7 @@
 package netc.dataset
 {
-	import engine.utils.HashMap;
+	import com.engine.utils.HashMap;
+	
 
 	public class MoTianInfo
 	{

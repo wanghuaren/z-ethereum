@@ -53,13 +53,14 @@ package ui.view.view1.xiaoGongNeng
 		override protected function init():void 
 		{
 			super.init();
-			this.x = GameIni.MAP_SIZE_W - mc.width - 10 ;
-			this.y = GameIni.MAP_SIZE_H-mc.height;
+			this.x = GameIni.MAP_SIZE_W - 600 ;
+			this.y = GameIni.MAP_SIZE_H-330;
 			setIconFun();
 		}
 		
 		private function setIconFun():void
 		{
+			if(autoUseArr==null)return;
 			for(var i:int = 1;i<7;i++){
 				child = mc["item"+i.toString()];
 				var goods:StructBagCell2 = autoUseArr[i-1];
@@ -142,7 +143,9 @@ package ui.view.view1.xiaoGongNeng
 				}
 			}
 			if(bool){
-				if(this.isOpen==false && SysConfig.isUseAuto()){
+//				if(this.isOpen==false && SysConfig.isUseAuto()){
+				//默认自动使用
+				if(this.isOpen==false){
 					WuPinShiYongTiShi.instance().open();
 					
 				}

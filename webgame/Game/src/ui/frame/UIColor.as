@@ -1,11 +1,14 @@
 ﻿package ui.frame {
 	//颜色滤镜类
 	//setColor(n:1=正常颜色,2=去掉颜色,3正常高亮,4=去色高亮,5=描边发光)
+	import com.bellaxu.def.FilterDef;
+	
 	import flash.display.MovieClip;
-	import flash.filters.ColorMatrixFilter;
 	import flash.filters.BitmapFilter;
-	import flash.filters.GlowFilter;
 	import flash.filters.BitmapFilterQuality;
+	import flash.filters.ColorMatrixFilter;
+	import flash.filters.GlowFilter;
+
 	public class UIColor {
 		private var _array:Array=[];
 
@@ -57,16 +60,8 @@
 		}
 
 		private function getBitmapFilter():BitmapFilter {
-			var color:Number=0xFFFFFF;
-			var alpha:Number=0.7;
-			var blurX:Number=3;
-			var blurY:Number=3;
-			var strength:Number=8;
-			var inner:Boolean=false;
-			var knockout:Boolean=false;
-			//var quality:Number=BitmapFilterQuality.HIGH;
-			var quality:Number=BitmapFilterQuality.LOW;
-			return new GlowFilter(color,alpha,blurX,blurY,strength,quality,inner,knockout);
+//			return FilterDef.UI_COLOR_FILTER;
+			return 0;
 		}
 	}
 }

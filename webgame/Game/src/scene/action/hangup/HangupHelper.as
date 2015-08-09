@@ -144,21 +144,36 @@ package scene.action.hangup
 		 */		
 		private var m_time:int;
 		private var m_lastTime:int = -1;
-		public function isTooMuchMonsterPos():Boolean
+		public function isTooMuchPlugInsPos():Boolean
 		{
 			m_time = getTimer();
 			var _tTime:int = 0;
 			_tTime = m_time - m_lastTime;
 			
-			if(_tTime >= 3000)
+			if(_tTime >= 6000)
 			{
 				m_lastTime = m_time;
 				return false;
 			}
 			
 			return true;
+		}
+		private var m_time2:int;
+		private var m_lastTime2:int = -1;
+		public function isTooMuchMonsterPos():Boolean
+		{
+			m_time2 = getTimer();
+			var _tTime:int = 0;
+			_tTime = m_time2 - m_lastTime2;
+			
+			if(_tTime >= 3000)
+			{
+				m_lastTime2 = m_time2;
+				return false;
+			}
+			
+			return true;
 		}	
-		
 	}
 }
 

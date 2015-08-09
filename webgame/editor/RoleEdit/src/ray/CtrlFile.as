@@ -18,11 +18,11 @@ package ray
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
-
+	
 	import mx.controls.Alert;
 	import mx.core.UIComponent;
 	import mx.graphics.codec.PNGEncoder;
-
+	
 	import spark.components.TextArea;
 
 	public final class CtrlFile
@@ -43,7 +43,7 @@ package ray
 		private var middleInfo:Array=[];
 		public const ACTION:int=13;
 		public const DIRECT:int=5;
-		public var main_win:XHGameRoleEditor
+		public var main_win:GameEditorR
 
 		public static function get instance():CtrlFile
 		{

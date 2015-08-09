@@ -189,8 +189,8 @@ package ui.base.renwu
 			}
 			else
 			{
-				TweenLite.to(mc["mc_normalTask_bg"], 2, {alpha: 0});
-				TweenLite.to(mc['specialTask']['task_bg'], 2, {alpha: 0});
+				TweenLite.to(mc["mc_normalTask_bg"], 2, {alpha: 0.5});
+				TweenLite.to(mc['specialTask']['task_bg'], 2, {alpha: 0.5});
 				TweenLite.to(mc_normal_task['spMission']['scroll'], 2, {alpha: 0});
 			}
 		}
@@ -218,6 +218,9 @@ package ui.base.renwu
 			m_mcTip=mc['mc_task_do'];
 			mc_special_task=mc["specialTask"];
 
+			//指引箭头特殊处理
+			UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].stop();
+			
 			if (null != mc_special_task["mc_effect"])
 			{
 				mc_special_task["mc_effect"].mouseEnabled=false;
@@ -437,7 +440,16 @@ package ui.base.renwu
 
 		public function setmc_rowVisible(_isShow:Boolean):void
 		{
-			UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=_isShow;
+			var rowMc:MovieClip = UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"];
+			rowMc.visible = _isShow;
+			if (_isShow)
+			{
+				rowMc.play();
+			}
+			else
+			{
+				rowMc.stop();
+			}
 		}
 
 		/**
@@ -447,7 +459,8 @@ package ui.base.renwu
 		{
 			if (inCopy)
 			{ //在副本中
-				UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=false;
+//				UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=false;
+				setmc_rowVisible(false);
 				MissionMain.nextList=(p as PacketSCTaskNextList2).arrItemtasklist;
 			}
 			else
@@ -455,14 +468,16 @@ package ui.base.renwu
 				MissionMain.nextList=(p as PacketSCTaskNextList2).arrItemtasklist;
 				var len:int=MissionMain.nextList.length;
 				//引导隐藏
-				UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=false;
+//				UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=false;
+				setmc_rowVisible(false);
 				for (var i:int=0; i < len; i++)
 				{
 					fillNext(nextList[i]);
 					if (nextList[i].access_guide == 1)
 					{
 						//x显示引导
-						UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=true;
+//						UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=true;
+						setmc_rowVisible(true);
 					}
 				}
 
@@ -777,6 +792,7 @@ package ui.base.renwu
 		//已接任务改变
 		public function userTaskChange(isSort:Boolean=true):void
 		{
+			if(taskList==null||renwuEvent==null) return;
 			//找到已接任务中的任务怪
 			_taskMonsterList(taskList);
 
@@ -830,6 +846,7 @@ package ui.base.renwu
 			var selectList:Object;
 			var value:String="";
 			var status:String="";
+			var menu:String="";
 			var result:String="";
 			var arrayLen:int=0;
 			selectList=sortTaskList();
@@ -839,9 +856,10 @@ package ui.base.renwu
 			
 			var shenWu60Index:int=getSheWuIndex(selectList);
 			
-			var shenWu60:String="<font color='#4a9afe'>【福利】</font><font color='#fcc738'>极品神武、酷炫坐骑</font><a href='event:9999'> <u><font color='#8afd5c'>领取</font></u></a>\n\n";
+			var shenWu60:String="<font color='#00fcff'>[福利]</font>极品神武、酷炫坐骑<a href='event:9999'> <u><font color='#49ff00'>领取</font></u></a>\n\n";
 			for (var i:int=0; i < arrayLen; i++)
 			{
+				status="";
 				taskMode=XmlManager.localres.getPubTaskXml.getResPath(selectList[i].taskid) as Pub_TaskResModel;
 	
 				if (taskMode == null)
@@ -852,22 +870,15 @@ package ui.base.renwu
 				}
 				selectList[i].sendNpc=taskMode.send_npc;
 
-				status="【" + Renwu.getTaskSort(taskMode.left_title) + "】";
+				menu="[" + Renwu.getTaskSort(taskMode.left_title) + "]";
 
 				var king_level:String=int(taskMode.min_level) > 9 ? (taskMode.min_level + "") : (taskMode.min_level + "");
 
-				//status=status + "【" + king_level + "】" + taskMode.task_title + "(" + Renwu.getTaskStatus(selectList[i]['status']) + ")";
-				status=status + taskMode.task_title + "(" + Renwu.getTaskStatus(selectList[i]['status']) + ")";
-
-				//如果是环任务
-				//					if (array[i].task_sort == 4 && array[i].hasOwnProperty("ring"))
-				//					{
-				//						status=status + " " + array[i].ring + "/" + array[i].cycle;
-				//					}
+				status=status + taskMode.task_title + "<font color='#fd721f'>(" + Renwu.getTaskStatus(selectList[i]['status']) + ")</font>";
 
 				if (selectList[i]['status'] == 3)
 				{
-
+					//回复
 					npc=XmlManager.localres.getNpcXml.getResPath(taskMode.submit_npc) as Pub_NpcResModel;
 					if (npc != null)
 						result=" -" + Lang.getLabel("20049_RenWu") + " " + Renwu.getChuanSongText(npc.npc_id) + "\n";
@@ -877,6 +888,7 @@ package ui.base.renwu
 				}
 				else if (selectList[i]['status'] == 2)
 				{
+					//击杀
 					result=Renwu.getTaskResult(selectList[i].taskid, selectList[i].arrItemstate);
 				}
 				else if (selectList[i]['status'] == 0)
@@ -889,6 +901,7 @@ package ui.base.renwu
 				}
 				else
 				{
+					//与XX对话
 					npc=XmlManager.localres.getNpcXml.getResPath(taskMode.send_npc) as Pub_NpcResModel;
 					//result=" -"+Lang.getLabel("20069_RenWu",[Renwu.getChuanSongText(npc.npc_id)+"\n"]);
 					if (npc != null)
@@ -905,7 +918,7 @@ package ui.base.renwu
 				else
 				{
 					color=Renwu.getColorBySort(taskMode.task_sort);
-					value=value + "<font color='" + color + "'>" + status + "</font>\n" + result;
+					value=value + "<font color='" + color + "'>" + menu + "</font>"+status +"\n" + result;
 					value+="\n";
 				}
 				//2014-09-28 60级极品神武、酷炫坐骑
@@ -1187,12 +1200,13 @@ package ui.base.renwu
 			if (stl.submit_guide == 1)
 			{
 				//显示引导
-				UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=true;
+//				UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=true;
+				setmc_rowVisible(true);
 			}
 			else
 			{
-
-				UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=false;
+//				UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=false;
+				setmc_rowVisible(false);
 			}
 			//NewGuestTask.getInstance().taskCanSubmit(stl.taskid);
 
@@ -1349,8 +1363,10 @@ package ui.base.renwu
 			{
 				case FuBenEvent.FU_BEN_EVENT_ENTRY:
 					_instance.inCopy=true;
-					UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=false;
+//					UI_index.indexMC_mrt["missionMain"]["normalTask"]["mc_row"].visible=false;
+					setmc_rowVisible(false);
 					UI_index.indexMC_mrt["missionMain"]["normalTask"]['mc_fuben_panel']["mc_row"].visible=false;
+					UI_index.indexMC_mrt["missionMain"]["normalTask"]['mc_fuben_panel']["mc_row"].stop();
 					UI_index.indexMC["mrt"]["missionMain"].visible=true;
 					UI_index.indexMC["mrt"]["missionHide"].visible=false;
 					UI_index.indexMC["mrt"]["missionHide2"].visible=false;
@@ -1371,8 +1387,10 @@ package ui.base.renwu
 					}
 					if(SceneManager.instance.showGuaJiRow()){
 						UI_index.indexMC_mrb["mc_row"].visible=true;
+						UI_index.indexMC_mrb["mc_row"].play();
 					}else{
 						UI_index.indexMC_mrb["mc_row"].visible=false;
+						UI_index.indexMC_mrb["mc_row"].stop();
 					}
 					break;
 				case FuBenEvent.FU_BEN_EVENT_LEAVE:
@@ -1514,7 +1532,7 @@ package ui.base.renwu
 					Lang.addTip(_mc['btnFangZhi1'],"10044_zmg");
 					Lang.addTip(_mc['btnFangZhi2'],"10045_zmg");
 					Lang.addTip(_mc['btnZMGRefresh'],"10046_zmg");
-					Lang.addTip(_mc['btnZMGDesc'],"10047_zmg");
+					Lang.addTip(_mc['btnZMGDesc'],"10047_zmg",350);
 					
 					break;
 				case 100011200: //天书副本
@@ -1731,8 +1749,7 @@ package ui.base.renwu
 				case 121:
 					var _sexGirlID:int=_callback.arrItemintparam[0].intparam + 1;
 					if(_currentIndex==121)_sexGirlID=_sexGirlID+10;
-//					_mc['uil_sexgirl'].source=FileManager.instance.getIconSexGirl(_sexGirlID.toString());
-					ImageUtils.replaceImage(_mc,_mc['uil_sexgirl'],FileManager.instance.getIconSexGirl(_sexGirlID.toString()));
+					_mc['uil_sexgirl'].source=FileManager.instance.getIconSexGirl(_sexGirlID.toString());
 					var _t:int=0;
 					if (_callback.arrItemintparam.length > 1)
 						_t=_callback.arrItemintparam[1].intparam * 1000;
@@ -2476,6 +2493,12 @@ package ui.base.renwu
 				fuben["mc_row"].visible=x==-1?false:true;
 				fuben["mc_row"].x=x;
 				fuben["mc_row"].y=y;
+				
+				//指引箭头特殊处理
+				if (fuben["mc_row"].visible)
+					fuben["mc_row"].play();
+				else
+					fuben["mc_row"].stop();
 			}
 		}
 		

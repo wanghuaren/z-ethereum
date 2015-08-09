@@ -446,7 +446,7 @@ private function loadErr(e:IOErrorEvent):void{
 					if (null != this.LoadPic)
 					{
 						//
-						var upH:int=102;
+						var upH:int=202;
 
 						if (null != LoadPic.content)
 						{
@@ -686,7 +686,7 @@ private function loadErr(e:IOErrorEvent):void{
 			this._timerByBar2.reset();
 			this.removeTimerByBar2TimerHandler();
 
-			//mc["bar2"].gotoAndStop(1);
+			//mc["bar2"].Stop(1);
 			//mc["Downtxt"].text="";
 			//mc["Loadtxt"].text="";
 
@@ -724,7 +724,7 @@ private function loadErr(e:IOErrorEvent):void{
 				//_timerByBar2 = new Timer(200,10);			
 
 				//慢一点
-				_timerByBar2=new Timer(300, 10);
+				_timerByBar2=new Timer(300, 200);
 			}
 
 			if (!_timerByBar2.hasEventListener(TimerEvent.TIMER))
@@ -743,18 +743,18 @@ private function loadErr(e:IOErrorEvent):void{
 
 		private function timerByBar2TimerHandler(event:TimerEvent):void
 		{
-			var p:int=_timerByBar2.currentCount * 10;
-			//mc["bar2"].gotoAndStop(p);
+			var p:int=_timerByBar2.currentCount;
+			LoadBar["bar2"].gotoAndStop(p);
 			WorldDispatcher.instance.dispatchEvent(new WorldEvent(WorldDispatcher.BAR_PERCENT, p));
 
 			//var txtStr:String = "正在读入数据,请稍候...(" + _timerByBar2.currentCount * 10 + "%)";
 			//mc["Downtxt"].text=txtStr;
 			//WorldDispatcher.instance.dispatchEvent(new WorldEvent(WorldDispatcher.TXT_INFO,txtStr));
 
-			if (10 == _timerByBar2.currentCount)
+			if (190 == _timerByBar2.currentCount)
 			{
-				_timerByBar2.reset();
-				_timerByBar2.start();
+				this._timerByBar2.reset();
+				this.removeTimerByBar2TimerHandler();
 			}
 		}
 

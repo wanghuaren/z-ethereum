@@ -1,12 +1,15 @@
 ﻿package ui.view.newFunction
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.GameIni;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_Interface_ClewResModel;
 	import common.managers.Lang;
 	import common.utils.StringUtils;
-	import engine.utils.HashMap;
+	
 	import netc.Data;
+	
 	import ui.base.renwu.MissionMain;
 
 	//新功能判断逻辑

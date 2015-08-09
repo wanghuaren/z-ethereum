@@ -9,11 +9,10 @@ package com.bellaxu.display
 	import com.bellaxu.mgr.TimerMgr;
 	import com.bellaxu.res.ResTool;
 	import com.bellaxu.util.StageUtil;
+	import com.engine.utils.HashMap;
 	
 	import common.utils.CtrlFactory;
 	import common.utils.bit.BitUtil;
-	
-	import engine.utils.HashMap;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Shape;

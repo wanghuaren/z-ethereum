@@ -1,8 +1,9 @@
 package world
 {
+	import com.engine.utils.HashMap;
+	
 	import engine.load.GamelibS;
 	import engine.utils.FPSUtils;
-	import engine.utils.HashMap;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -16,6 +17,7 @@ package world
 	import scene.human.GameLocalHuman;
 	import scene.human.GameMonster;
 	import scene.human.GameRes;
+	import scene.human.GameSurface;
 	import scene.king.IGameKing;
 	import scene.king.King;
 	import scene.king.Skin;
@@ -45,6 +47,7 @@ package world
 	import world.type.ItemType;
 	import world.type.WeaterType;
 	import world.type.WorldType;
+
 	public class WorldFactory
 	{
 		private static var enterFrameShape:Shape=new Shape
@@ -306,6 +309,9 @@ package world
 								being=new GameRes();
 							}
 						}
+					break;
+				case ItemType.SURFACE:
+					being=new GameSurface();
 					break;
 				default:
 					throw new Error("can not find this beingType:" + beingType);
@@ -768,9 +774,6 @@ package world
 		{
 			var sk:Skin;
 			sk=new Skin();
-			//
-			//
-			sk.init();
 			return sk;
 		}
 		public static function createSkinBySkill():SkinBySkill
@@ -795,13 +798,13 @@ package world
 		public static function KING_REMOVED_FROM_STAGE(e:Event):void
 		{
 			var k:King=e.target as King;
-			k.removeAll();
 			k.removeEventListener(Event.REMOVED_FROM_STAGE, KING_REMOVED_FROM_STAGE);
+			k.removeAll();
 		}
 		public static function KING_REMOVED_BY_MAP_CHANGE(k:King):void
 		{			
-			k.removeAll();
 			k.removeEventListener(Event.REMOVED_FROM_STAGE, KING_REMOVED_FROM_STAGE);
+			k.removeAll();
 		}
 		public static function KING_REMOVED_FROM_STAGE2(k:King,body2:DisplayObjectContainer):void
 		{			
@@ -819,7 +822,7 @@ package world
 				resList2.push(k);
 			}
 			body2.addChild(k as DisplayObject);
-			k.dispose();
+//			k.dispose();
 		}
 		public static function DelAll():void
 		{
@@ -828,17 +831,17 @@ package world
 			for(j=0;j<humList2.length;j++)
 			{
 				k = humList2.pop();
-				k.dispose();
+				k.removeAll();
 			}
 			for(j=0;j<monList2.length;j++)
 			{
 				k = monList2.pop();
-				k.dispose();
+				k.removeAll();
 			}
 			for(j=0;j<resList2.length;j++)
 			{
 				k = resList2.pop();
-				k.dispose();
+				k.removeAll()
 			}
 			k = null;
 			//

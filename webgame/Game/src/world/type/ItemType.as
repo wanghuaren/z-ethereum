@@ -12,5 +12,7 @@ package world.type
 		
 		public static const DROP:String = "drop_";
 		
+		public static const SURFACE:String = "surface_";
+		
 	}
 }

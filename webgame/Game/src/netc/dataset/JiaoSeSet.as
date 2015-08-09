@@ -1,29 +1,14 @@
 package netc.dataset
 {
-	import common.utils.bit.BitUtil;
+	import com.engine.utils.HashMap;
 	
 	import engine.event.DispatchEvent;
 	import engine.net.dataset.VirtualSet;
-	import engine.support.IPacket;
-	import engine.support.ISet;
-	import engine.utils.HashMap;
-	
-	import flash.events.EventDispatcher;
 	
 	import netc.Data;
-	import netc.packets2.PacketSCBoneStrong2;
-	import netc.packets2.PacketSCEquipStrongList2;
 	import netc.packets2.PacketSCHorseList2;
 	import netc.packets2.PacketSCHorseListUpdate2;
-	import netc.packets2.PacketSCRoleBoneStrong2;
-	import netc.packets2.PacketSCRoleHorseList2;
-	import netc.packets2.StructEquipStrongItem2;
-	import netc.packets2.StructHorseInfo2;
 	import netc.packets2.StructHorseList2;
-	
-	import nets.packets.PacketSCEquipStrongList;
-	import nets.packets.PacketSCHorseList;
-	import nets.packets.StructHorseList;
 
 	/**
 	 * 角色【炼骨，坐骑，丹药】

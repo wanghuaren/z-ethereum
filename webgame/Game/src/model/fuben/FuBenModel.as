@@ -200,7 +200,9 @@ package model.fuben
 					GRPW_fighting.getInstance().open(true,false);
 				}
 			}
-			if(12 != m_currentIndex && 20 != m_currentIndex && 22!= m_currentIndex && 1000212 != m_currentIndex)
+			if(12 != m_currentIndex && 20 != m_currentIndex && 22!= m_currentIndex && 1000212 != m_currentIndex&&
+				1000300 != m_currentIndex
+			)
 			{
 				m_isAting = true;
 				var _e:FuBenEvent = new FuBenEvent(FuBenEvent.FU_BEN_EVENT);

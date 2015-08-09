@@ -2,34 +2,34 @@ package ui.view.view1.guaji
 {
 	import common.config.PubData;
 	import common.utils.CtrlFactory;
-	
+
 	import display.components.CheckBoxStyle1;
 	import display.components.CmbArrange;
 	import display.components.RadioButtonGreen;
-	
+
 	import engine.event.DispatchEvent;
-	
+
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
 	import flash.text.TextField;
-	
+
 	import netc.Data;
 	import netc.dataset.SkillShortSet;
 	import netc.packets2.StructShortKey2;
 	import netc.packets2.StructSkillItem2;
-	
+
 	import scene.action.hangup.GamePlugIns;
 	import scene.skill2.SkillEffectManager;
-	
+
 	import ui.base.jineng.SkillShort;
 	import ui.component.XHComboBox;
 	import ui.frame.ImageUtils;
 	import ui.frame.UIWindow;
 	import ui.frame.WindowName;
 	import ui.view.skill.SkillSelecter;
-	
+
 	import world.FileManager;
 
 	/**
@@ -106,7 +106,7 @@ package ui.view.view1.guaji
 							//技能
 							//var __gjIcon:String = FileManager.instance.getSkillIconSById(vec[i].id);
 //							uilMC["uil"].source=vec[i].icon;
-							ImageUtils.replaceImage(uilMC,uilMC["uil"],vec[i].icon);
+							ImageUtils.replaceImage(uilMC, uilMC["uil"], vec[i].icon);
 							uilMC.data=Data.skill.getSkill(vec[i].id);
 							if (null != Data.myKing.king)
 								SkillEffectManager.instance.preLoad(vec[i].id, Data.myKing.king.sex);
@@ -415,7 +415,10 @@ package ui.view.view1.guaji
 			m_cb_isPickUpOthers.selected=true;
 			m_cmb_pickUpOthersLevel.changeSelected(1);
 			//战斗设定
-			m_cb_isUnShift.selected=true;
+			if (Data.myKing.metier == 3)
+				m_cb_isUnShift.selected=true;
+			else
+				m_cb_isUnShift.selected=false;
 			m_cb_isMigicLock.selected=true;
 			m_cb_isAIFire.selected=true;
 			m_cb_isAutoShield.selected=true;

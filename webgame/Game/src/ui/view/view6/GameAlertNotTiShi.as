@@ -1,17 +1,17 @@
 package ui.view.view6
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.GameIni;
 	import common.config.PubData;
 	import common.managers.Lang;
 	import common.utils.bit.BitUtil;
 	
 	import engine.load.GamelibS;
-	import engine.utils.HashMap;
 	
 	import flash.display.*;
 	import flash.events.*;
 	
-	import ui.view.view4.yunying.ZhiZunVIP;
 	import ui.view.view4.yunying.ZhiZunVIPMain;
 
 	/**

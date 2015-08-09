@@ -219,14 +219,18 @@ package ui.view.view4.chengjiu
 					d["arid"]=itemData.ar_id;
 //				d["item_icon"]["uil"].source =FileManager.instance.getChengJiuIconById(itemData.achievement_icon);
 					ImageUtils.replaceImage(d["item_icon"], d["item_icon"]["uil"], FileManager.instance.getChengJiuIconById(itemData.achievement_icon));
+					d["item_icon"]["txt_num"].text="";
 					d["tf_dengji"].htmlText=itemData.target_desc;
-					d["tf_jiangli"].htmlText=itemData.reward;
+					d["tf_jiangli"].htmlText="成就点"+itemData.achievement_value;
+					d["txt_coin1"].htmlText=itemData.prize_coin1;
+					d["txt_coin2"].htmlText=itemData.prize_coin2;
 					var countStr:String="";
 					var itemAct:StructActRecInfo;
 					var countx:int=0;
 
 					countStr="0" + "/" + itemData.max_count;
 					d["btn_lingqu"].visible=false;
+					
 //				StringUtils.setUnEnable(d["btn_lingqu"]);
 					itemAct=ChengjiuModel.getInstance().getArById(itemData.ar_id);
 					if (itemAct != null)
@@ -259,6 +263,7 @@ package ui.view.view4.chengjiu
 
 					d["tf_jindu"].htmlText=Lang.getLabel("201232_chengjiujindu", [countStr]);
 					sp.addChild(d);
+					sp.cacheAsBitmap=true;
 					CtrlFactory.getUIShow().showList2(sp, 1, 458, 72);
 					mc['slider_sp'].position=0;
 					mc["slider_sp"].source=sp;

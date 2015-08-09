@@ -1,11 +1,10 @@
 package ui.frame
 {
-	import common.utils.Hash;
+	import com.engine.utils.Hash;
 	
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
 
 	public class ImageUtils
 	{

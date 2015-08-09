@@ -1,12 +1,13 @@
 package netc.dataset
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_CommendResModel;
 	import common.config.xmlres.server.Pub_Limit_TimesResModel;
 	
 	import engine.event.DispatchEvent;
 	import engine.net.dataset.VirtualSet;
-	import engine.utils.HashMap;
 	
 	import netc.Data;
 	import netc.DataKey;

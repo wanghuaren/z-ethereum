@@ -1,16 +1,16 @@
 package ui.base.jiaose
 {
+	import com.engine.utils.HashMap;
+	
 	import common.config.Att;
 	import common.config.xmlres.XmlManager;
 	import common.config.xmlres.server.Pub_TitleResModel;
 	import common.managers.Lang;
-	import common.utils.CtrlFactory;
 	import common.utils.bit.BitUtil;
 	
 	import display.components.CmbArrange;
 	
 	import engine.event.DispatchEvent;
-	import engine.utils.HashMap;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;

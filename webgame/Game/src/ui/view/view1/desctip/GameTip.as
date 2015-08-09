@@ -26,11 +26,12 @@ package ui.view.view1.desctip
 	import ui.view.view2.other.LingQuHero;
 	import ui.view.view4.qq.QQGoldTick;
 	import ui.view.view4.yunying.HuoDongZhengHe;
-	import ui.view.view4.yunying.KaiFuLiBao;
+	import ui.view.view4.yunying.KaiFuHaoLi;
 	import ui.view.view4.yunying.ZhiZunVIP;
 	import ui.view.view4.yunying.ZhiZunVIPMain;
 	import ui.view.view6.GameAlert;
 	import ui.view.view7.UI_Exclamation;
+	import ui.view.view8.YBExtractWindow;
 
 	/**
 	 *	消息提示
@@ -71,13 +72,13 @@ package ui.view.view1.desctip
 				msg=Lang.filterMsg(msg);
 			for each (var wi:WarningIcon in List)
 			{
-				if (wi.msg == msg && type != 2)
+				if ((wi.msg == msg && type != 2)||(type==2 && sn.hasOwnProperty("type")&&wi.sn.hasOwnProperty("type")&& sn["type"]>0&&sn["type"]==wi.sn.type))
 					return null;
 			}
 			for each (var wi2:WarningIcon in waitingIcoin)
 			{
 				//2013-04-11 andy 奖励不判断描述内容
-				if (wi2.msg == msg && type != 2)
+				if (wi2.msg == msg && type != 2||(type==2 && sn.hasOwnProperty("type")&&wi2.sn.hasOwnProperty("type") && sn["type"]>0&&sn["type"]==wi2.sn.type))
 					return null;
 			}
 			var icon:WarningIcon=null;
@@ -207,12 +208,13 @@ package ui.view.view1.desctip
 						else if (icon.sn["type"] == 4)
 						{
 							//您有未领取的每日首冲奖励
-							DayChongZhi.getInstance().open();
+							//DayChongZhi.getInstance().open();
+							HuoDongZhengHe.getInstance().setType(0,true);
 						}
 						else if (icon.sn["type"] == 5)
 						{
 							//您有未领取的充值奖励（开服豪礼）奖励
-							HuoDongZhengHe.getInstance().setType(3);
+							KaiFuHaoLi.getInstance().open(true);
 						}else{
 							
 						}
@@ -329,6 +331,11 @@ package ui.view.view1.desctip
 					{
 						//领取英雄
 						LingQuHero.instance.open();
+					}
+					else if (icon.sn["type"] == 12)
+					{
+						//提取元宝 2014-11-05
+						YBExtractWindow.getInstance().open();
 					}
 					else
 					{

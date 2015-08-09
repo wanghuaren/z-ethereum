@@ -108,8 +108,8 @@ package model.chengjiu
 			var ix:int = 0;
 			for(var n:int = 0;n<arList.arrItemactrecinfo.length;n++)
 			{
-				var ar:StructActRecInfo = arList.arrItemactrecinfo[n];
-				if(ar.para1==1)
+				var ar:StructActRecInfo2 = arList.arrItemactrecinfo[n];
+				if(ar.para1==1&&ar.sort!=6)
 				{
 					ix++;
 				}

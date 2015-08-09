@@ -265,18 +265,19 @@
 					//	p.custom_param="pf=3366";
 					p.username=PubData.account;
 					//988943 , 988963
-					p.qqyellowvip="";
-					p.custom_param="";
+					p.qqyellowvip="988943";
+					p.custom_param="pf=qzone";
 					p.password="";
 					p.isfcm=1;
-					p.login_state="0";
-					p.login_time="1414166869";
+					p.login_state="1234567890123456";
+					p.login_time="2013-05-20 09:54:03";
 					p.p_id=SelfConf.p_id;
 					p.server=SelfConf.server;
-					p.sign="6d34daadcee27b26b33c00031f84f450";
+					p.sign="661ac8b404507724563394ab4c1d0f3b";
 					p.userip="";
 					//p.login_type = 1;  //表示从微端登录
 					p.login_type=0;
+					p.sign=CtrlFactory.getUICtrl().md5(p.p_id + p.username + p.login_time + p.login_state + p.server + p.qqyellowvip + '111111');
 					DataKey.instance.send(p);
 				}
 				else

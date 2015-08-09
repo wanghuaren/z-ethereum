@@ -7,6 +7,8 @@ package common.config.xmlres.lib
 	import common.config.xmlres.server.Pub_SeekResModel;
 	
 	import flash.utils.Dictionary;
+	
+	import netc.Data;
 
 	public class TablesExt
 	{
@@ -207,10 +209,10 @@ package common.config.xmlres.lib
 						var tool_index:int=5;
 						for each (var resid:IResModel in table.contentXml)
 						{
-
+							if(resid["drop_sex"]>0 && resid["drop_sex"]!=Data.myKing.sex)continue;
 							if (resid != null && resid["drop_id"] == m_args[0])
 							{
-								arr=[resid["id"],resid["drop_id"], resid["min_level"], resid["max_level"],  resid["drop_data_type"], resid["drop_item_id"], resid["drop_num"]];
+								arr=[resid["id"],resid["drop_id"],resid["drop_sex"], resid["min_level"], resid["max_level"],  resid["drop_data_type"], resid["drop_item_id"], resid["drop_num"]];
 								if (resid["drop_data_type"] == 2)
 								{
 									//如果是掉落，在读取一次数据 2012-09-24 

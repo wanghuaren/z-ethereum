@@ -114,7 +114,7 @@
 	public class MainChat extends UIWindow
 	{
 		private static var _instance:MainChat;
-		private const SPACE:String="   ";
+		private const SPACE:String="<font color='#000000'>     </font>";
 		public static var chatData:Object={};
 		public static var chatQuk:Boolean=false;
 		/**
@@ -923,7 +923,25 @@
 			if (canShow(vo.type, channelShow))
 			{
 				var disO:DisplayObject=GamelibS.getswflink("game_index", WindowName.win_control_chat);
-				disO["pindao"].gotoAndStop(vo.type);
+//				disO["pindao"].gotoAndStop(vo.type);
+				var m_channel:String="<font color='#ffea00'>【普通】</font>";
+				switch(vo.type){
+				case 2:
+					m_channel="<font color='#49FF00'>【队伍】</font>";
+					break;
+				case 3:
+					m_channel="<font color='#00FCFF'>【帮派】</font>";
+					break;
+				case 5:
+					m_channel="<font color='#ffea00'>【世界】</font>";
+					break;
+				case 6:
+					m_channel="<font color='#FD721F'>【系统】</font>";
+					break;
+				case 7:
+					m_channel="<font color='#E65EFF'>【交易】</font>";
+					break;
+				}
 				var defaultColor:String="29fe0e";
 //				var defaultColor:String=COLOR_XI_TONG;
 				var channelColor:String=FontColor.COLOR_PU_TONG;
@@ -960,21 +978,21 @@
 				var huang:String="";
 				if (int(vo.content.city) > 0)
 					huang="<font color='#ffcc00'><b>[" + Lang.getLabel("pub_huang") + "]</b></font>";
-				fontPic(disO as MovieClip, SPACE + huang + "<font color='#" + FontColor.COLOR_NAME + "'> " + username + "</font>" + vo.content.content, vo.content.username, vo.content.userid, vo.content.arrItemequipattrs, vo.content.vip, vo.content.qqyellowvip);
+				fontPic(disO as MovieClip, m_channel,huang + "<font color='#" + FontColor.COLOR_NAME + "'>" + username + "</font>" + vo.content.content, vo.content.username, vo.content.userid, vo.content.arrItemequipattrs, vo.content.vip, vo.content.qqyellowvip);
 				disO.y=contentHeight;
-				contentHeight=contentHeight + disO.height - 6;
+				contentHeight=contentHeight + disO.height - 13;
 				disO["txt"].mouseWheelEnabled=false;
 				content.addChild(disO);
-				disO.x=10;
+				disO.x=20;
 			}
 		}
 		private var faceHash:Array=new Array
 
 		//一个聊天条目的图文排列
-		private function fontPic(chatItem:MovieClip, msg:String, username:String, userid:int, data:Object, vip:int, qqyellowvip:int):void
+		private function fontPic(chatItem:MovieClip, channelName:String,msg:String, username:String, userid:int, data:Object, vip:int, qqyellowvip:int):void
 		{
 			//	try {
-			var spaceStr:String="  `    ";
+			var spaceStr:String="ㆍㆍ";
 			var dataChat:Array=new Array;
 			var currStr:String=null;
 			var i:int=msg.length - 1;
@@ -994,7 +1012,7 @@
 					if (msg.substr(i + 1, 1) == "F")
 					{
 						dataChat.push(msg.substring(i + 1, lastPos));
-						msg=msg.substring(0, i) + spaceStr + msg.substring(lastPos + 1, msg.length);
+						msg=msg.substring(0, i) +spaceStr+ msg.substring(lastPos + 1, msg.length);
 					}
 					else
 					{
@@ -1022,18 +1040,18 @@
 						{
 							//没有蓝钻，有包子
 							msg="      " + msg;
-							chatItem["vip"].x=32;
+							chatItem["vip"].x=34;
 						}
 					}
 					else if (yellowType == YellowDiamond.QQ_YELLOW_COMMON)
 					{
 						msg="          " + msg;
-						chatItem["vip"].x=32;
+						chatItem["vip"].x=38;
 					}
 					else if (yellowType == YellowDiamond.QQ_YELLOW_YEAR)
 					{
 						msg="                 " + msg;
-						chatItem["vip"].x=35;
+						chatItem["vip"].x=41;
 					}
 					else
 					{
@@ -1047,16 +1065,16 @@
 						//微软雅黑
 						//msg="        " + msg;
 						//宋体
-						msg="       " + msg;
-						chatItem["vip"].x=15;
+						msg="        " + msg;
+						chatItem["vip"].x=22;
 					}
 					else
 					{
 						//微软雅黑
 						//msg="               " + msg;
 						//宋体
-						msg="         " + msg;
-						chatItem["vip"].x=34;
+						msg="       " + msg;
+						chatItem["vip"].x=41;
 					}
 				}
 			}
@@ -1065,7 +1083,7 @@
 				//微软雅黑
 				//msg="   " + msg;
 				//宋体
-				msg="  " + msg;
+//				msg="  " + msg;
 			}
 			chatItem["txt"].htmlText=msg;
 			var rect:Rectangle=null;
@@ -1074,11 +1092,11 @@
 			chatItem["txt"].height=chatItem["txt"].textHeight + 6;
 			var msg2:String=chatItem["txt"].text;
 			i=msg2.indexOf(spaceStr, 0);
-			var xiuzheng:int=0;
+			var xiuzheng:int=1;
 			var first:Boolean=true;
 			while (i >= 0)
 			{
-				rect=chatItem["txt"].getCharBoundaries(i + 2);
+				rect=chatItem["txt"].getCharBoundaries(i);
 //				if(rect.x<5&&rect.y>15){
 //					xiuzheng = -8;
 //				}
@@ -1100,8 +1118,8 @@
 						continue;
 					}
 					face=d as MovieClip;
-					face.x=rect.x + chatItem["txt"].x + xiuzheng - 7;
-					face.y=rect.y - 2;
+					face.x=rect.x + chatItem["txt"].x + xiuzheng;
+					face.y=rect.y - 4;
 					face.width=22;
 					face.height=22;
 					var p1:Point=this.localToGlobal(new Point(face.x, face.y));
@@ -1124,7 +1142,7 @@
 				i=msg2.indexOf(spaceStr, i + spaceStr.length);
 			}
 			//	msg=msg.replace(/  `  /g, "  `  ");
-			chatItem["txt"].htmlText=msg;
+			chatItem["txt"].htmlText=channelName+msg;
 			chatItem["txt"].height=chatItem["txt"].textHeight + 14;
 			//-------------名字上加菜单----------
 			chatItem["menu"].alpha=0;
@@ -1186,7 +1204,7 @@
 					tip.name="tip_tool";
 					tip.addChild(sprite);
 					tip.addEventListener(MouseEvent.MOUSE_OUT, outMcHandler);
-					PubData.mainUI.cartoon.addChild(tip);
+					PubData.StoryCartoon.addChild(tip);
 					tip.x=this.x + mouseX - 6;
 					tip.y=this.y + mouseY - sprite.height + 10;
 					tip.mouseChildren=false;

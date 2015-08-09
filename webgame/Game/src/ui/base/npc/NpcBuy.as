@@ -210,15 +210,15 @@ package ui.base.npc
 					mc["txt_price_all"].htmlText=price_all;
 				else
 					mc["txt_price_all"].htmlText="<font color='#ff0000'>"+price_all+"</font>";
-				mc["txt_type"].htmlText="<font color='#ff9b0f'>"+Lang.getLabel("pub_yin_liang")+"</font>";
+				mc["mc_money_type"].gotoAndStop(1);
 			}else if(type==2){
 				price_all=count* ResCtrl.instance().getEquipPrice(bag);
 				mc["txt_price_all"].htmlText=price_all;
-				mc["txt_type"].htmlText="<font color='#ff9b0f'>"+Lang.getLabel("pub_yin_liang")+"</font>";
+				mc["mc_money_type"].gotoAndStop(2);
 			}else if(type==3){
 				price_all=count*bag.need_num;
 				mc["txt_price_all"].htmlText=price_all+Lang.getLabel("pub_ge");
-				mc["txt_type"].htmlText="<font color='#"+ResCtrl.instance().arrColor[bag.need_color]+"'>"+bag.need_name+"</font>";
+				mc["mc_money_type"].gotoAndStop(3);
 			}else if(type==4)
 			{
 				price_all=count*bag.buyprice3;
@@ -230,9 +230,10 @@ package ui.base.npc
 				{
 					mc["txt_price_all"].htmlText="<font color='#ff0000'>"+price_all+"</font>";
 				}
-				mc["txt_type"].htmlText="<font color='#ff9b0f'>"+Lang.getLabel("pub_yuan_bao")+"</font>";
+				mc["mc_money_type"].gotoAndStop(4);
 			}else if(type == 5)
 			{
+				mc["mc_money_type"].gotoAndStop(5);
 			}
 			
 			mc["btnSubmit"].mouseEnabled=mc["btnSubmit"].mouseChildren=count>0;

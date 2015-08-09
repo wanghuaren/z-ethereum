@@ -1,6 +1,6 @@
 package scene.utils 
 {
-	import engine.utils.HashMap;
+	import com.engine.utils.HashMap;
 	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
