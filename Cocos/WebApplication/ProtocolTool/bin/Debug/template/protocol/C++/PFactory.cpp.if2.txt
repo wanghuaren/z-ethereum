@@ -1,0 +1,11 @@
+
+	}else if (_pBase->getTabName() == "${TAB_NAME}"){
+		${TAB_NAME}* _${TAB_NAME} = static_cast<${TAB_NAME}*>(_pBase);
+
+		for (std::map<string, ${TAB_NAME}::AttType>::iterator it = _${TAB_NAME}->mapAtt.begin(); it != _${TAB_NAME}->mapAtt.end(); it++)
+		{
+			if (_${TAB_NAME}->*(it->second) != ""){
+				_xml += ("&data=" + it->first);
+				_xml += ("&data=" + (_${TAB_NAME}->*(it->second)));
+			}
+		}

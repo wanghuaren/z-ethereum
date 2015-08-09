@@ -1,0 +1,6 @@
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\WebApplication\bin\WebApplication.dll.config
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\WebApplication\bin\WebApplication.dll
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\WebApplication\bin\WebApplication.pdb
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\WebApplication\obj\Debug\WebApplication.dll
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\WebApplication\obj\Debug\WebApplication.pdb
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\WebApplication\obj\Debug\WebApplication.csprojResolveAssemblyReference.cache

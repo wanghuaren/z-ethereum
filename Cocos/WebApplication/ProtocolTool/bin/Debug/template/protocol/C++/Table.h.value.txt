@@ -1,0 +1,5 @@
+
+	/// <summary>
+	/// ${TAB_COLUMN_DESC}
+	/// </summary>
+	string ${TAB_COLUMN};

@@ -1,0 +1,38 @@
+#include "PFactory.h"
+
+PFactory* PFactory::_instance = NULL;
+PFactory* PFactory::instance(){
+	if (_instance == NULL)
+		_instance = new PFactory();
+	return _instance;
+}
+PFactory::PFactory()
+{
+}
+
+vector<PBase*> PFactory::getBackData(string* _xml){
+	dataTool.clear();
+	XMLElement* childElement = rootElement(_xml)->FirstChildElement();
+	string _tabName = getTableFromXML(_xml);
+	${IF1}
+	}
+	return dataTool;
+}
+string PFactory::getSendData(PBase* _pBase){
+	string _xml;
+	${IF2}
+	}
+	free(_pBase);
+	return _xml;
+}
+string PFactory::getTableFromXML(string* _xml){
+	if (rootElement(_xml)->FirstChildElement() == NULL) return "";
+	if (rootElement(_xml)->FirstChildElement()->FirstChildElement() == NULL) return "";
+	if (rootElement(_xml)->FirstChildElement()->FirstChildElement("tabName") == NULL) return "";
+	return rootElement(_xml)->FirstChildElement()->FirstChildElement("tabName")->GetText();
+}
+XMLElement* PFactory::rootElement(string* xmlString){
+	tinyxml2::XMLDocument *xmlDoc = new tinyxml2::XMLDocument();
+	xmlDoc->Parse(xmlString->c_str());
+	return xmlDoc->RootElement()->FirstChildElement("data");
+}

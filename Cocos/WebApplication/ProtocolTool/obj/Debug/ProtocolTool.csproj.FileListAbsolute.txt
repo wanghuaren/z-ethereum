@@ -1,0 +1,9 @@
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\bin\Debug\ProtocolTool.exe.config
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\bin\Debug\ProtocolTool.exe
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\bin\Debug\ProtocolTool.pdb
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\obj\Debug\ProtocolTool.csprojResolveAssemblyReference.cache
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\obj\Debug\ProtocolTool.Properties.Resources.resources
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\obj\Debug\ProtocolTool.csproj.GenerateResource.Cache
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\obj\Debug\ProtocolTool.exe
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\obj\Debug\ProtocolTool.pdb
+C:\Users\wanghuaren\Documents\Cocos\CocosProjects\WebApplication\ProtocolTool\obj\Debug\ProtocolTool.mainForm.resources

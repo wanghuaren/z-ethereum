@@ -1,0 +1,15 @@
+#include "${TAB_NAME}.h"
+${TAB_NAME}::${TAB_NAME}(){
+	setTabName("${TAB_NAME}");
+	${TABLECPP_VALUE}
+}
+void ${TAB_NAME}::setTabName(string _name){
+	tabName = _name;
+	_tabName = _name;
+}
+string ${TAB_NAME}::getTabName(){
+	return _tabName;
+}
+string ${TAB_NAME}::getID(){
+	return ID;
+}

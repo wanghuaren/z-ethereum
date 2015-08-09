@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebApplication.Classes.protocol
+{
+    public class PFactory
+    {
+        private static PFactory _instance;
+        public static PFactory instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new PFactory();
+                return _instance;
+            }
+        }
+        public PBase stringToClass(string[] _data)
+        {
+            string _tabName = getTabName(_data);
+            switch (_tabName)
+            {
+                ${CASE}
+            }
+            return null;
+        }
+        private string getTabName(string[] _data)
+        {
+            for (int i = 0; i < _data.Length; i++)
+            {
+                if (_data[i] == "tabName")
+                {
+                    return _data[i + 1];
+                }
+            }
+            return "";
+        }
+    }
+    
+}

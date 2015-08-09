@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebApplication.Classes.protocol
+{
+    public class ${TAB_NAME}:PBase
+    {
+        override public string tabName
+        {
+            set
+            {
+                _tabName = value;
+            }
+            get
+            {
+                return _tabName;
+            }
+        }
+        override public string act
+        {
+            set
+            {
+                _act = value;
+            }
+            get
+            {
+                return _act;
+            }
+        }
+       override public string result
+        {
+            set
+            {
+                _result = value;
+            }
+            get
+            {
+                return _result;
+            }
+        }
+		
+		${PROPER}
+    }
+}

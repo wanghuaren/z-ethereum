@@ -1,0 +1,14 @@
+
+	}else if (_tabName == "${TAB_NAME}"){
+		${TAB_NAME}* _${TAB_NAME};
+		while (childElement){
+			_${TAB_NAME} = new ${TAB_NAME}();
+			XMLElement* childValue = childElement->FirstChildElement();
+			while (childValue){
+				if (childValue->GetText() != NULL&&_${TAB_NAME}->mapAtt[childValue->Name()] != NULL)
+					(_${TAB_NAME}->*(_${TAB_NAME}->mapAtt[childValue->Name()])) = childValue->GetText();
+				childValue = childValue->NextSiblingElement();
+			}
+			dataTool.push_back(_${TAB_NAME});
+			childElement = childElement->NextSiblingElement();
+		}

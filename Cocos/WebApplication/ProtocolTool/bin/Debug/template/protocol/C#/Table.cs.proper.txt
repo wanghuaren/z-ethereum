@@ -1,0 +1,19 @@
+
+		/// <summary>
+        /// ${TAB_COLUMN_DESC}
+        /// </summary>
+        private string _${TAB_COLUMN};
+        /// <summary>
+        /// ${TAB_COLUMN_DESC}
+        /// </summary>
+        public string ${TAB_COLUMN}
+        {
+            set
+            {
+                _${TAB_COLUMN} = value;
+            }
+            get
+            {
+                return _${TAB_COLUMN};
+            }
+        }

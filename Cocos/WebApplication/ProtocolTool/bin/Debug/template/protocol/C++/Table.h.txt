@@ -1,0 +1,26 @@
+#pragma once
+#include "cocos2d.h"
+#include "PBase.h"
+using namespace std;
+using namespace cocos2d;
+
+class ${TAB_NAME} :public PBase
+{
+public:
+	typedef std::string(${TAB_NAME}::*AttType);
+	std::map<std::string, AttType> mapAtt;
+
+	${TAB_NAME}();
+private:
+	string _tabName;
+public:
+	void setTabName(string _name);
+	string getTabName();
+	string getID();
+
+	string tabName;
+	string act;
+	string result;
+
+	${TABLEH_VALUE}
+};

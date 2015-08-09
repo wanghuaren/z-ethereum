@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\WebService</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/WebApplication.dll">
+      <publishTime>07/20/2015 13:07:26</publishTime>
+    </File>
+    <File Include="bin/WebApplication.pdb">
+      <publishTime>07/20/2015 13:07:26</publishTime>
+    </File>
+    <File Include="db.asp">
+      <publishTime>07/15/2015 13:59:32</publishTime>
+    </File>
+    <File Include="db007 1.5.asp">
+      <publishTime>09/13/2006 18:02:46</publishTime>
+    </File>
+    <File Include="dbbak.asp">
+      <publishTime>09/13/2006 18:02:46</publishTime>
+    </File>
+    <File Include="index.aspx">
+      <publishTime>07/14/2015 12:03:34</publishTime>
+    </File>
+    <File Include="List.aspx">
+      <publishTime>07/14/2015 11:26:57</publishTime>
+    </File>
+    <File Include="User.aspx">
+      <publishTime>07/14/2015 11:32:19</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>07/20/2015 13:14:31</publishTime>
+    </File>
+    <File Include="WebService1.asmx">
+      <publishTime>07/03/2015 09:15:41</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

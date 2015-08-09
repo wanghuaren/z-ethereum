@@ -1,0 +1,8 @@
+﻿
+                case "${TAB_NAME}":
+                    ${TAB_NAME} _${TAB_NAME} = new ${TAB_NAME}();
+                    for (int i = 0; i < _data.Length; i++)
+                    {
+                        _${TAB_NAME}.GetType().GetProperty(_data[i++]).SetValue(_${TAB_NAME}, _data[i]);
+                    }
+                    return _${TAB_NAME};
