@@ -1,0 +1,457 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest: l5wvMYXbDD7BX4NeLJNKby/nMGU=
+Created-By: 1.0 (Android)
+
+Name: assets/res/resource/Msyh.ttf
+SHA1-Digest: fqgpI4bJ/H4nraWk3bNt3/wiqis=
+
+Name: assets/LuaScript/image.lua
+SHA1-Digest: qn5h5hCPDsXxAS6aP/dQm2twMBk=
+
+Name: assets/res/resource/itembg2.png
+SHA1-Digest: 2Di4lS0iht4vBkstKB6rcO/8tDM=
+
+Name: assets/res/cocos/cocosdenshion/DeprecatedCocosDenshionClass.lua
+SHA1-Digest: HlRbGWmNFqZM+7UjN+21TvdIqnQ=
+
+Name: assets/LuaScript/cocos/cocos2d/DrawPrimitives.lua
+SHA1-Digest: TMelri6igwFNoTG9Vxtxub+dnmU=
+
+Name: assets/res/cocos/cocos2d/bitExtend.lua
+SHA1-Digest: Nbt62Hr0GeElMf45gJECiWMlZhM=
+
+Name: assets/LuaScript/cocos/cocos2d/bitExtend.lua
+SHA1-Digest: jHnl51EP3kvSXEzAkYs5FuEkJXA=
+
+Name: assets/res/cocos/ui/GuiConstants.lua
+SHA1-Digest: oJ2DuEQGcLeAOu8gHNzDJ2ivZ9E=
+
+Name: assets/res/ListScene.lua
+SHA1-Digest: fJ/4PyBRTIIlWjqCUqOIckmTEJA=
+
+Name: assets/res/cocos/network/NetworkConstants.lua
+SHA1-Digest: m74Ryc3qrsd6WnAV/BAjUH88nBI=
+
+Name: assets/LuaScript/cocos/ui/GuiConstants.lua
+SHA1-Digest: XD7B9hwuGtJWVGjET4lFPLd22Qs=
+
+Name: assets/LuaScript/cocos/cocos2d/deprecated.lua
+SHA1-Digest: GCbTtcjQQMmO8Rr6WTaWhUtNFb8=
+
+Name: assets/LuaScript/cocos/extension/ExtensionConstants.lua
+SHA1-Digest: 8FO3jvJMfKHD2DEFhXloA8yQmbU=
+
+Name: assets/LuaScript/cocos/framework/extends/UICheckBox.lua
+SHA1-Digest: u1UPMCTH0ceIribphGKoaf2oZv0=
+
+Name: assets/res/cocos/cocosdenshion/AudioEngine.lua
+SHA1-Digest: YsQWbyXkMUT07DhTEPAY/GfDOM0=
+
+Name: assets/res/cocos/framework/audio.lua
+SHA1-Digest: V3STlH5RhP/mVyWgnFyOVRTjeF4=
+
+Name: assets/res/PostScene.lua
+SHA1-Digest: R/tTKTztV7Kf+J+EwBtqx81IHKw=
+
+Name: assets/LuaScript/cocos/cocostudio/DeprecatedCocoStudioClass.lua
+SHA1-Digest: bMnc6EHiNU5c3JH3djSGEh6vQI8=
+
+Name: assets/res/cocos/framework/extends/UIEditBox.lua
+SHA1-Digest: wU/A2sw/ATh07VR5N20MIOkK93k=
+
+Name: assets/LuaScript/cocos/cocosbuilder/DeprecatedCocosBuilderClass.
+ lua
+SHA1-Digest: h4rR0ESqhcltzmvk7ZmO9PkXlOI=
+
+Name: assets/LuaScript/cocos/network/DeprecatedNetworkClass.lua
+SHA1-Digest: Sr3R0huVPg96oIQojfh1hgnDxKQ=
+
+Name: assets/LuaScript/cocos/framework/extends/SpriteEx.lua
+SHA1-Digest: cp9YzL70ShYmrDVy2qvazm10voI=
+
+Name: assets/res/cocos/cocostudio/StudioConstants.lua
+SHA1-Digest: IDFT+ECvXRi3rOkRBCK05Bs+L7U=
+
+Name: assets/res/cocos/framework/display.lua
+SHA1-Digest: I6NLkWVfzwlQ71V4s2yNVpH11XQ=
+
+Name: assets/LuaScript/cocos/ui/DeprecatedUIEnum.lua
+SHA1-Digest: +ikqeKJ08XbCFOcuEIU3rrZEUtI=
+
+Name: res/drawable-mdpi/icon.png
+SHA1-Digest: xYuxAe4OvjF8LN6PSeR7rCUTcIM=
+
+Name: assets/res/cocos/cocos2d/luaj.lua
+SHA1-Digest: MYP9rSV6qlDieMtPE8MNfDfWwLQ=
+
+Name: assets/res/cocos/extension/DeprecatedExtensionFunc.lua
+SHA1-Digest: NSDELS4BdJCh+ZE3TM8NI0BrAmQ=
+
+Name: res/drawable-ldpi/icon.png
+SHA1-Digest: yRJc1NTkeDF54H21R+AcAYEDQOI=
+
+Name: assets/res/cocos/framework/init.lua
+SHA1-Digest: Akt01CAgWDMmvr0M9hgwipyylEA=
+
+Name: resources.arsc
+SHA1-Digest: 9cG0s9hy2YJGuruev2wDOORcA7M=
+
+Name: assets/LuaScript/cocos/extension/DeprecatedExtensionEnum.lua
+SHA1-Digest: pLYEsgaoLN6HK39EhCi8oNWT4AE=
+
+Name: assets/LuaScript/cocos/framework/device.lua
+SHA1-Digest: vI1/I20iZDQCcrzwcXqVM4mFK04=
+
+Name: assets/LuaScript/cocos/spine/SpineConstants.lua
+SHA1-Digest: mpMA/CduacALYk0h9ynZec/rUSM=
+
+Name: assets/LuaScript/cocos/ui/experimentalUIConstants.lua
+SHA1-Digest: /PASqi8jbt1hfwcbD2uXDbnP/oY=
+
+Name: assets/res/TickScene.lua
+SHA1-Digest: C8SzwDBZKiY6ePhf0OwgoFLg3LI=
+
+Name: AndroidManifest.xml
+SHA1-Digest: pUpo3agzh/9mQx/u7LZc1fqZx/s=
+
+Name: assets/res/cocos/framework/extends/MenuEx.lua
+SHA1-Digest: 0tEseYwbbXJP3wELWPSSOqv/GWQ=
+
+Name: assets/res/cocos/framework/extends/UISlider.lua
+SHA1-Digest: 3bvNECNlpapYj6CxTq8iv2d4Dgw=
+
+Name: assets/res/cocos/cocos2d/Cocos2d.lua
+SHA1-Digest: le4Ru1bFWe3omNn2FPVsAU7rZeA=
+
+Name: assets/LuaScript/cocos/init.lua
+SHA1-Digest: gym28+ayXw9Mz4WF5ZmEHeA2a2g=
+
+Name: assets/res/cocos/framework/extends/SpriteEx.lua
+SHA1-Digest: cLZhUjLtYYkwXgk5sIbPtJWKAbc=
+
+Name: assets/LuaScript/cocos/framework/extends/UITextField.lua
+SHA1-Digest: cjIycaQGzQTuwU4nF3AJ/lKbG/8=
+
+Name: assets/res/cocos/spine/SpineConstants.lua
+SHA1-Digest: jBpvcWrntLeupRV5smg7QGvDzHM=
+
+Name: assets/res/cocos/cocos2d/Cocos2dConstants.lua
+SHA1-Digest: WYI4OLL4vufmocdQMb/HTlct8iE=
+
+Name: assets/LuaScript/cocos/framework/extends/UIScrollView.lua
+SHA1-Digest: 3u3RhN28w5xrnlyRgOswv9tDxR8=
+
+Name: assets/res/cocos/framework/extends/UIScrollView.lua
+SHA1-Digest: lh1q7k5GCIR+wytClHABWZSX2JM=
+
+Name: assets/res/LuaExtend.lua
+SHA1-Digest: MUI7bMdT1wpdkL03U8wZI9BQte8=
+
+Name: assets/LuaScript/cocos/framework/extends/UIPageView.lua
+SHA1-Digest: TzCW6o6KSGBGjIoJAQ6c4O8YTe4=
+
+Name: res/drawable-hdpi/icon.png
+SHA1-Digest: 3GvhUEWil7PuFkz0WC+dNSA3FU0=
+
+Name: assets/LuaScript/cocos/cocosdenshion/DeprecatedCocosDenshionClas
+ s.lua
+SHA1-Digest: xiulEdX1/YF6kA5sDTv0zknePRs=
+
+Name: assets/res/cocos/extension/DeprecatedExtensionClass.lua
+SHA1-Digest: EZJ2x/8DYkis2S9yHnixOS6DOEU=
+
+Name: assets/res/cocos/cocos2d/functions.lua
+SHA1-Digest: JAzqAVsEDg823LCatGHiFpjZdjc=
+
+Name: assets/res/cocos/cocos2d/DeprecatedCocos2dEnum.lua
+SHA1-Digest: R+snzUhisdYKsKXSRBbkqVJfjNo=
+
+Name: assets/LuaScript/cocos/framework/audio.lua
+SHA1-Digest: Wg0v+MlL4EL8QuHj2S24j++XyLA=
+
+Name: assets/res/cocos/init.lua
+SHA1-Digest: 8vwW1pwK+VX4oR02fe79LzvRP1c=
+
+Name: assets/LuaScript/cocos/extension/DeprecatedExtensionClass.lua
+SHA1-Digest: MnkVHoxsWhu/psbp7fnZberO/fo=
+
+Name: assets/res/cocos/framework/extends/NodeEx.lua
+SHA1-Digest: 164EkSthcX93jv+Sy5wXO17qYR4=
+
+Name: assets/LuaScript/cocos/network/DeprecatedNetworkFunc.lua
+SHA1-Digest: 2OECFYyEihWy+60tmX52poCmIRc=
+
+Name: assets/LuaScript/cocos/cocos2d/DeprecatedOpenglEnum.lua
+SHA1-Digest: HhpSOkc4ANXqn4x//dcZEVZxqzI=
+
+Name: assets/LuaScript/cocos/cocos2d/OpenglConstants.lua
+SHA1-Digest: TiqhZnSOiQOEGNJZenvMER+3Hl0=
+
+Name: assets/res/cocos/framework/transition.lua
+SHA1-Digest: 6WmcK1Jg3W6B2HKTZ61tabDqKU0=
+
+Name: assets/res/cocos/cocos2d/DeprecatedCocos2dFunc.lua
+SHA1-Digest: hYIYMvcrNEkupCjYxT5b+nz7g08=
+
+Name: lib/armeabi/gdbserver
+SHA1-Digest: BBQha7L8bKU/FgBzVH95JWb0/2k=
+
+Name: assets/LuaScript/cocos/framework/package_support.lua
+SHA1-Digest: rk3LZwch0XUVzywBrjJLGW2+Pmg=
+
+Name: assets/LuaScript/cocos/framework/components/event.lua
+SHA1-Digest: 3EhP3RqPiRjxXZuW4tBbW6pwT+w=
+
+Name: assets/res/cocos/framework/components/event.lua
+SHA1-Digest: WrTYkPshpCRj8n13S4C2f7d3GOQ=
+
+Name: assets/res/NoticeScene.lua
+SHA1-Digest: mZe1svLesRTDN7bfCddMRrZ7iB4=
+
+Name: assets/LuaScript/cocos/cocos2d/luaj.lua
+SHA1-Digest: TeHY3ndk8GMZnEnpRAZzEOryFD8=
+
+Name: assets/LuaScript/cocos/cocos2d/json.lua
+SHA1-Digest: DywIKp/bdJytOFHHIG/vPdKkI+Y=
+
+Name: assets/LuaScript/cocos/cocosdenshion/DeprecatedCocosDenshionFunc
+ .lua
+SHA1-Digest: p1D0kk62ok41PIUYKezS9f1XaZ0=
+
+Name: assets/LuaScript/cocos/framework/extends/UISlider.lua
+SHA1-Digest: pXItXcJ700TgGxRt/TeEwVuvhPw=
+
+Name: assets/res/cocos/framework/extends/UIPageView.lua
+SHA1-Digest: ZD5jZscvVsV1ie7R+IAQNd4jB3k=
+
+Name: assets/LuaScript/cocos/network/NetworkConstants.lua
+SHA1-Digest: +Xzg53zf7IuUzx9/mVPsxker8KU=
+
+Name: assets/res/cocos/cocostudio/CocoStudio.lua
+SHA1-Digest: S0N4X0LR381N8lo7PXNBTNadlb0=
+
+Name: assets/res/cocos/ui/DeprecatedUIEnum.lua
+SHA1-Digest: rKpyfxxuxrBKf8pVBryttVyeKf8=
+
+Name: assets/LuaScript/cocos/cocostudio/DeprecatedCocoStudioFunc.lua
+SHA1-Digest: VRehM2Ogf+VK8PV0qGO9SmIIpdI=
+
+Name: assets/res/cocos/framework/extends/UITextField.lua
+SHA1-Digest: tS+PzAFLiie3n+VcPRx40ekDdW8=
+
+Name: assets/LuaScript/cocos/controller/ControllerConstants.lua
+SHA1-Digest: jj7wUl4LFVDBR38GHPj5sDQsjlQ=
+
+Name: assets/LuaScript/button/btn2.png
+SHA1-Digest: 1X/3yvrAX5kUSIODNyhqgWDgM3w=
+
+Name: assets/LuaScript/image/scenebg.png
+SHA1-Digest: PN1eaOELGLYiFsVu+z+LN/OAVhw=
+
+Name: assets/LuaScript/cocos/cocos2d/luaoc.lua
+SHA1-Digest: IB1wnRFhZvcOs8cBA2GfblJ3gCs=
+
+Name: assets/LuaScript/cocos/network/DeprecatedNetworkEnum.lua
+SHA1-Digest: i/2+QeZgd0shCjamMNfdDfg9CbU=
+
+Name: lib/x86/gdbserver
+SHA1-Digest: gHNoA9fQ2s6N74RpA8d0mdxtDBE=
+
+Name: assets/LuaScript/cocos/cocostudio/StudioConstants.lua
+SHA1-Digest: vnaR5Qn+44+kWAeVKL24mCJRiMs=
+
+Name: assets/LuaScript/txtInput/txtBG.png
+SHA1-Digest: e+PM3d6PzeGwHa2nT8UI1Y9yKug=
+
+Name: assets/res/cocos/cocostudio/DeprecatedCocoStudioFunc.lua
+SHA1-Digest: WczHG8PPQQeVUt0UH10XsuVLrYE=
+
+Name: assets/LuaScript/cocos/ui/DeprecatedUIFunc.lua
+SHA1-Digest: CHztfrmYeKXeyYpTqhtxq65dNrw=
+
+Name: assets/LuaScript/Msyh.ttf
+SHA1-Digest: C+rIPZ6H1GVnyF1puKc/BxCTg2A=
+
+Name: assets/res/cocos/3d/3dConstants.lua
+SHA1-Digest: itt6/W7yAvzAswcLnoNWSi44VD0=
+
+Name: assets/res/cocos/network/DeprecatedNetworkClass.lua
+SHA1-Digest: QB5evi964iwgaZQNiBlIpFdWxKA=
+
+Name: assets/LuaScript/txtInput.lua
+SHA1-Digest: NP56xuhbczzgp/OEQh/oRY0/L9c=
+
+Name: assets/res/cocos/framework/package_support.lua
+SHA1-Digest: +F0iKROwukaIdmqqgHXpNDFHKdM=
+
+Name: assets/res/cocos/extension/DeprecatedExtensionEnum.lua
+SHA1-Digest: nuQmmeRA0HLUZ0OOEvWkdgHk6PY=
+
+Name: assets/res/Res.MPQ
+SHA1-Digest: bZgwFa2v58/QG2j9KqYD5dH0GMI=
+
+Name: assets/LuaScript/button.lua
+SHA1-Digest: 1x1nJGVdBjg8o9mQxBLLPKHD/RE=
+
+Name: lib/armeabi/libcocos2dcpp.so
+SHA1-Digest: WLgfuM9xxSHXZO8+c5csCmaioB8=
+
+Name: assets/LuaScript/cocos/cocos2d/Opengl.lua
+SHA1-Digest: OAhW4JxRixXytKbgJMZtXw5yRbs=
+
+Name: assets/LuaScript/cocos/framework/extends/LayerEx.lua
+SHA1-Digest: r7u9fdKAhwtlVWUKrbP4LuYRKaw=
+
+Name: assets/LuaScript/cocos/framework/extends/UIListView.lua
+SHA1-Digest: U1yY7T1TjUnFz/e2/xy8w8FXErE=
+
+Name: assets/res/cocos/ui/experimentalUIConstants.lua
+SHA1-Digest: PVkdPICf4NZiSgaUvwtrQvXjLLY=
+
+Name: assets/LuaScript/cocos/cocos2d/DeprecatedCocos2dClass.lua
+SHA1-Digest: SPhfaIM7SxJdZ2D9qwJzg/zo1X4=
+
+Name: assets/res/cocos/cocos2d/DeprecatedOpenglEnum.lua
+SHA1-Digest: OYXHwLlDkAHK2YmcOIhwQarjqfc=
+
+Name: assets/res/resource/itembg1.png
+SHA1-Digest: 7Ase2tMdiDWEgjIQh77m9pzOVbY=
+
+Name: assets/res/cocos/cocos2d/DrawPrimitives.lua
+SHA1-Digest: u1nNADNO5aQgzKCc/f6Jt9mqArU=
+
+Name: assets/res/main.lua
+SHA1-Digest: bO3aALnGcnO/hSOEoyRHFESQRCk=
+
+Name: assets/LuaScript/cocos/cocos2d/Cocos2d.lua
+SHA1-Digest: pth2+MnkuJzFX9PBtA1lgSLKmeU=
+
+Name: assets/LuaScript/cocos/cocos2d/Cocos2dConstants.lua
+SHA1-Digest: wRjmo1WmKk8GUKhUlp8pQlvRwAM=
+
+Name: assets/res/cocos/cocos2d/luaoc.lua
+SHA1-Digest: wzfbcySnWwCrlUsMJuspzdr7wPM=
+
+Name: assets/res/cocos/framework/extends/LayerEx.lua
+SHA1-Digest: T+LmqyeBelO1b1uUV3T6uGknRVY=
+
+Name: assets/res/cocos/cocos2d/OpenglConstants.lua
+SHA1-Digest: CLk1VEqLA7tnBb3obKd+2AJ4XI0=
+
+Name: assets/res/cocos/cocos2d/json.lua
+SHA1-Digest: aWZGnt5r+bfouy5LZVMSWDjyncA=
+
+Name: assets/LuaScript/cocos/framework/extends/UIEditBox.lua
+SHA1-Digest: 7yYSOvC7mmLL2FCLKCCyKtSnyv0=
+
+Name: assets/res/cocos/cocos2d/DeprecatedCocos2dClass.lua
+SHA1-Digest: rPbDfE6nUCr3op4cjICwPJwDNTs=
+
+Name: assets/LuaScript/cocos/cocos2d/DeprecatedCocos2dEnum.lua
+SHA1-Digest: E9R59kaBiQuBn77+4a9foRUdJ+c=
+
+Name: assets/res/cocos/framework/extends/UIListView.lua
+SHA1-Digest: IwVymnxjKAjUKULSRP8XhCVFLBc=
+
+Name: assets/res/cocos/cocos2d/Opengl.lua
+SHA1-Digest: L1r2f1i7txMccey2AfokwKR2f4A=
+
+Name: lib/x86/libcocos2dcpp.so
+SHA1-Digest: hPJhq8NtSkscA7Z0qzpXH160Dh0=
+
+Name: assets/res/cocos/network/DeprecatedNetworkEnum.lua
+SHA1-Digest: B42+OkZcnM5sqEPDXyZGs5rQObU=
+
+Name: assets/LuaScript/cocos/extension/DeprecatedExtensionFunc.lua
+SHA1-Digest: eyABCuRFBzPT3TWlRwGhgvNaTVw=
+
+Name: assets/res/cocos/network/DeprecatedNetworkFunc.lua
+SHA1-Digest: yzUy1fNElre76FoIZ/fLz1wykV0=
+
+Name: assets/LuaScript/cocos/framework/extends/NodeEx.lua
+SHA1-Digest: RiYMitRVtKZ+Wci3VCoPxj0OFjo=
+
+Name: assets/LuaScript/cocos/cocos2d/DeprecatedCocos2dFunc.lua
+SHA1-Digest: ijt+cm7bucG4y8Jq9QbPo+/mNBU=
+
+Name: assets/res/cocos/framework/extends/UIWidget.lua
+SHA1-Digest: M5OyIUfRak2zk20zcOobwhnhwg4=
+
+Name: assets/LuaScript/cocos/framework/extends/UIWidget.lua
+SHA1-Digest: ZSbjsNzKuKJdB9bFBUIS8enqw68=
+
+Name: assets/LuaScript/cocos/cocos2d/functions.lua
+SHA1-Digest: l1TE11w/BybyLx4iGTHqe4ZSnoA=
+
+Name: assets/res/cocos/ui/DeprecatedUIFunc.lua
+SHA1-Digest: 0m/zOm0bbef6R2YVjiniSTczE9M=
+
+Name: assets/LuaScript/cocos/cocosbuilder/CCBReaderLoad.lua
+SHA1-Digest: XFbaEGaqpoTHgq+6i3lkp1fQNGU=
+
+Name: assets/res/cocos/framework/device.lua
+SHA1-Digest: +iBokoX036QEU2G+PaC7Lslp5nE=
+
+Name: assets/res/Default/ImageFile.png
+SHA1-Digest: L8dsbXHkgB5SsD5Yf5OiNj1uM5I=
+
+Name: assets/LuaScript/cocos/3d/3dConstants.lua
+SHA1-Digest: 7iYCFIpW0ArpJXCHyuvy66rZlVo=
+
+Name: assets/LuaScript/button/btn.png
+SHA1-Digest: Sq9YzktMSirKpmJTWlCWyHVk9vk=
+
+Name: assets/res/cocos/controller/ControllerConstants.lua
+SHA1-Digest: M1stkEwaNnHz1rRenxffQBU7Ez0=
+
+Name: assets/res/cocos/cocostudio/DeprecatedCocoStudioClass.lua
+SHA1-Digest: 7b8SOYtg3g1BReh60HrQ+2gbscg=
+
+Name: assets/res/cocos/cocosbuilder/CCBReaderLoad.lua
+SHA1-Digest: Dpg0rj2juLe+k8D3hwI4zkJxnRk=
+
+Name: assets/res/CustomScene.lua
+SHA1-Digest: /fBlJ2UciiWDRJTR6NDJhtIuIOg=
+
+Name: assets/LuaScript/cocos/framework/extends/MenuEx.lua
+SHA1-Digest: Q/k7ebhi+CvK7CP7s1u7a8+cahQ=
+
+Name: assets/res/cocos/cocos2d/deprecated.lua
+SHA1-Digest: 0HQqnsuQMVIJTUPXusvFH5SzE4o=
+
+Name: assets/LuaScript/cocos/framework/display.lua
+SHA1-Digest: z4W9e+zr5TrrDciMGsNSwsC9THU=
+
+Name: assets/LuaScript/cocos/framework/init.lua
+SHA1-Digest: xOdOSlHg8dYUtwFo777PiO41OBk=
+
+Name: assets/res/cocos/extension/ExtensionConstants.lua
+SHA1-Digest: AMCL/BiSQBnOXSw3CHJIjgVRf+o=
+
+Name: assets/LuaScript/cocos/cocostudio/CocoStudio.lua
+SHA1-Digest: de8YmwdKA2eUNXoZmvOmdJNwhcU=
+
+Name: assets/res/MainScene.lua
+SHA1-Digest: Nz6DxrEl2thlOKP7c7aWw8uY0Qc=
+
+Name: assets/LuaScript/cocos/cocosdenshion/AudioEngine.lua
+SHA1-Digest: m0CSfLeontcaV/9cAfkhJ7OT9nE=
+
+Name: assets/res/cocos/cocosbuilder/DeprecatedCocosBuilderClass.lua
+SHA1-Digest: b1XLe3VqPcmSc59lXWwDsL830gs=
+
+Name: assets/res/cocos/cocosdenshion/DeprecatedCocosDenshionFunc.lua
+SHA1-Digest: ifZoNBQXFxet8fYbsekixcm0/Jk=
+
+Name: assets/res/cocos/framework/extends/UICheckBox.lua
+SHA1-Digest: DCb25yjxGXv1Ia/c3BbqVwxy6w0=
+
+Name: assets/LuaScript/cocos/framework/transition.lua
+SHA1-Digest: J89JfYBcOjjR80A4fPKnA9wXYsg=
+
+Name: classes.dex
+SHA1-Digest: SdcrHGhJItOcI5SUzMOnTIyxkW8=
+
+Name: assets/res/CheckScene.lua
+SHA1-Digest: pH8qVgTY0/iygV0x8IukVJNeFW4=
+

@@ -1,0 +1,42 @@
+﻿生成启动时间为 2015/8/9 15:27:49。
+     1>项目“C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\CocosWeb.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"d:\Cocos\frameworks\cocos2d-x-3.6\tools\simulator\libsimulator\lib\protobuf-lite" /I"d:\Cocos\frameworks\cocos2d-x-3.6\tools\simulator\libsimulator\lib" /I"d:\Cocos\frameworks\cocos2d-x-3.6\external\lua\tolua" /I"d:\Cocos\frameworks\cocos2d-x-3.6\external\lua\luajit\include" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\scripting\lua-bindings\auto" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\scripting\lua-bindings\manual" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\audio\include" /I"d:\Cocos\frameworks\cocos2d-x-3.6\external" /I"d:\Cocos\frameworks\cocos2d-x-3.6\external\chipmunk\include\chipmunk" /I"d:\Cocos\frameworks\cocos2d-x-3.6\external\win32-specific\icon\include" /I"d:\Cocos\frameworks\cocos2d-x-3.6\extensions" /I..\Classes /IC:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\\include /I.. /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\2d\..\..\cocos\editor-support" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\2d\..\..\cocos" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\2d\..\..\cocos\platform" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\2d\..\..\cocos\platform\desktop" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\2d\..\..\external\glfw3\include\win32" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\2d\..\..\external\freetype2\include\win32\freetype2" /I"d:\Cocos\frameworks\cocos2d-x-3.6\cocos\2d\..\..\external\freetype2\include\win32\\" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /FIalgorithm /analyze- /errorReport:prompt Classes\core\ImagCache.cpp
+         ImagCache.cpp
+       PreLinkEvent:
+         if not exist "C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\" mkdir "C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\"
+         xcopy /Y /Q "d:\Cocos\frameworks\cocos2d-x-3.6\prebuilt\win32\*.*" "C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\"
+         xcopy "C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\..\Resources" "C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\" /D /E /I /F /Y
+         
+         :VCEnd
+         复制了 53 个文件
+         复制了 0 个文件
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\CocosWeb.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\\lib /LIBPATH:C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\ /LIBPATH:C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\ /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" lua51.lib opengl32.lib glew32.lib libzlib.lib libpng.lib libjpeg.lib libtiff.lib libwebp.lib libiconv.lib glfw3.lib freetype250.lib winmm.lib ws2_32.lib libchipmunk.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib libiconv.lib libcurl_imp.lib websockets.lib /NODEFAULTLIB:LIBCMT.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\CocosWeb.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\CocosWeb.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
+         Debug.win32\AppDelegate.obj
+         Debug.win32\UIManager.obj
+         Debug.win32\PBase.obj
+         Debug.win32\PFactory.obj
+         Debug.win32\tabCheck.obj
+         Debug.win32\tabCustom.obj
+         Debug.win32\tabTick.obj
+         Debug.win32\tabUser.obj
+         Debug.win32\CheckScene.obj
+         Debug.win32\CustomScene.obj
+         Debug.win32\ListScene.obj
+         Debug.win32\MainScene.obj
+         Debug.win32\NoticeScene.obj
+         Debug.win32\ImagCache.obj
+         Debug.win32\PostScene.obj
+         Debug.win32\TickScene.obj
+         Debug.win32\CppLua.obj
+         Debug.win32\GameInitiali.obj
+         Debug.win32\main.obj
+         Debug.win32\WebNet.obj
+         Debug.win32\SceneManager.obj
+         CocosWeb.vcxproj -> C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\Debug.win32\CocosWeb.exe
+     1>已完成生成项目“C:\Users\wanghuaren\Documents\Cocos\CocosProjects\CocosWeb\proj.win32\CocosWeb.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:12.60

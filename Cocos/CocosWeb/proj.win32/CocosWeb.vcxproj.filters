@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{3953d690-3bf2-4af2-b9ce-3b0c32689943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\core">
+      <UniqueIdentifier>{7b142bfc-e5f6-4d81-abe5-83c0c96f537b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\protocol">
+      <UniqueIdentifier>{d8f5929c-5760-4f5f-a928-ea926f1b7eef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\scene">
+      <UniqueIdentifier>{f96e3383-f27e-438f-b19f-c6c9776238e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\utils">
+      <UniqueIdentifier>{01f0736f-75e5-4f83-b4c2-5b39e0fc8861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\webnet">
+      <UniqueIdentifier>{d5909654-c4b6-4e08-b6a6-70a156ac6502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\templet">
+      <UniqueIdentifier>{90afb23c-e366-419a-b1d6-18b0083e0f60}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\core\ImagCache.cpp">
+      <Filter>Classes\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\core\SceneManager.cpp">
+      <Filter>Classes\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\core\UIManager.cpp">
+      <Filter>Classes\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\protocol\PBase.cpp">
+      <Filter>Classes\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\protocol\PFactory.cpp">
+      <Filter>Classes\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\protocol\tabCheck.cpp">
+      <Filter>Classes\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\protocol\tabCustom.cpp">
+      <Filter>Classes\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\protocol\tabTick.cpp">
+      <Filter>Classes\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\protocol\tabUser.cpp">
+      <Filter>Classes\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\scene\CheckScene.cpp">
+      <Filter>Classes\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\scene\CustomScene.cpp">
+      <Filter>Classes\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\scene\ListScene.cpp">
+      <Filter>Classes\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\scene\MainScene.cpp">
+      <Filter>Classes\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\scene\NoticeScene.cpp">
+      <Filter>Classes\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\scene\TickScene.cpp">
+      <Filter>Classes\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\utils\CppLua.cpp">
+      <Filter>Classes\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\webnet\WebNet.cpp">
+      <Filter>Classes\webnet</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\scene\GameInitiali.cpp">
+      <Filter>Classes\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\scene\PostScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\core\ImagCache.h">
+      <Filter>Classes\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\core\SceneManager.h">
+      <Filter>Classes\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\core\UIManager.h">
+      <Filter>Classes\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\protocol\PBase.h">
+      <Filter>Classes\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\protocol\PFactory.h">
+      <Filter>Classes\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\protocol\tabCheck.h">
+      <Filter>Classes\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\protocol\tabCustom.h">
+      <Filter>Classes\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\protocol\tabTick.h">
+      <Filter>Classes\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\protocol\tabUser.h">
+      <Filter>Classes\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\scene\CheckScene.h">
+      <Filter>Classes\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\scene\CustomScene.h">
+      <Filter>Classes\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\scene\ListScene.h">
+      <Filter>Classes\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\scene\MainScene.h">
+      <Filter>Classes\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\scene\NoticeScene.h">
+      <Filter>Classes\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\scene\TickScene.h">
+      <Filter>Classes\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\utils\CppLua.h">
+      <Filter>Classes\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\webnet\WebNet.h">
+      <Filter>Classes\webnet</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Config.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\scene\GameInitiali.h">
+      <Filter>Classes\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\templet\Singleton.h">
+      <Filter>Classes\templet</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\lua_module_register.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\core\LuaLoader.h" />
+    <ClInclude Include="Classes\scene\PostScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

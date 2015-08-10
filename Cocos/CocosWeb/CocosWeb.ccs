@@ -1,0 +1,23 @@
+<Solution>
+  <PropertyGroup Name="CocosWeb" Version="2.3.1.2" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="CustomScene.csd" Type="Scene" />
+        <Project Name="ListScene.csd" Type="Scene" />
+        <Folder Name="resource">
+          <Image Name="serach.png" />
+          <Image Name="serachBtn.png" />
+          <Image Name="itembg1.png" />
+          <Image Name="itembg2.png" />
+          <TTF Name="Msyh.ttf" />
+        </Folder>
+        <Project Name="NoticeScene.csd" Type="Scene" />
+        <Project Name="TickScene.csd" Type="Scene" />
+        <Project Name="CheckScene.csd" Type="Scene" />
+        <Project Name="PostScene.csd" Type="Scene" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
