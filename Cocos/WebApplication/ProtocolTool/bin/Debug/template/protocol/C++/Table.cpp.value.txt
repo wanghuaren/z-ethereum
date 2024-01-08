@@ -1,2 +1,0 @@
-
-	mapAtt["${TAB_COLUMN}"] = &${TAB_NAME}::${TAB_COLUMN};

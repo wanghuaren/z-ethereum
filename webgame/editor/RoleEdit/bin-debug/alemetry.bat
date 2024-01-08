@@ -1,1 +1,0 @@
-python add-advanced-telemetry.py GameEditorR.swf

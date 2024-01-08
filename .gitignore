@@ -1,0 +1,14 @@
+*.log
+*.log.*
+*.pyc
+*.csv
+.python-version
+.viminfo
+__pycache__
+*_pb2_grpc.py
+*_pb2.py
+.idea/
+venv/
+*.swp
+logs/*
+.DS_Store

@@ -1,0 +1,1314 @@
+syntax = "proto3";
+package pb;
+
+option go_package = "pkg/pb";
+
+service Otc {
+  // OTC 服务健康检查
+  // 1、连接数据库，查询数据库是否成功连接
+  rpc OTCCheckHealth(OTCCheckHealthRequestV1) returns (OTCCheckHealthResponseV1) {}
+
+
+  // CheckToPortal: 检查转账条件
+  // 1、校验asset_id是不是 fb 支持的币种
+  // 2、校验入参
+  // 3、根据 account_id、vault_id、asset_id 查询 externalwalletproptrading 表
+  // 4、根据获取到的wallets进行地址检查等
+  rpc CheckToPortal(CheckToPortalRequestV1) returns (CheckToPortalResponseV1) {}
+  // CreateEMSTransaction: 发起转账
+  // 1、获取并校验输入的参数
+  // 2、有tx_id则表示以前发起过转账 判断转账状态, 没有tx_id则直接发起转账
+  // 3、根据fireblocks_gateway去获取转账信息，如果状态是转账失败，则发起转账并更新withdrawals
+  // 4、如果为转账完成，则回写覆盖 withdraws  表 status 为 success并且更新transactionhistory status 为COMPLETE
+  // 5、返回结果状态以及tx_id
+  rpc CreateEMSTransaction(CreateEMSTransactionRequestV1) returns (CreateEMSTransactionResponseV1){}
+
+
+  // GetRisk: 获取 risk 数据
+  // 1、校验用户的权限以及根据权限过滤数据(权限role等于4，risk展示所有数据;等于3只展示zerocap与用户本身的数据)
+  // 2、格式化入参参数
+  // 3、获取tnx，fills的数据，并对获取到的数据按照一定逻辑进行合并
+  // 4、获取ticker_assets
+  // 5、根据ticker_assets，时间范围，获取历史价格
+  // 6、获取treasury数据
+  // 7、将tnx,fills,treasury的数据和历史价格进行合并
+  // 8、将重新合并的 df 根据 trader_identifier(交易员) 分组得到 trader_df
+  // 9、将 mreged_df  根据 asset_id 分组拿到币种信息 sum_df
+  // 10、将 trader_df 相同交易员的 exposure_quantity_usd 合并便是该交易员当日的 pnl，并组成 pnl_df
+  // 11、根据trader_df、sum_df、pnl_df构建返回数据结构进行返回；
+  rpc GetRisk(GetRiskRequestV1) returns (GetRiskResponseV1) {}
+
+  // InsertOrUpdateRiskLimit: 新增或更新risk的限制
+  // 1、校验交易员是否存在
+  // 2、根据trader_identifier区分公司或者交易员获取对应的
+  // 3、校验报警间隔参数限制,以及止损限额参数
+  // 4、更新或者插入Risk_Limits表
+  rpc InsterOrUpdateRiskLimit(InsterOrUpdateRiskLimitRequestV1) returns (InsterOrUpdateRiskLimitResponseV1) {}
+
+  // TraderList: 获取止损限额与报警间隔
+  // 1、获取公司级别的止损限额与报警间隔
+  // 2、获取交易员级别的止损限额与报警间隔
+  rpc TraderList(TraderListRequestV1) returns (TraderListResponseV1) {}
+
+
+  // EditRFQQuote: 市价单询价接口
+  // 1、获取并校验输入的参数
+  // 2、通过quote_alias到数据库获取对应的quote
+  // 3、根据base_asset 和quote_asset, 获取到对应的交易对
+  // 4、到omd进行询价
+  // 5、计算 base_quantity，pnl等数据
+  // 6、如果side为2way，则根据这条数据建立另一条quote并写入数据库
+  // 7、此条quote写入数据库
+  rpc EditRFQQuote(EditRFQQuoteRequestV1) returns (EditRFQQuoteResponseV1) {}
+  // GetLPWarning: rfq获取当前币种对应的 LP 报警
+  // 1、通过Lp_Config表获取各大交易所的最低限额
+  // 2、校验入参
+  // 3、获取询价记录的交易所及交易市场的最低限额
+  // 4、对redis中获取的数据做时效性判断，来区分从redis中获取价格还是从Historical_Prices获取价格
+  // 5、用已使用的值和交易市场的最低限额比较是否超过限额，如果超过则告警
+  rpc GetLPWarning(GetLPWarningRequestV1) returns (GetLPWarningResponseV1) {}
+  // GetLPList: 获取可用的交易市场
+  // 1、根据入参的category进行分类
+  // 2、分别获取配置的交易市场进行返回
+  rpc GetLPList(GetLPListRequestV1) returns (GetLPListResponseV1) {}
+  // GetOrders: rfq 获取订单数据
+  /* 目前主要用于根据状态，获取限价单的数据。状态包含 open、filled(需要同时获取 filled + partially filled 的数据)、canceled。 */
+  // 1、通过trader_identifier获取并校验user
+  // 2、通过role过滤单子查看范围(权限role等于4，orders展示所有数据;等于3只展示用户本身的数据)
+  // 3、根据过滤参数去数据库获取orders
+  // 4、构建成返回值
+  rpc GetOrders(GetOrdersRequestV1) returns (GetOrdersResponseV1) {}
+  // SendLimitQuoteFill: 限价订单下单
+  // 1、参数非空校验及数量校验
+  // 2、检查单笔交易限额、日交易限额
+  // 3、计算 fee_total, quote_quantity, total, fee_pct
+  // 4、计算 raw_price, 实际下单的价格
+  // 5、构建 order 数据
+  // 6、将限价单数据写入 Orders 表中
+  // 7、替换交易市场名称
+  // 8、调用 execution 服务的 Hedge 接口下单 若下单失败，回滚数据
+  rpc SendLimitQuoteFill(SendLimitQuoteFillRequestV1) returns (SendLimitQuoteFillResponseV1) {}
+  // SendLimitQuoteCancel: 限价单取消
+  // 1、参数非空校验及数量校验
+  // 2、获取 transaction, order 数据
+  // 3、如果没有tnx数据，先取消订单，然后更新 orders 表状态
+  // 4、如果订单全部成交，则抛出异常告知订单已完成无法取消
+  // 5、如果订单部分成交，先取消订单，然后更新 orders 表状态，最后生成交易凭据 receipt
+  rpc SendLimitQuoteCancel(SendLimitQuoteCancelRequestV1) returns (SendLimitQuoteCancelResponseV1) {}
+  // GetCustomerInfoFromCRM: CRM
+  // 1、入参校验account_id
+  // 2、从OtcCrm获取crm
+  // 3、通过account_id获取对应的kyc_approved, pa_agreed, counterpart, account_name
+  // 4、构建结果并返回
+  rpc GetCustomerInfoFromCRM(GetCustomerInfoFromCRMRequestV1) returns (GetCustomerInfoFromCRMResponseV1) {}
+  // GetSymbols: 获取所有的symbol
+  // 1、从ems_symbols表里获取数据
+  // 2、根据入参的quote去决定是否从symbols表里获取数据
+  // 3、对获取的数据处理,构建返回值字段ticker_list、bases、quotes,进行返回
+  rpc GetSymbols (GetSymbolsRequestV1) returns (GetSymbolsResponseV1) {}
+  // 询价接口
+  // 1、输入的参数进行校验
+  // 2、redis的数据必须是1.5内最新数据,然后获取redis中对应交易所的数据(rawPrice)
+  // 3、询价: 1> 通过omd项目中FetchQuote接口，在talos平台获取到最优的交易所及其价格
+  //         2> redis中获取十分钟之内最优有效价格
+  //         3> redis中获取base/USD、quote/USD
+  //         4> gck 获取交易对的价格
+  //         5> gck rest api 获取市场价格
+  // 4、交易金额数据检查，包括交易员金额检查与用户交易额检查
+  // 5、对获得的数据进行处理，最后返回
+  rpc GetQuote (GetQuoteOTCRequestV1) returns (GetQuoteOTCResponseV1) {}
+
+
+  // AddTreasury: 添加 treasury 数据
+  // 1、获取并校验输入的参数
+  // 2、对输入的参数进行处理转化格式
+  // 3、计算 fee_amount, total
+  // 4、创建一条新的treasury
+  // 5、生成receipt
+  rpc AddTreasury(AddTreasuryRequestV1) returns (AddTreasuryResponseV1) {}
+  // EditTreasury: 编辑 treasury 数据
+  // 1、获取并校验输入的参数
+  // 2、对输入的参数进行处理转化格式
+  // 3、计算 fee_amount, total
+  // 4、创建一条新的treasury，并将旧的进行逻辑删除
+  // 5、生成receipt
+  rpc EditTreasury(EditTreasuryRequestV1) returns (EditTreasuryResponseV1) {}
+  // GetTreasuryList: 获取 treasury 数据
+  // 1、对输入的参数进行处理转化格式
+  // 2、根据过滤参数去数据库查询对应的treasury
+  // 3、构建成返回值
+  rpc GetTreasuryList(GetTreasuryListRequestV1) returns (GetTreasuryListResponseV1) {}
+  // GetTransactionFromChain: 根据 tx_id(即 tx_hash) 获取链上交易数据
+  // 1、获取并校验输入的参数
+  // 2、根据asset_id获取source_url
+  // 3、通过asset_id，source_url，tx_id到指定源或者全部源(没有source_url时)上获取链上交易数据
+  rpc GetTransactionFromChain(GetTransactionFromChainRequestV1) returns (GetTransactionFromChainResponseV1) {}
+  // GetUsersIdByEMS: 获取ems的user的信息
+  // 1、入参校验operate
+  // 2、根据operate区分是rfq还是risk
+  // 3、将Users, Individuals表里数据进行关联查询，risk要过滤role大于3，tenant不为viva
+  // 4、构建结果并返回
+  rpc GetUsersIdByEMS(GetUsersIdByEMSRequestV1) returns (GetUsersIdByEMSResponseV1) {}
+
+  // 获取交易员的基本信息
+  // 1、在Users表中查询参数email是否存在
+  // 2、从Users表得到role,在Roles表查询到信息
+  // 3、从Users表得到signup_date,如果存在将时间格式化成年月日
+  // 4、从Logins表使用参数email查询,得到最后一次登录时间戳,再将时间格式化成年月日
+  // 5、从TraderConfig表使用参数email查询,得到status状态，若是active,key_enabled是True,否则key_enabled是False
+  // 6、构建返回数据
+  // 7、如果从Users表得到entity_id为空,则返回值中添加user_type等于individual,然后返回
+  // 8、如果参数account_entity_id不等于Users表中entity_id,得到company、trust相关的信息添加到返回值中
+  // 9、从数据库中获取的数据,构建返回值中individuals_entity、emails、user_type,进行返回
+  rpc TraderInfo(TraderInfoRequestV1) returns (TraderInfoResponseV1) {}
+
+  rpc GetUserAccountsInfoByEMS(GetUserAccountsInfoByEMSRequestV1) returns (GetUserAccountsInfoByEMSResponseV1) {}
+
+  rpc GetSymbolPrice(GetSymbolPriceRequestV1) returns (GetSymbolPriceResponseV1) {}
+
+  rpc QuoteCalculator(QuoteCalculatorRequestV1) returns (QuoteCalculatorResponseV1) {}
+  // 交割前的检查(portal、kyc、余额、法币、fb、地址)
+  rpc SettleCheck(SettleCheckRequestV1) returns (SettleCheckResponseV1) {}
+
+  // AddPayment: custdoy => otc 转账
+  rpc AddPayment(AddSettleRequestV1) returns (AddSettleResponseV1) {}
+  rpc AddSettlement(AddSettleRequestV1) returns (AddSettleResponseV1) {}
+
+  rpc GetEMSTransfer(GetEMSTransferRequestV1) returns (GetEMSTransferResponseV1) {}
+  rpc RejectEMSTransfer(RejectEMSTransferRequestV1) returns (RejectEMSTransferResponseV1) {}
+
+  rpc EMSTransferResend(EMSTransferResendRequestV1) returns (EMSTransferResendResponseV1) {}
+  rpc GetAccountTransactionFlow(GetAccountTransactionFlowRequestV1) returns (GetAccountTransactionFlowResponseV1) {}
+  // 获取客户的 CRM Notes
+  rpc GetCrmNotesByAccount(GetCrmNotesByAccountRequestV1) returns (GetCrmNotesByAccountResponseV1) {}
+  // 添加客户的 CRM Notes
+  rpc AddCrmNote(AddCrmNoteRequestV1) returns (AddCrmNoteResponseV1) {}
+  // blotter
+  rpc Blotter(BlotterRequestV1) returns (BlotterResponseV1) {}
+
+  // dma
+  rpc GetKLine(GetKLineRequestV1) returns (GetKLineResponseV1) {}
+  // 获取交易对的配置信息
+  rpc GetPriceAdmin(GetPriceAdminRequestV1) returns (GetPriceAdminResponseV1) {}
+  // 更新交易对的配置信息
+  rpc UpdatePriceAdmin(UpdatePriceAdminRequestV1) returns (UpdatePriceAdminResponseV1) {}
+
+  // omd 服务迁移过来的接口
+  rpc FetchQuote(FetchQuoteRequestV1) returns (FetchQuoteResponseV1) {}
+  rpc GetBatchBidAsk (GetBatchBidAskRequestV1) returns (GetBatchBidAskResponseV1) {}
+  rpc GetCreditLines (GetCreditLinesRequestV1) returns (GetCreditLinesResponseV1) {}
+  rpc GetLPBalances (GetLPBalancesRequestV1) returns (GetLPBalancesResponseV1) {}
+  // 更新AAA交易对信息
+  rpc UpdateAAASymbol(UpdateAAASymbolRequestV1) returns (UpdateAAASymbolResponseV1) {}
+  // 添加或更新 MARKETS_LIST 配置表
+  rpc UpdateMarketsConfig(UpdateMarketsConfigRequestV1) returns (UpdateMarketsConfigResponseV1) {}
+}
+
+message UpdateMarketsConfigRequestV1 {
+    // 市场正式名称
+    string account_name = 1;
+    // 市场分类 PLACE or NO_PLACE...
+    string category = 2;
+    // 状态
+    string status = 3;
+}
+
+message UpdateMarketsConfigResponseV1 {
+    string status = 1;
+}
+
+message FetchQuoteRequestV1{
+    string symbol = 1;
+    repeated string markets = 2;
+    string amount = 3;
+    string side = 4;
+    string entity = 5;
+    string trader_identifier = 6;
+}
+
+message FetchQuoteResponseV1{
+  Price sell_price = 1;
+  Price buy_price = 2;
+  string status = 3;
+}
+
+
+message Price {
+  string market = 1;
+  string price = 2;
+}
+
+
+message GetBatchBidAskRequestV1 {
+  string tickers = 1;
+  string page = 2;
+  string data_type = 3;
+}
+
+message BidAskV1 {
+  string bid = 1;
+  string ask = 2;
+  string symbol = 3;
+}
+
+message GetBatchBidAskResponseV1 {
+  repeated BidAskV1 bidasks = 1;
+  string request_at = 2;
+  string status = 3;
+  string total = 4;
+  repeated BidAskV1 quotes_bidasks = 5;
+  repeated BidAskV1 orders_bidasks = 6;
+}
+
+message GetCreditLinesRequestV1 {
+    string entity = 1;
+}
+
+message CreditLines {
+    string source     = 1;
+    string used        = 2;
+    string total = 3;
+}
+
+message GetCreditLinesResponseV1 {
+    repeated CreditLines credit_lines = 1;
+    string status = 2;
+}
+
+
+message GetLPBalancesRequestV1 {
+    string entity = 1;
+}
+
+message LPBalances {
+    string asset_ticker     = 1;
+    string quantity         = 2;
+}
+
+message LPBalancesResponse {
+    string lp_name = 1;
+    repeated LPBalances lp_data = 2;
+}
+
+message GetLPBalancesResponseV1 {
+    repeated LPBalancesResponse all_lp_data = 1;
+    string status = 2;
+}
+
+
+message UpdatePriceAdminRequestV1 {
+    string trader_identifier = 1;
+    string symbol = 2;
+    string max_order = 3;
+    string min_order = 4;
+    string buy_spread = 5;
+    string sell_spread = 6;
+    string px_sig = 7;
+    string qty_sig = 8;
+    string price_stream = 9;
+    string place_orders = 10;
+    repeated DmaLadder dma_ladder = 11;
+}
+
+message UpdatePriceAdminResponseV1 {
+    string status = 1;
+}
+
+message GetPriceAdminRequestV1 {
+    string trader_identifier = 1;
+    uint64 limit = 2;
+    uint64 page = 3;
+    string symbol = 4;
+}
+
+message GetPriceAdminResponseV1 {
+    string status = 1;
+    repeated SymbolsAdmin symbols_admin = 2;
+}
+
+message SymbolsAdmin {
+    string symbol = 1;
+    string price_stream = 2;
+    string place_orders = 3;
+    string px_sig = 4;
+    string qty_sig = 5;
+    string max_order = 6;
+    string min_order = 7;
+    string buy_spread = 8;
+    string sell_spread = 9;
+    repeated DmaLadder dma_ladder = 10;
+}
+
+message DmaLadder {
+    string id = 1;
+    string quantity = 2;
+    string spread = 3;
+}
+
+message GetKLineRequestV1 {
+    string date_type = 1;
+    string date_range = 2;
+}
+
+message GetKLineResponseV1 {
+    string status = 1;
+    repeated KLineData k_line_data = 6;
+}
+
+message KLineData {
+    // 时间戳
+    string created_date = 1;
+    // 开盘价
+    string open_price = 2;
+    // 收盘价
+    string close_price = 3;
+    // 最高价
+    string high_price = 4;
+    // 最低价
+    string low_price = 5;
+    // 成交量
+    string vol = 6;
+}
+
+message BlotterRequestV1 {
+    string old_alias = 1;
+    string new_alias = 2;
+    // 参数transaction、fills、treasury
+    string blotter_type = 3;
+}
+
+message BlotterResponseV1 {
+    string status = 1;
+}
+
+message EMSTransferResendRequestV1 {
+    string tx_id = 1;
+}
+
+message EMSTransferResendResponseV1 {
+    string status = 1;
+}
+
+message AddSettleRequestV1 {
+    string category = 1;
+    string txn_alias = 2;
+    string asset_id = 3;
+    string side = 4;
+    string amount = 5;
+    string account_id = 6;
+    string vault_id = 7;
+    string user_id = 8;
+    string trader_identifier = 9;
+    bool is_bank_transfer = 10;
+    bool is_notify_customer = 11;
+    string bank_detail = 12;
+    string network = 13;
+    string note = 14;
+    string wallet_id = 15;
+    string entity = 16;
+    string tx_hash = 17;
+}
+
+message AddSettleResponseV1 {
+    string status = 1;
+}
+
+message SettleCheckRequestV1 {
+    string user_id = 1;
+    string trader_identifier = 2;
+    // 交易账户,必填
+    string account_id = 3;
+    // 钱包id,必填
+    string vault_id = 4;
+    // 币种,必填
+    string asset = 5;
+    // 选填，["is_portal", "kyc", "fb_address_balance", "is_fiat"]
+    repeated string inspection_items = 6;
+    string side = 7;
+    string txn_alias = 8;
+    string entity = 9;
+    string quantity = 10;
+}
+
+message SettleCheckResponseV1 {
+    string is_portal = 1;
+    string kyc = 2;
+    repeated FbAddressbalance fb_address_balance = 3;
+    string is_fiat = 4;
+    repeated UserBankList user_bank_list = 5;
+    string status = 6;
+}
+
+message UserBankList {
+    string bank_id = 1;
+    string account_name = 2;
+    string iban_account_number = 3;
+}
+
+message FbAddressbalance{
+  string network = 1;
+  string fb_id = 2;
+  string wallet_id = 3;
+  string balance = 4;
+  bool   is_gas_fee = 5;
+}
+
+message CheckToPortalRequestV1{
+  string user_id = 1;
+  string asset_id = 2;
+  string quantity = 3;
+  string workspace = 4;
+  string vault_id = 5;
+  string account_id = 6;
+}
+
+message CheckToPortalResponseV1{
+  string status = 1;
+  uint64 check_result = 2;
+  string address = 3;
+  string external_wallet_id = 4;
+}
+
+message CreateEMSTransactionRequestV1 {
+  string user_id = 1;
+  string asset_id = 2;
+  string quantity = 3;
+  string txn_alias = 4;
+  string withdrawal_alias = 5;
+  string workspace = 6;
+  string trace_id = 7;
+  string account_id = 8;
+  string vault_id = 9;
+}
+
+message CreateEMSTransactionResponseV1{
+  string tx_id = 2;
+  string status = 3;
+}
+
+
+message OTCCheckHealthRequestV1{
+    string tasks = 1;
+}
+
+message OTCCheckHealthResult {
+    string task = 1;
+    string status = 2;
+    string msg = 3;
+}
+
+message OTCCheckHealthResponseV1{
+    repeated OTCCheckHealthResult result = 1;
+}
+
+message GetRiskRequestV1 {
+    string user_id = 1;
+    uint64 limit = 2;
+    uint64 page = 3;
+    string asset_id = 4;
+    string trader_identifier = 5;
+    uint64 start_timestamp = 6;
+    uint64 end_timestamp = 7;
+    string trace_id = 8;
+}
+
+message AssetRiskV1 {
+    string asset_id = 1;
+	string exposure_quantity = 2;
+	string exposure_value_usd = 3;
+	string trading_volume = 4;
+	string trading_volume_usd = 5;
+	string last_updated = 6;
+}
+
+message TraderRiskV1 {
+    string trader_identifier = 1;
+    string trader_name = 2;
+	string exposure_value_usd_total = 3;
+	string trading_volume_usd_total = 4;
+	string pnl_usd_total = 5;
+	string last_updated = 6;
+	repeated AssetRiskV1 asset_risks = 7;
+	string trader_email = 8;
+}
+
+message GetRiskResponseV1 {
+    string status = 1;
+    uint64 total = 2;
+    repeated TraderRiskV1 trader_risks = 6;
+}
+
+message InsterOrUpdateRiskLimitRequestV1 {
+    string trader_identifier = 1;
+    string alert_interval = 2;
+    string stop_loss_limit = 3;
+    string note = 4;
+}
+
+message InsterOrUpdateRiskLimitResponseV1 {
+        string status = 1;
+}
+
+message TraderListRequestV1 {
+}
+
+message TraderListResponseV1 {
+    repeated TraderList trader_list = 1;
+    Firm firm = 2;
+    string status = 3;
+}
+
+message Firm {
+    string stop_loss_limit = 1;
+    string alert_interval = 2;
+}
+
+message TraderList {
+    string email = 1;
+    string role = 2;
+    string firstname = 3;
+    string lastname = 4;
+    string address = 5;
+    string tenant = 6;
+    string created_at = 7;
+    string updated_at = 8;
+    string stop_loss_limit = 9;
+    string alert_interval = 10;
+    string user_id = 11;
+}
+
+message EditRFQQuoteRequestV1 {
+    string quote_alias = 1;
+    string quote_price = 2;
+    string trader_identifier = 3;
+}
+
+message EditRFQQuoteResponseV1 {
+    string quote_alias = 1;
+    string txn_alias = 2;
+    string userpubkey = 3;
+    string user_id = 4;
+    string trader_identifier = 5;
+    string base_asset = 6;
+    string quote_asset = 7;
+    string quantity = 8;
+    string quote_quantity = 9;
+    string total = 10;
+    uint64 created_at = 11;
+    string quantity_asset = 12;
+    string raw_price = 13;
+    string quote_price = 14;
+    string markup = 15;
+    string markup_type = 16;
+    string fee = 17;
+    string fee_type = 18;
+    string fee_pct = 19;
+    string fee_total = 20;
+    string pnl = 21;
+    string side = 22;
+    uint64 timeout = 23;
+    string status = 24;
+    string entity = 25;
+    string dealers = 26;
+    string fee_notional = 27;
+    string hedge=28;
+    string two_way_quote_alias=29;
+    string parent_quote_alias=30;
+    string quote_type=31;
+    string is_edit=32;
+    string account_id = 33;
+    string vault_id = 34;
+    string settlement_destination = 35;
+}
+
+message GetLPWarningRequestV1{
+    repeated string quote_alias = 1;
+}
+
+message GetLPWarningResponseV1{
+    repeated LPWarning lp_warnings = 1;
+    string status = 2;
+}
+
+message LPWarning {
+    string warn_type = 1;
+    string message = 2;
+    string quote_alias = 3;
+}
+
+message GetLPListRequestV1{
+    // 值包含 place(可以下单的)、no_place(不可以下单的)、rfq(可以询价的)、all(查询所有的)
+    string category = 1;
+}
+
+message LP {
+    // LP 的名字
+    string name = 1;
+    // 对应 LP 提交到服务器的值
+    string value = 2;
+}
+
+message GetLPListResponseV1{
+    repeated LP lp_list = 1;
+    string status = 2;
+}
+
+message GetOrdersRequestV1 {
+    // 每页数量，必填
+    uint64 limit = 1;
+    // 当前页码，必填
+	uint64 page = 2;
+    // 当前交易员，必填
+    string trader_identifier = 3;
+    // 订单状态，必填
+    string status = 4;
+}
+
+message GetOrdersResponseV1{
+    repeated OrdersV1 orders = 1;
+    // 同类订单的总数，用于分页使用
+    uint64 total = 2;
+    string status = 3;
+}
+
+message OrdersV1 {
+    string order_alias = 1;
+    string order_id = 2;
+    string txn_alias = 3;
+    string user_id = 4;
+    string trader_identifier = 5;
+    string base_asset = 6;
+    string quote_asset = 7;
+    string quantity = 8;
+    // 剩余未成交数量
+    string leaves_quantity = 9;
+    // 已成交数量
+    string filled_quantity = 10;
+    uint64 created_at = 11;
+    string side = 12;
+    string status = 13;
+    // Limit Price
+    string price = 14;
+    // 成交的平均价格
+    string avg_price = 15;
+    // 成交比例，如成交一半是 0.5
+    string filled_pct = 16;
+    string fee = 17;
+    string fee_type = 18;
+    string fee_total = 19;
+    string fee_notional = 20;
+    string fee_pct = 21;
+    string dealers = 22;
+    string total = 23;
+    string entity = 24;
+    string notional = 25;
+    // ZC Limit Price
+    string raw_price = 26;
+    string markup = 27;
+    string markup_type = 28;
+    string note = 29;
+    string account_id = 30;
+    string vault_id = 31;
+    string user_email = 32;
+    string trader_email = 33;
+    string account_name = 34;
+    string hedge_type = 35;
+    string subscribe = 36;
+    string symbol = 37;
+    string markup_notional = 38;
+}
+
+message SendLimitQuoteFillRequestV1 {
+    string user_id = 1;
+    string trader_identifier = 2;
+    string symbol = 3;
+    string side = 4;
+    string quantity = 5;
+    string notional = 6;
+    string limit_price = 7;
+    string entity = 8;
+    string fee = 9;
+    string fee_notional = 10;
+    string fee_type = 11;
+    string dealers = 12;
+    string markup = 13;
+    string markup_type = 14;
+    string request_type = 15;
+    string account_id = 16;
+    string vault_id = 17;
+}
+
+message SendLimitQuoteFillResponseV1 {
+    string status = 1;
+}
+
+message SendLimitQuoteCancelRequestV1 {
+    string order_id = 1;
+    string order_alias = 2;
+    string trader_identifier = 3;
+}
+
+message SendLimitQuoteCancelResponseV1 {
+    string status = 1;
+}
+message AddTreasuryRequestV1 {
+    string user_id = 1;
+    string asset_id = 2;
+    string amount = 3;
+    string fee = 4;
+    string fee_type = 5;
+    string fee_notional = 6;
+    string created_at = 7;
+    string tx_hash = 8;
+    string destination_address = 9;
+    string trader_identifier = 10;
+    string status = 11;
+    string notes = 12;
+    string total = 13;
+    string account_id = 14;
+    string vault_id = 15;
+    string entity = 16;
+    string settlement_destination = 17;
+}
+
+message AddTreasuryResponseV1 {
+    string status = 1;
+    string message = 2;
+    Treasury treasury = 3;
+}
+
+message EditTreasuryRequestV1 {
+    string user_id = 1;
+    string asset_id = 2;
+    string amount = 3;
+    string fee = 4;
+    string fee_type = 5;
+    string fee_notional = 6;
+    string created_at = 7;
+    string tx_hash = 8;
+    string id = 9;
+    string destination_address = 10;
+    string trader_identifier = 11;
+    string status = 12;
+    string notes = 13;
+    string total = 14;
+    string treasury_alias = 15;
+    string account_id = 16;
+    string vault_id = 17;
+    string entity = 18;
+    string settlement_destination = 19;
+}
+
+message EditTreasuryResponseV1 {
+    string status = 1;
+    string message = 2;
+    Treasury treasury = 3;
+}
+
+message GetTreasuryListRequestV1 {
+    string user_id = 1;
+    string trader = 2;
+    string asset_id = 3;
+    string date_start = 4;
+    string date_end = 5;
+    uint64 page = 6;
+    uint64 limit = 7;
+    string fee_type = 8;
+    string status = 9;
+    string treasury_alias = 10;
+    string account_id = 11;
+}
+
+message GetTreasuryListResponseV1 {
+    string status = 1;
+    string message = 2;
+    repeated  Treasury treasury = 3;
+    uint64 total =4;
+}
+
+message Treasury {
+    string user_id = 1;
+    string asset_id = 2;
+    string fee_amount = 3;
+    string amount = 4;
+    string fee = 5;
+    string fee_type = 6;
+    string fee_notional = 7;
+    string created_at = 8;
+    string tx_hash = 9;
+    string destination_address = 10;
+    string trader_identifier = 11;
+    string status = 12;
+    string id = 13;
+    string total = 14;
+    string add_date = 15;
+    string updated_at = 16;
+    string notes = 17;
+    string treasury_alias = 18;
+    string account_id = 19;
+    string vault_id = 20;
+    string user_email = 21;
+    string trader_email = 22;
+    string account_name = 23;
+    string entity = 24;
+    string receipt_sent = 25;
+    string settlement_destination = 26;
+}
+
+message GetCustomerInfoFromCRMRequestV1 {
+	string account_id = 1;
+}
+
+message GetCustomerInfoFromCRMResponseV1 {
+    string status = 1;
+    bool kyc_approved = 2;
+    bool pa_agreed = 3;
+    repeated CustomerInfoV1 customerinfo = 4;
+    string account_name = 5;
+}
+
+message CustomerInfoV1{
+    string counterpart =1;
+    string trade_entity =2;
+    string symbol_type =3;
+    string markup_under =4;
+    string above_markup_type =5;
+    string markup_above =6;
+    string fee_under =7;
+    string fee_above =8;
+    string fee_type =9;
+    string above_fee_unit =10;
+    string created_at =11;
+    string last_updated=12;
+    string status=13;
+    string filter_amount=14;
+    string filter_amount_usd=15;
+    string notional_unit=16;
+    string account_id =17;
+    string trade_identifier=18;
+    string under_markup_type =19;
+    string under_fee_unit=20;
+}
+
+message GetSymbolsRequestV1 {
+  string user_id = 1;
+  string quote = 2;
+  uint64 page = 3;
+  uint64 limit = 4;
+}
+
+message GetSymbolsResponseV1{
+  string status = 1;
+  string data = 2;
+}
+
+message BaseSymbolInfo{
+  string b = 1;
+  string b_n = 2;
+  repeated string a = 3;
+}
+
+message QuoteSymbolInfo{
+  string q = 1;
+  string q_n = 2;
+  repeated string a = 3;
+}
+
+message TickerList{
+  string b = 1;
+  string q = 2;
+  string b_n = 3;
+  string q_n = 4;
+  string s = 5;
+  string t = 6;
+  repeated string is_q = 7;
+  repeated string no_q = 8;
+}
+
+message GetTransactionFromChainRequestV1{
+    string asset_id = 1;
+    string tx_id = 2;
+}
+
+message ResultV1{
+    string tx_hash = 1;
+    string asset_id = 2;
+    string quantity = 3;
+    repeated string source_address = 4;
+    repeated string destination_address = 5;
+    string blokchain = 6;
+}
+
+message ErrorMessageV1 {
+    string tx_hash_error = 1;
+    string asset_id_error = 2;
+    string quantity_error = 3;
+}
+
+message GetTransactionFromChainResponseV1{
+    string status = 1;
+    repeated ErrorMessageV1 error_message = 2;
+    repeated ResultV1 result = 3;
+}
+
+message GetUsersIdByEMSRequestV1{
+    // 可填，可空
+    string account_id = 1;
+    // 必填，emsgetquote/risk
+    string operate = 2;
+
+}
+
+message GetUsersIdByEMSResponseV1{
+    repeated UserIdListV1 user_id_list = 1;
+    string status = 2;
+    string sp_wsc = 3;
+}
+
+message UserIdListV1{
+    string user_id = 1;
+    string address = 2;
+    string company_name = 3;
+    string company_number = 4;
+    string created_at = 5;
+    string email = 6;
+    string firstname = 7;
+    string initial_ip = 8;
+    bool kyc_approved = 9;
+    string lastname = 10;
+    string role = 11;
+    bool tc_agreed = 12;
+    string tenant = 13;
+    string trustee_name = 14;
+    string updated_at = 15;
+    string user_type = 16;
+}
+
+message TraderInfoRequestV1 {
+    string email = 1;
+    string account_entity_id = 2;
+}
+
+message TraderInfoResponseV1{
+    IndividualsEntityResponseV1 individuals_entity = 1;
+    CompanyEntityResponseV1 company_entity = 2;
+    TrustsEntityResponseV1 trusts_entity = 3;
+    GroupsEntityResponseV1 groups_entity = 4;
+    string status = 5;
+    string user_type = 6;
+    repeated string emails = 7;
+    string user_id = 8;
+    bool view_ems = 9;
+    bool view_portal_admin = 10;
+    bool trade = 11;
+    bool approve_yields = 12;
+    string role = 13;
+    string current_email = 14;
+    string sign_up_date = 15;
+    string last_login_date = 16;
+    string entity_child_role = 17;
+    bool key_enabled = 18;
+}
+
+message IndividualsEntityResponseV1 {
+    string entity_id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string tenant = 4;
+    string address = 5;
+    string phone = 6;
+    string country = 7;
+    string kyc_status = 8;
+    string sp_wsc = 9;
+    string status = 10;
+    string created_at = 11;
+    string last_updated = 12;
+}
+
+message CompanyEntityResponseV1 {
+    string entity_id = 1;
+    string company_name = 2;
+    string company_number = 3;
+    string address = 4;
+    string person_control = 5;
+    string country = 6;
+    string kyc_status = 7;
+    string sp_wsc = 8;
+    string status = 9;
+    string created_at = 10;
+    string last_updated = 11;
+    string phone = 12;
+}
+
+message TrustsEntityResponseV1 {
+    string entity_id = 1;
+    string trust_name = 2;
+    string trustee_name = 3;
+    string address = 4;
+    string beneficiary_name = 5;
+    string phone = 6;
+    string country = 7;
+    string kyc_status = 8;
+    string sp_wsc = 9;
+    string status = 10;
+    string created_at = 11;
+    string last_updated = 12;
+}
+
+message GroupsEntityResponseV1 {
+    string entity_id = 1;
+    string group_name = 2;
+    string status = 3;
+    string created_at = 4;
+    string last_updated = 5;
+}
+
+message GetUserAccountsInfoByEMSRequestV1{
+    string email = 1;
+    string tenant = 2;
+}
+
+message GetUserAccountsInfoByEMSResponseV1 {
+    string status = 1;
+    repeated EMSAccountInfoData account_data = 2;
+}
+
+message EMSAccountInfoData {
+    string entity_id = 1;
+    string account_id = 2;
+    string account_name = 3;
+    string vault_id = 4;
+    bool kyc_status = 5;
+    bool sp_wsc = 6;
+    string role = 7;
+    bool pa_status = 8;
+}
+
+message GetQuoteOTCRequestV1 {
+  // 交易对,必填
+  string symbol             = 1;
+  string side				= 2;
+  string quantity			= 3;
+  string notional		= 4;
+  string markup				= 5;
+  string fee					= 6;
+  string user_id	= 7;
+  string trader_identifier	= 8;
+  string markup_type			= 9;
+  string fee_type			= 10;
+  string entity     = 11;
+  repeated string dealers    = 12;
+  string fee_notional = 13;
+  string quote_price = 14;
+  string quote_type = 15;
+  // 交易账户,必填
+  string account_id = 16;
+  // 钱包id,必填
+  string vault_id = 17;
+  // 是否有可询价的市场
+  bool is_quote = 18;
+  string settlement_destination = 19;
+  string price_mode = 20;
+}
+
+message GetQuoteOTCResponseV1 {
+  repeated QuoteOTCResponseV1 quotes = 1;
+  uint64 total = 2;
+  string status = 3;
+}
+
+message QuoteOTCResponseV1 {
+  string quote_alias = 1;
+  string user_id = 2;
+  string trader_identifier = 3;
+  string base_asset = 4;
+  string quote_asset = 5;
+  string quantity = 6;
+  string quote_quantity = 7;
+  string total = 8;
+  string quantity_asset = 9;
+  string raw_price = 10;
+  string quote_price = 11;
+  string markup = 12;
+  string markup_type = 13;
+  string fee = 14;
+  string fee_type = 15;
+  string fee_pct = 16;
+  string fee_total = 17;
+  string side = 18;
+  uint64 timeout = 19;
+  string status = 20;
+  string dealers = 21;
+  string two_way_quote_alias = 22;
+  string fixed_quote_error_message = 23;
+  string notional = 24;
+}
+
+
+message GetSymbolPriceRequestV1 {
+    string symbols = 1;
+    string markets = 2;
+    string side = 3;
+}
+
+message SymbolPrice {
+    string symbol = 1;
+    string buy_price = 2;
+    string sell_price = 3;
+}
+
+message GetSymbolPriceResponseV1 {
+    repeated SymbolPrice symbol_price = 1;
+    string status = 3;
+}
+
+message QuoteCalculatorRequestV1{
+  // 交易对,必填
+  string symbol = 1;
+  string side	= 2;
+  string quantity	= 3;
+  string notional = 4;
+  string markup	= 5;
+  string fee = 6;
+  string user_id = 7;
+  string trader_identifier = 8;
+  string markup_type = 9;
+  string fee_type	= 10;
+  string entity = 11;
+  repeated string dealers = 12;
+  string fee_notional = 13;
+  string quote_price = 14;
+  string quote_type = 15;
+  // 交易账户,必填
+  string account_id = 16;
+  // 钱包id,必填
+  string vault_id = 17;
+  // 是否有可询价的市场
+  bool is_quote = 18;
+  string raw_price = 19;
+  string created_at = 20;
+  // 区分是否是编辑固定询价
+  string quote_alias = 21;
+  string settlement_destination = 22;
+}
+
+message QuoteCalculatorResponseV1{
+    repeated QuoteOTCResponseV1 quotes = 1;
+    uint64 total = 2;
+    string status = 3;
+}
+
+message GetEMSTransferRequestV1 {
+    string tx_id = 1;
+    string account_name = 2;
+    string individual_email = 3;
+}
+
+message TransferData {
+    // transaction history 表唯一 id，关联 yiels pending 表的 tx_id
+    string tx_id = 1;
+    // 账户 account name，根据 txnsh 表中的 account_id 查询 accoun tinfo 表
+    string account_name = 2;
+    // 用户个人邮箱，根据 txnsh 记录中的 entity id 查询 individuals 表获取
+    string individual_email = 3;
+    // txnsh 记录中的 from account type 和 to account type
+    string transfer_type = 4;
+    // 当前转账的币种
+    string asset_id = 5;
+    // 转账前用户对应的 asset_id 的 custody 账户余额
+    string current_balance = 6;
+    // 转账后用户对应的 asset_id 的 custody 账户余额
+    string new_balance = 7;
+    // 转账的数量
+    string transfer_amount = 8;
+    // 转账时的手续费
+    string transaction_fee = 9;
+    // 当前 txnsh 记录的状态
+    string status = 10;
+    // txnsh 表中的 status 和 sub_status 拼接，如果 status 为 pending，该字段不显示
+    string fireblock_status = 11;
+    // 如果 fee currency 和 asset id 一样则是 amount+fee 否则就是amount
+    string total_amount_sent_on_chain = 12;
+    // payment 显示，和 total_amount_sent_on_chain 保持一致
+    string amount_from_client = 13;
+    // 手续费币种
+    string fee_asset = 14;
+}
+
+message GetEMSTransferResponseV1 {
+    string status  = 1;
+    TransferData transfer_data = 2;
+}
+
+message RejectEMSTransferRequestV1 {
+    string tx_id = 1;
+}
+
+message RejectEMSTransferResponseV1 {
+    string status = 1;
+}
+
+message GetAccountTransactionFlowRequestV1 {
+    string account_id = 1;
+}
+
+message TransactionFlow {
+    string side = 1;
+    string base_asset = 2;
+    string quote_asset = 3;
+    string price = 4;
+    string base_quantity = 5;
+    string quote_quantity = 6;
+    string fee = 7;
+    string fee_notional = 8;
+    string markup = 9;
+    string markup_type = 10;
+    string date = 11;
+
+}
+
+message GetAccountTransactionFlowResponseV1 {
+    // 30 天 USD 交易总额
+    string thirty_day_volume = 1;
+    // 最近 5 条交易记录
+    repeated TransactionFlow transaction_flow = 2;
+    // 状态
+    string status = 3;
+}
+
+message GetCrmNotesByAccountRequestV1 {
+    string account_id = 1;
+}
+
+message CrmNotesData {
+    string content = 1;
+    string trade_identifier = 2;
+    string created_at = 3;
+}
+
+message GetCrmNotesByAccountResponseV1 {
+    string status = 1;
+    repeated CrmNotesData crm_notes_data = 2;
+}
+
+message AddCrmNoteRequestV1 {
+    string account_id = 1;
+    string trade_email = 2;
+    string content = 3;
+    string timestamp = 4;
+}
+
+message AddCrmNoteResponseV1 {
+    string status = 1;
+}
+
+message UpdateAAASymbolRequestV1 {
+    string base_asset = 1;
+    string quote_asset = 2;
+    string txn_alias = 3;
+    string fill_alias = 4;
+}
+
+message UpdateAAASymbolResponseV1 {
+    string status = 1;
+}
